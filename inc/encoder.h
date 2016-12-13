@@ -19,30 +19,27 @@
 
 #include <stdint.h>
 
-#define ENCODER_VAL_MAX 8191           
-#define ENCODER_DIFF_MAX 7500          
-#define ENCODER_RATE_BUF_SIZE 10       
-#define ENCODER_INIT_FRAME_COUNT 200
+#define ENCODER_VALUE_MAX 8191
+#define ENCODER_VALUE_MOD 8192
+#define ENCODER_VALUE_DIFF_MAX 7500
+#define ENCODER_RATE_BUF_SIZE 10
+#define ENCODER_INIT_FRAME_CNT 50
+#define ENCODER_DIFF_MAX 5.7524281f
+
+#define ENCODER_VALUE_TO_RAD(value) ((value)*PI2/ENCODER_VALUE_MOD)
 
 typedef struct Encoder
 {
 	uint16_t value;
-	uint16_t last_value;
-	int32_t diff;
-	uint16_t bias;
+	uint16_t init_frame_cnt;
+	float angle[2];
+	float bias;
 	int32_t round;
-	int32_t scale;
-	float angle;
-	float radian;
-	int32_t rate_raw;
-	int32_t rate_buf[ENCODER_RATE_BUF_SIZE];
+	float rate_buf[ENCODER_RATE_BUF_SIZE];
 	uint8_t rate_cnt;
 	uint8_t rate_ptr;
 	int32_t rate_sum;
-	int32_t rate;
-	float rate_angle;
-	float rate_radian;
-	uint32_t cnt;
+	float rate;
 }Encoder;
 
 void Encoder_Process(Encoder* encoder, uint16_t value);

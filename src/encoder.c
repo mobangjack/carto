@@ -18,39 +18,30 @@
 
 void Encoder_Process(Encoder* encoder, uint16_t value)
 {
-	static const uint32_t encoder_mod = ENCODER_VAL_MAX + 1;
-	static const float encoder_value_to_angle_coeff = 0.0439453125f;
-	static const float angle_to_radian_coeff = 0.01745329252f;
-	
-	if(encoder->cnt < ENCODER_INIT_FRAME_COUNT)
-	{
-		encoder->bias = value;
-		encoder->cnt++;
-	}
-	encoder->last_value = encoder->value;
 	encoder->value = value;
-	encoder->diff = encoder->value - encoder->last_value;
-	if(encoder->diff > ENCODER_DIFF_MAX)
+	encoder->angle[0] = encoder->angle[1];
+	encoder->angle[1] = ENCODER_VALUE_TO_RAD(value);
+	if(encoder->init_frame_cnt < ENCODER_INIT_FRAME_CNT)
 	{
-		encoder->rate_raw = encoder->diff - encoder_mod;
+		encoder->bias = encoder->angle[1];
+		encoder->init_frame_cnt++;
+	}
+	encoder->rate = encoder->angle[1] - encoder->angle[0];
+	if(encoder->rate > ENCODER_DIFF_MAX)
+	{
+		encoder->rate -= PI2;
 		encoder->round--;
 	}
-	else if(encoder->diff < -ENCODER_DIFF_MAX)
+	else if(encoder->rate < -ENCODER_DIFF_MAX)
 	{
-		encoder->rate_raw = encoder->diff + encoder_mod;
+		encoder->rate += PI2;
 		encoder->round++;
 	}
-	else
-	{
-		encoder->rate_raw = encoder->diff;
-	}
-	encoder->scale = (encoder->value - encoder->bias) + encoder->round * encoder_mod;
-	encoder->angle = encoder->scale * encoder_value_to_angle_coeff;
-	encoder->radian = encoder->angle * angle_to_radian_coeff;
+	encoder->angle[1] = (encoder->angle[1] - encoder->bias) + encoder->round * PI2;
 	if(encoder->rate_cnt < ENCODER_RATE_BUF_SIZE)
 	{
-		encoder->rate_buf[encoder->rate_ptr++] = encoder->rate_raw;
-		encoder->rate_sum += encoder->rate_raw;
+		encoder->rate_buf[encoder->rate_ptr++] = encoder->rate;
+		encoder->rate_sum += encoder->rate;
 		encoder->rate_cnt++;
 	}
 	else
@@ -59,17 +50,15 @@ void Encoder_Process(Encoder* encoder, uint16_t value)
 		{
 			encoder->rate_ptr = 0;
 		}
-		encoder->rate_sum += (encoder->rate_raw - encoder->rate_buf[encoder->rate_ptr]);
-		encoder->rate_buf[encoder->rate_ptr++] = encoder->rate_raw;
+		encoder->rate_sum += (encoder->rate - encoder->rate_buf[encoder->rate_ptr]);
+		encoder->rate_buf[encoder->rate_ptr++] = encoder->rate;
 	}
 	encoder->rate = encoder->rate_sum / encoder->rate_cnt;
-	encoder->rate_angle = encoder->rate * 43.9453125f;
-	encoder->rate_radian = encoder->rate_angle * angle_to_radian_coeff;
 }
 
 uint8_t Encoder_IsOk(Encoder* encoder)
 {
-	return encoder->cnt == ENCODER_INIT_FRAME_COUNT;
+	return encoder->init_frame_cnt == ENCODER_INIT_FRAME_CNT;
 }
 
 void Encoder_Reset(Encoder* encoder)

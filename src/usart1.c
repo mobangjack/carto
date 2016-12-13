@@ -89,9 +89,10 @@ void USART1_Config(void)
 
 void USART1_IRQHandler(void)
 {
-	uint32_t this_time_rx_len = 0;
 	if(USART_GetITStatus(USART1, USART_IT_IDLE) != RESET)
 	{
+		uint32_t this_time_rx_len = 0;
+
 		//clear the idle pending flag 
 		(void)USART1->SR;
 		(void)USART1->DR;
@@ -114,7 +115,7 @@ void USART1_IRQHandler(void)
 		if(this_time_rx_len == RC_FRAME_LEN)
 		{
 			DBUS_DEC(&dbus, dbuf);
-			InputTask();
+			DBUS_CMD();
 		}
 	}       
 }

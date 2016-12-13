@@ -57,16 +57,16 @@ void GetHcChassisSpeed(void)
 	float speed = (dbus.hc.key.val & KEY_SHIFT) ? INPUT_CHASSIS_SPEED_MAX : INPUT_CHASSIS_SPEED_MAX / 2.f;
 	chassisSpeed.x = (dbus.hc.key.val & KEY_A) ? -speed : ((dbus.hc.key.val & KEY_D) ? speed : 0);
 	chassisSpeed.y = (dbus.hc.key.val & KEY_S) ? -speed : ((dbus.hc.key.val & KEY_W) ? speed : 0);
-	chassisSpeed.z = MAP(dbus.hc.mouse.x, MS_MIN, MS_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
+	chassisSpeed.z = MAP(dbus.hc.mouse.x, MS_MOV_MIN, MS_MOV_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
 }
 
 void GetHcGimbalsSpeed(void)
 {
-	gimbalsSpeed.yaw = MAP(dbus.hc.mouse.x, MS_MIN, MS_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
-	gimbalsSpeed.pit = MAP(dbus.hc.mouse.y, MS_MIN, MS_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
+	gimbalsSpeed.yaw = MAP(dbus.hc.mouse.x, MS_MOV_MIN, MS_MOV_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
+	gimbalsSpeed.pit = MAP(dbus.hc.mouse.y, MS_MOV_MIN, MS_MOV_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
 }
 
-void InputTask(void)
+void DBUS_CMD(void)
 {
 	GetInputMode();
 	GetSwitchAction();

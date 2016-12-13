@@ -20,20 +20,20 @@
 #include <stdint.h>
 
 /* ----------------------- RC Channel Value Definition---------------------------- */
-#define CH_MIN              	 ((uint16_t)364   ) 
-#define CH_MID           	 	 ((uint16_t)1024  ) 
-#define CH_MAX              	 ((uint16_t)1684  )  
-#define CH_OFF              	 ((uint16_t)660   )  
+#define CH_MIN              	 ((uint16_t)364   )
+#define CH_MID           	 	 ((uint16_t)1024  )
+#define CH_MAX              	 ((uint16_t)1684  )
+#define CH_OFF              	 ((uint16_t)660   )
 /* ----------------------- RC Switch Value Definition----------------------------- */
-#define SW_UP                    ((uint8_t)1      ) 
-#define SW_MD                    ((uint8_t)3      ) 
-#define SW_DN                    ((uint8_t)2      )  
+#define SW_UP                    ((uint8_t)1      )
+#define SW_MD                    ((uint8_t)3      )
+#define SW_DN                    ((uint8_t)2      )
 /* ----------------------- PC Mouse Value Definition------------------------------ */
-#define MS_MIN            		 ((int16_t)-32768 ) 
-#define MS_MID                   ((int16_t)0      ) 
-#define MS_MAX		             ((int16_t)32767  ) 
-#define MS_UP         		     ((uint8_t)0      ) 
-#define MS_DN         		     ((uint8_t)1      ) 
+#define MS_MOV_MIN            	 ((int16_t)-32768 )
+#define MS_MOV_MID               ((int16_t)0      )
+#define MS_MOV_MAX		         ((int16_t)32767  )
+#define MS_BTN_UP         		 ((uint8_t)0      )
+#define MS_BTN_DN         		 ((uint8_t)1      )
 /* ----------------------- PC Key Value Definition-------------------------------- */
 #define KEY_W         			 ((uint8_t)0x01<<0) 
 #define KEY_S         			 ((uint8_t)0x01<<1) 

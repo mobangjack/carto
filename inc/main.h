@@ -17,6 +17,7 @@
 #ifndef __MAIN_H__
 #define __MAIN_H__
 
+#include <dbus_task.h>
 #include "stm32f4xx.h"
 
 #include <stdio.h>
@@ -46,11 +47,12 @@
 
 #include "can1_task.h"
 #include "can2_task.h"
-#include "input_task.h"
 #include "control_task.h"
 #include "odom_task.h"
 
 #define PI 3.1415926f
+#define PI2 6.2831855f
+
 #define MAP(val,min1,max1,min2,max2) ((val-min1)*(max2-min2)/(max1-min1)+min2)
 
 #endif 

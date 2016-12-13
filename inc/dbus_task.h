@@ -22,8 +22,12 @@
 #define ON 1
 #define OFF 0
 
-#define INPUT_CHASSIS_SPEED_MAX 4.0f     //max speed: 4m/s
-#define INPUT_GIMBALS_SPEED_MAX 1.0f     //max speed: 4m/s
+#define INPUT_MODE_RC      SW_UP
+#define INPUT_MODE_HC      SW_MD
+#define INPUT_MODE_NO      SW_DN
+
+#define INPUT_CHASSIS_SPEED_MAX 4.0f     // 4m/s
+#define INPUT_GIMBALS_SPEED_MAX 1.0f     // 1r/s
 
 #define INPUT_CHASSIS_SPEED_COEFF 0.01f
 #define INPUT_GIMBALS_SPEED_COEFF 0.01f
@@ -40,9 +44,9 @@
 #define SWITCH_ACTION_2TO3 GET_SWITCG_ACTION(2, 3)
 #define SWITCH_ACTION_NONE 0
 
-#define INPUT_MODE_RC      0x03
-#define INPUT_MODE_HC      0x01
-#define INPUT_MODE_NO      0x02
+typedef uint8_t InputMode;
+typedef uint8_t SwitchAction;
+typedef uint8_t FunctionState;
 
 /*******************************************/
 /* Mecanum Wheel Power Transmission System */
@@ -67,11 +71,7 @@ typedef struct
 	float pit;
 }GimbalsSpeed;
 
-typedef uint8_t InputMode;
-typedef uint8_t SwitchAction;
-typedef uint8_t FuncState;
-
-void InputTask(void);
+void DBUS_CMD(void);
 
 extern InputMode inputMode;
 extern SwitchAction switch1Action;
