@@ -49,6 +49,7 @@
 #include "can2_task.h"
 #include "control_task.h"
 #include "odom_task.h"
+#include "superviser.h"
 
 #define PI 3.1415926f
 #define PI2 6.2831855f
