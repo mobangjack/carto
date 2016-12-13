@@ -17,7 +17,7 @@
 #ifndef __LED_H__
 #define __LED_H__
 
-void Led_Config(void);
+void LED_Config(void);
 
 #define LED_GREEN_ON()      GPIO_ResetBits(GPIOC, GPIO_Pin_1)
 #define LED_GREEN_OFF()     GPIO_SetBits(GPIOC, GPIO_Pin_1)

@@ -89,10 +89,10 @@ void CMControlLoop(void)
 	CM3SpeedPID.ref = mecanum.w3;
 	CM4SpeedPID.ref = mecanum.w4;
 	
-	CM1SpeedPID.fdb = CM1Encoder.angle_rate;
-	CM2SpeedPID.fdb = CM2Encoder.angle_rate;
-	CM3SpeedPID.fdb = CM3Encoder.angle_rate;
-	CM4SpeedPID.fdb = CM4Encoder.angle_rate;
+	CM1SpeedPID.fdb = CM1Encoder.rate;
+	CM2SpeedPID.fdb = CM2Encoder.rate;
+	CM3SpeedPID.fdb = CM3Encoder.rate;
+	CM4SpeedPID.fdb = CM4Encoder.rate;
 	
 	CM1SpeedPID.Calc(&CM1SpeedPID);
 	CM2SpeedPID.Calc(&CM2SpeedPID);
@@ -117,8 +117,8 @@ void GMControlLoop(void)
 	GMYSpeedPID.ref = gimbalsSpeed.yaw;
 	GMPSpeedPID.ref = gimbalsSpeed.pit;
 	
-	GMYSpeedPID.fdb = GMYEncoder.angle_rate;
-	GMPSpeedPID.fdb = GMPEncoder.angle_rate;
+	GMYSpeedPID.fdb = GMYEncoder.rate;
+	GMPSpeedPID.fdb = GMPEncoder.rate;
 	
 	GMYSpeedPID.Calc(&CM1SpeedPID);
 	GMPSpeedPID.Calc(&CM2SpeedPID);

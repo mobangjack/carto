@@ -19,14 +19,14 @@
 void Encoder_Process(Encoder* encoder, uint16_t value)
 {
 	encoder->value = value;
-	encoder->angle[0] = encoder->angle[1];
-	encoder->angle[1] = ENCODER_VALUE_TO_RAD(value);
+	encoder->last_angle = encoder->angle;
+	encoder->angle = ENCODER_VALUE_TO_RAD(value);
 	if(encoder->init_frame_cnt < ENCODER_INIT_FRAME_CNT)
 	{
-		encoder->bias = encoder->angle[1];
+		encoder->bias = encoder->angle;
 		encoder->init_frame_cnt++;
 	}
-	encoder->rate = encoder->angle[1] - encoder->angle[0];
+	encoder->rate = encoder->angle - encoder->last_angle;
 	if(encoder->rate > ENCODER_DIFF_MAX)
 	{
 		encoder->rate -= PI2;
@@ -37,7 +37,7 @@ void Encoder_Process(Encoder* encoder, uint16_t value)
 		encoder->rate += PI2;
 		encoder->round++;
 	}
-	encoder->angle[1] = (encoder->angle[1] - encoder->bias) + encoder->round * PI2;
+	encoder->angle = (encoder->angle - encoder->bias) + encoder->round * PI2;
 	if(encoder->rate_cnt < ENCODER_RATE_BUF_SIZE)
 	{
 		encoder->rate_buf[encoder->rate_ptr++] = encoder->rate;

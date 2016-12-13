@@ -16,7 +16,7 @@
  
 #include "main.h"
 
-void Led_Config(void)
+void LED_Config(void)
 {
     GPIO_InitTypeDef gpio;
     

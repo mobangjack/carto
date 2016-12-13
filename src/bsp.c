@@ -21,7 +21,7 @@ void BSP_Config(void)
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	
 	PWM_Config();
-	Led_Config();
+	LED_Config();
 	TIM2_Config();
 	TIM6_Config();
 	CAN1_Config();           

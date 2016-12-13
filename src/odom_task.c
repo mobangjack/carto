@@ -23,10 +23,10 @@ void OdomTask(void)
 	Mecanum mecanum;
 	
 	/* Velocity Synthesis */
-	mecanum.w1 = CM1Encoder.rate_radian;
-	mecanum.w2 = CM2Encoder.rate_radian;
-	mecanum.w3 = CM3Encoder.rate_radian;
-	mecanum.w4 = CM4Encoder.rate_radian;
+	mecanum.w1 = CM1Encoder.rate;
+	mecanum.w2 = CM2Encoder.rate;
+	mecanum.w3 = CM3Encoder.rate;
+	mecanum.w4 = CM4Encoder.rate;
 	
 	Mecanum_Synthesis(&mecanum);
 	
@@ -35,10 +35,10 @@ void OdomTask(void)
 	odom.vz = mecanum.z * 1000;
 	
 	/* Position Synthesis */
-	mecanum.w1 = CM1Encoder.radian;
-	mecanum.w2 = CM2Encoder.radian;
-	mecanum.w3 = CM3Encoder.radian;
-	mecanum.w4 = CM4Encoder.radian;
+	mecanum.w1 = CM1Encoder.angle;
+	mecanum.w2 = CM2Encoder.angle;
+	mecanum.w3 = CM3Encoder.angle;
+	mecanum.w4 = CM4Encoder.angle;
 	
 	Mecanum_Synthesis(&mecanum);
 	

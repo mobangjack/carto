@@ -19,21 +19,11 @@
 
 #define PWM1 TIM5->CCR1
 #define PWM2 TIM5->CCR2
-#define PWM3 TIM5->CCR3
-#define PWM4 TIM1->CCR1
-#define PWM5 TIM3->CCR1
-#define PWM6 TIM3->CCR2
 
-#define SET_FAN_SPEED(speed) (PWM1=speed)
-#define SET_AIR_SPEED(speed) (PWM2=speed)
-#define SET_BIN_SPEED(speed) (PWM3=speed)
+#define PWM_ON 1800
+#define PWM_OFF 1000
 
-#define FAN_ON()  SET_FAN_SPEED(1600)
-#define FAN_OFF() SET_FAN_SPEED(1000)
-#define AIR_ON()  SET_AIR_SPEED(1600)
-#define AIR_OFF() SET_AIR_SPEED(1000)
-#define BIN_ON()  SET_BIN_SPEED(1600)
-#define BIN_OFF() SET_BIN_SPEED(1000)
+#define SET_PWM(pwm) (PWM1=PWM2=pwm)
 
 void PWM_Config(void);
 

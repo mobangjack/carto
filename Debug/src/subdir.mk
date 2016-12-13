@@ -12,10 +12,10 @@ C_SRCS += \
 ../src/control_task.c \
 ../src/crc16.c \
 ../src/dbus.c \
+../src/dbus_task.c \
 ../src/delay.c \
 ../src/encoder.c \
 ../src/fifo.c \
-../src/input_task.c \
 ../src/led.c \
 ../src/main.c \
 ../src/mecanum.c \
@@ -41,10 +41,10 @@ OBJS += \
 ./src/control_task.o \
 ./src/crc16.o \
 ./src/dbus.o \
+./src/dbus_task.o \
 ./src/delay.o \
 ./src/encoder.o \
 ./src/fifo.o \
-./src/input_task.o \
 ./src/led.o \
 ./src/main.o \
 ./src/mecanum.o \
@@ -70,10 +70,10 @@ C_DEPS += \
 ./src/control_task.d \
 ./src/crc16.d \
 ./src/dbus.d \
+./src/dbus_task.d \
 ./src/delay.d \
 ./src/encoder.d \
 ./src/fifo.d \
-./src/input_task.d \
 ./src/led.d \
 ./src/main.d \
 ./src/mecanum.d \

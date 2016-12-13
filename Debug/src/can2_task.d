@@ -1,5 +1,6 @@
 src/can2_task.o: ../src/can2_task.c \
  /home/bj/workspace/eclipse/stm32/car/inc/main.h \
+ /home/bj/workspace/eclipse/stm32/car/inc/dbus_task.h \
  /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/CMSIS/device/stm32f4xx.h \
  /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/CMSIS/core/core_cm4.h \
  /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/CMSIS/core/core_cmInstr.h \
@@ -37,11 +38,12 @@ src/can2_task.o: ../src/can2_task.c \
  /home/bj/workspace/eclipse/stm32/car/inc/zgyro.h \
  /home/bj/workspace/eclipse/stm32/car/inc/can1_task.h \
  /home/bj/workspace/eclipse/stm32/car/inc/can2_task.h \
- /home/bj/workspace/eclipse/stm32/car/inc/input_task.h \
  /home/bj/workspace/eclipse/stm32/car/inc/control_task.h \
  /home/bj/workspace/eclipse/stm32/car/inc/odom_task.h
 
 /home/bj/workspace/eclipse/stm32/car/inc/main.h:
+
+/home/bj/workspace/eclipse/stm32/car/inc/dbus_task.h:
 
 /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/CMSIS/device/stm32f4xx.h:
 
@@ -116,8 +118,6 @@ src/can2_task.o: ../src/can2_task.c \
 /home/bj/workspace/eclipse/stm32/car/inc/can1_task.h:
 
 /home/bj/workspace/eclipse/stm32/car/inc/can2_task.h:
-
-/home/bj/workspace/eclipse/stm32/car/inc/input_task.h:
 
 /home/bj/workspace/eclipse/stm32/car/inc/control_task.h:
 

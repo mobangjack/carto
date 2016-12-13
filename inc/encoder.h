@@ -32,7 +32,8 @@ typedef struct Encoder
 {
 	uint16_t value;
 	uint16_t init_frame_cnt;
-	float angle[2];
+	float angle;
+	float last_angle;
 	float bias;
 	int32_t round;
 	float rate_buf[ENCODER_RATE_BUF_SIZE];
