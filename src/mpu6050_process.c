@@ -87,7 +87,7 @@
 //    static float pre_ax = 0.0f;
 //    static float pre_ay = 0.0f;
 //    static float pre_az = 0.0f;
-//    //加速度滤波
+//    //鍔犻�熷害婊ゆ尝
 //    accel_x = accel_x *0.02f + pre_ax * 0.98f;//cyq:0.02
 //    pre_ax = accel_x;
 //    
@@ -131,7 +131,7 @@
 //    
 //    MPU6050_Angle.Rool = asin(-2.0f * q1 * q3 + 2.0f * q0* q2) * (180.0f/3.14159265f); 
 //    MPU6050_Angle.Pitch  = atan2(2.0f * q2 * q3 + 2.0f * q0 * q1, -2.0f * q1 * q1 - 2.0f * q2* q2 + 1.0f) * (180.0f/3.14159265f); 
-//    MPU6050_Angle.Yaw = atan2( 2.0f * q1 * q2 + 2.0f * q0 * q3,1.0f - 2.0f * ( q2 * q2 + q3 * q2 ) ) * (180.0f/3.14159265f);//不准
+//    MPU6050_Angle.Yaw = atan2( 2.0f * q1 * q2 + 2.0f * q0 * q3,1.0f - 2.0f * ( q2 * q2 + q3 * q2 ) ) * (180.0f/3.14159265f);//涓嶅噯
 
 //}
 

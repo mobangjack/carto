@@ -16,7 +16,7 @@ int MPU6050_Init(void)
 {
     unsigned char temp_data = 0x00;
 
-    IIC_GPIO_Init();  //³õÊ¼»¯IIC½Ó¿Ú
+    IIC_GPIO_Init();  //åˆå§‹åŒ–IICæ¥å£
     HEAT_Configuration();
     
     if(IIC_ReadData(MPU6050_DEVICE_ADDRESS,WHO_AM_I,&temp_data,1)==0) //MPU6050
@@ -33,7 +33,7 @@ int MPU6050_Init(void)
         return 0xff; //0xff
     }
     
-    if(IIC_WriteData(MPU6050_DEVICE_ADDRESS,PWR_MGMT_1,0x01) == 0xff)    //½â³ıĞİÃß×´Ì¬
+    if(IIC_WriteData(MPU6050_DEVICE_ADDRESS,PWR_MGMT_1,0x01) == 0xff)    //è§£é™¤ä¼‘çœ çŠ¶æ€
     {
         printf("error 1C\r\n");
         return 0xff;
@@ -213,7 +213,7 @@ void MPU6050_getMotion6(int16_t* ax, int16_t* ay, int16_t* az, int16_t* gx, int1
 		MPU6050_Lastax=(((int16_t)mpu_buf[0]) << 8) | mpu_buf[1];
 		MPU6050_Lastay=(((int16_t)mpu_buf[2]) << 8) | mpu_buf[3];
 		MPU6050_Lastaz=(((int16_t)mpu_buf[4]) << 8) | mpu_buf[5];
-		//Ìø¹ıÎÂ¶ÈADC
+		//è·³è¿‡æ¸©åº¦ADC
 		MPU6050_Lastgx=(((int16_t)mpu_buf[8]) << 8) | mpu_buf[9];
 		MPU6050_Lastgy=(((int16_t)mpu_buf[10]) << 8) | mpu_buf[11];
 		MPU6050_Lastgz=(((int16_t)mpu_buf[12]) << 8) | mpu_buf[13];

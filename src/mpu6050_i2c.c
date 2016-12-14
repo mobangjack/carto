@@ -161,7 +161,7 @@ u8 IIC_ReadBit(void)
 	return Temp;
 }
 
-//Ğ´Êı¾İ£¬³É¹¦·µ»Ø0£¬Ê§°Ü·µ»Ø0xff
+//å†™æ•°æ®ï¼ŒæˆåŠŸè¿”å›0ï¼Œå¤±è´¥è¿”å›0xff
 int IIC_WriteData(u8 dev_addr,u8 reg_addr,u8 data)
 {
 	IIC_Start();
@@ -191,7 +191,7 @@ int IIC_WriteData(u8 dev_addr,u8 reg_addr,u8 data)
     return 0;
 }
 
-//¶ÁÊı¾İ£¬³É¹¦·µ»Ø0£¬Ê§°Ü·µ»Ø0xff
+//è¯»æ•°æ®ï¼ŒæˆåŠŸè¿”å›0ï¼Œå¤±è´¥è¿”å›0xff
 int IIC_ReadData(u8 dev_addr,u8 reg_addr,u8 *pdata,u8 count)
 {
 	  u8 i;

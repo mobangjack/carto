@@ -2,10 +2,10 @@
 #include "protocal.h"
 
 AppParam_t gAppParamStruct;	//
-static GyroCaliStruct_t GyroCaliData;        //±
-static GimbalCaliStruct_t  GimbalCaliData;   //±
-static MagCaliStruct_t  MagCaliData;         //±
-PIDParamStruct_t PIDCaliData;  //±
+static GyroCaliStruct_t GyroCaliData;        //ï¿½
+static GimbalCaliStruct_t  GimbalCaliData;   //ï¿½
+static MagCaliStruct_t  MagCaliData;         //ï¿½
+PIDParamStruct_t PIDCaliData;  //ï¿½
 //
 GimbalCaliStruct_t GimbalSavedCaliData;    	    //gimbal pitch yaw encoder offset
 GyroCaliStruct_t GyroSavedCaliData;     	    //gyro offset data
@@ -30,7 +30,7 @@ uint8_t Is_AppParam_Calied(void)
 static uint8_t AppParamSave(void)
 {
     uint8_t retval = 1;   
-    retval = BSP_FLASH_Write(PARAM_SAVED_START_ADDRESS, (uint8_t *)&gAppParamStruct, sizeof(AppParam_t));    
+    retval = Flash_Write(PARAM_SAVED_START_ADDRESS, (uint8_t *)&gAppParamStruct, sizeof(AppParam_t));    
     if(retval == 0)
     {
 			
@@ -399,7 +399,7 @@ CALI_STATE_e  GyroCaliProcess()
 	static int32_t gyroXSum = 0;
 	static int32_t gyroYSum = 0;
 	static int32_t gyroZSum = 0;
-	//½«gyroÖµÇåÁã,Èç´ËµÃµ½µÄ²ÅÊÇÔ­Ê¼Öµ
+	//ï¿½ï¿½gyroÖµï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ËµÃµï¿½ï¿½Ä²ï¿½ï¿½ï¿½Ô­Ê¼Öµ
 	GyroSavedCaliData.GyroXOffset = 0;
 	GyroSavedCaliData.GyroYOffset = 0;
 	GyroSavedCaliData.GyroZOffset = 0;	
@@ -504,7 +504,7 @@ void UploadParameter(void)
         case REPID:
         {						
             PID_Paremeter_Send(GMPPositionPID.kp, GMPPositionPID.ki,GMPPositionPID.kd, GMPSpeedPID.kp,GMPSpeedPID.ki,GMPSpeedPID.kd,GMYPositionPID.kp,GMYPositionPID.ki,GMYPositionPID.kd,GMYSpeedPID.kp,GMYSpeedPID.ki,GMYSpeedPID.kd);
-            upload_type = REERROR; //¸ü¸Ä×´Ì¬
+            upload_type = REERROR; //ï¿½ï¿½ï¿½ï¿½×´Ì¬
         }break;
         case REERROR:
         {

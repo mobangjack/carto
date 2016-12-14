@@ -17,7 +17,7 @@
 #ifndef __MAIN_H__
 #define __MAIN_H__
 
-// chip support
+// chip series
 #include "stm32f4xx.h"
 
 // standard c libraries
@@ -26,7 +26,7 @@
 #include <string.h>
 #include <stdarg.h>
 
-// board related headers
+// board supported packages
 #include "bsp.h"
 #include "led.h"
 #include "pwm.h"
@@ -53,7 +53,7 @@
 #include "crc16.h"
 #include "mecanum.h"
 
-// services and callbacks
+// services and calls
 #include "can1call.h"
 #include "can2call.h"
 #include "dbuscall.h"
