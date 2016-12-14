@@ -14,8 +14,8 @@
  * limitations under the License.
  */
  
-#ifndef __INPUT_TASK_H__
-#define __INPUT_TASK_H__
+#ifndef __DBUS_CMD_H__
+#define __DBUS_CMD_H__
 
 #include <stdint.h>
 #include "dbus.h"
@@ -45,9 +45,9 @@
 #define SWITCH_ACTION_2TO3 GET_SWITCG_ACTION(2, 3)
 #define SWITCH_ACTION_NONE 0
 
-typedef uint8_t InputMode;
-typedef uint8_t SwitchAction;
-typedef uint8_t FunctionState;
+typedef uint8_t InputMode_t;
+typedef uint8_t SwitchAction_t;
+typedef uint8_t FunctionState_t;
 
 /*******************************************/
 /* Mecanum Wheel Power Transmission System */
@@ -64,21 +64,21 @@ typedef struct
 	float x;
 	float y;
 	float z;
-}ChassisSpeed;
+}ChassisSpeedRef_t;
 
 typedef struct
 {
 	float yaw;
 	float pit;
-}GimbalsSpeed;
+}GimbalsSpeedRef_t;
 
-void DBUS_CMD(DBUS* dbus);
+void DBUS_CMD(DBUS_t* dbus);
 
-extern InputMode inputMode;
-extern SwitchAction switch1Action;
-extern SwitchAction switch2Action;
-extern ChassisSpeed chassisSpeed;
-extern GimbalsSpeed gimbalsSpeed;
+extern InputMode_t inputMode;
+extern SwitchAction_t switch1Action;
+extern SwitchAction_t switch2Action;
+extern ChassisSpeedRef_t chassisSpeedRef;
+extern GimbalsSpeedRef_t gimbalsSpeedRef;
 
 
 #endif

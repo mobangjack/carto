@@ -16,18 +16,18 @@
  
 #include "main.h"
 
-InputMode inputMode = INPUT_MODE_NO;
-SwitchAction switch1Action = SWITCH_ACTION_NONE;
-SwitchAction switch2Action = SWITCH_ACTION_NONE;
-ChassisSpeed chassisSpeed = {0};
-GimbalsSpeed gimbalsSpeed = {0};
+InputMode_t inputMode = INPUT_MODE_NO;
+SwitchAction_t switch1Action = SWITCH_ACTION_NONE;
+SwitchAction_t switch2Action = SWITCH_ACTION_NONE;
+ChassisSpeedRef_t chassisSpeedRef = {0};
+GimbalsSpeedRef_t gimbalsSpeedRef = {0};
 
-void GetInputMode(DBUS* dbus)
+void GetInputMode(DBUS_t* dbus)
 {
 	inputMode = dbus->rc.s2;
 }
 
-void GetSwitchAction(DBUS* dbus)
+void GetSwitchAction(DBUS_t* dbus)
 {
 	static uint8_t last_s1 = 10;
 	static uint8_t last_s2 = 10;
@@ -39,34 +39,34 @@ void GetSwitchAction(DBUS* dbus)
 	last_s2 = this_s2;
 }
 
-void GetRcChassisSpeed(DBUS* dbus)
+void GetRcChassisSpeed(DBUS_t* dbus)
 {
-	chassisSpeed.x = MAP(dbus->rc.ch0, CH_MIN, CH_MAX, -INPUT_CHASSIS_SPEED_MAX, INPUT_CHASSIS_SPEED_MAX);
-	chassisSpeed.y = MAP(dbus->rc.ch1, CH_MIN, CH_MAX, -INPUT_CHASSIS_SPEED_MAX, INPUT_CHASSIS_SPEED_MAX);
-	chassisSpeed.z = MAP(dbus->rc.ch2, CH_MIN, CH_MAX, -INPUT_CHASSIS_SPEED_MAX, INPUT_CHASSIS_SPEED_MAX);
+	chassisSpeedRef.x = MAP(dbus->rc.ch0, CH_MIN, CH_MAX, -INPUT_CHASSIS_SPEED_MAX, INPUT_CHASSIS_SPEED_MAX);
+	chassisSpeedRef.y = MAP(dbus->rc.ch1, CH_MIN, CH_MAX, -INPUT_CHASSIS_SPEED_MAX, INPUT_CHASSIS_SPEED_MAX);
+	chassisSpeedRef.z = MAP(dbus->rc.ch2, CH_MIN, CH_MAX, -INPUT_CHASSIS_SPEED_MAX, INPUT_CHASSIS_SPEED_MAX);
 }
 
-void GetRcGimbalsSpeed(DBUS* dbus)
+void GetRcGimbalsSpeed(DBUS_t* dbus)
 {
-	gimbalsSpeed.yaw = MAP(dbus->rc.ch2, CH_MIN, CH_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
-	gimbalsSpeed.pit = MAP(dbus->rc.ch3, CH_MIN, CH_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
+	gimbalsSpeedRef.yaw = MAP(dbus->rc.ch2, CH_MIN, CH_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
+	gimbalsSpeedRef.pit = MAP(dbus->rc.ch3, CH_MIN, CH_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
 }
 
-void GetHcChassisSpeed(DBUS* dbus)
+void GetHcChassisSpeed(DBUS_t* dbus)
 {
 	float speed = (dbus->hc.key.val & KEY_SHIFT) ? INPUT_CHASSIS_SPEED_MAX : INPUT_CHASSIS_SPEED_MAX / 2.f;
-	chassisSpeed.x = (dbus->hc.key.val & KEY_A) ? -speed : ((dbus->hc.key.val & KEY_D) ? speed : 0);
-	chassisSpeed.y = (dbus->hc.key.val & KEY_S) ? -speed : ((dbus->hc.key.val & KEY_W) ? speed : 0);
-	chassisSpeed.z = MAP(dbus->hc.mouse.x, MS_MOV_MIN, MS_MOV_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
+	chassisSpeedRef.x = (dbus->hc.key.val & KEY_A) ? -speed : ((dbus->hc.key.val & KEY_D) ? speed : 0);
+	chassisSpeedRef.y = (dbus->hc.key.val & KEY_S) ? -speed : ((dbus->hc.key.val & KEY_W) ? speed : 0);
+	chassisSpeedRef.z = MAP(dbus->hc.mouse.x, MS_MOV_MIN, MS_MOV_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
 }
 
-void GetHcGimbalsSpeed(DBUS* dbus)
+void GetHcGimbalsSpeed(DBUS_t* dbus)
 {
-	gimbalsSpeed.yaw = MAP(dbus->hc.mouse.x, MS_MOV_MIN, MS_MOV_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
-	gimbalsSpeed.pit = MAP(dbus->hc.mouse.y, MS_MOV_MIN, MS_MOV_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
+	gimbalsSpeedRef.yaw = MAP(dbus->hc.mouse.x, MS_MOV_MIN, MS_MOV_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
+	gimbalsSpeedRef.pit = MAP(dbus->hc.mouse.y, MS_MOV_MIN, MS_MOV_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
 }
 
-void DBUS_CMD(DBUS* dbus)
+void DBUS_CMD(DBUS_t* dbus)
 {
 	GetInputMode(dbus);
 	GetSwitchAction(dbus);

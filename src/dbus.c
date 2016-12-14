@@ -17,7 +17,7 @@
 #include "dbus.h"
 
 /***************************RC*******************************/
-void RC_ENC(RC* rc, uint8_t* buf)
+void RC_ENC(RC_t* rc, uint8_t* buf)
 {
 	buf[0] = rc->ch0&0xff;
 	buf[1] = (rc->ch1<<3) | (rc->ch0>>8);
@@ -27,7 +27,7 @@ void RC_ENC(RC* rc, uint8_t* buf)
 	buf[5] = (rc->s2<<6) | (rc->s1<<4) | (rc->ch3>>7);
 }
 
-void RC_DEC(RC* rc, uint8_t* buf)
+void RC_DEC(RC_t* rc, uint8_t* buf)
 {
 	rc->ch0 = (buf[0] | (buf[1] << 8)) & 0x07ff;          //!< Channel 0  
 	rc->ch1 = ((buf[1] >> 3) | (buf[2] << 5)) & 0x07ff;   //!< Channel 1         
@@ -39,7 +39,7 @@ void RC_DEC(RC* rc, uint8_t* buf)
 }
 
 /***************************HC*******************************/
-void HC_ENC(HC* hc, uint8_t* buf)
+void HC_ENC(HC_t* hc, uint8_t* buf)
 {
 	buf[0] = hc->mouse.x;
 	buf[1] = hc->mouse.x>>8;
@@ -55,7 +55,7 @@ void HC_ENC(HC* hc, uint8_t* buf)
 	buf[11] = hc->res.val>>8;
 }
 
-void HC_DEC(HC* hc, uint8_t* buf)
+void HC_DEC(HC_t* hc, uint8_t* buf)
 {
 	hc->mouse.x = buf[0] | (buf[1] << 8);     //!< Mouse X axis 
 	hc->mouse.y = buf[2] | (buf[3] << 8);     //!< Mouse Y axis 
@@ -67,13 +67,13 @@ void HC_DEC(HC* hc, uint8_t* buf)
 }
 
 /***************************DBUS*******************************/
-void DBUS_ENC(DBUS* dbus, uint8_t* buf)
+void DBUS_ENC(DBUS_t* dbus, uint8_t* buf)
 {
 	RC_ENC(&dbus->rc, buf);
 	HC_ENC(&dbus->hc, buf+6);
 }
 
-void DBUS_DEC(DBUS* dbus, uint8_t* buf)
+void DBUS_DEC(DBUS_t* dbus, uint8_t* buf)
 {
 	RC_DEC(&dbus->rc, buf);
 	HC_DEC(&dbus->hc, buf+6);

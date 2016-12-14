@@ -24,7 +24,7 @@
 
 void USART1_Config(void);
 
-extern DBUS dbus;
+extern DBUS_t dbus;
 extern uint8_t* dbuf;
 
 #endif

@@ -19,7 +19,7 @@
 
 #include <stdint.h>
 
-typedef uint8_t WorkingState;
+typedef uint8_t WorkingState_t;
 
 #define WORKING_STATE_PREPARE 0x00
 #define WORKING_STATE_NORMAL  0x01
@@ -31,13 +31,36 @@ typedef struct
 	float m2;
 	float m3;
 	float m4;
-}ChassisCurrent;
+}ChassisCurrent_t;
 
 typedef struct
 {
 	float yaw;
 	float pit;
-}GimbalsCurrent;
+}GimbalsCurrent_t;
+
+#define CM_POSITION_PID_DEFAULT \
+{\
+	.ref = 0,\
+	.fdb = 0,\
+	.err = {0,0},\
+	.kp = 220.f,\
+	.ki = 0.0f,\
+	.kd = 0.0f,\
+	.P = 0,\
+	.I = 0,\
+	.D = 0,\
+	.Pm = 4900,\
+	.Im = 3500,\
+	.Dm = 1500,\
+	.out = 0,\
+	.outmax = 4950,\
+	.kp_offset = 0,\
+	.ki_offset = 0,\
+	.kd_offset = 0,\
+	&PID_Calc,\
+	&PID_Reset,\
+}\
 
 #define CM_SPEED_PID_DEFAULT \
 {\
@@ -47,14 +70,14 @@ typedef struct
 	.kp = 220.f,\
 	.ki = 0.0f,\
 	.kd = 0.0f,\
-	.componentKp = 0,\
-	.componentKi = 0,\
-	.componentKd = 0,\
-	.componentKpMax = 4900,\
-	.componentKiMax = 3500,\
-	.componentKdMax = 1500,\
-	.output = 0,\
-	.outputMax = 4950,\
+	.P = 0,\
+	.I = 0,\
+	.D = 0,\
+	.Pm = 4900,\
+	.Im = 3500,\
+	.Dm = 1500,\
+	.out = 0,\
+	.outmax = 4950,\
 	.kp_offset = 0,\
 	.ki_offset = 0,\
 	.kd_offset = 0,\
@@ -70,14 +93,14 @@ typedef struct
 	.kp = 220.f,\
 	.ki = 0.0f,\
 	.kd = 0.0f,\
-	.componentKp = 0,\
-	.componentKi = 0,\
-	.componentKd = 0,\
-	.componentKpMax = 4900,\
-	.componentKiMax = 3500,\
-	.componentKdMax = 1500,\
-	.output = 0,\
-	.outputMax = 4950,\
+	.P = 0,\
+	.I = 0,\
+	.D = 0,\
+	.Pm = 4900,\
+	.Im = 3500,\
+	.Dm = 1500,\
+	.out = 0,\
+	.outmax = 4950,\
 	.kp_offset = 0,\
 	.ki_offset = 0,\
 	.kd_offset = 0,\
@@ -111,9 +134,9 @@ typedef struct
 
 void Control(void);
 
-extern WorkingState workingState;
-extern ChassisCurrent chassisCurrent;
-extern GimbalsCurrent gimbalsCurrent;
+extern WorkingState_t workingState;
+extern ChassisCurrent_t chassisCurrent;
+extern GimbalsCurrent_t gimbalsCurrent;
 
 #endif
 

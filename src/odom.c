@@ -20,7 +20,7 @@ Odom odom;
 
 void OdomTask(void)
 {
-	Mecanum mecanum;
+	Mecanum_t mecanum;
 	
 	/* Velocity Synthesis */
 	mecanum.w1 = CM1Encoder.rate;

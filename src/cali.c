@@ -1,20 +1,20 @@
 #include "main.h"
-#include "protocal.h"
+//#include "protocal.h"
 
 AppParam_t gAppParamStruct;	//
-static GyroCaliStruct_t GyroCaliData;        //�
-static GimbalCaliStruct_t  GimbalCaliData;   //�
-static MagCaliStruct_t  MagCaliData;         //�
-PIDParamStruct_t PIDCaliData;  //�
+static GyroCali_t GyroCaliData;
+static GimbalCali_t  GimbalCaliData;
+static MagCali_t  MagCaliData;
+PIDCali_t PIDCaliData;
 //
-GimbalCaliStruct_t GimbalSavedCaliData;    	    //gimbal pitch yaw encoder offset
-GyroCaliStruct_t GyroSavedCaliData;     	    //gyro offset data
-AccCaliStruct_t AccSavedCaliData;    	    	//ACC offset data
-MagCaliStruct_t MagSavedCaliData;			    //Mag offset data
-PIDParamStruct_t PitchPositionSavedPID;        	//PID offset data
-PIDParamStruct_t PitchSpeedSavedPID;        	//PID offset data
-PIDParamStruct_t YawPositionSavedPID;        	//PID offset data
-PIDParamStruct_t YawSpeedSavedPID;        	    //PID offset data
+GimbalCali_t GimbalSavedCaliData;    	    //gimbal pitch yaw encoder offset
+GyroCali_t GyroSavedCaliData;     	    //gyro offset data
+AccCali_t AccSavedCaliData;    	    	//ACC offset data
+MagCali_t MagSavedCaliData;			    //Mag offset data
+PIDCali_t PitchPositionSavedPID;        	//PID offset data
+PIDCali_t PitchSpeedSavedPID;        	//PID offset data
+PIDCali_t YawPositionSavedPID;        	//PID offset data
+PIDCali_t YawSpeedSavedPID;        	    //PID offset data
 
 uint8_t app_param_calied_flag = 0;
 
@@ -30,7 +30,7 @@ uint8_t Is_AppParam_Calied(void)
 static uint8_t AppParamSave(void)
 {
     uint8_t retval = 1;   
-    retval = Flash_Write(PARAM_SAVED_START_ADDRESS, (uint8_t *)&gAppParamStruct, sizeof(AppParam_t));    
+    retval = Flash_Write(CALI_FLASH_DATA_START_ADDRESS, (uint8_t *)&gAppParamStruct, sizeof(AppParam_t));
     if(retval == 0)
     {
 			
@@ -43,11 +43,11 @@ void AppParamInit(void)
 {
     AppParam_t tmp_param;
     
-    memcpy(&tmp_param, (void *)PARAM_SAVED_START_ADDRESS, sizeof(AppParam_t));
+    memcpy(&tmp_param, (void *)CALI_FLASH_DATA_START_ADDRESS, sizeof(AppParam_t));
     
     if((PARAM_SAVED_FLAG == tmp_param.ParamSavedFlag) &&\
-		(PARAM_CALI_DONE == tmp_param.GimbalCaliData.GimbalCaliFlag) &&\
-		(PARAM_CALI_DONE == tmp_param.GyroCaliData.GyroCaliFlag))
+		(PARAM_CALI_DONE == tmp_param.GimbalCaliData.flag) &&\
+		(PARAM_CALI_DONE == tmp_param.GyroCaliData.flag))
 	{
 		app_param_calied_flag =1;
         memcpy(&gAppParamStruct, &tmp_param, sizeof(AppParam_t));
@@ -59,45 +59,45 @@ void AppParamInit(void)
         gAppParamStruct.ParamSavedFlag = PARAM_SAVED_FLAG;
     }
     //if not calied before the flag is NONE the init the para with default value
-    if(gAppParamStruct.GimbalCaliData.GimbalCaliFlag != PARAM_CALI_DONE)
+    if(gAppParamStruct.GimbalCaliData.flag != PARAM_CALI_DONE)
     {
-        gAppParamStruct.GimbalCaliData.GimbalCaliFlag = PARAM_CALI_NONE;
-        gAppParamStruct.GimbalCaliData.GimbalPitchOffset = 0;
-        gAppParamStruct.GimbalCaliData.GimbalYawOffset = 0;
+        gAppParamStruct.GimbalCaliData.flag = PARAM_CALI_NONE;
+        gAppParamStruct.GimbalCaliData.pitch = 0;
+        gAppParamStruct.GimbalCaliData.yaw = 0;
     }
     
-    if(gAppParamStruct.GyroCaliData.GyroCaliFlag != PARAM_CALI_DONE)
+    if(gAppParamStruct.GyroCaliData.flag != PARAM_CALI_DONE)
     {
-        gAppParamStruct.GyroCaliData.GyroCaliFlag = PARAM_CALI_NONE;
+        gAppParamStruct.GyroCaliData.flag = PARAM_CALI_NONE;
         gAppParamStruct.GyroCaliData.GyroXOffset = 0;
-        gAppParamStruct.GyroCaliData.GyroYOffset = 0;
-        gAppParamStruct.GyroCaliData.GyroZOffset = 0;
+        gAppParamStruct.GyroCaliData.y = 0;
+        gAppParamStruct.GyroCaliData.z = 0;
     }
     
-    if(gAppParamStruct.AccCaliData.AccCaliFlag != PARAM_CALI_DONE)
+    if(gAppParamStruct.AccCaliData.flag != PARAM_CALI_DONE)
     {
-        gAppParamStruct.AccCaliData.AccCaliFlag = PARAM_CALI_NONE;
+        gAppParamStruct.AccCaliData.flag = PARAM_CALI_NONE;
         gAppParamStruct.AccCaliData.AccXOffset = 0;
-        gAppParamStruct.AccCaliData.AccYOffset = 0;
-        gAppParamStruct.AccCaliData.AccZOffset = 0;
-        gAppParamStruct.AccCaliData.AccXScale = 1.0;
-        gAppParamStruct.AccCaliData.AccYScale = 1.0;
-        gAppParamStruct.AccCaliData.AccZScale = 1.0;
+        gAppParamStruct.AccCaliData.y = 0;
+        gAppParamStruct.AccCaliData.z = 0;
+        gAppParamStruct.AccCaliData.scaleX = 1.0;
+        gAppParamStruct.AccCaliData.scaleY = 1.0;
+        gAppParamStruct.AccCaliData.scaleZ = 1.0;
     }
     
-    if(gAppParamStruct.MagCaliData.MagCaliFlag != PARAM_CALI_DONE)
+    if(gAppParamStruct.MagCaliData.flag != PARAM_CALI_DONE)
     {
-        gAppParamStruct.MagCaliData.MagCaliFlag = PARAM_CALI_NONE;
+        gAppParamStruct.MagCaliData.flag = PARAM_CALI_NONE;
         gAppParamStruct.MagCaliData.MagXOffset = 0;
-        gAppParamStruct.MagCaliData.MagYOffset = 0;
-        gAppParamStruct.MagCaliData.MagZOffset = 0;
-        gAppParamStruct.MagCaliData.MagXScale = 1.0;
-        gAppParamStruct.MagCaliData.MagYScale = 1.0;
-        gAppParamStruct.MagCaliData.MagZScale = 1.0;
+        gAppParamStruct.MagCaliData.y = 0;
+        gAppParamStruct.MagCaliData.z = 0;
+        gAppParamStruct.MagCaliData.scaleX = 1.0;
+        gAppParamStruct.MagCaliData.scaleY = 1.0;
+        gAppParamStruct.MagCaliData.scaleZ = 1.0;
     }
 }
 
-void SetGimbalCaliData(GimbalCaliStruct_t *cali_data)
+void SetGimbalCaliData(GimbalCali_t *cali_data)
 {
 	if(cali_data != NULL)
     {
@@ -107,7 +107,7 @@ void SetGimbalCaliData(GimbalCaliStruct_t *cali_data)
 }
 
 
-void SetGyroCaliData(GyroCaliStruct_t *cali_data)
+void SetGyroCaliData(GyroCali_t *cali_data)
 {
 	if(cali_data != NULL)
     {
@@ -116,7 +116,7 @@ void SetGyroCaliData(GyroCaliStruct_t *cali_data)
 	}
 }  
 
-void SetAccCaliData(AccCaliStruct_t *cali_data)
+void SetAccCaliData(AccCali_t *cali_data)
 {
     if(cali_data != NULL)
     {
@@ -125,7 +125,7 @@ void SetAccCaliData(AccCaliStruct_t *cali_data)
     }
 }
 
-void SetMagCaliData(MagCaliStruct_t *cali_data)
+void SetMagCaliData(MagCali_t *cali_data)
 {
     if(cali_data != NULL)
     {
@@ -136,7 +136,7 @@ void SetMagCaliData(MagCaliStruct_t *cali_data)
 }
 
 //PID offset data saved in the memory 
-void SetPIDCaliData(PIDParamStruct_t *cali_data)
+void SetPIDCaliData(PIDCali_t *cali_data)
 {
 	if(cali_data != NULL)
     {
@@ -172,68 +172,57 @@ void SetPIDCaliData(PIDParamStruct_t *cali_data)
 	}
 }
 
-void GetGimbalCaliData(GimbalCaliStruct_t *cali_data)
+void GetGimbalCaliData(GimbalCali_t *cali_data)
 {
     if(cali_data != NULL)
     {
-        memcpy(cali_data, &gAppParamStruct.GimbalCaliData, sizeof(GimbalCaliStruct_t));
+        memcpy(cali_data, &gAppParamStruct.GimbalCaliData, sizeof(GimbalCali_t));
     }
 }
 
-void GetGyroCaliData(GyroCaliStruct_t *cali_data)
+void GetGyroCaliData(GyroCali_t *cali_data)
 {
     if(cali_data != NULL)
     {
-        memcpy(cali_data, &gAppParamStruct.GyroCaliData, sizeof(GyroCaliStruct_t));
+        memcpy(cali_data, &gAppParamStruct.GyroCaliData, sizeof(GyroCali_t));
     }
 }
 
-void GetAccCaliData(AccCaliStruct_t *cali_data)
+void GetAccCaliData(AccCali_t *cali_data)
 {
     if(cali_data != NULL)
     {
-        memcpy(cali_data, &gAppParamStruct.AccCaliData, sizeof(AccCaliStruct_t));
+        memcpy(cali_data, &gAppParamStruct.AccCaliData, sizeof(AccCali_t));
     }
 }
 
-void GetMagCaliData(MagCaliStruct_t *cali_data)
+void GetMagCaliData(MagCali_t *cali_data)
 {
     if(cali_data != NULL)
     {
-        memcpy(cali_data, &gAppParamStruct.MagCaliData, sizeof(MagCaliStruct_t));
+        memcpy(cali_data, &gAppParamStruct.MagCaliData, sizeof(MagCali_t));
     }
 }
 
 uint8_t IsGimbalCalied(void)
 {
-    return (gAppParamStruct.GimbalCaliData.GimbalCaliFlag == PARAM_CALI_DONE);
+    return (gAppParamStruct.GimbalCaliData.flag == PARAM_CALI_DONE);
 }
 
 uint8_t IsGyroCalied(void)
 {
-    return (gAppParamStruct.GyroCaliData.GyroCaliFlag == PARAM_CALI_DONE);
+    return (gAppParamStruct.GyroCaliData.flag == PARAM_CALI_DONE);
 }
 
 uint8_t IsAccCalied(void)
 {
-    return (gAppParamStruct.AccCaliData.AccCaliFlag == PARAM_CALI_DONE);
+    return (gAppParamStruct.AccCaliData.flag == PARAM_CALI_DONE);
 }
 
 uint8_t IsMagCalied(void)
 {
-    return (gAppParamStruct.MagCaliData.MagCaliFlag == PARAM_CALI_DONE);
+    return (gAppParamStruct.MagCaliData.flag == PARAM_CALI_DONE);
 }
-
-/*********************************************************************
- * @fn      CalibrateLoop
- *
- * @brief   do the calibration according to the corresponding cali flag
- *
- * @param   *flag_grp - the pointer to the cali flag group
- *
- * @return  none
- */
-
 
 static uint32_t CaliCmdFlagGrp = 0;     //cali cmd flag group every bit represents a cali cmd received from the PC
 
@@ -381,9 +370,9 @@ CALI_STATE_e  GimbalCaliProcess()     // ERROR DONE
 	}
 	else
 	{		
-		GimbalCaliData.GimbalPitchOffset = pitchSum/loopTime;   //
-	    GimbalCaliData.GimbalYawOffset = yawSum/loopTime;		//
-		GimbalCaliData.GimbalCaliFlag = PARAM_CALI_DONE;
+		GimbalCaliData.pitch = pitchSum/loopTime;   //
+	    GimbalCaliData.yaw = yawSum/loopTime;		//
+		GimbalCaliData.flag = PARAM_CALI_DONE;
 		pitchSum = 0;
 		yawSum = 0;
 		loopCount = 0;
@@ -399,10 +388,9 @@ CALI_STATE_e  GyroCaliProcess()
 	static int32_t gyroXSum = 0;
 	static int32_t gyroYSum = 0;
 	static int32_t gyroZSum = 0;
-	//��gyroֵ����,��˵õ��Ĳ���ԭʼֵ
 	GyroSavedCaliData.GyroXOffset = 0;
-	GyroSavedCaliData.GyroYOffset = 0;
-	GyroSavedCaliData.GyroZOffset = 0;	
+	GyroSavedCaliData.y = 0;
+	GyroSavedCaliData.z = 0;	
 	//process of the cali if error return error, elseif in processing return in , and if done return done
 	if(Is_Lost_Error_Set(LOST_ERROR_IMU))    //
 	{
@@ -419,9 +407,9 @@ CALI_STATE_e  GyroCaliProcess()
 	else
 	{					
 		GyroCaliData.GyroXOffset = gyroXSum/loopTime;   //
-	    GyroCaliData.GyroYOffset = gyroYSum/loopTime;		//
-		GyroCaliData.GyroZOffset = gyroZSum/loopTime;		//
-		GyroCaliData.GyroCaliFlag = PARAM_CALI_DONE;
+	    GyroCaliData.y = gyroYSum/loopTime;		//
+		GyroCaliData.z = gyroZSum/loopTime;		//
+		GyroCaliData.flag = PARAM_CALI_DONE;
 		gyroXSum = 0;
 		gyroYSum = 0;
 		gyroZSum = 0;
@@ -449,18 +437,18 @@ CALI_STATE_e  MagEndCaliProcess()
 	else
 	{
 		MagCaliData.MagXOffset = (MagMaxMinData.MaxMagX + MagMaxMinData.MinMagX)/2;
-		MagCaliData.MagYOffset = (MagMaxMinData.MaxMagY + MagMaxMinData.MinMagY)/2;
-		MagCaliData.MagZOffset = (MagMaxMinData.MaxMagZ + MagMaxMinData.MinMagZ)/2;
-		MagCaliData.MagXScale = 1.0;
-		MagCaliData.MagYScale = 1.0;
-		MagCaliData.MagZScale = 1.0;	
-		MagCaliData.MagCaliFlag = PARAM_CALI_DONE;
+		MagCaliData.y = (MagMaxMinData.MaxMagY + MagMaxMinData.MinMagY)/2;
+		MagCaliData.z = (MagMaxMinData.MaxMagZ + MagMaxMinData.MinMagZ)/2;
+		MagCaliData.scaleX = 1.0;
+		MagCaliData.scaleY = 1.0;
+		MagCaliData.scaleZ = 1.0;	
+		MagCaliData.flag = PARAM_CALI_DONE;
 		return CALI_STATE_DONE;		
 	}	
 }
 
 //copy src pid offset data received from the PC to the static PitchPostionCaliData/PitchSpeedCaliData
-CALI_STATE_e PIDCaliProcess(PIDParamStruct_t *cali_data)
+CALI_STATE_e PIDCaliProcess(PIDCali_t *cali_data)
 {
 	if(cali_data!=NULL)
 	{
@@ -481,8 +469,8 @@ void Sensor_Offset_Param_Init(AppParam_t *appParam)
 	memcpy(&YawPositionSavedPID, &(appParam->YawPositionPID), sizeof((appParam->YawPositionPID)));
 	memcpy(&YawSpeedSavedPID, &(appParam->YawSpeedPID), sizeof((appParam->YawSpeedPID)));
 
-	GMPitchEncoder.ecd_bias = gAppParamStruct.GimbalCaliData.GimbalPitchOffset;
-	GMYawEncoder.ecd_bias = gAppParamStruct.GimbalCaliData.GimbalYawOffset;	
+	GMPitchEncoder.ecd_bias = gAppParamStruct.GimbalCaliData.pitch;
+	GMYawEncoder.ecd_bias = gAppParamStruct.GimbalCaliData.yaw;	
 }
 
 void UploadParameter(void)
@@ -504,7 +492,7 @@ void UploadParameter(void)
         case REPID:
         {						
             PID_Paremeter_Send(GMPPositionPID.kp, GMPPositionPID.ki,GMPPositionPID.kd, GMPSpeedPID.kp,GMPSpeedPID.ki,GMPSpeedPID.kd,GMYPositionPID.kp,GMYPositionPID.ki,GMYPositionPID.kd,GMYSpeedPID.kp,GMYSpeedPID.ki,GMYSpeedPID.kd);
-            upload_type = REERROR; //����״̬
+            upload_type = REERROR;
         }break;
         case REERROR:
         {
@@ -525,9 +513,9 @@ void UploadParameter(void)
         }break;					
         case REOFFSET:         //
         {
-            Offset_Info_Send(Is_AppParam_Calied(), gAppParamStruct.GyroCaliData.GyroXOffset, gAppParamStruct.GyroCaliData.GyroYOffset, gAppParamStruct.GyroCaliData.GyroZOffset, \
-            gAppParamStruct.MagCaliData.MagXOffset, gAppParamStruct.MagCaliData.MagYOffset, gAppParamStruct.MagCaliData.MagZOffset, \
-            gAppParamStruct.GimbalCaliData.GimbalYawOffset, gAppParamStruct.GimbalCaliData.GimbalPitchOffset);     						
+            Offset_Info_Send(Is_AppParam_Calied(), gAppParamStruct.GyroCaliData.GyroXOffset, gAppParamStruct.GyroCaliData.y, gAppParamStruct.GyroCaliData.z, \
+            gAppParamStruct.MagCaliData.MagXOffset, gAppParamStruct.MagCaliData.y, gAppParamStruct.MagCaliData.z, \
+            gAppParamStruct.GimbalCaliData.yaw, gAppParamStruct.GimbalCaliData.pitch);     						
             upload_type = REIMU;          //config
         }break;
         default:

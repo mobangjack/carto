@@ -44,7 +44,7 @@
 #define KEY_Q         		     ((uint8_t)0x01<<6) 
 #define KEY_E         			 ((uint8_t)0x01<<7)
 
-typedef struct RC
+typedef struct
 {
 	uint16_t ch0;
 	uint16_t ch1;
@@ -52,7 +52,7 @@ typedef struct RC
 	uint16_t ch3;
 	uint8_t  s1;
 	uint8_t  s2;
-}RC; // remote control
+}RC_t; // remote control
 
 typedef struct Mouse
 {
@@ -61,38 +61,38 @@ typedef struct Mouse
 	int16_t z;
 	uint8_t  l;
 	uint8_t  r;
-}Mouse; // mouse control
+}Mouse_t; // mouse control
 
 typedef struct Key
 {
 	uint16_t val;
-}Key; // key control
+}Key_t; // key control
 
 typedef struct Res
 {
 	uint16_t val;
-}Res; // reserve control bits
+}Res_t; // reserve control bits
 
 typedef struct
 {
-	Mouse mouse;
-	Key key;
-	Res res;
-}HC; // Host Control
+	Mouse_t mouse;
+	Key_t key;
+	Res_t res;
+}HC_t; // Host Control
 
 typedef struct
 {
-	RC rc;
-	HC hc;
-}DBUS; // Robomasters DT7 Receiver DBUS Protocol
+	RC_t rc;
+	HC_t hc;
+}DBUS_t; // Robomasters DT7 Receiver DBUS Protocol
 
-void RC_ENC(RC* rc, uint8_t* buf);
-void RC_DEC(RC* rc, uint8_t* buf);
+void RC_ENC(RC_t* rc, uint8_t* buf);
+void RC_DEC(RC_t* rc, uint8_t* buf);
 
-void HC_ENC(HC* hc, uint8_t* buf);
-void HC_DEC(HC* hc, uint8_t* buf);
+void HC_ENC(HC_t* hc, uint8_t* buf);
+void HC_DEC(HC_t* hc, uint8_t* buf);
 
-void DBUS_ENC(DBUS* dbus, uint8_t* buf);
-void DBUS_DEC(DBUS* dbus, uint8_t* buf);
+void DBUS_ENC(DBUS_t* dbus, uint8_t* buf);
+void DBUS_DEC(DBUS_t* dbus, uint8_t* buf);
 
 #endif

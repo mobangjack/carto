@@ -14,19 +14,19 @@
  * limitations under the License.
  */
  
-#ifndef __CAN2_TASK_H__
-#define __CAN2_TASK_H__
+#ifndef __CAN2_CALL_H__
+#define __CAN2_CALL_H__
 
 #include "stm32f4xx.h"
 #include "encoder.h"
 
 void Can2Call(CanRxMsg* canRxMsg);
 
-extern Encoder CM1Encoder;
-extern Encoder CM2Encoder;
-extern Encoder CM3Encoder;
-extern Encoder CM4Encoder;
-extern Encoder GMYEncoder;
-extern Encoder GMPEncoder;
+extern Encoder_t CM1Encoder;
+extern Encoder_t CM2Encoder;
+extern Encoder_t CM3Encoder;
+extern Encoder_t CM4Encoder;
+extern Encoder_t GMYEncoder;
+extern Encoder_t GMPEncoder;
 
 #endif

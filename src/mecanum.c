@@ -27,14 +27,14 @@
 /*                                         */
 /*******************************************/
 
-void Mecanum_Synthesis(Mecanum* mecanum)
+void Mecanum_Synthesis(Mecanum_t* mecanum)
 {
 	mecanum->x = ( mecanum->w1 + mecanum->w2 - mecanum->w3 - mecanum->w4) * MECANUM_R / 4.f;
 	mecanum->y = (-mecanum->w1 + mecanum->w2 + mecanum->w3 - mecanum->w4) * MECANUM_R / 4.f;
 	mecanum->z = ( mecanum->w1 + mecanum->w2 + mecanum->w3 + mecanum->w4) * MECANUM_R / 4.f / MECANUM_L;
 }
 
-void Mecanum_Decompose(Mecanum* mecanum)
+void Mecanum_Decompose(Mecanum_t* mecanum)
 {
 	mecanum->w1 = ( mecanum->x - mecanum->y + mecanum->z * MECANUM_L) / MECANUM_R;
 	mecanum->w2 = ( mecanum->x + mecanum->y + mecanum->z * MECANUM_L) / MECANUM_R;

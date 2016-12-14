@@ -25,25 +25,25 @@ extern "C" {
 
 #define RAMP_SCALE_DEFAULT 4000
 	
-typedef struct Ramp
+typedef struct
 {
 	uint32_t count;
 	uint32_t scale;
 	float output;
-	void (*Init)(struct Ramp* ramp, uint32_t scale);
-	float (*Calc)(struct Ramp* ramp);
-	void (*SetCounter)(struct Ramp* ramp, uint32_t count);
-	void (*ResetCounter)(struct Ramp* ramp);
-	void (*SetScale)(struct Ramp* ramp, uint32_t scale);
-	uint8_t (*IsOverflow)(struct Ramp* ramp);
-}Ramp;
+	void (*Init)(struct Ramp_t* ramp, uint32_t scale);
+	float (*Calc)(struct Ramp_t* ramp);
+	void (*SetCounter)(struct Ramp_t* ramp, uint32_t count);
+	void (*ResetCounter)(struct Ramp_t* ramp);
+	void (*SetScale)(struct Ramp_t* ramp, uint32_t scale);
+	uint8_t (*IsOverflow)(struct Ramp_t* ramp);
+}Ramp_t;
 
-void Ramp_Init(Ramp* ramp, uint32_t scale);
-float Ramp_Calc(Ramp* ramp);
-void Ramp_SetCounter(Ramp* ramp, uint32_t count);
-void Ramp_ResetCounter(Ramp* ramp);
-void Ramp_SetScale(Ramp* ramp, uint32_t scale);
-uint8_t Ramp_IsOverflow(Ramp* ramp);
+void Ramp_Init(Ramp_t* ramp, uint32_t scale);
+float Ramp_Calc(Ramp_t* ramp);
+void Ramp_SetCounter(Ramp_t* ramp, uint32_t count);
+void Ramp_ResetCounter(Ramp_t* ramp);
+void Ramp_SetScale(Ramp_t* ramp, uint32_t scale);
+uint8_t Ramp_IsOverflow(Ramp_t* ramp);
 
 #define RAMP_DEFAULT { \
 	.count = 0, \

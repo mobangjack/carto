@@ -16,25 +16,32 @@
  
 #include "main.h"
 
-WorkingState workingState = WORKING_STATE_PREPARE;
-WorkingState lastWorkingState = WORKING_STATE_PREPARE;
+WorkingState_t workingState = WORKING_STATE_PREPARE;
+WorkingState_t lastWorkingState = WORKING_STATE_PREPARE;
 
-PID CM1SpeedPID = CM_SPEED_PID_DEFAULT;
-PID CM2SpeedPID = CM_SPEED_PID_DEFAULT;
-PID CM3SpeedPID = CM_SPEED_PID_DEFAULT;
-PID CM4SpeedPID = CM_SPEED_PID_DEFAULT;
-PID GMYSpeedPID = GM_SPEED_PID_DEFAULT;
-PID GMPSpeedPID = GM_SPEED_PID_DEFAULT;
+PID_t CM1PositionPID = CM_POSITION_PID_DEFAULT;
+PID_t CM2PositionPID = CM_POSITION_PID_DEFAULT;
+PID_t CM3PositionPID = CM_POSITION_PID_DEFAULT;
+PID_t CM4PositionPID = CM_POSITION_PID_DEFAULT;
+PID_t GMYPositionPID = CM_POSITION_PID_DEFAULT;
+PID_t GMPPositionPID = CM_POSITION_PID_DEFAULT;
 
-Ramp CM1SpeedRamp = RAMP_DEFAULT;
-Ramp CM2SpeedRamp = RAMP_DEFAULT;
-Ramp CM3SpeedRamp = RAMP_DEFAULT;
-Ramp CM4SpeedRamp = RAMP_DEFAULT;
-Ramp GMYSpeedRamp = RAMP_DEFAULT;
-Ramp GMPSpeedRamp = RAMP_DEFAULT;
+PID_t CM1SpeedPID = CM_SPEED_PID_DEFAULT;
+PID_t CM2SpeedPID = CM_SPEED_PID_DEFAULT;
+PID_t CM3SpeedPID = CM_SPEED_PID_DEFAULT;
+PID_t CM4SpeedPID = CM_SPEED_PID_DEFAULT;
+PID_t GMYSpeedPID = GM_SPEED_PID_DEFAULT;
+PID_t GMPSpeedPID = GM_SPEED_PID_DEFAULT;
 
-ChassisCurrent chassisCurrent = {0};
-GimbalsCurrent gimbalsCurrent = {0};
+Ramp_t CM1SpeedRamp = RAMP_DEFAULT;
+Ramp_t CM2SpeedRamp = RAMP_DEFAULT;
+Ramp_t CM3SpeedRamp = RAMP_DEFAULT;
+Ramp_t CM4SpeedRamp = RAMP_DEFAULT;
+Ramp_t GMYSpeedRamp = RAMP_DEFAULT;
+Ramp_t GMPSpeedRamp = RAMP_DEFAULT;
+
+ChassisCurrent_t chassisCurrent = {0};
+GimbalsCurrent_t gimbalsCurrent = {0};
 
 void WorkingStateSM(void)
 {
@@ -76,11 +83,11 @@ void WorkingStateSM(void)
 
 void CMControlLoop(void)
 {
-	Mecanum mecanum;
+	Mecanum_t mecanum;
 	
-	mecanum.x = chassisSpeed.x;
-	mecanum.y = chassisSpeed.y;
-	mecanum.z = chassisSpeed.z;
+	mecanum.x = chassisSpeedRef.x;
+	mecanum.y = chassisSpeedRef.y;
+	mecanum.z = chassisSpeedRef.z;
 	
 	Mecanum_Decompose(&mecanum);
 	
@@ -104,18 +111,18 @@ void CMControlLoop(void)
 	CM3SpeedRamp.Calc(&CM3SpeedRamp);
 	CM4SpeedRamp.Calc(&CM4SpeedRamp);
 	
-	chassisCurrent.m1 = CM1SpeedPID.output * CM1SpeedRamp.output;
-	chassisCurrent.m2 = CM2SpeedPID.output * CM2SpeedRamp.output;
-	chassisCurrent.m3 = CM3SpeedPID.output * CM3SpeedRamp.output;
-	chassisCurrent.m4 = CM4SpeedPID.output * CM4SpeedRamp.output;
+	chassisCurrent.m1 = CM1SpeedPID.out * CM1SpeedRamp.output;
+	chassisCurrent.m2 = CM2SpeedPID.out * CM2SpeedRamp.output;
+	chassisCurrent.m3 = CM3SpeedPID.out * CM3SpeedRamp.output;
+	chassisCurrent.m4 = CM4SpeedPID.out * CM4SpeedRamp.output;
 	
 	SetCMCurrent(CAN2, chassisCurrent.m1, chassisCurrent.m2, chassisCurrent.m3, chassisCurrent.m4);
 }
 
 void GMControlLoop(void)
 {
-	GMYSpeedPID.ref = gimbalsSpeed.yaw;
-	GMPSpeedPID.ref = gimbalsSpeed.pit;
+	GMYSpeedPID.ref = gimbalsSpeedRef.yaw;
+	GMPSpeedPID.ref = gimbalsSpeedRef.pit;
 	
 	GMYSpeedPID.fdb = GMYEncoder.rate;
 	GMPSpeedPID.fdb = GMPEncoder.rate;
@@ -126,8 +133,8 @@ void GMControlLoop(void)
 	GMYSpeedRamp.Calc(&GMYSpeedRamp);
 	GMPSpeedRamp.Calc(&GMPSpeedRamp);
 	
-	gimbalsCurrent.yaw = GMYSpeedPID.output * GMYSpeedRamp.output;
-	gimbalsCurrent.pit = GMPSpeedPID.output * GMPSpeedRamp.output;
+	gimbalsCurrent.yaw = GMYSpeedPID.out * GMYSpeedRamp.output;
+	gimbalsCurrent.pit = GMPSpeedPID.out * GMPSpeedRamp.output;
 	
 	SetGMCurrent(CAN2, gimbalsCurrent.yaw, gimbalsCurrent.pit);
 }

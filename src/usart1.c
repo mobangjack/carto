@@ -18,7 +18,7 @@
 
 uint8_t usart1_dma_rx_buf[2][USART1_DMA_RX_BUF_SIZE];
 uint8_t* dbuf = usart1_dma_rx_buf[0];
-DBUS dbus;
+DBUS_t dbus;
 
 void USART1_Config(void)
 {

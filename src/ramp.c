@@ -16,12 +16,12 @@
  
 #include "ramp.h"
 
-void Ramp_Init(Ramp* ramp, uint32_t scale)
+void Ramp_Init(Ramp_t* ramp, uint32_t scale)
 {
 	ramp->scale = scale;
 }
 
-float Ramp_Calc(Ramp* ramp)
+float Ramp_Calc(Ramp_t* ramp)
 {
 	if(ramp->count < ramp->scale)
 	{
@@ -31,22 +31,22 @@ float Ramp_Calc(Ramp* ramp)
 	return ramp->output;
 }
 
-void Ramp_SetCounter(Ramp* ramp, uint32_t count)
+void Ramp_SetCounter(Ramp_t* ramp, uint32_t count)
 {
 	ramp->count = count;
 }
 
-void Ramp_ResetCounter(Ramp* ramp)
+void Ramp_ResetCounter(Ramp_t* ramp)
 {
 	ramp->count = 0;
 }
 
-void Ramp_SetScale(Ramp* ramp, uint32_t scale)
+void Ramp_SetScale(Ramp_t* ramp, uint32_t scale)
 {
 	ramp->scale = scale;
 }
 
-uint8_t Ramp_IsOverflow(Ramp* ramp)
+uint8_t Ramp_IsOverflow(Ramp_t* ramp)
 {
 	return ramp->count >= ramp->scale;
 }

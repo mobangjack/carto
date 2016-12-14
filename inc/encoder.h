@@ -28,7 +28,7 @@
 
 #define ENCODER_VALUE_TO_RAD(value) ((value)*PI2/ENCODER_VALUE_MOD)
 
-typedef struct Encoder
+typedef struct
 {
 	uint16_t value;
 	uint16_t init_frame_cnt;
@@ -41,10 +41,10 @@ typedef struct Encoder
 	uint8_t rate_ptr;
 	int32_t rate_sum;
 	float rate;
-}Encoder;
+}Encoder_t;
 
-void Encoder_Process(Encoder* encoder, uint16_t value);
-uint8_t Encoder_IsOk(Encoder* encoder);
-void Encoder_Reset(Encoder* encoder);
+void Encoder_Process(Encoder_t* encoder, uint16_t value);
+uint8_t Encoder_IsOk(Encoder_t* encoder);
+void Encoder_Reset(Encoder_t* encoder);
 
 #endif

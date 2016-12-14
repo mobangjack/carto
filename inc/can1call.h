@@ -14,8 +14,8 @@
  * limitations under the License.
  */
  
-#ifndef __CAN1_TASK_H__
-#define __CAN1_TASK_H__
+#ifndef __CAN1_CALL_H__
+#define __CAN1_CALL_H__
 
 #include "stm32f4xx.h"
 

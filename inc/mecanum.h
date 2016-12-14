@@ -42,9 +42,9 @@ typedef struct
 	float w2;
 	float w3;
 	float w4;
-}Mecanum;
+}Mecanum_t;
 
-void Mecanum_Synthesis(Mecanum* mecanum);
-void Mecanum_Decompose(Mecanum* mecanum);
+void Mecanum_Synthesis(Mecanum_t* mecanum);
+void Mecanum_Decompose(Mecanum_t* mecanum);
 
 #endif

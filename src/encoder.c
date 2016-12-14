@@ -16,7 +16,7 @@
  
 #include "main.h"
 
-void Encoder_Process(Encoder* encoder, uint16_t value)
+void Encoder_Process(Encoder_t* encoder, uint16_t value)
 {
 	encoder->value = value;
 	encoder->last_angle = encoder->angle;
@@ -56,13 +56,13 @@ void Encoder_Process(Encoder* encoder, uint16_t value)
 	encoder->rate = encoder->rate_sum / encoder->rate_cnt;
 }
 
-uint8_t Encoder_IsOk(Encoder* encoder)
+uint8_t Encoder_IsOk(Encoder_t* encoder)
 {
 	return encoder->init_frame_cnt == ENCODER_INIT_FRAME_CNT;
 }
 
-void Encoder_Reset(Encoder* encoder)
+void Encoder_Reset(Encoder_t* encoder)
 {
-	memset(encoder, 0, sizeof(Encoder));
+	memset(encoder, 0, sizeof(Encoder_t));
 }
 
