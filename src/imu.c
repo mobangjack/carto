@@ -1,7 +1,4 @@
 #include "main.h"
-#include "imu.h"
-#include "math.h"
-#include "mpu6050_driver.h"
 
 volatile float exInt, eyInt, ezInt;  //
 volatile float q0 = 1.0f;

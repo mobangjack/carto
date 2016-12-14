@@ -133,7 +133,7 @@ void GMControlLoop(void)
 }
 
 static uint32_t ms_tick = 0;
-void ControlTask(void)
+void Control(void)
 {
 	ms_tick++;
 	WorkingStateSM();

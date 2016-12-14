@@ -14,26 +14,19 @@
  * limitations under the License.
  */
  
-#include "main.h"
+#ifndef __CAN2_TASK_H__
+#define __CAN2_TASK_H__
 
-static volatile float ZGyroAngle = 0;
+#include "stm32f4xx.h"
+#include "encoder.h"
 
-void Can1Task(void)
-{      
-	switch(can1RxMsg.StdId)
-	{
-		case ZGYRO_FEEDBACK_CAN_MSG_ID:
-		{
-			ZGyroAngle = -0.01f*((int32_t)(can1RxMsg.Data[0]<<24)|(int32_t)(can1RxMsg.Data[1]<<16) | (int32_t)(can1RxMsg.Data[2]<<8) | (int32_t)(can1RxMsg.Data[3])); 
-		}break;
-		default:
-		{
-		}
-	}
-}
+void Can2Call(CanRxMsg* canRxMsg);
 
-float GetZGyroAngle(void)
-{
-	return ZGyroAngle;
-}
+extern Encoder CM1Encoder;
+extern Encoder CM2Encoder;
+extern Encoder CM3Encoder;
+extern Encoder CM4Encoder;
+extern Encoder GMYEncoder;
+extern Encoder GMPEncoder;
 
+#endif

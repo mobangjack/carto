@@ -23,11 +23,10 @@ Encoder CM4Encoder = {0};
 Encoder GMYEncoder = {0};
 Encoder GMPEncoder = {0};
 
-void Can2Task(void)
+void Can2Call(CanRxMsg* canRxMsg)
 {   
-	uint16_t value = (can2RxMsg.Data[0]<<8) | can2RxMsg.Data[1];
-	if(workingState == WORKING_STATE_STOP) return;
-	switch(can2RxMsg.StdId)
+	uint16_t value = (canRxMsg->Data[0]<<8) | canRxMsg->Data[1];
+	switch(canRxMsg->StdId)
 	{
 		case MOTOR1_FEEDBACK_CAN_MSG_ID:
 		{

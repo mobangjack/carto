@@ -1,9 +1,12 @@
-#ifndef _IMU_H_
-#define _IMU_H_
+#ifndef __IMU_H__
+#define __IMU_H__
+
 #include <math.h>
-#include "main.h"
-#define M_PI  (float)3.1415926535
-	
+#include "mpu6050_driver.h"
+#include "mpu6050_i2c.h"
+#include "mpu6050_interrupt.h"
+#include "mpu6050_process.h"
+
 void Init_Quaternion(void);
 void IMU_getYawPitchRoll(volatile float * ypr); //
 void GetPitchYawGxGyGz(void);

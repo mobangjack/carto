@@ -1,9 +1,10 @@
 #ifndef __MPU6050_DRIVER_H__
 #define __MPU6050_DRIVER_H__
+
 #include "main.h"
 
 #define	SMPLRT_DIV		          0x19	// 0X07 125Hz
-#define	CONFIG			            0x1A	// 0x00 
+#define	CONFIG			          0x1A	// 0x00
 #define	GYRO_CONFIG		          0x1B	// 0x18  2000deg/s
 #define	ACCEL_CONFIG	          0x1C	//2G 5Hz
 #define INT_PIN_CFG               0x37
@@ -24,12 +25,12 @@
 #define	GYRO_ZOUT_H		          0x47
 #define	GYRO_ZOUT_L		          0x48
 #define	PWR_MGMT_1		          0x6B	//
-#define	WHO_AM_I		            0x75	// MPU6050_ID = 0x68
+#define	WHO_AM_I		          0x75	// MPU6050_ID = 0x68
 #define MPU6050_ID                0x68
 #define MPU6050_DEVICE_ADDRESS    0xD0
 
 
-#define MPU6050_DATA_START        ACCEL_XOUT_H   //
+#define MPU6050_DATA_START        				ACCEL_XOUT_H   //
 #define MPU6050_RA_SELF_TEST_X                  0x0D
 #define MPU6050_RA_SLEF_TEST_Y                  0x0E
 #define MPU6050_RA_SELF_TEST_Z                  0x0F
@@ -87,7 +88,7 @@
 
 /*Magnetometer HMC5883 register address */
 
-#define HMC5883_ADDRESS                          0x3C 
+#define HMC5883_ADDRESS                         0x3C
 
 // HMC58X3 register map. For details see HMC58X3 datasheet
 #define HMC58X3_R_CONFA 0
@@ -135,7 +136,7 @@ typedef struct __MPU6050_RAW_Data__
     short Gyro_X;   
     short Gyro_Y;  
     short Gyro_Z;   
-	  short Mag_X;  
+	short Mag_X;
     short Mag_Y;  
     short Mag_Z; 
 	
@@ -176,6 +177,7 @@ typedef __packed struct
 	int16_t MinMagY;
 	int16_t MinMagZ;
 }MagMaxMinData_t;
+
 extern MagMaxMinData_t MagMaxMinData;
 
 #define GYRO_CALI_FLAG 	  		(1<<0)

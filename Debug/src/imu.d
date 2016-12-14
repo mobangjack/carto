@@ -1,4 +1,4 @@
-src/bsp.o: ../src/bsp.c /home/bj/workspace/eclipse/stm32/car/inc/main.h \
+src/imu.o: ../src/imu.c /home/bj/workspace/eclipse/stm32/car/inc/main.h \
  /home/bj/workspace/eclipse/stm32/car/inc/dbus_task.h \
  /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/CMSIS/device/stm32f4xx.h \
  /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/CMSIS/core/core_cm4.h \

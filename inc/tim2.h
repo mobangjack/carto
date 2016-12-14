@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,19 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#ifndef __CAN2_TASK_H__
-#define __CAN2_TASK_H__
 
-#include "encoder.h"
+#ifndef __TIM2_H__
+#define __TIM2_H__
 
-void Can2Task(void);
+#define Micros() (TIM2->CNT)
 
-extern Encoder CM1Encoder;
-extern Encoder CM2Encoder;
-extern Encoder CM3Encoder;
-extern Encoder CM4Encoder;
-extern Encoder GMYEncoder;
-extern Encoder GMPEncoder;
+void TIM2_Config(void);
 
-#endif
+#endif /* __TIM2_H__ */

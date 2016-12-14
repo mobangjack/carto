@@ -17,6 +17,11 @@
 #ifndef __ZGYRO_H__
 #define __ZGYRO_H__
 
-void ZGyro_RST(void);
+#define ZGYRO_FEEDBACK_CAN_MSG_ID 0x401
+
+#include "stm32f4xx.h"
+
+void ZGyro_RST(CAN_TypeDef* CANx);
+void ZGyro_GetAngle(CanRxMsg* canRxMsg, float* angle);
 
 #endif

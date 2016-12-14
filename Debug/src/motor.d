@@ -36,10 +36,17 @@ src/motor.o: ../src/motor.c \
  /home/bj/workspace/eclipse/stm32/car/inc/usart1.h \
  /home/bj/workspace/eclipse/stm32/car/inc/usart3.h \
  /home/bj/workspace/eclipse/stm32/car/inc/zgyro.h \
+ /home/bj/workspace/eclipse/stm32/car/inc/imu.h \
+ /home/bj/workspace/eclipse/stm32/car/inc/mpu6050_driver.h \
+ /home/bj/workspace/eclipse/stm32/car/inc/main.h \
+ /home/bj/workspace/eclipse/stm32/car/inc/mpu6050_i2c.h \
+ /home/bj/workspace/eclipse/stm32/car/inc/mpu6050_interrupt.h \
+ /home/bj/workspace/eclipse/stm32/car/inc/mpu6050_process.h \
  /home/bj/workspace/eclipse/stm32/car/inc/can1_task.h \
  /home/bj/workspace/eclipse/stm32/car/inc/can2_task.h \
  /home/bj/workspace/eclipse/stm32/car/inc/control_task.h \
- /home/bj/workspace/eclipse/stm32/car/inc/odom_task.h
+ /home/bj/workspace/eclipse/stm32/car/inc/odom_task.h \
+ /home/bj/workspace/eclipse/stm32/car/inc/superviser.h
 
 /home/bj/workspace/eclipse/stm32/car/inc/main.h:
 
@@ -115,6 +122,18 @@ src/motor.o: ../src/motor.c \
 
 /home/bj/workspace/eclipse/stm32/car/inc/zgyro.h:
 
+/home/bj/workspace/eclipse/stm32/car/inc/imu.h:
+
+/home/bj/workspace/eclipse/stm32/car/inc/mpu6050_driver.h:
+
+/home/bj/workspace/eclipse/stm32/car/inc/main.h:
+
+/home/bj/workspace/eclipse/stm32/car/inc/mpu6050_i2c.h:
+
+/home/bj/workspace/eclipse/stm32/car/inc/mpu6050_interrupt.h:
+
+/home/bj/workspace/eclipse/stm32/car/inc/mpu6050_process.h:
+
 /home/bj/workspace/eclipse/stm32/car/inc/can1_task.h:
 
 /home/bj/workspace/eclipse/stm32/car/inc/can2_task.h:
@@ -122,3 +141,5 @@ src/motor.o: ../src/motor.c \
 /home/bj/workspace/eclipse/stm32/car/inc/control_task.h:
 
 /home/bj/workspace/eclipse/stm32/car/inc/odom_task.h:
+
+/home/bj/workspace/eclipse/stm32/car/inc/superviser.h:

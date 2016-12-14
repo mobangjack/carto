@@ -18,6 +18,7 @@
 #define __INPUT_TASK_H__
 
 #include <stdint.h>
+#include "dbus.h"
 
 #define ON 1
 #define OFF 0
@@ -71,7 +72,7 @@ typedef struct
 	float pit;
 }GimbalsSpeed;
 
-void DBUS_CMD(void);
+void DBUS_CMD(DBUS* dbus);
 
 extern InputMode inputMode;
 extern SwitchAction switch1Action;

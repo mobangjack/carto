@@ -17,11 +17,11 @@
 #ifndef __CAN1_TASK_H__
 #define __CAN1_TASK_H__
 
-#define ZGYRO_FEEDBACK_CAN_MSG_ID 0x401
+#include "stm32f4xx.h"
 
-void Can1Task(void);
+void Can1Call(CanRxMsg* canRxMsg);
 
-float GetZGyroAngle(void);
+extern float ZGyroAngle;
 
 #endif
 

@@ -115,7 +115,7 @@ void USART1_IRQHandler(void)
 		if(this_time_rx_len == RC_FRAME_LEN)
 		{
 			DBUS_DEC(&dbus, dbuf);
-			DBUS_CMD();
+			DBUS_CMD(&dbus);
 		}
 	}       
 }

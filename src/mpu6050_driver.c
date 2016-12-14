@@ -67,7 +67,7 @@ int MPU6050_Init(void)
         return 0xff;
     }
 		
-		//设置mpu6050 IIC masters mode  disabled
+		//mpu6050 IIC masters mode  disabled
 		if(IIC_WriteData(MPU6050_DEVICE_ADDRESS,MPU6050_RA_USER_CTRL,0x00) == 0xff)      //disable data ready interrupt
     {
         printf("error 1I\r\n");
@@ -227,7 +227,7 @@ void MPU6050_getMotion6(int16_t* ax, int16_t* ay, int16_t* az, int16_t* gx, int1
 		*gz = MPU6050_FIFO[5][10] - GyroSavedCaliData.GyroZOffset;
 	} 
 	else
-	{       //读取上一次的值
+	{       //
 		*ax = MPU6050_FIFO[0][10];//=MPU6050_FIFO[0][10];
 		*ay = MPU6050_FIFO[1][10];//=MPU6050_FIFO[1][10];
 		*az = MPU6050_FIFO[2][10];//=MPU6050_FIFO[2][10];

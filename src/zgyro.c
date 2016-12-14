@@ -16,7 +16,7 @@
  
 #include "main.h"
 
-void ZGyro_RST(void)
+void ZGyro_RST(CAN_TypeDef* CANx)
 {
 	CanTxMsg canTxMsg;
     
@@ -34,6 +34,11 @@ void ZGyro_RST(void)
     canTxMsg.Data[6] = 0x06;
     canTxMsg.Data[7] = 0x07;
 	
-	CAN_Transmit(CAN1, &canTxMsg);
+	CAN_Transmit(CANx, &canTxMsg);
+}
+
+void ZGyro_GetAngle(CanRxMsg* canRxMsg, float* angle)
+{
+	*angle = -0.01f*((int32_t)(canRxMsg->Data[0]<<24)|(int32_t)(canRxMsg->Data[1]<<16) | (int32_t)(canRxMsg->Data[2]<<8) | (int32_t)(canRxMsg->Data[3]));
 }
 

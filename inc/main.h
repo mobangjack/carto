@@ -17,43 +17,53 @@
 #ifndef __MAIN_H__
 #define __MAIN_H__
 
-#include <dbus_task.h>
+// chip support
 #include "stm32f4xx.h"
 
+// standard c libraries
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
 #include <stdarg.h>
 
+// board related headers
 #include "bsp.h"
+#include "led.h"
+#include "pwm.h"
+#include "imu.h"
 #include "can1.h"
 #include "can2.h"
-#include "crc16.h"
-#include "dbus.h"
-#include "delay.h"
-#include "encoder.h"
-#include "fifo.h"
-#include "led.h"
-#include "mecanum.h"
-#include "motor.h"
-#include "pid.h"
-#include "pwm.h"
-#include "quad_encoder.h"
-#include "ramp.h"
-#include "timer.h"
+#include "tim2.h"
+#include "tim6.h"
 #include "usart1.h"
 #include "usart3.h"
-#include "zgyro.h"
+#include "quad_encoder.h"
 
-#include "can1_task.h"
-#include "can2_task.h"
-#include "control_task.h"
-#include "odom_task.h"
+// peripherals
+#include "motor.h"
+#include "zgyro.h"
+#include "encoder.h"
+
+// kits
+#include "pid.h"
+#include "ramp.h"
+#include "fifo.h"
+#include "dbus.h"
+#include "delay.h"
+#include "crc16.h"
+#include "mecanum.h"
+
+// services and callbacks
+#include "can1call.h"
+#include "can2call.h"
+#include "dbuscall.h"
+#include "control.h"
+#include "odom.h"
 #include "superviser.h"
 
+// commonly used macros
 #define PI 3.1415926f
 #define PI2 6.2831855f
-
 #define MAP(val,min1,max1,min2,max2) ((val-min1)*(max2-min2)/(max1-min1)+min2)
 
 #endif 

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,15 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#ifndef __TIMER_H__
-#define __TIMER_H__
 
-#define Micros() (TIM2->CNT)
+#ifndef __TIM6_H__
+#define __TIM6_H__
 
 void TIM6_Config(void);
-void TIM2_Config(void);
 
-void TIM6_Start(void);
-
-#endif
+#endif /* __TIM6_H__ */

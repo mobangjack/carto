@@ -87,15 +87,17 @@ void CAN1_TX_IRQHandler(void)
     }
 }
 
-CanRxMsg can1RxMsg;
+
 void CAN1_RX0_IRQHandler(void)
 {   
     if (CAN_GetITStatus(CAN1,CAN_IT_FMP0)!= RESET)
 	{
+    	CanRxMsg canRxMsg;
         CAN_ClearITPendingBit(CAN1, CAN_IT_FF0);
 		CAN_ClearFlag(CAN1, CAN_FLAG_FF0); 
-		CAN_Receive(CAN1, CAN_FIFO0, &can1RxMsg);
-		Can1Task();
+		CAN_Receive(CAN1, CAN_FIFO0, &canRxMsg);
+
+		Can1Call(&canRxMsg);
     }
 }
 

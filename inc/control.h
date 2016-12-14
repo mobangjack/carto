@@ -109,7 +109,7 @@ typedef struct
 	.IsOverflow = Ramp_IsOverflow,\
 }\
 
-void ControlTask(void);
+void Control(void);
 
 extern WorkingState workingState;
 extern ChassisCurrent chassisCurrent;
