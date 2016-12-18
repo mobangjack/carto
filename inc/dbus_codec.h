@@ -14,12 +14,18 @@
  * limitations under the License.
  */
  
-#ifndef __USART1_H__
-#define __USART1_H__
+#ifndef __DBUS_CODEC_H__
+#define __DBUS_CODEC_H__
 
-#define RC_FRAME_LEN 18u
-#define USART1_DMA_RX_BUF_SIZE 36u
+#define HC_OFFSET 6
 
-void USART1_Config(void);
+typedef struct
+{
+	RC_t rc;
+	HC_t hc;
+}DBUS_t; // Robomasters DT7 receiver DBUS frame structure
+
+void DBUS_ENC(DBUS_t* dbus, uint8_t* buf);
+void DBUS_DEC(DBUS_t* dbus, uint8_t* buf);
 
 #endif

@@ -14,12 +14,17 @@
  * limitations under the License.
  */
  
-#ifndef __USART1_H__
-#define __USART1_H__
+#ifndef __DBUS_CMD_H__
+#define __DBUS_CMD_H__
 
-#define RC_FRAME_LEN 18u
-#define USART1_DMA_RX_BUF_SIZE 36u
+typedef uint8_t InputMode_t;
 
-void USART1_Config(void);
+#define INPUT_MODE_RC      SW_UP
+#define INPUT_MODE_HC      SW_MD
+#define INPUT_MODE_NO      SW_DN
+
+void DBUS_CMD(DBUS_t* dbus);
+
+extern InputMode_t inputMode;
 
 #endif

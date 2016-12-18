@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#ifndef __DBUS_CMD_H__
-#define __DBUS_CMD_H__
+
+#ifndef __SYS_CMD_H__
+#define __SYS_CMD_H__
 
 #include <stdint.h>
-#include "dbus.h"
 
 #define ON 1
 #define OFF 0
@@ -38,17 +37,6 @@
 #define INPUT_YAW_SPEED_DIR_COEFF 1
 #define INPUT_PIT_SPEED_DIR_COEFF 1
 
-#define GET_SWITCG_ACTION(lastState,thisState) (((lastState)<<2)|(thisState))
-#define SWITCH_ACTION_3TO1 GET_SWITCG_ACTION(3, 1)
-#define SWITCH_ACTION_1TO3 GET_SWITCG_ACTION(1, 3)
-#define SWITCH_ACTION_3TO2 GET_SWITCG_ACTION(3, 2)
-#define SWITCH_ACTION_2TO3 GET_SWITCG_ACTION(2, 3)
-#define SWITCH_ACTION_NONE 0
-
-typedef uint8_t InputMode_t;
-typedef uint8_t SwitchAction_t;
-typedef uint8_t FunctionState_t;
-
 /*******************************************/
 /* Mecanum Wheel Power Transmission System */
 /*******************************************/
@@ -59,6 +47,7 @@ typedef uint8_t FunctionState_t;
 /*              3        4                 */
 /*                                         */
 /*******************************************/
+
 typedef struct
 {
 	float x;
@@ -68,17 +57,11 @@ typedef struct
 
 typedef struct
 {
-	float yaw;
-	float pit;
+	float y;
+	float p;
 }GimbalsSpeedRef_t;
 
-void DBUS_CMD(DBUS_t* dbus);
-
-extern InputMode_t inputMode;
-extern SwitchAction_t switch1Action;
-extern SwitchAction_t switch2Action;
 extern ChassisSpeedRef_t chassisSpeedRef;
 extern GimbalsSpeedRef_t gimbalsSpeedRef;
 
-
-#endif
+#endif /* __SYS_CMD_H__ */

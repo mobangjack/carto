@@ -121,8 +121,8 @@ void CMControlLoop(void)
 
 void GMControlLoop(void)
 {
-	GMYSpeedPID.ref = gimbalsSpeedRef.yaw;
-	GMPSpeedPID.ref = gimbalsSpeedRef.pit;
+	GMYSpeedPID.ref = gimbalsSpeedRef.y;
+	GMPSpeedPID.ref = gimbalsSpeedRef.p;
 	
 	GMYSpeedPID.fdb = GMYEncoder.rate;
 	GMPSpeedPID.fdb = GMPEncoder.rate;
@@ -133,10 +133,10 @@ void GMControlLoop(void)
 	GMYSpeedRamp.Calc(&GMYSpeedRamp);
 	GMPSpeedRamp.Calc(&GMPSpeedRamp);
 	
-	gimbalsCurrent.yaw = GMYSpeedPID.out * GMYSpeedRamp.output;
-	gimbalsCurrent.pit = GMPSpeedPID.out * GMPSpeedRamp.output;
+	gimbalsCurrent.y = GMYSpeedPID.out * GMYSpeedRamp.output;
+	gimbalsCurrent.p = GMPSpeedPID.out * GMPSpeedRamp.output;
 	
-	SetGMCurrent(CAN2, gimbalsCurrent.yaw, gimbalsCurrent.pit);
+	SetGMCurrent(CAN2, gimbalsCurrent.y, gimbalsCurrent.p);
 }
 
 static uint32_t ms_tick = 0;

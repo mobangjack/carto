@@ -14,12 +14,24 @@
  * limitations under the License.
  */
  
-#ifndef __USART1_H__
-#define __USART1_H__
+#include "main.h"
 
-#define RC_FRAME_LEN 18u
-#define USART1_DMA_RX_BUF_SIZE 36u
+InputMode_t inputMode = INPUT_MODE_NO;
 
-void USART1_Config(void);
+void GetInputMode(DBUS_t* dbus)
+{
+	inputMode = dbus->rc.s2;
+}
 
-#endif
+void DBUS_CMD(DBUS_t* dbus)
+{
+	GetInputMode(dbus);
+	if(inputMode == INPUT_MODE_RC)
+	{
+		RC_CMD(&dbus->rc);
+	}
+	else if(inputMode == INPUT_MODE_HC)
+	{
+		HC_CMD(&dbus->hc);
+	}
+}

@@ -35,8 +35,8 @@ typedef struct
 
 typedef struct
 {
-	float yaw;
-	float pit;
+	float y;
+	float p;
 }GimbalsCurrent_t;
 
 #define CM_POSITION_PID_DEFAULT \

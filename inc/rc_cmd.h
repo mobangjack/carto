@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,13 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#ifndef __USART1_H__
-#define __USART1_H__
 
-#define RC_FRAME_LEN 18u
-#define USART1_DMA_RX_BUF_SIZE 36u
+#ifndef __RC_CMD_H__
+#define __RC_CMD_H__
 
-void USART1_Config(void);
+typedef uint8_t SwitchAction_t;
 
-#endif
+#define GET_SWITCG_ACTION(last,this) (((last)<<2)|(this))
+#define SWITCH_ACTION_3TO1 GET_SWITCG_ACTION(3, 1)
+#define SWITCH_ACTION_1TO3 GET_SWITCG_ACTION(1, 3)
+#define SWITCH_ACTION_3TO2 GET_SWITCG_ACTION(3, 2)
+#define SWITCH_ACTION_2TO3 GET_SWITCG_ACTION(2, 3)
+#define SWITCH_ACTION_NONE 0
+
+extern SwitchAction_t switch1Action;
+extern SwitchAction_t switch2Action;
+
+#endif /* __RC_CMD_H__ */

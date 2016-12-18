@@ -14,12 +14,17 @@
  * limitations under the License.
  */
  
-#ifndef __USART1_H__
-#define __USART1_H__
+#include "dbus_codec.h"
 
-#define RC_FRAME_LEN 18u
-#define USART1_DMA_RX_BUF_SIZE 36u
+void DBUS_ENC(DBUS_t* dbus, uint8_t* buf)
+{
+	RC_ENC(&dbus->rc, buf);
+	HC_ENC(&dbus->hc, buf+HC_OFFSET);
+}
 
-void USART1_Config(void);
+void DBUS_DEC(DBUS_t* dbus, uint8_t* buf)
+{
+	RC_DEC(&dbus->rc, buf);
+	HC_DEC(&dbus->hc, buf+HC_OFFSET);
+}
 
-#endif

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>car</name>
+	<name>carto</name>
 	<comment></comment>
 	<projects>
 		<project>stm32f405rg_stdperiph_lib</project>

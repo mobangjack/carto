@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,21 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#ifndef __DBUS_H__
-#define __DBUS_H__
 
-#include <stdint.h>
+#ifndef __HC_CODEC_H__
+#define __HC_CODEC_H__
 
-/* ----------------------- RC Channel Value Definition---------------------------- */
-#define CH_MIN              	 ((uint16_t)364   )
-#define CH_MID           	 	 ((uint16_t)1024  )
-#define CH_MAX              	 ((uint16_t)1684  )
-#define CH_OFF              	 ((uint16_t)660   )
-/* ----------------------- RC Switch Value Definition----------------------------- */
-#define SW_UP                    ((uint8_t)1      )
-#define SW_MD                    ((uint8_t)3      )
-#define SW_DN                    ((uint8_t)2      )
 /* ----------------------- PC Mouse Value Definition------------------------------ */
 #define MS_MOV_MIN            	 ((int16_t)-32768 )
 #define MS_MOV_MID               ((int16_t)0      )
@@ -35,24 +24,14 @@
 #define MS_BTN_UP         		 ((uint8_t)0      )
 #define MS_BTN_DN         		 ((uint8_t)1      )
 /* ----------------------- PC Key Value Definition-------------------------------- */
-#define KEY_W         			 ((uint8_t)0x01<<0) 
-#define KEY_S         			 ((uint8_t)0x01<<1) 
-#define KEY_A         			 ((uint8_t)0x01<<2) 
+#define KEY_W         			 ((uint8_t)0x01<<0)
+#define KEY_S         			 ((uint8_t)0x01<<1)
+#define KEY_A         			 ((uint8_t)0x01<<2)
 #define KEY_D         			 ((uint8_t)0x01<<3)
-#define KEY_SHIFT     		     ((uint8_t)0x01<<4) 
+#define KEY_SHIFT     		     ((uint8_t)0x01<<4)
 #define KEY_CTRL      		     ((uint8_t)0x01<<5)
-#define KEY_Q         		     ((uint8_t)0x01<<6) 
+#define KEY_Q         		     ((uint8_t)0x01<<6)
 #define KEY_E         			 ((uint8_t)0x01<<7)
-
-typedef struct
-{
-	uint16_t ch0;
-	uint16_t ch1;
-	uint16_t ch2;
-	uint16_t ch3;
-	uint8_t  s1;
-	uint8_t  s2;
-}RC_t; // remote control
 
 typedef struct Mouse
 {
@@ -61,38 +40,27 @@ typedef struct Mouse
 	int16_t z;
 	uint8_t  l;
 	uint8_t  r;
-}Mouse_t; // mouse control
+}Mouse_t; // Mouse control domain
 
 typedef struct Key
 {
 	uint16_t val;
-}Key_t; // key control
+}Key_t; // Key control domain
 
 typedef struct Res
 {
 	uint16_t val;
-}Res_t; // reserve control bits
+}Res_t; // Reserved control bits
 
 typedef struct
 {
 	Mouse_t mouse;
 	Key_t key;
 	Res_t res;
-}HC_t; // Host Control
+}HC_t; // Host Control frame structure
 
-typedef struct
-{
-	RC_t rc;
-	HC_t hc;
-}DBUS_t; // Robomasters DT7 Receiver DBUS Protocol
-
-void RC_ENC(RC_t* rc, uint8_t* buf);
-void RC_DEC(RC_t* rc, uint8_t* buf);
 
 void HC_ENC(HC_t* hc, uint8_t* buf);
 void HC_DEC(HC_t* hc, uint8_t* buf);
 
-void DBUS_ENC(DBUS_t* dbus, uint8_t* buf);
-void DBUS_DEC(DBUS_t* dbus, uint8_t* buf);
-
-#endif
+#endif /* __HC_CODEC_H__ */
