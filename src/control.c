@@ -17,7 +17,6 @@
 #include "main.h"
 
 WorkingState_t workingState = WORKING_STATE_PREPARE;
-WorkingState_t lastWorkingState = WORKING_STATE_PREPARE;
 
 PID_t CM1PositionPID = CM_POSITION_PID_DEFAULT;
 PID_t CM2PositionPID = CM_POSITION_PID_DEFAULT;
@@ -40,11 +39,12 @@ Ramp_t CM4SpeedRamp = RAMP_DEFAULT;
 Ramp_t GMYSpeedRamp = RAMP_DEFAULT;
 Ramp_t GMPSpeedRamp = RAMP_DEFAULT;
 
-ChassisCurrent_t chassisCurrent = {0};
-GimbalsCurrent_t gimbalsCurrent = {0};
+ChassisCurrent_t chassisCurrent;
+GimbalsCurrent_t gimbalsCurrent;
 
 void WorkingStateSM(void)
 {
+	static WorkingState_t lastWorkingState = WORKING_STATE_PREPARE;
 	lastWorkingState = workingState;
 	if(inputMode == INPUT_MODE_NO)
 	{

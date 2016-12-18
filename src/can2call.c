@@ -16,12 +16,12 @@
  
 #include "main.h"
 
-Encoder_t CM1Encoder = {0};
-Encoder_t CM2Encoder = {0};
-Encoder_t CM3Encoder = {0};
-Encoder_t CM4Encoder = {0};
-Encoder_t GMYEncoder = {0};
-Encoder_t GMPEncoder = {0};
+Encoder_t CM1Encoder;
+Encoder_t CM2Encoder;
+Encoder_t CM3Encoder;
+Encoder_t CM4Encoder;
+Encoder_t GMYEncoder;
+Encoder_t GMPEncoder;
 
 void Can2Call(CanRxMsg* canRxMsg)
 {   

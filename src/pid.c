@@ -26,18 +26,18 @@ void PID_Reset(PID_t *pid)
 	pid->out = 0;
 }
 
-#define limit(val,min,max) (val=val>max?max:(val<min?min:val))
+#define LIMIT(val,min,max) (val=val>max?max:(val<min?min:val))
 void PID_Calc(PID_t *pid)
 {
 	pid->err[1] = pid->ref - pid->fdb; // calculate error
 	pid->P = (pid->kp + pid->kp_offset) * pid->err[1]; // P
-	limit(pid->P, -pid->Pm, pid->Pm);
+	LIMIT(pid->P, -pid->Pm, pid->Pm);
 	pid->I+= (pid->ki + pid->ki_offset) * pid->err[1]; // I
-	limit(pid->I, -pid->Im, pid->Im);
+	LIMIT(pid->I, -pid->Im, pid->Im);
 	pid->D = (pid->kd + pid->kd_offset) * (pid->err[1] - pid->err[0]); // D
-	limit(pid->D, -pid->Dm, pid->Dm);
+	LIMIT(pid->D, -pid->Dm, pid->Dm);
 	pid->out = pid->P + pid->I + pid->D; // output
-	limit(pid->out, -pid->outmax, pid->outmax);
+	LIMIT(pid->out, -pid->outmax, pid->outmax);
 	pid->err[0] = pid->err[1]; // save the last err
 }
 
