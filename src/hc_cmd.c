@@ -68,10 +68,10 @@ void GetChassisSpeedRef(HC_t* hc)
 	static MAFilter* fx = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
 	static MAFilter* fy = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
 	static MAFilter* fz = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
-	static const float speed = (hc->key.val & KEY_SHIFT) ? INPUT_CHASSIS_SPEED_MAX : INPUT_CHASSIS_SPEED_MAX / 2.f;
+	static const float speed = (hc->key.val & KEY_SHIFT) ? CHASSIS_SPEED_MAX : CHASSIS_SPEED_MAX / 2.f;
 	float vx = (hc->key.val & KEY_A) ? -speed : ((hc->key.val & KEY_D) ? speed : 0);
 	float vy = (hc->key.val & KEY_S) ? -speed : ((hc->key.val & KEY_W) ? speed : 0);
-	float vz = MAP(hc->mouse.x, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
+	float vz = MAP(hc->mouse.x, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -GIMBALS_SPEED_MAX, GIMBALS_SPEED_MAX);
 	chassisSpeedRef.x = MAFilter_Calc(fx, vx);
 	chassisSpeedRef.y = MAFilter_Calc(fy, vy);
 	chassisSpeedRef.z = MAFilter_Calc(fz, vz);
@@ -79,8 +79,8 @@ void GetChassisSpeedRef(HC_t* hc)
 
 void GetGimbalsSpeedRef(HC_t* hc)
 {
-	gimbalsSpeedRef.y = MAP(hc->mouse.x, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
-	gimbalsSpeedRef.p = MAP(hc->mouse.y, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
+	gimbalsSpeedRef.y = MAP(hc->mouse.x, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -GIMBALS_SPEED_MAX, GIMBALS_SPEED_MAX);
+	gimbalsSpeedRef.p = MAP(hc->mouse.y, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -GIMBALS_SPEED_MAX, GIMBALS_SPEED_MAX);
 }
 
 void HC_CMD(HC_t* hc)

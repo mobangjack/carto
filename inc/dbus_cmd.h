@@ -17,11 +17,13 @@
 #ifndef __DBUS_CMD_H__
 #define __DBUS_CMD_H__
 
+#include "rc_codec.h"
+
 typedef uint8_t InputMode_t;
 
 #define INPUT_MODE_RC      SW_UP
-#define INPUT_MODE_HC      SW_MD
-#define INPUT_MODE_NO      SW_DN
+#define INPUT_MODE_HC      SW_MIDDLE
+#define INPUT_MODE_NO      SW_DOWN
 
 void DBUS_CMD(DBUS_t* dbus);
 

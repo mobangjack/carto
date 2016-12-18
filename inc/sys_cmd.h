@@ -22,17 +22,13 @@
 #define ON 1
 #define OFF 0
 
-#define INPUT_MODE_RC      SW_UP
-#define INPUT_MODE_HC      SW_MD
-#define INPUT_MODE_NO      SW_DN
+#define CHASSIS_SPEED_MAX 4.0f     // 4m/s
+#define GIMBALS_SPEED_MAX 1.0f     // 1r/s
 
 #define FUNCTIONAL_STATE_FIRE    (((uint32_t)0x00000001)<<0)
 #define FUNCTIONAL_STATE_LASER   (((uint32_t)0x00000001)<<1)
 #define FUNCTIONAL_STATE_LOADER  (((uint32_t)0x00000001)<<2)
 #define FUNCTIONAL_STATE_ALL     (((uint32_t)0xFFFFFFFF))
-
-#define INPUT_CHASSIS_SPEED_MAX 4.0f     // 4m/s
-#define INPUT_GIMBALS_SPEED_MAX 1.0f     // 1r/s
 
 typedef uint32_t FunctionalState_t;
 

@@ -20,7 +20,7 @@ InputMode_t inputMode = INPUT_MODE_NO;
 
 void GetInputMode(DBUS_t* dbus)
 {
-	inputMode = dbus->rc.s2;
+	inputMode = dbus->rc.sw[SWITCH_INDEX_RIGHT];
 }
 
 void DBUS_CMD(DBUS_t* dbus)

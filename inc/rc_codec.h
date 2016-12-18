@@ -21,13 +21,13 @@
 
 /* ----------------------- RC Channel Value Definition---------------------------- */
 #define CH_MIN              	 ((uint16_t)364   )
-#define CH_MID           	 	 ((uint16_t)1024  )
+#define CH_MIDDLE           	 ((uint16_t)1024  )
 #define CH_MAX              	 ((uint16_t)1684  )
-#define CH_OFF              	 ((uint16_t)660   )
+#define CH_OFFSET              	 ((uint16_t)660   )
 /* ----------------------- RC Switch Value Definition----------------------------- */
 #define SW_UP                    ((uint8_t)1      )
-#define SW_MD                    ((uint8_t)3      )
-#define SW_DN                    ((uint8_t)2      )
+#define SW_MIDDLE                ((uint8_t)3      )
+#define SW_DOWN                  ((uint8_t)2      )
 
 #define SWITCH_NUMBER 2
 #define SWITCH_INDEX_LEFT 0
@@ -39,7 +39,7 @@ typedef struct
 	uint16_t ch1;
 	uint16_t ch2;
 	uint16_t ch3;
-	uint8_t  s[SWITCH_NUMBER];
+	uint8_t  sw[SWITCH_NUMBER];
 }RC_t; // remote control frame structure
 
 void RC_ENC(RC_t* rc, uint8_t* buf);

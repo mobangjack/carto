@@ -23,7 +23,7 @@ void GetSwitchStates(RC_t* rc)
 {
 	static uint8_t last_state[SWITCH_NUMBER];
 	static uint32_t cnt[SWITCH_NUMBER];
-	uint8_t* this_state = rc->s;
+	uint8_t* this_state = rc->sw;
 	uint32_t i = 0;
 	for (; i < SWITCH_NUMBER; i++) {
 		if (this_state[i] == last_state[i]) {
@@ -74,15 +74,15 @@ void GetFunctionalState(RC_t* rc)
 
 void GetChassisSpeedRef(RC_t* rc)
 {
-	chassisSpeedRef.x = MAP(rc->ch0, CH_MIN, CH_MAX, -INPUT_CHASSIS_SPEED_MAX, INPUT_CHASSIS_SPEED_MAX);
-	chassisSpeedRef.y = MAP(rc->ch1, CH_MIN, CH_MAX, -INPUT_CHASSIS_SPEED_MAX, INPUT_CHASSIS_SPEED_MAX);
-	chassisSpeedRef.z = MAP(rc->ch2, CH_MIN, CH_MAX, -INPUT_CHASSIS_SPEED_MAX, INPUT_CHASSIS_SPEED_MAX);
+	chassisSpeedRef.x = MAP(rc->ch0, CH_MIN, CH_MAX, -CHASSIS_SPEED_MAX, CHASSIS_SPEED_MAX);
+	chassisSpeedRef.y = MAP(rc->ch1, CH_MIN, CH_MAX, -CHASSIS_SPEED_MAX, CHASSIS_SPEED_MAX);
+	chassisSpeedRef.z = MAP(rc->ch2, CH_MIN, CH_MAX, -CHASSIS_SPEED_MAX, CHASSIS_SPEED_MAX);
 }
 
 void GetGimbalsSpeedRef(RC_t* rc)
 {
-	gimbalsSpeedRef.y = MAP(rc->ch2, CH_MIN, CH_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
-	gimbalsSpeedRef.p = MAP(rc->ch3, CH_MIN, CH_MAX, -INPUT_GIMBALS_SPEED_MAX, INPUT_GIMBALS_SPEED_MAX);
+	gimbalsSpeedRef.y = MAP(rc->ch2, CH_MIN, CH_MAX, -GIMBALS_SPEED_MAX, GIMBALS_SPEED_MAX);
+	gimbalsSpeedRef.p = MAP(rc->ch3, CH_MIN, CH_MAX, -GIMBALS_SPEED_MAX, GIMBALS_SPEED_MAX);
 }
 
 void RC_CMD(RC_t* rc)

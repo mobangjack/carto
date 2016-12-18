@@ -23,7 +23,7 @@ void RC_ENC(RC_t* rc, uint8_t* buf)
 	buf[2] = (rc->ch2<<6) | (rc->ch1>>5);
 	buf[3] = rc->ch2;
 	buf[4] = (rc->ch3<<1) | (rc->ch2>>10);
-	buf[5] = (rc->s[SWITCH_INDEX_RIGHT]<<6) | (rc->s[SWITCH_INDEX_LEFT]<<4) | (rc->ch3>>7);
+	buf[5] = (rc->sw[SWITCH_INDEX_RIGHT]<<6) | (rc->sw[SWITCH_INDEX_LEFT]<<4) | (rc->ch3>>7);
 }
 
 void RC_DEC(RC_t* rc, uint8_t* buf)
@@ -33,6 +33,6 @@ void RC_DEC(RC_t* rc, uint8_t* buf)
 	rc->ch2 = ((buf[2] >> 6) | (buf[3] << 2) |                  //!< Channel 2
 		(buf[4] << 10)) & 0x07ff;
 	rc->ch3 = ((buf[4] >> 1) | (buf[5] << 7)) & 0x07ff;         //!< Channel 3
-	rc->s[SWITCH_INDEX_LEFT] = ((buf[5] >> 4) & 0x000c) >> 2;   //!< Switch left
-	rc->s[SWITCH_INDEX_RIGHT] = ((buf[5] >> 4) & 0x0003);       //!< Switch right
+	rc->sw[SWITCH_INDEX_LEFT] = ((buf[5] >> 4) & 0x000c) >> 2;   //!< Switch left
+	rc->sw[SWITCH_INDEX_RIGHT] = ((buf[5] >> 4) & 0x0003);       //!< Switch right
 }
