@@ -16,6 +16,27 @@
 
 #include "main.h"
 
-ChassisSpeedRef_t chassisSpeedRef = {0};
-GimbalsSpeedRef_t gimbalsSpeedRef = {0};
+FunctionalState_t functionalState;
+ChassisSpeedRef_t chassisSpeedRef;
+GimbalsSpeedRef_t gimbalsSpeedRef;
+
+FunctionalState_t GET_FS(FunctionalState_t _functionalState)
+{
+	return functionalState & _functionalState;
+}
+
+void SET_FS(FunctionalState_t _functionalState)
+{
+	functionalState |= _functionalState;
+}
+
+void CLR_FS(FunctionalState_t _functionalState)
+{
+	functionalState &= ~_functionalState;
+}
+
+void TOG_FS(FunctionalState_t _functionalState)
+{
+	GET_FS(_functionalState) ? CLR_FS(_functionalState) : SET_FS(_functionalState);
+}
 

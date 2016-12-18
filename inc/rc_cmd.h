@@ -17,16 +17,28 @@
 #ifndef __RC_CMD_H__
 #define __RC_CMD_H__
 
-typedef uint8_t SwitchAction_t;
+#include "rc_codec.h"
 
-#define GET_SWITCG_ACTION(last,this) (((last)<<2)|(this))
-#define SWITCH_ACTION_3TO1 GET_SWITCG_ACTION(3, 1)
-#define SWITCH_ACTION_1TO3 GET_SWITCG_ACTION(1, 3)
-#define SWITCH_ACTION_3TO2 GET_SWITCG_ACTION(3, 2)
-#define SWITCH_ACTION_2TO3 GET_SWITCG_ACTION(2, 3)
-#define SWITCH_ACTION_NONE 0
+typedef uint8_t SwitchState_t;
+typedef uint8_t SwitchEvent_t;
 
-extern SwitchAction_t switch1Action;
-extern SwitchAction_t switch2Action;
+#define SWITCH_STATE_CHANGE_DELAY 10
+
+#define SWITCH_STATE_0 ((uint8_t)0)
+#define SWITCH_STATE_1 ((uint8_t)1)
+#define SWITCH_STATE_3 ((uint8_t)3)
+#define SWITCH_STATE_2 ((uint8_t)2)
+
+#define GET_SWITCH_EVENT(last,this) (((last)<<2)|(this))
+#define SWITCH_EVENT_3TO1 GET_SWITCH_EVENT(3, 1)
+#define SWITCH_EVENT_1TO3 GET_SWITCH_EVENT(1, 3)
+#define SWITCH_EVENT_3TO2 GET_SWITCH_EVENT(3, 2)
+#define SWITCH_EVENT_2TO3 GET_SWITCH_EVENT(2, 3)
+#define SWITCH_EVENT_NONE 0
+
+void RC_CMD(RC_t* rc);
+
+extern SwitchState_t switchStates[SWITCH_NUMBER];
+extern SwitchEvent_t switchEvents[SWITCH_NUMBER];
 
 #endif /* __RC_CMD_H__ */

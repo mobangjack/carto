@@ -29,14 +29,17 @@
 #define SW_MD                    ((uint8_t)3      )
 #define SW_DN                    ((uint8_t)2      )
 
+#define SWITCH_NUMBER 2
+#define SWITCH_INDEX_LEFT 0
+#define SWITCH_INDEX_RIGHT 1
+
 typedef struct
 {
 	uint16_t ch0;
 	uint16_t ch1;
 	uint16_t ch2;
 	uint16_t ch3;
-	uint8_t  s1;
-	uint8_t  s2;
+	uint8_t  s[SWITCH_NUMBER];
 }RC_t; // remote control frame structure
 
 void RC_ENC(RC_t* rc, uint8_t* buf);

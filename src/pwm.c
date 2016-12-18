@@ -61,6 +61,6 @@ void PWM_Config(void)
 	
 	TIM_Cmd(TIM5,ENABLE);
 	
-	SET_PWM(PWM_OFF);
+	PWM_OFF();
 
 }

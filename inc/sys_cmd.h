@@ -26,27 +26,15 @@
 #define INPUT_MODE_HC      SW_MD
 #define INPUT_MODE_NO      SW_DN
 
+#define FUNCTIONAL_STATE_FIRE    (((uint32_t)0x00000001)<<0)
+#define FUNCTIONAL_STATE_LASER   (((uint32_t)0x00000001)<<1)
+#define FUNCTIONAL_STATE_LOADER  (((uint32_t)0x00000001)<<2)
+#define FUNCTIONAL_STATE_ALL     (((uint32_t)0xFFFFFFFF))
+
 #define INPUT_CHASSIS_SPEED_MAX 4.0f     // 4m/s
 #define INPUT_GIMBALS_SPEED_MAX 1.0f     // 1r/s
 
-#define INPUT_CHASSIS_SPEED_COEFF 0.01f
-#define INPUT_GIMBALS_SPEED_COEFF 0.01f
-#define INPUT_LR_SPEED_DIR_COEFF 1
-#define INPUT_FB_SPEED_DIR_COEFF 1
-#define INPUT_RT_SPEED_DIR_COEFF 1
-#define INPUT_YAW_SPEED_DIR_COEFF 1
-#define INPUT_PIT_SPEED_DIR_COEFF 1
-
-/*******************************************/
-/* Mecanum Wheel Power Transmission System */
-/*******************************************/
-/*              2        1                 */
-/*                 y|                      */
-/*                  |___                   */
-/*                z    x                   */
-/*              3        4                 */
-/*                                         */
-/*******************************************/
+typedef uint32_t FunctionalState_t;
 
 typedef struct
 {
@@ -61,7 +49,20 @@ typedef struct
 	float p;
 }GimbalsSpeedRef_t;
 
+typedef struct
+{
+	FunctionalState_t functionalState;
+	ChassisSpeedRef_t chassisSpeedRef;
+	GimbalsSpeedRef_t gimbalsSpeedRef;
+}SYS_t;
+
+extern FunctionalState_t functionalState;
 extern ChassisSpeedRef_t chassisSpeedRef;
 extern GimbalsSpeedRef_t gimbalsSpeedRef;
+
+FunctionalState_t GET_FS(FunctionalState_t _functionalState);
+void              SET_FS(FunctionalState_t _functionalState);
+void              CLR_FS(FunctionalState_t _functionalState);
+void              TOG_FS(FunctionalState_t _functionalState);
 
 #endif /* __SYS_CMD_H__ */

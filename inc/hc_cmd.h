@@ -17,6 +17,22 @@
 #ifndef __HC_CMD_H__
 #define __HC_CMD_H__
 
+#include "hc_codec.h"
+
+typedef uint8_t MouseButtonState_t;
+typedef uint8_t MouseButtonEvent_t;
+
+#define KEY_CONTROL_MAFILTER_LEN 10
+#define MOUSE_BUTTON_STATE_CHANGE_DELAY 10
+
+#define GET_MOUSE_BUTTON_EVENT(last,this) ((last<<2)|this)
+#define MOUSE_BUTTON_EVENT_UP GET_MOUSE_BUTTON_EVENT(MOUSE_BUTTON_DOWM, MOUSE_BUTTON_UP)
+#define MOUSE_BUTTON_EVENT_DOWN GET_MOUSE_BUTTON_EVENT(MOUSE_BUTTON_UP, MOUSE_BUTTON_DOWM)
+#define MOUSE_BUTTON_EVENT_NONE 0
+
 void HC_CMD(HC_t* hc);
+
+extern MouseButtonState_t mouseButtonStates[MOUSE_BUTTON_NUMBER];
+extern MouseButtonEvent_t mouseButtonEvents[MOUSE_BUTTON_NUMBER];
 
 #endif /* __HC_CMD_H__ */

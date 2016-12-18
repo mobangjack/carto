@@ -20,10 +20,12 @@
 #define PWM1 TIM5->CCR1
 #define PWM2 TIM5->CCR2
 
-#define PWM_ON 1800
-#define PWM_OFF 1000
+#define PWM_H 1800
+#define PWM_L 1000
 
 #define SET_PWM(pwm) (PWM1=PWM2=pwm)
+#define PWM_ON() SET_PWM(PWM_H)
+#define PWM_OFF() SET_PWM(PWM_L)
 
 void PWM_Config(void);
 

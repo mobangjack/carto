@@ -24,8 +24,8 @@ void HC_ENC(HC_t* hc, uint8_t* buf)
 	buf[3] = hc->mouse.y>>8;
 	buf[4] = hc->mouse.z;
 	buf[5] = hc->mouse.z>>8;
-	buf[6] = hc->mouse.l;
-	buf[7] = hc->mouse.r;
+	buf[6] = hc->mouse.b[MOUSE_BUTTON_INDEX_LEFT];
+	buf[7] = hc->mouse.b[MOUSE_BUTTON_INDEX_RIGHT];
 	buf[8] = hc->key.val;
 	buf[9] = hc->key.val>>8;
 	buf[10] = hc->res.val;
@@ -34,11 +34,11 @@ void HC_ENC(HC_t* hc, uint8_t* buf)
 
 void HC_DEC(HC_t* hc, uint8_t* buf)
 {
-	hc->mouse.x = buf[0] | (buf[1] << 8);     //!< Mouse X axis
-	hc->mouse.y = buf[2] | (buf[3] << 8);     //!< Mouse Y axis
-	hc->mouse.z = buf[4] | (buf[5] << 8);     //!< Mouse Z axis
-	hc->mouse.l = buf[6];                     //!< Mouse Left Is Press ?
-	hc->mouse.r = buf[7];                     //!< Mouse Right Is Press ?
-	hc->key.val = buf[8] | (buf[9] << 8);     //!< KeyBoard value
-	hc->res.val = buf[10] | (buf[11] << 8);   //!< Reserve
+	hc->mouse.x = buf[0] | (buf[1] << 8);           //!< Mouse X axis
+	hc->mouse.y = buf[2] | (buf[3] << 8);           //!< Mouse Y axis
+	hc->mouse.z = buf[4] | (buf[5] << 8);           //!< Mouse Z axis
+	hc->mouse.b[MOUSE_BUTTON_INDEX_LEFT] = buf[6];  //!< Mouse Left Is Press ?
+	hc->mouse.b[MOUSE_BUTTON_INDEX_RIGHT] = buf[7]; //!< Mouse Right Is Press ?
+	hc->key.val = buf[8] | (buf[9] << 8);           //!< KeyBoard value
+	hc->res.val = buf[10] | (buf[11] << 8);         //!< Reserve
 }
