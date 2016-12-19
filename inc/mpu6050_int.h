@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,25 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#include "main.h"
 
-void delay_ms(unsigned int t)
-{
-	int i = 0;
-	for (; i < t; i++)
-	{
-		int a = 42000;
-		while (a--);
-	}
-}
+#ifndef __MPU6050_INT_H__
+#define __MPU6050_INT_H__
 
-void delay_us(unsigned int t)
-{
-	int i = 0;
-	for (; i < t; i++)
-	{
-		int a = 42;
-		while (a--);
-	}
-}
+#include "stm32f4xx.h"
+
+void MPU6050_IntCfg(void);
+
+extern uint8_t mpu6050IntFlag;
+
+#endif

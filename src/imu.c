@@ -186,10 +186,6 @@ void Init_Quaternion()
 }
 
 
-	
-
-
-
 void IMU_getValues(volatile float * values) {  
 		int16_t accgyroval[6];
 		int i;
@@ -213,9 +209,9 @@ void IMU_getValues(volatile float * values) {
       }
     }
     HMC58X3_mgetValues(&values[6]);	
-		MPU6050_Raw_Data.Mag_X = values[6];
-		MPU6050_Raw_Data.Mag_Y = values[7];
-		MPU6050_Raw_Data.Mag_Z = values[8];
+	MPU6050_Raw_Data.Mag_X = values[6];
+	MPU6050_Raw_Data.Mag_Y = values[7];
+	MPU6050_Raw_Data.Mag_Z = values[8];
 }
 
 
@@ -249,7 +245,7 @@ void IMU_AHRSupdate(void) {
     my = mygetqval[7];
     mz = mygetqval[8];		
 
-    now = Get_Time_Micros(); 
+    now = Micros();
     if(now<lastUpdate)
     {
     //halfT =  ((float)(now + (0xffffffff- lastUpdate)) / 2000000.0f);   //  uint 0.5s

@@ -1,7 +1,25 @@
-#ifndef __MPU6050_DRIVER_H__
-#define __MPU6050_DRIVER_H__
+/**
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-#include "main.h"
+#ifndef __MPU6050_DRV_H__
+#define __MPU6050_DRV_H__
+
+#include "stm32f4xx.h"
+
+#define MPU6050_DEBUG 1
 
 #define	SMPLRT_DIV		          0x19	// 0X07 125Hz
 #define	CONFIG			          0x1A	// 0x00
@@ -9,7 +27,7 @@
 #define	ACCEL_CONFIG	          0x1C	//2G 5Hz
 #define INT_PIN_CFG               0x37
 #define INT_ENABLE                0x38
-#define INT_STATUS                0x3A    //
+#define INT_STATUS                0x3A  //
 #define	ACCEL_XOUT_H	          0x3B
 #define	ACCEL_XOUT_L	          0x3C
 #define	ACCEL_YOUT_H	          0x3D
@@ -93,9 +111,9 @@
 // HMC58X3 register map. For details see HMC58X3 datasheet
 #define HMC58X3_R_CONFA 0
 #define HMC58X3_R_CONFB 1
-#define HMC58X3_R_MODE 2
-#define HMC58X3_R_XM 3
-#define HMC58X3_R_XL 4
+#define HMC58X3_R_MODE  2
+#define HMC58X3_R_XM    3
+#define HMC58X3_R_XL    4
 
 #define HMC58X3_R_YM (7)  //!< Register address for YM.
 #define HMC58X3_R_YL (8)  //!< Register address for YL.
@@ -103,22 +121,22 @@
 #define HMC58X3_R_ZL (6)  //!< Register address for ZL.
 
 #define HMC58X3_R_STATUS 9
-#define HMC58X3_R_IDA 10
-#define HMC58X3_R_IDB 11
-#define HMC58X3_R_IDC 12
+#define HMC58X3_R_IDA    10
+#define HMC58X3_R_IDB    11
+#define HMC58X3_R_IDC    12
 
 
 /*Sensitivities */
   
-#define GYRO_SENSITIVITY                        32.8        //LSB/(deg/s)    +-2000    16-bit ADC   16.4
-                                                            //LSB/(deg/s)    +-1000    16-bit ADC   32.8
-#define GYRO_SENSITIVITY_RECIP                  0.0305      //65.5           +-500 
+#define GYRO_SENSITIVITY                        32.8f       //LSB/(degree/s)    +-2000    16-bit ADC   16.4
+                                                            //LSB/(degree/s)    +-1000    16-bit ADC   32.8
+#define GYRO_SENSITIVITY_RECIP                  0.0305f     //65.5           +-500
                                                              
-#define ACC_SENSITIVITY                         8192.0   //LSB/g          +-4g      16-bit ADC
-                                                         //4096           +-8g
-#define ACC_SENSITIVITY_RECIP                   1.22e-4
+#define ACC_SENSITIVITY                         8192.0f     //LSB/g          +-4g      16-bit ADC
+                                                            //4096           +-8g
+#define ACC_SENSITIVITY_RECIP                   1.22e-4f
 
-#define MAG_SENSITIVITY                         0.3      //uT/LSB         +-1200    13-bit ADC   
+#define MAG_SENSITIVITY                         0.3f        //uT/LSB         +-1200    13-bit ADC
 
 
 /*MPU6050 ID value*/
@@ -126,89 +144,63 @@
 #define MPU6050_DEVICE_ID                       0x68
 #define HMC5883_DEVICE_ID_A                     0x48
 
+#define MPU6050ERR(c) (((uint32_t)1)<<c)
+#define HMC5883ERR(c) MPU6050ERR(c)
 
-typedef struct __MPU6050_RAW_Data__
+typedef struct
 {
-    short Accel_X;  
-    short Accel_Y; 
-    short Accel_Z;  
-    short Temp;    
-    short Gyro_X;   
-    short Gyro_Y;  
-    short Gyro_Z;   
-	short Mag_X;
-    short Mag_Y;  
-    short Mag_Z; 
-	
-}MPU6050_RAW_DATA;
+    short ax;
+    short ay;
+    short az;
+    short tp; // temperature
+    short gx;
+    short gy;
+    short gz;
+}ImuRawData_t;
 
-typedef struct __MPU6050_REAL_Data__
+typedef struct
 {
-    float Accel_X;  
-    float Accel_Y;  
-    float Accel_Z;  
-    float Temp;     
-    float Gyro_X;  
-    float Gyro_Y;  
-    float Gyro_Z;  
-	  float Mag_X;  
-    float Mag_Y;  
-    float Mag_Z; 
-	
-}MPU6050_REAL_DATA;
+	short mx;
+    short my;
+    short mz;
+}MagRawData_t;
 
-//define the eluer angle
-typedef struct AHRS
+typedef struct
 {
-	float pitch;
-	float roll;
-	float yaw;
-	
-}AHRS;
-extern AHRS ahrs;
+	ImuRawData_t imu;
+	MagRawData_t mag;
+}MPU6050RawData_t;
 
-//the max and min data of the mag
-typedef __packed struct
+typedef struct
 {
-	int16_t MaxMagX;
-	int16_t MaxMagY;
-	int16_t MaxMagZ;
-	int16_t MinMagX;
-	int16_t MinMagY;
-	int16_t MinMagZ;
-}MagMaxMinData_t;
+    float ax;
+    float ay;
+    float az;
+    float tp;
+    float gx;
+    float gy;
+    float gz;
+}ImuStdData_t;
 
-extern MagMaxMinData_t MagMaxMinData;
+typedef struct
+{
+	float mx;
+    float my;
+    float mz;
+}MagStdData_t;
 
-#define GYRO_CALI_FLAG 	  		(1<<0)
-#define HMC5883_CALI_FLAG 		(1<<1)
-#define ENCODER_CALI_FLAG 		(1<<2)
-#define ALL_SENSOR_CALI_FLAG	(GYRO_CALI_FLAG|HMC5883_CALI_FLAG|ENCODER_CALI_FLAG)
+typedef struct
+{
+	ImuStdData_t imu;
+	MagStdData_t mag;
+}MPU6050StdData_t;
 
-extern volatile MPU6050_RAW_DATA    MPU6050_Raw_Data; 
-extern volatile MPU6050_REAL_DATA   MPU6050_Real_Data;
-extern uint8_t mpu_buf[20];
-extern int16_t  HMC5883_maxx,HMC5883_maxy,HMC5883_maxz,HMC5883_minx,HMC5883_miny,HMC5883_minz;
-
-int MPU6050_Init(void);
-uint8_t HMC5883_Init(void);
-void HMC58X3_getlastValues(int16_t *x,int16_t *y,int16_t *z);
-void MPU6050_Initialize(void);
-void MPU6050_InitGyro_Offset_Start(void);
-void MPU6050_InitGyro_Offset_Save(void);
-void Init_Encoder_Offset_Start(void);
-void Init_Encoder_Offset_Save(void);
-int MPU6050_ReadData(uint8_t Slave_Addr, uint8_t Reg_Addr, uint8_t * Data, uint8_t Num);
-int MPU6050_EnableInt(void);
-void HMC58X3_mgetValues(volatile float *arry);
-void HMC58X3_ReadData(u8 *vbuff);
-void MPU6050_DataSave(int16_t ax,int16_t ay,int16_t az,int16_t gx,int16_t gy,int16_t gz);
-void  HMC58X3_newValues(int16_t x,int16_t y,int16_t z);
-void HMC5883L_Start_Calib(void);
-void HMC5883L_Save_Calib(void);
-void MPU6050_getMotion6(int16_t* ax, int16_t* ay, int16_t* az, int16_t* gx, int16_t* gy, int16_t* gz);
-void MPU6050_getlastMotion6(int16_t* ax, int16_t* ay, int16_t* az, int16_t* gx, int16_t* gy, int16_t* gz);
-void Reset_MAG_MinMaxVal(void);
+uint32_t MPU6050_Init(void);
+uint32_t HMC5883_Init(void);
+uint32_t MPU6050_Wait(int t);
+uint32_t MPU6050_EnInt(void);
+uint32_t MPU6050_Read(ImuRawData_t* imu);
+uint32_t HMC58X3_Read(MagRawData_t* mag);
 
 #endif
 

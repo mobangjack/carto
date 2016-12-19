@@ -46,7 +46,7 @@ void CAN1_Config(void)
 	nvic.NVIC_IRQChannelPreemptionPriority = 1;
 	nvic.NVIC_IRQChannelSubPriority = 1;
 	nvic.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_Init(&nvic);    
+	NVIC_Init(&nvic);
 
 	CAN_DeInit(CAN1);
 	CAN_StructInit(&can);

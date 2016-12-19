@@ -1,11 +1,17 @@
 #ifndef __IMU_H__
 #define __IMU_H__
 
+#include <i2c.h>
 #include <math.h>
-#include "mpu6050_driver.h"
-#include "mpu6050_i2c.h"
-#include "mpu6050_interrupt.h"
-#include "mpu6050_process.h"
+#include <mpu6050_drv.h>
+#include <mpu6050_int.h>
+
+typedef struct
+{
+	float pitch;
+	float roll;
+	float yaw;
+}AHRS;
 
 void Init_Quaternion(void);
 void IMU_getYawPitchRoll(volatile float * ypr); //
