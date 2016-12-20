@@ -14,7 +14,7 @@
  * limitations under the License.
  */
  
-#include "main.h"
+#include "app.h"
 
 void BSP_Config(void)
 {

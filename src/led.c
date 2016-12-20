@@ -14,7 +14,7 @@
  * limitations under the License.
  */
  
-#include "main.h"
+#include "led.h"
 
 void LED_Config(void)
 {

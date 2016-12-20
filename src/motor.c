@@ -14,9 +14,9 @@
  * limitations under the License.
  */
  
-#include "main.h"
+#include "motor.h"
 
-void SetCMCurrent(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16_t c204)
+void EC60_CMD(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16_t c204)
 {
 	CanTxMsg canTxMsg;
     canTxMsg.StdId = CHASSIS_MOTOR_CAN_TX_MSG_ID;
@@ -35,7 +35,7 @@ void SetCMCurrent(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, i
     CAN_Transmit(CANx,&canTxMsg);
 }
 
-void SetGMCurrent(CAN_TypeDef *CANx, int16_t c205, int16_t c206)
+void EC25_CMD(CAN_TypeDef *CANx, int16_t c205, int16_t c206)
 {
 	CanTxMsg canTxMsg;
     canTxMsg.StdId = GIMBALS_MOTOR_CAN_TX_MSG_ID;

@@ -116,7 +116,7 @@ void CMControlLoop(void)
 	chassisCurrent.m3 = CM3SpeedPID.out * CM3SpeedRamp.output;
 	chassisCurrent.m4 = CM4SpeedPID.out * CM4SpeedRamp.output;
 	
-	SetCMCurrent(CAN2, chassisCurrent.m1, chassisCurrent.m2, chassisCurrent.m3, chassisCurrent.m4);
+	EC60_CMD(CAN2, chassisCurrent.m1, chassisCurrent.m2, chassisCurrent.m3, chassisCurrent.m4);
 }
 
 void GMControlLoop(void)
@@ -136,7 +136,7 @@ void GMControlLoop(void)
 	gimbalsCurrent.y = GMYSpeedPID.out * GMYSpeedRamp.output;
 	gimbalsCurrent.p = GMPSpeedPID.out * GMPSpeedRamp.output;
 	
-	SetGMCurrent(CAN2, gimbalsCurrent.y, gimbalsCurrent.p);
+	EC25_CMD(CAN2, gimbalsCurrent.y, gimbalsCurrent.p);
 }
 
 static uint32_t ms_tick = 0;

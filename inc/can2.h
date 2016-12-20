@@ -18,9 +18,15 @@
 #define __CAN2_H__
 
 #include "stm32f4xx.h"
+#include "encoder.h"
 
 void CAN2_Config(void);
 
-extern CanRxMsg can2RxMsg;
+extern Encoder_t CM1Encoder;
+extern Encoder_t CM2Encoder;
+extern Encoder_t CM3Encoder;
+extern Encoder_t CM4Encoder;
+extern Encoder_t GMYEncoder;
+extern Encoder_t GMPEncoder;
 
 #endif 

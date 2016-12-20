@@ -14,10 +14,12 @@
  * limitations under the License.
  */
  
-#include "main.h"
+#include "app.h"
 
 /*----CAN1_TX-----PA12----*/
 /*----CAN1_RX-----PA11----*/
+
+float ZGyroAngle = 0;
 
 void CAN1_Config(void)
 {
@@ -87,6 +89,19 @@ void CAN1_TX_IRQHandler(void)
     }
 }
 
+void CAN1_RX_Callback(CanRxMsg* canRxMsg)
+{
+	switch(canRxMsg->StdId)
+	{
+		case ZGYRO_FEEDBACK_CAN_MSG_ID:
+		{
+			ZGyro_GetAngle(canRxMsg, &ZGyroAngle);
+		}break;
+		default:
+		{
+		}
+	}
+}
 
 void CAN1_RX0_IRQHandler(void)
 {   
@@ -97,7 +112,7 @@ void CAN1_RX0_IRQHandler(void)
 		CAN_ClearFlag(CAN1, CAN_FLAG_FF0); 
 		CAN_Receive(CAN1, CAN_FIFO0, &canRxMsg);
 
-		Can1Call(&canRxMsg);
+		CAN1_RX_Callback(&canRxMsg);
     }
 }
 

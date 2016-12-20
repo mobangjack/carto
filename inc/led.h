@@ -17,6 +17,8 @@
 #ifndef __LED_H__
 #define __LED_H__
 
+#include "stm32f4xx.h"
+
 void LED_Config(void);
 
 #define LED_GREEN_ON()      GPIO_ResetBits(GPIOC, GPIO_Pin_1)

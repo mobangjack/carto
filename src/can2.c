@@ -14,10 +14,17 @@
  * limitations under the License.
  */
  
-#include "main.h"
+#include "app.h"
 
 /*----CAN2_TX-----PB13----*/
 /*----CAN2_RX-----PB12----*/
+
+Encoder_t CM1Encoder;
+Encoder_t CM2Encoder;
+Encoder_t CM3Encoder;
+Encoder_t CM4Encoder;
+Encoder_t GMYEncoder;
+Encoder_t GMPEncoder;
 
 void CAN2_Config(void)
 {
@@ -87,14 +94,49 @@ void CAN2_TX_IRQHandler(void)
   }
 }
 
-CanRxMsg can2RxMsg;
+void CAN2_RX_Callback(CanRxMsg* canRxMsg)
+{
+	uint16_t value = (canRxMsg->Data[0]<<8) | canRxMsg->Data[1];
+	switch(canRxMsg->StdId)
+	{
+		case MOTOR1_FEEDBACK_CAN_MSG_ID:
+		{
+			Encoder_Process(&CM1Encoder, value);
+		}break;
+		case MOTOR2_FEEDBACK_CAN_MSG_ID:
+		{
+			Encoder_Process(&CM2Encoder, value);
+		}break;
+		case MOTOR3_FEEDBACK_CAN_MSG_ID:
+		{
+			Encoder_Process(&CM3Encoder, value);
+		}break;
+		case MOTOR4_FEEDBACK_CAN_MSG_ID:
+		{
+			Encoder_Process(&CM4Encoder, value);
+		}break;
+		case MOTOR5_FEEDBACK_CAN_MSG_ID:
+		{
+			Encoder_Process(&GMYEncoder, value);
+		}break;
+		case MOTOR6_FEEDBACK_CAN_MSG_ID:
+		{
+			Encoder_Process(&GMPEncoder, value);
+		}break;
+		default:
+		{
+		}
+	}
+}
+
 void CAN2_RX0_IRQHandler(void)
 {
     if (CAN_GetITStatus(CAN2,CAN_IT_FMP0)!= RESET) 
     {
+    	CanRxMsg canRxMsg;
         CAN_ClearITPendingBit(CAN2, CAN_IT_FMP0);
-        CAN_Receive(CAN2, CAN_FIFO0, &can2RxMsg);
-		Can2Call();
+        CAN_Receive(CAN2, CAN_FIFO0, &canRxMsg);
+        CAN2_RX_Callback(&canRxMsg);
     }
 }
 

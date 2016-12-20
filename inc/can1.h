@@ -19,5 +19,7 @@
 
 void CAN1_Config(void);
 
+extern float ZGyroAngle;
+
 #endif
 

@@ -17,6 +17,8 @@
 #ifndef __PWM_H__
 #define __PWM_H__
 
+#include "stm32f4xx.h"
+
 #define PWM1 TIM5->CCR1
 #define PWM2 TIM5->CCR2
 

@@ -2,29 +2,21 @@
 #define __I2C_H__
 
 #include "stm32f4xx.h"
+#include "stm32util.h"
 
 /*----I2C1----SCL----PB8---*/
 /*----I2C1----SDA----PB9---*/
 
 #define IIC_DEBUG 1
 
-#define IIC_SCL_RCC_ENR      RCC->AHB1ENR
-#define IIC_SCL_RCC_PRP      RCC_AHB1Periph_GPIOB
-#define IIC_SCL_ENCLK()      (IIC_SCL_RCC_ENR |= IIC_SCL_RCC_PRP)
-#define IIC_SCL_GPIO         GPIOB
-#define IIC_SCL_GPIO_PIN     GPIO_Pin_8
+#define IIC_SCL_PIN      PB8
+#define IIC_SDA_PIN      PB9
 
-#define IIC_SDA_RCC_ENR      RCC->AHB1ENR
-#define IIC_SDA_RCC_PRP      RCC_AHB1Periph_GPIOB
-#define IIC_SDA_ENCLK()      (IIC_SDA_RCC_ENR |= IIC_SDA_RCC_PRP)
-#define IIC_SDA_GPIO         GPIOB
-#define IIC_SDA_GPIO_PIN     GPIO_Pin_9
-
-#define IIC_SCL_H()          GPIO_SetBits(IIC_SCL_GPIO,IIC_SCL_GPIO_PIN)
-#define IIC_SCL_L()          GPIO_ResetBits(IIC_SCL_GPIO,IIC_SCL_GPIO_PIN)
-#define IIC_SDA_H()          GPIO_SetBits(IIC_SDA_GPIO,IIC_SDA_GPIO_PIN)
-#define IIC_SDA_L()          GPIO_ResetBits(IIC_SDA_GPIO,IIC_SDA_GPIO_PIN)
-#define IIC_SDA_READ()       GPIO_ReadInputDataBit(IIC_SDA_GPIO,IIC_SDA_GPIO_PIN)
+#define IIC_SCL_H()          GPIO_SET(IIC_SCL_PIN)
+#define IIC_SCL_L()          GPIO_RST(IIC_SCL_PIN)
+#define IIC_SDA_H()          GPIO_SET(IIC_SDA_PIN)
+#define IIC_SDA_L()          GPIO_RST(IIC_SDA_PIN)
+#define IIC_SDA_READ()       GPIO_READ_IN(IIC_SDA_PIN)
 
 #define IIC_ERR(c) (((uint32_t)1)<<c)
 

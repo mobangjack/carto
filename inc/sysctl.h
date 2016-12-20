@@ -14,8 +14,8 @@
  * limitations under the License.
  */
  
-#ifndef __CONTROL_TASK_H__
-#define __CONTROL_TASK_H__
+#ifndef __SYSCTL_H__
+#define __SYSCTL_H__
 
 #include <stdint.h>
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
  
-#include "main.h"
+#include "pwm.h"
 /*-PWM1---(PA0---TIM5_CH1)--*/
 /*-PWM2---(PA1---TIM5_CH2)--*/
 

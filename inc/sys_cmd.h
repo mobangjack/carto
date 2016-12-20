@@ -60,5 +60,7 @@ FunctionalState_t GET_FS(FunctionalState_t _functionalState);
 void              SET_FS(FunctionalState_t _functionalState);
 void              CLR_FS(FunctionalState_t _functionalState);
 void              TOG_FS(FunctionalState_t _functionalState);
+void              SET_CS(float vx, float vy, float vz);
+void              SET_GS(float pitch, float yaw);
 
 #endif /* __SYS_CMD_H__ */

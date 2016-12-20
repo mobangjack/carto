@@ -14,7 +14,7 @@
  * limitations under the License.
  */
  
-#include "main.h"
+#include "app.h"
 
 void Encoder_Process(Encoder_t* encoder, uint16_t value)
 {

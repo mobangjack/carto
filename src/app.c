@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,20 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#ifndef __CAN2_CALL_H__
-#define __CAN2_CALL_H__
 
-#include "stm32f4xx.h"
-#include "encoder.h"
+#include "app.h"
 
-void Can2Call(CanRxMsg* canRxMsg);
+Cali_t cali;
 
-extern Encoder_t CM1Encoder;
-extern Encoder_t CM2Encoder;
-extern Encoder_t CM3Encoder;
-extern Encoder_t CM4Encoder;
-extern Encoder_t GMYEncoder;
-extern Encoder_t GMPEncoder;
-
-#endif
+void App_Init(void)
+{
+	Cali_Get(&cali);
+}

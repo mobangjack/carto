@@ -28,39 +28,18 @@ void IIC_Delay(unsigned int t)
 
 void IIC_Init(void)
 {
-	GPIO_InitTypeDef   gpio;
-
-	IIC_SCL_ENCLK();
-	IIC_SCL_ENCLK();
-
-	gpio.GPIO_Pin = IIC_SCL_GPIO_PIN | IIC_SDA_GPIO_PIN;
-	gpio.GPIO_Mode = GPIO_Mode_OUT;
-	gpio.GPIO_OType = GPIO_OType_OD;
-	gpio.GPIO_Speed = GPIO_Speed_100MHz; 
-
-	GPIO_Init(IIC_SCL_GPIO, &gpio);
-	GPIO_Init(IIC_SDA_GPIO, &gpio);
+	GPIO_OUT(IIC_SCL_PIN, GPIO_Fast_Speed, GPIO_OType_OD, GPIO_PuPd_NOPULL);
+	GPIO_OUT(IIC_SDA_PIN, GPIO_Fast_Speed, GPIO_OType_OD, GPIO_PuPd_NOPULL);
 }
 
 void IIC_SDA_Out(void)
 {
-	GPIO_InitTypeDef   gpio;
-	gpio.GPIO_Pin = IIC_SDA_GPIO_PIN;
-	gpio.GPIO_Mode = GPIO_Mode_OUT;
-	gpio.GPIO_OType = GPIO_OType_OD;
-	gpio.GPIO_Speed = GPIO_Speed_100MHz; 
-	GPIO_Init(IIC_SDA_GPIO, &gpio);
+	GPIO_OUT(IIC_SDA_PIN, GPIO_High_Speed, GPIO_OType_OD, GPIO_PuPd_NOPULL);
 }
 
 void IIC_SDA_In(void)
 {
-	GPIO_InitTypeDef   gpio;
-	gpio.GPIO_Pin = IIC_SDA_GPIO_PIN;
-	gpio.GPIO_Mode = GPIO_Mode_IN;
-	gpio.GPIO_OType = GPIO_OType_PP;
-	gpio.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	gpio.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(IIC_SDA_GPIO, &gpio);
+	GPIO_IN(IIC_SDA_PIN, GPIO_Fast_Speed, GPIO_OType_PP, GPIO_PuPd_NOPULL);
 }
 
 void IIC_Start(void)								  
