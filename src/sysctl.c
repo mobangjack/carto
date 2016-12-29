@@ -42,6 +42,8 @@ Ramp_t GMPSpeedRamp = RAMP_DEFAULT;
 ChassisCurrent_t chassisCurrent;
 GimbalsCurrent_t gimbalsCurrent;
 
+float ZGyroAngle = 0;
+
 void WorkingStateSM(void)
 {
 	static WorkingState_t lastWorkingState = WORKING_STATE_PREPARE;
@@ -55,14 +57,14 @@ void WorkingStateSM(void)
 	{
 		case WORKING_STATE_PREPARE:
 		{
-			if(Encoder_IsOk(&CM1Encoder) && Encoder_IsOk(&CM1Encoder) && Encoder_IsOk(&CM1Encoder) && Encoder_IsOk(&CM1Encoder))
+			if(Encoder_IsOk(&ESC1) && Encoder_IsOk(&ESC1) && Encoder_IsOk(&ESC1) && Encoder_IsOk(&ESC1))
 			{
 				workingState = WORKING_STATE_NORMAL;
 			}
 		}break;
 		case WORKING_STATE_NORMAL:
 		{
-			if(!(Encoder_IsOk(&CM1Encoder) && Encoder_IsOk(&CM1Encoder) && Encoder_IsOk(&CM1Encoder) && Encoder_IsOk(&CM1Encoder)))
+			if(!(Encoder_IsOk(&ESC1) && Encoder_IsOk(&ESC1) && Encoder_IsOk(&ESC1) && Encoder_IsOk(&ESC1)))
 			{
 				workingState = WORKING_STATE_PREPARE;
 			}
@@ -96,10 +98,10 @@ void CMControlLoop(void)
 	CM3SpeedPID.ref = mecanum.w3;
 	CM4SpeedPID.ref = mecanum.w4;
 	
-	CM1SpeedPID.fdb = CM1Encoder.rate;
-	CM2SpeedPID.fdb = CM2Encoder.rate;
-	CM3SpeedPID.fdb = CM3Encoder.rate;
-	CM4SpeedPID.fdb = CM4Encoder.rate;
+	CM1SpeedPID.fdb = ESC1.rate;
+	CM2SpeedPID.fdb = ESC2.rate;
+	CM3SpeedPID.fdb = ESC3.rate;
+	CM4SpeedPID.fdb = ESC4.rate;
 	
 	CM1SpeedPID.Calc(&CM1SpeedPID);
 	CM2SpeedPID.Calc(&CM2SpeedPID);
@@ -124,8 +126,8 @@ void GMControlLoop(void)
 	GMYSpeedPID.ref = gimbalsSpeedRef.y;
 	GMPSpeedPID.ref = gimbalsSpeedRef.p;
 	
-	GMYSpeedPID.fdb = GMYEncoder.rate;
-	GMPSpeedPID.fdb = GMPEncoder.rate;
+	GMYSpeedPID.fdb = ESC5.rate;
+	GMPSpeedPID.fdb = ESC6.rate;
 	
 	GMYSpeedPID.Calc(&CM1SpeedPID);
 	GMPSpeedPID.Calc(&CM2SpeedPID);
@@ -136,7 +138,7 @@ void GMControlLoop(void)
 	gimbalsCurrent.y = GMYSpeedPID.out * GMYSpeedRamp.output;
 	gimbalsCurrent.p = GMPSpeedPID.out * GMPSpeedRamp.output;
 	
-	EC25_CMD(CAN2, gimbalsCurrent.y, gimbalsCurrent.p);
+	RM6025_CMD(CAN2, gimbalsCurrent.y, gimbalsCurrent.p);
 }
 
 static uint32_t ms_tick = 0;
@@ -146,12 +148,12 @@ void Control(void)
 	WorkingStateSM();
 	if(workingState == WORKING_STATE_STOP)
 	{
-		Encoder_Reset(&CM1Encoder);
-		Encoder_Reset(&CM2Encoder);
-		Encoder_Reset(&CM3Encoder);
-		Encoder_Reset(&CM4Encoder);
-		Encoder_Reset(&GMYEncoder);
-		Encoder_Reset(&GMPEncoder);
+		Encoder_Reset(&ESC1);
+		Encoder_Reset(&ESC2);
+		Encoder_Reset(&ESC3);
+		Encoder_Reset(&ESC4);
+		Encoder_Reset(&ESC5);
+		Encoder_Reset(&ESC6);
 	}
 	else if(workingState == WORKING_STATE_NORMAL)
 	{

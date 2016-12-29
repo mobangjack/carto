@@ -14,35 +14,32 @@
  * limitations under the License.
  */
 
-#ifndef __MAFILTER_H__
-#define __MAFILTER_H__
+#ifndef __CAN_H__
+#define __CAN_H__
 
-#ifdef __cpluplus
-extern "C" {
-#endif
+#include "platform.h"
 
-#include <stdint.h>
-#include <stdlib.h>
-#include <string.h>
+#include "esc.h"
+#include "zgyro.h"
+#include "motor.h"
+#include "superviser.h"
 
-typedef struct
-{
-	float* buf;
-	uint32_t len;
-	uint32_t i;
-	float delta;
-	float sum;
-	float out;
-}MAFilter;
+#define ZGYRO_CAN_PORT CAN1
+#define MOTOR_CAN_PORT CAN2
 
-void MAFilter_Init(MAFilter* mafilter, float* buf, uint32_t len);
-MAFilter* MAFilter_Create(uint32_t len);
-float MAFilter_Calc(MAFilter* mafilter, float v);
-void MAFilter_Reset(MAFilter* mafilter);
-void MAFilter_Destroy(MAFilter* mafilter);
+#define ZGYRO_RST() ZGyro_RST(ZGYRO_CAN_PORT)
+#define CM_CMD(M1,M2,M3,M4) EC60_CMD(MOTOR_CAN_PORT,M1,M2,M3,M4)
+#define GM_CMD(M5,M6) RM6025_CMD(MOTOR_CAN_PORT,M5,M6)
 
-#ifdef __cpluplus
-}
-#endif
+void CAN_RX_Callback(CanRxMsg* canRxMsg);
 
-#endif /* __MAFILTER_H__ */
+extern float ZGyroAngle;
+
+extern ESC ESC1;
+extern ESC ESC2;
+extern ESC ESC3;
+extern ESC ESC4;
+extern ESC ESC5;
+extern ESC ESC6;
+
+#endif /* __CAN_H__ */

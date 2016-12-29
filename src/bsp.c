@@ -28,7 +28,7 @@ void BSP_Config(void)
 	CAN2_Config(); 
 	USART1_Config();
 	USART3_Config();
-	QuadEncoder_Config();
+	Encoder_Config();
 	TIM6_Start();
 	LED_GREEN_ON();
 }

@@ -1,54 +1,54 @@
-#include "main.h"
-//add priority to error
+/**
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include "superviser.h"
+
 uint32_t lost_counter[LOST_COUNTER_NUM] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-const uint32_t LOST_COUNTER[LOST_COUNTER_NUM] = {10, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50};
+uint32_t err_code = 0xFFFFFFFF;
 
-uint32_t lost_err = 0xFFFFFFFF;
-
-void LostCounterFeed(uint8_t index)
-{
-	lost_counter[index] = 0;
-}
-
-void LostCounterCount(uint8_t index)
-{
-	lost_counter[index]++;
-}
-
-uint8_t LostCounterCheckOverflow(uint8_t index)
-{
-	return lost_counter[index] >= LOST_COUNTER[index];
-}
-
-void SuperviseTask()
+void Supervise(void)
 {
 	int i = 0;
 	for(i = 0; i < LOST_COUNTER_NUM; i++)
 	{
-		if(LostCounterCheckOverflow(i) == 0)    //4ms*50 = 200ms error check time
+		if(lost_counter[i] >= LOST_COUNTER[i])
 		{
-			LostCounterCount(i);  			    //add 1 everytime
-			lost_err &= ~(uint32_t)(1 << i);    //clear the error bit
+			err_code |= (uint32_t)(1 << i); //set the error bit
+
 		}
 		else
 		{
-			lost_err |= (uint32_t)(1 << i);    //set the error bit
+			err_code &= ~(uint32_t)(1 << i); //clear the error bit
+			lost_counter[i]++;			     //add 1 each time
 		}
 	}
 }
 
-uint32_t GetLostError(uint32_t err_code)
+void Superviser_Feed(uint8_t i)
 {
-	return lost_err&err_code;
+	lost_counter[i] = 0;
 }
 
-uint8_t IsLostErrorSet(uint32_t err_code)
+uint32_t Superviser_GetErrorCode(void)
 {
-	return GetLostError(err_code) == err_code;
+	return err_code;
 }
 
-uint8_t IsSeriousError()
+uint8_t Superviser_IsErrorSet(uint32_t mask)
 {
-	return 0;
+	return err_code & mask == mask;
 }
 

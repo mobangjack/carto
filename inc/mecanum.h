@@ -33,18 +33,7 @@
 #define MECANUM_L 0.226f  //MECANUM_L = SQRT(A^2+B^2)
 #define MECANUM_R 0.076f  //Mecanum wheel radius
 
-typedef struct
-{
-	float x;
-	float y;
-	float z;
-	float w1;
-	float w2;
-	float w3;
-	float w4;
-}Mecanum_t;
-
-void Mecanum_Synthesis(Mecanum_t* mecanum);
-void Mecanum_Decompose(Mecanum_t* mecanum);
+void Mecanum_Synthesis(float* xyz, float* wheel);
+void Mecanum_Decompose(float* xyz, float* wheel);
 
 #endif

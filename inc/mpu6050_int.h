@@ -17,10 +17,12 @@
 #ifndef __MPU6050_INT_H__
 #define __MPU6050_INT_H__
 
-#include "stm32f4xx.h"
+#include "stm32util.h"
 
-void MPU6050_IntCfg(void);
+#define MPU6050_INT_PIN PA4
 
-extern uint8_t mpu6050IntFlag;
+void MPU6050_INT_Config(void);
+
+extern void MPU6050_IRQ_Handler(void);
 
 #endif

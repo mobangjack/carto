@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,15 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#ifndef __QUAD_ENCODER_H__
-#define __QUAD_ENCODER_H__
 
-#define QUAD_ENCODER_DIR 1
-#define QUAD_ENCODER_OFFSET 0x7fff
-#define QUAD_ENCODER_CNT() (QUAD_ENCODER_DIR?(TIM3->CNT-QUAD_ENCODER_OFFSET):(QUAD_ENCODER_OFFSET-TIM3->CNT))
-#define QUAD_ENCODER_START() (TIM3->CNT = QUAD_ENCODER_OFFSET)
+#include "mpu6050.h"
 
-void QuadEncoder_Config(void);
-
-#endif
+void MPU6050_Config(void)
+{
+	while(!MPU6050_Init());
+	while(!HMC5883_Init());
+	MPU6050_INT_Config();
+	MPU6050_INT_Enable();
+}

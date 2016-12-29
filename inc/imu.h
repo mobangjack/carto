@@ -1,9 +1,9 @@
 #ifndef __IMU_H__
 #define __IMU_H__
 
-#include <i2c.h>
 #include <math.h>
 #include <mpu6050_drv.h>
+#include <mpu6050_i2c.h>
 #include <mpu6050_int.h>
 
 typedef struct

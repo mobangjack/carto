@@ -17,16 +17,25 @@
 #ifndef __LED_H__
 #define __LED_H__
 
-#include "stm32f4xx.h"
+#include "stm32util.h"
+
+#define LED_GREEN_PIN PC1
+#define LED_RED_PIN   PC2
+
+#define LED_GREEN_STATE()   GPIO_READ_OUT(LED_GREEN_PIN)
+#define LED_GREEN_IS_ON()   (LED_GREEN_STATE() != 0)
+#define LED_GREEN_IS_OFF()  (LED_GREEN_STATE() == 0)
+#define LED_GREEN_ON()      GPIO_RST(LED_GREEN_PIN)
+#define LED_GREEN_OFF()     GPIO_SET(LED_GREEN_PIN)
+#define LED_GREEN_TOGGLE()  GPIO_TOG(LED_GREEN_PIN)
+
+#define LED_RED_STATE()     GPIO_READ_OUT(LED_RED_PIN)
+#define LED_RED_IS_ON()     (LED_RED_STATE() != 0)
+#define LED_RED_IS_OFF()    (LED_RED_STATE() == 0)
+#define LED_RED_ON()        GPIO_RST(LED_RED_PIN)
+#define LED_RED_OFF()       GPIO_SET(LED_RED_PIN)
+#define LED_RED_TOGGLE()    GPIO_TOG(LED_RED_PIN)
 
 void LED_Config(void);
 
-#define LED_GREEN_ON()      GPIO_ResetBits(GPIOC, GPIO_Pin_1)
-#define LED_GREEN_OFF()     GPIO_SetBits(GPIOC, GPIO_Pin_1)
-#define LED_GREEN_TOGGLE()  GPIO_ToggleBits(GPIOC, GPIO_Pin_1)
-
-#define LED_RED_ON()        GPIO_ResetBits(GPIOC, GPIO_Pin_2)
-#define LED_RED_OFF()       GPIO_SetBits(GPIOC, GPIO_Pin_2)
-#define LED_RED_TOGGLE()    GPIO_ToggleBits(GPIOC, GPIO_Pin_2)
-
-#endif
+#endif /* __LED_H__ */

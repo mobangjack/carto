@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,31 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#ifndef __PWM_H__
-#define __PWM_H__
+
+#ifndef __LASER_H__
+#define __LASER_H__
 
 #include "stm32util.h"
 
-/*-PWM1---(PA0---TIM5_CH1)--*/
-/*-PWM2---(PA1---TIM5_CH2)--*/
+#define LASER_PIN PA8
+#define LASER_STATE() GPIO_READ_OUT(LASER_PIN)
+#define LASER_IS_ON() (LASER_STATE() != 0)
+#define LASER_IS_OFF() (LASER_STATE() == 0)
+#define LASER_ON() GPIO_SET(LASER_PIN)
+#define LASER_OFF() GPIO_RST(LASER_PIN)
+#define LASER_TOG() GPIO_TOG(LASER_PIN)
 
-#define PWM_PIN_1 PA0
-#define PWM_PIN_2 PA1
+void Laser_Config(void);
 
-#define PWM_TIM TIM5
-
-#define PWM1 PWM_TIM->CCR1
-#define PWM2 PWM_TIM->CCR2
-
-#define PWM_H 1800
-#define PWM_L 1000
-
-#define SET_PWM(pwm) (PWM1=PWM2=pwm)
-#define PWM_ON()     SET_PWM(PWM_H)
-#define PWM_OFF()    SET_PWM(PWM_L)
-
-void PWM_Config(void);
-
-#endif
-
+#endif /* __LASER_H__ */

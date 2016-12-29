@@ -24,8 +24,8 @@ void MAFilter_Init(MAFilter* mafilter, float* buf, uint32_t len)
 {
 	mafilter->buf = buf;
 	mafilter->len = len;
-	mafilter->det = 0;
-	mafilter->ptr = 0;
+	mafilter->i = 0;
+	mafilter->delta = 0;
 	mafilter->sum = 0;
 	mafilter->out = 0;
 }
@@ -41,10 +41,11 @@ MAFilter* MAFilter_Create(uint32_t len)
 		return NULL;
 	}
 	mafilter->len = len;
-	for(mafilter->ptr = 0; mafilter->ptr < mafilter->len; mafilter->ptr++)
-		mafilter->buf[mafilter->ptr] = 0;
-	mafilter->ptr = 0;
-	mafilter->det = 0;
+	for(mafilter->i = 0; mafilter->i < mafilter->len; mafilter->i++) {
+		mafilter->buf[mafilter->i] = 0;
+	}
+	mafilter->i = 0;
+	mafilter->delta = 0;
 	mafilter->sum = 0;
 	mafilter->out = 0;
 	return mafilter;
@@ -52,27 +53,36 @@ MAFilter* MAFilter_Create(uint32_t len)
 
 float MAFilter_Calc(MAFilter* mafilter, float v)
 {
-	mafilter->det = v - mafilter->buf[mafilter->ptr];
-	mafilter->sum += mafilter->det;
+	mafilter->delta = v - mafilter->buf[mafilter->i];
+	mafilter->sum += mafilter->delta;
 	mafilter->out = mafilter->sum / mafilter->len;
-	mafilter->buf[mafilter->ptr++] = v;
-	if(mafilter->ptr == mafilter->len) mafilter->ptr = 0;
+	mafilter->buf[mafilter->i++] = v;
+	if(mafilter->i == mafilter->len) {
+		mafilter->i = 0;
+	}
 	return mafilter->out;
 }
 
 void MAFilter_Reset(MAFilter* mafilter)
 {
-	for(mafilter->ptr = 0; mafilter->ptr < mafilter->len; mafilter->ptr++)
-		mafilter->buf[mafilter->ptr] = 0;
-	mafilter->ptr = 0;
+	for(mafilter->i = 0; mafilter->i < mafilter->len; mafilter->i++) {
+		mafilter->buf[mafilter->i] = 0;
+	}
+	mafilter->i = 0;
 	mafilter->sum = 0;
 	mafilter->out = 0;
 }
 
 void MAFilter_Destroy(MAFilter* mafilter)
 {
-	free(mafilter);
-	mafilter = NULL;
+	if (mafilter != NULL) {
+		if (mafilter->buf != NULL) {
+			free(mafilter->buf);
+			mafilter->buf = NULL;
+		}
+		free(mafilter);
+		mafilter = NULL;
+	}
 }
 
 

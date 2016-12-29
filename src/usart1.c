@@ -22,33 +22,14 @@ DBUS_t dbus;
 
 void USART1_Config(void)
 {
-    GPIO_InitTypeDef gpio;
-	USART_InitTypeDef usart;
-	NVIC_InitTypeDef nvic;
     DMA_InitTypeDef dma;
     
-    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE); 
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE); 
     
-    GPIO_PinAFConfig(GPIOB, GPIO_PinSource7, GPIO_AF_USART1);
+	GPIO_AF(USART1_RX_PIN, GPIO_AF_USART1);
     
-    GPIO_StructInit(&gpio);
-    gpio.GPIO_Pin = GPIO_Pin_7;
-    gpio.GPIO_Mode = GPIO_Mode_AF;
-    gpio.GPIO_Speed = GPIO_Speed_2MHz;
-    gpio.GPIO_PuPd = GPIO_PuPd_UP;
-    GPIO_Init(GPIOB, &gpio);
-    
-    USART_DeInit(USART1);
-    USART_StructInit(&usart);
-    usart.USART_BaudRate = 100000;
-    usart.USART_WordLength = USART_WordLength_8b;
-    usart.USART_StopBits = USART_StopBits_1;
-    usart.USART_Parity = USART_Parity_Even;
-    usart.USART_Mode = USART_Mode_Rx;
-    usart.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
-    USART_Init(USART1, &usart);
+	USART_Config(USART1, 100000, USART_WordLength_8b, USART_StopBits_1, USART_Mode_Rx, USART_HardwareFlowControl_None);
     
     USART_DMACmd(USART1, USART_DMAReq_Rx, ENABLE);
     
@@ -76,11 +57,7 @@ void USART1_Config(void)
     
     DMA_Cmd(DMA2_Stream2, ENABLE);
     
-    nvic.NVIC_IRQChannel = USART1_IRQn;                          
-	nvic.NVIC_IRQChannelPreemptionPriority = 0;
-	nvic.NVIC_IRQChannelSubPriority = 0;		    
-	nvic.NVIC_IRQChannelCmd = ENABLE;			
-	NVIC_Init(&nvic);	
+    NVIC_Config(USART1_IRQn, 0, 0);
     
 	USART_ITConfig(USART1, USART_IT_IDLE, ENABLE); // 14mspf
     USART_Cmd(USART1, ENABLE);

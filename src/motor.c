@@ -35,7 +35,7 @@ void EC60_CMD(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16
     CAN_Transmit(CANx,&canTxMsg);
 }
 
-void EC25_CMD(CAN_TypeDef *CANx, int16_t c205, int16_t c206)
+void RM6025_CMD(CAN_TypeDef *CANx, int16_t c205, int16_t c206)
 {
 	CanTxMsg canTxMsg;
     canTxMsg.StdId = GIMBALS_MOTOR_CAN_TX_MSG_ID;

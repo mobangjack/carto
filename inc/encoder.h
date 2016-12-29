@@ -17,34 +17,20 @@
 #ifndef __ENCODER_H__
 #define __ENCODER_H__
 
-#include <stdint.h>
+#include "stm32util.h"
 
-#define ENCODER_VALUE_MAX 8191
-#define ENCODER_VALUE_MOD 8192
-#define ENCODER_VALUE_DIFF_MAX 7500
-#define ENCODER_RATE_BUF_SIZE 10
-#define ENCODER_INIT_FRAME_CNT 50
-#define ENCODER_DIFF_MAX 5.7524281f
+//INPUT_A---PB4(TIM3_CH1)
+//INPUT_B---PB5(TIM3_CH2)
 
-#define ENCODER_VALUE_TO_RAD(value) ((value)*PI2/ENCODER_VALUE_MOD)
+#define ENCODER_PIN_A PB4
+#define ENCODER_PIN_B PB5
+#define ENCODER_TIM TIM3
 
-typedef struct
-{
-	uint16_t value;
-	uint16_t init_frame_cnt;
-	float angle;
-	float last_angle;
-	float bias;
-	int32_t round;
-	float rate_buf[ENCODER_RATE_BUF_SIZE];
-	uint8_t rate_cnt;
-	uint8_t rate_ptr;
-	int32_t rate_sum;
-	float rate;
-}Encoder_t;
+#define ENCODER_DIR 1
+#define ENCODER_OFFSET 0x7fff
+#define ENCODER_CNT() (ENCODER_DIR?(ENCODER_TIM->CNT-ENCODER_OFFSET):(ENCODER_OFFSET-ENCODER_TIM->CNT))
+#define ENCODER_START() (ENCODER_TIM->CNT = ENCODER_OFFSET)
 
-void Encoder_Process(Encoder_t* encoder, uint16_t value);
-uint8_t Encoder_IsOk(Encoder_t* encoder);
-void Encoder_Reset(Encoder_t* encoder);
+void Encoder_Config(void);
 
 #endif

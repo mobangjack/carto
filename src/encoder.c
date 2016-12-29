@@ -14,55 +14,22 @@
  * limitations under the License.
  */
  
-#include "app.h"
+#include "encoder.h"
 
-void Encoder_Process(Encoder_t* encoder, uint16_t value)
-{
-	encoder->value = value;
-	encoder->last_angle = encoder->angle;
-	encoder->angle = ENCODER_VALUE_TO_RAD(value);
-	if(encoder->init_frame_cnt < ENCODER_INIT_FRAME_CNT)
-	{
-		encoder->bias = encoder->angle;
-		encoder->init_frame_cnt++;
-	}
-	encoder->rate = encoder->angle - encoder->last_angle;
-	if(encoder->rate > ENCODER_DIFF_MAX)
-	{
-		encoder->rate -= PI2;
-		encoder->round--;
-	}
-	else if(encoder->rate < -ENCODER_DIFF_MAX)
-	{
-		encoder->rate += PI2;
-		encoder->round++;
-	}
-	encoder->angle = (encoder->angle - encoder->bias) + encoder->round * PI2;
-	if(encoder->rate_cnt < ENCODER_RATE_BUF_SIZE)
-	{
-		encoder->rate_buf[encoder->rate_ptr++] = encoder->rate;
-		encoder->rate_sum += encoder->rate;
-		encoder->rate_cnt++;
-	}
-	else
-	{
-		if(encoder->rate_ptr == encoder->rate_cnt)
-		{
-			encoder->rate_ptr = 0;
-		}
-		encoder->rate_sum += (encoder->rate - encoder->rate_buf[encoder->rate_ptr]);
-		encoder->rate_buf[encoder->rate_ptr++] = encoder->rate;
-	}
-	encoder->rate = encoder->rate_sum / encoder->rate_cnt;
-}
+//INPUT_A---PB4(TIM3_CH1)
+//INPUT_B---PB5(TIM3_CH2)
 
-uint8_t Encoder_IsOk(Encoder_t* encoder)
+void Encoder_Config(void)
 {
-	return encoder->init_frame_cnt == ENCODER_INIT_FRAME_CNT;
-}
-
-void Encoder_Reset(Encoder_t* encoder)
-{
-	memset(encoder, 0, sizeof(Encoder_t));
+	GPIO_Encoder(
+			ENCODER_PIN_A,
+			ENCODER_PIN_B,
+			ENCODER_TIM,
+			TIM_EncoderMode_TI12,
+			TIM_ICPolarity_Falling,
+			TIM_ICPolarity_Falling
+			);
+	
+	ENCODER_START();
 }
 

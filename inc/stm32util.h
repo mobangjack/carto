@@ -1,26 +1,28 @@
 #ifndef __STM32_UTIL_H__
 #define __STM32_UTIL_H__
 
-#include "stm32f4xx.h"
+#include "platform.h"
 
 typedef uint32_t GPIO;
 
 #define GPIO_PIN_GRP(gpio) ((GPIO_TypeDef *)(((GPIO)(gpio)) & 0xffffff00))
+#define GPIO_PIN_GRP_NUM(gpio) ( \
+	(GPIO_PIN_GRP(gpio) == GPIOA) ? 0 : \
+	(GPIO_PIN_GRP(gpio) == GPIOB) ? 1 : \
+	(GPIO_PIN_GRP(gpio) == GPIOC) ? 2 : \
+	(GPIO_PIN_GRP(gpio) == GPIOD) ? 3 : \
+	(GPIO_PIN_GRP(gpio) == GPIOE) ? 4 : \
+	(GPIO_PIN_GRP(gpio) == GPIOF) ? 5 : \
+	(GPIO_PIN_GRP(gpio) == GPIOG) ? 6 : \
+	(GPIO_PIN_GRP(gpio) == GPIOH) ? 7 : \
+	(GPIO_PIN_GRP(gpio) == GPIOI) ? 8 : \
+	(GPIO_PIN_GRP(gpio) == GPIOJ) ? 9 : \
+	10 )
 #define GPIO_PIN_NUM(gpio) (((GPIO)(gpio)) & 0x000000ff)
 #define GPIO_PIN_MSK(gpio) (((uint16_t)1) << GPIO_PIN_NUM(gpio))
-#define IS_VALID_GPIO_PIN_GRP(grp) ((grp == GPIOA) | \
-		(grp == GPIOB) | \
-		(grp == GPIOC) | \
-		(grp == GPIOD) | \
-		(grp == GPIOE) | \
-		(grp == GPIOF) | \
-		(grp == GPIOG) | \
-		(grp == GPIOH) | \
-		(grp == GPIOI) | \
-		(grp == GPIOJ) | \
-		(grp == GPIOK))
+#define IS_VALID_GPIO_GRP(grp) IS_GPIO_ALL_PERIPH(grp)
 #define IS_VALID_GPIO_PIN_NUM(pin) (((pin) >= 0) && ((pin) <= 15))
-#define IS_VALID_GPIO(gpio) (IS_VALID_GPIO_PIN_GRP(GPIO_PIN_GRP(gpio)) \
+#define IS_VALID_GPIO(gpio) (IS_VALID_GPIO_GRP(GPIO_PIN_GRP(gpio)) \
 		&& IS_VALID_GPIO_PIN_NUM(GPIO_PIN_NUM(gpio)))
 
 #define UINT32(X) (((uint32_t)X) & 0x000000ff)
@@ -239,18 +241,19 @@ typedef uint32_t GPIO;
 #define GPIO_WRITE(gpio,v)  GPIO_WriteBit(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio), (v) > 0 ? Bit_SET : Bit_RESET)
 
 void GPIO_Config(GPIO gpio, GPIOMode_TypeDef mode, GPIOSpeed_TypeDef speed, GPIOOType_TypeDef otype, GPIOPuPd_TypeDef pupd);
+void GPIO_IN(GPIO gpio);
+void GPIO_OUT(GPIO gpio);
+void GPIO_AF(GPIO gpio, uint8_t af);
+void GPIO_INT(GPIO gpio, EXTITrigger_TypeDef trig);
+void GPIO_Encoder(GPIO A, GPIO B, TIM_TypeDef* timx, u16 mode, u16 IC1Polarity, u16 IC2Polarity);
 void TIM_Config(TIM_TypeDef* timx, u16 prescaler, u16 counter_mode, u32 period, u16 clock_division, u8 repetition_counter);
 void TIM_OC_Config(TIM_TypeDef* timx, u8 channel, u16 mode, u16 optState, u16 optNewState, u32 pulse, u16 polarity, u16 newPolarity, u16 idleState, u16 newIdleState);
 void NVIC_Config(u8 channel, u8 preemption_priority, u8 subpriority);
 void USART_Config(USART_TypeDef* usartx, u32 baudrate, u16 word_length, u16 stopbits, u16 parity, u16 mode, u16 flow_control);
-void CAN_Config(CAN_TypeDef* canx, u16 prescaler, u8 mode, u8 sjw, u8 bs1, u8 bs2, FunctionalState ttcm, FunctionalState abom, FunctionalState awum, FunctionalState nart, FunctionalState rflm, FunctionalState txfp);
-void CAN_Filter_Config(u16 id_high, u16 id_low, u16 mask_id_high, u16 mask_id_low, u16 fifo, u8 number, u8 mode, u8 scale);
+void CAN_Config(CAN_TypeDef* canx, u16 prescaler, u8 mode, u8 sjw, u8 bs1, u8 bs2);
+void CAN_Filter_Config(u16 id_high, u16 id_low, u16 mask_id_high, u16 mask_id_low, u16 fifo, u8 number);
 void DMA_Config(DMA_Stream_TypeDef* DMAy_Streamx, u32 channel, u32 pba, u32 mba, u32 dir, u32 bufSize);
 void EXIT_Config(u32 line, EXTIMode_TypeDef mode, EXTITrigger_TypeDef trigger);
-
-#define GPIO_AF(gpio,speed,otype,pupd) GPIO_Config(gpio, GPIO_Mode_AF, speed, otype, pupd)
-#define GPIO_IN(gpio,speed,otype,pupd) GPIO_Config(gpio, GPIO_Mode_IN, speed, otype, pupd)
-#define GPIO_OUT(gpio,speed,otype,pupd) GPIO_Config(gpio, GPIO_Mode_OUT, speed, otype, pupd)
 
 #endif
 

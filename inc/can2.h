@@ -17,16 +17,16 @@
 #ifndef __CAN2_H__
 #define __CAN2_H__
 
-#include "stm32f4xx.h"
-#include "encoder.h"
+#include "stm32util.h"
+
+/*----CAN2_TX-----PB13----*/
+/*----CAN2_RX-----PB12----*/
+
+#define CAN2_RX_PIN PB12
+#define CAN2_TX_PIN PB13
 
 void CAN2_Config(void);
 
-extern Encoder_t CM1Encoder;
-extern Encoder_t CM2Encoder;
-extern Encoder_t CM3Encoder;
-extern Encoder_t CM4Encoder;
-extern Encoder_t GMYEncoder;
-extern Encoder_t GMPEncoder;
+extern void CAN2_RX_Callback(CanRxMsg* canRxMsg);
 
 #endif 

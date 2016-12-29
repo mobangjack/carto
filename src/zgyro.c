@@ -14,13 +14,13 @@
  * limitations under the License.
  */
  
-#include "main.h"
+#include "zgyro.h"
 
 void ZGyro_RST(CAN_TypeDef* CANx)
 {
 	CanTxMsg canTxMsg;
     
-    canTxMsg.StdId = 0x404;//send to gyro controll board
+    canTxMsg.StdId = 0x404; //send to gyro control board
     canTxMsg.IDE = CAN_Id_Standard;
     canTxMsg.RTR = CAN_RTR_Data;
     canTxMsg.DLC = 0x08;
@@ -37,8 +37,8 @@ void ZGyro_RST(CAN_TypeDef* CANx)
 	CAN_Transmit(CANx, &canTxMsg);
 }
 
-void ZGyro_GetAngle(CanRxMsg* canRxMsg, float* angle)
+void ZGyro_GetAngle(float* angle, uint8_t* data)
 {
-	*angle = -0.01f*((int32_t)(canRxMsg->Data[0]<<24)|(int32_t)(canRxMsg->Data[1]<<16) | (int32_t)(canRxMsg->Data[2]<<8) | (int32_t)(canRxMsg->Data[3]));
+	*angle = -0.01f*((int32_t)(data[0]<<24)|(int32_t)(data[1]<<16) | (int32_t)(data[2]<<8) | (int32_t)(data[3]));
 }
 

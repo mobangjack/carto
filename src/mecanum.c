@@ -27,17 +27,17 @@
 /*                                         */
 /*******************************************/
 
-void Mecanum_Synthesis(Mecanum_t* mecanum)
+void Mecanum_Synthesis(float* xyz, float* wheel)
 {
-	mecanum->x = ( mecanum->w1 + mecanum->w2 - mecanum->w3 - mecanum->w4) * MECANUM_R / 4.f;
-	mecanum->y = (-mecanum->w1 + mecanum->w2 + mecanum->w3 - mecanum->w4) * MECANUM_R / 4.f;
-	mecanum->z = ( mecanum->w1 + mecanum->w2 + mecanum->w3 + mecanum->w4) * MECANUM_R / 4.f / MECANUM_L;
+	xyz[0] = ( wheel[0] + wheel[1] - wheel[2] - wheel[3]) * MECANUM_R / 4.f;
+	xyz[1] = (-wheel[0] + wheel[1] + wheel[2] - wheel[3]) * MECANUM_R / 4.f;
+	xyz[2] = ( wheel[0] + wheel[1] + wheel[2] + wheel[3]) * MECANUM_R / 4.f / MECANUM_L;
 }
 
-void Mecanum_Decompose(Mecanum_t* mecanum)
+void Mecanum_Decompose(float* xyz, float* wheel)
 {
-	mecanum->w1 = ( mecanum->x - mecanum->y + mecanum->z * MECANUM_L) / MECANUM_R;
-	mecanum->w2 = ( mecanum->x + mecanum->y + mecanum->z * MECANUM_L) / MECANUM_R;
-	mecanum->w3 = (-mecanum->x + mecanum->y + mecanum->z * MECANUM_L) / MECANUM_R;
-	mecanum->w4 = (-mecanum->x - mecanum->y + mecanum->z * MECANUM_L) / MECANUM_R;
+	wheel[0] = ( xyz[0] - xyz[1] + xyz[2] * MECANUM_L) / MECANUM_R;
+	wheel[1] = ( xyz[0] + xyz[1] + xyz[2] * MECANUM_L) / MECANUM_R;
+	wheel[2] = (-xyz[0] + xyz[1] + xyz[2] * MECANUM_L) / MECANUM_R;
+	wheel[3] = (-xyz[0] - xyz[1] + xyz[2] * MECANUM_L) / MECANUM_R;
 }

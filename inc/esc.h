@@ -14,30 +14,29 @@
  * limitations under the License.
  */
  
-#ifndef __PWM_H__
-#define __PWM_H__
+#ifndef __ESC_H__
+#define __ESC_H__
 
-#include "stm32util.h"
+/*
+ * For EC60 & RM6025 Electronic Speed Controller
+ */
 
-/*-PWM1---(PA0---TIM5_CH1)--*/
-/*-PWM2---(PA1---TIM5_CH2)--*/
+#include "platform.h"
 
-#define PWM_PIN_1 PA0
-#define PWM_PIN_2 PA1
+#define ESC1_FEEDBACK_CAN_MSG_ID  0x201
+#define ESC2_FEEDBACK_CAN_MSG_ID  0x202
+#define ESC3_FEEDBACK_CAN_MSG_ID  0x203
+#define ESC4_FEEDBACK_CAN_MSG_ID  0x204
+#define ESC5_FEEDBACK_CAN_MSG_ID  0x205
+#define ESC6_FEEDBACK_CAN_MSG_ID  0x206
 
-#define PWM_TIM TIM5
+typedef struct ESC
+{
+	uint16_t angle_fdb;    // angle feedback
+	uint16_t current_fdb;  // electric current feedback
+	uint16_t current_ref;  // electric current reference
+}ESC;
 
-#define PWM1 PWM_TIM->CCR1
-#define PWM2 PWM_TIM->CCR2
-
-#define PWM_H 1800
-#define PWM_L 1000
-
-#define SET_PWM(pwm) (PWM1=PWM2=pwm)
-#define PWM_ON()     SET_PWM(PWM_H)
-#define PWM_OFF()    SET_PWM(PWM_L)
-
-void PWM_Config(void);
+void ESC_Process(ESC* esc, uint8_t* data);
 
 #endif
-

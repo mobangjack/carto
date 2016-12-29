@@ -17,9 +17,7 @@
 #ifndef __MPU6050_DRV_H__
 #define __MPU6050_DRV_H__
 
-#include "stm32f4xx.h"
-
-#define MPU6050_DEBUG 1
+#include "platform.h"
 
 #define	SMPLRT_DIV		          0x19	// 0X07 125Hz
 #define	CONFIG			          0x1A	// 0x00
@@ -144,63 +142,11 @@
 #define MPU6050_DEVICE_ID                       0x68
 #define HMC5883_DEVICE_ID_A                     0x48
 
-#define MPU6050ERR(c) (((uint32_t)1)<<c)
-#define HMC5883ERR(c) MPU6050ERR(c)
-
-typedef struct
-{
-    short ax;
-    short ay;
-    short az;
-    short tp; // temperature
-    short gx;
-    short gy;
-    short gz;
-}ImuRawData_t;
-
-typedef struct
-{
-	short mx;
-    short my;
-    short mz;
-}MagRawData_t;
-
-typedef struct
-{
-	ImuRawData_t imu;
-	MagRawData_t mag;
-}MPU6050RawData_t;
-
-typedef struct
-{
-    float ax;
-    float ay;
-    float az;
-    float tp;
-    float gx;
-    float gy;
-    float gz;
-}ImuStdData_t;
-
-typedef struct
-{
-	float mx;
-    float my;
-    float mz;
-}MagStdData_t;
-
-typedef struct
-{
-	ImuStdData_t imu;
-	MagStdData_t mag;
-}MPU6050StdData_t;
-
-uint32_t MPU6050_Init(void);
-uint32_t HMC5883_Init(void);
-uint32_t MPU6050_Wait(int t);
-uint32_t MPU6050_EnInt(void);
-uint32_t MPU6050_Read(ImuRawData_t* imu);
-uint32_t HMC58X3_Read(MagRawData_t* mag);
+uint8_t MPU6050_Init(void);
+uint8_t HMC5883_Init(void);
+uint8_t MPU6050_INT_Enable(void);
+uint8_t MPU6050_Read(int16_t* data);
+uint8_t HMC5883_Read(int16_t* data);
 
 #endif
 

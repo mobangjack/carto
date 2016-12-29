@@ -17,9 +17,17 @@
 #ifndef __CAN1_H__
 #define __CAN1_H__
 
+#include "stm32util.h"
+
+/*----CAN1_TX-----PA12----*/
+/*----CAN1_RX-----PA11----*/
+
+#define CAN1_RX_PIN PA11
+#define CAN1_TX_PIN PA12
+
 void CAN1_Config(void);
 
-extern float ZGyroAngle;
+extern void CAN1_RX_Callback(CanRxMsg* canRxMsg);
 
-#endif
+#endif /* __CAN1_H__ */
 

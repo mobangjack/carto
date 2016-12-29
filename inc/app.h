@@ -18,7 +18,9 @@
 #define __APP_H__
 
 // chip series
-#include "stm32f4xx.h"
+#include <encoder.h>
+#include <esc.h>
+#include "platform.h"
 
 // standard c libraries
 #include <math.h>
@@ -30,6 +32,7 @@
 // board supported packages
 #include "bsp.h"
 #include "led.h"
+#include "esc.h"
 #include "imu.h"
 #include "pwm.h"
 #include "can1.h"
@@ -38,11 +41,9 @@
 #include "tim6.h"
 #include "usart1.h"
 #include "usart3.h"
-#include "quad_encoder.h"
-
-// peripherals
 #include "motor.h"
 #include "zgyro.h"
+#include "encoder.h"
 
 // kits
 #include "pid.h"
@@ -50,7 +51,6 @@
 #include "fifo.h"
 #include "delay.h"
 #include "crc16.h"
-#include "encoder.h"
 #include "mecanum.h"
 #include "mafilter.h"
 
@@ -75,6 +75,7 @@
 #define PI2 6.2831855f
 #define PIOVER180 (PI/180.f)
 #define MAP(val,min1,max1,min2,max2) ((val-min1)*(max2-min2)/(max1-min1)+min2)
+#define SQR(x) (x*x)
 
 void App_Init(void);
 
