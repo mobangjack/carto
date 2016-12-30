@@ -215,24 +215,6 @@ typedef uint32_t GPIO;
 #define PK14 GPIO_BASE(K,14)
 #define PK15 GPIO_BASE(K,15)
 
-#define GPIO_CHECK_CLK(gpio,grp) \
-	if(GPIO_PIN_GRP(gpio)==grp) \
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_##grp, ENABLE)
-
-#define GPIO_ENABLE_CLK(gpio) { \
-		GPIO_CHECK_CLK(gpio,GPIOA); \
-		GPIO_CHECK_CLK(gpio,GPIOB); \
-		GPIO_CHECK_CLK(gpio,GPIOC); \
-		GPIO_CHECK_CLK(gpio,GPIOD); \
-		GPIO_CHECK_CLK(gpio,GPIOE); \
-		GPIO_CHECK_CLK(gpio,GPIOF); \
-		GPIO_CHECK_CLK(gpio,GPIOG); \
-		GPIO_CHECK_CLK(gpio,GPIOH); \
-		GPIO_CHECK_CLK(gpio,GPIOI); \
-		GPIO_CHECK_CLK(gpio,GPIOJ); \
-		GPIO_CHECK_CLK(gpio,GPIOK); \
-	}
-
 #define GPIO_SET(gpio)    GPIO_SetBits(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio))
 #define GPIO_RST(gpio)    GPIO_ResetBits(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio))
 #define GPIO_TOG(gpio)    GPIO_ToggleBits(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio))
@@ -240,20 +222,22 @@ typedef uint32_t GPIO;
 #define GPIO_READ_OUT(gpio)   GPIO_ReadOutputDataBit(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio))
 #define GPIO_WRITE(gpio,v)  GPIO_WriteBit(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio), (v) > 0 ? Bit_SET : Bit_RESET)
 
+#define IRQ_HANDLER(NAME) (NAME##_IRQHandler())
+
 void GPIO_Config(GPIO gpio, GPIOMode_TypeDef mode, GPIOSpeed_TypeDef speed, GPIOOType_TypeDef otype, GPIOPuPd_TypeDef pupd);
 void GPIO_IN(GPIO gpio);
 void GPIO_OUT(GPIO gpio);
-void GPIO_AF(GPIO gpio, uint8_t af);
+void GPIO_AF(GPIO gpio, u8 af);
 void GPIO_INT(GPIO gpio, EXTITrigger_TypeDef trig);
 void GPIO_Encoder(GPIO A, GPIO B, TIM_TypeDef* timx, u16 mode, u16 IC1Polarity, u16 IC2Polarity);
-void TIM_Config(TIM_TypeDef* timx, u16 prescaler, u16 counter_mode, u32 period, u16 clock_division, u8 repetition_counter);
-void TIM_OC_Config(TIM_TypeDef* timx, u8 channel, u16 mode, u16 optState, u16 optNewState, u32 pulse, u16 polarity, u16 newPolarity, u16 idleState, u16 newIdleState);
-void NVIC_Config(u8 channel, u8 preemption_priority, u8 subpriority);
-void USART_Config(USART_TypeDef* usartx, u32 baudrate, u16 word_length, u16 stopbits, u16 parity, u16 mode, u16 flow_control);
-void CAN_Config(CAN_TypeDef* canx, u16 prescaler, u8 mode, u8 sjw, u8 bs1, u8 bs2);
-void CAN_Filter_Config(u16 id_high, u16 id_low, u16 mask_id_high, u16 mask_id_low, u16 fifo, u8 number);
-void DMA_Config(DMA_Stream_TypeDef* DMAy_Streamx, u32 channel, u32 pba, u32 mba, u32 dir, u32 bufSize);
-void EXIT_Config(u32 line, EXTIMode_TypeDef mode, EXTITrigger_TypeDef trigger);
+void USART_Config(USART_TypeDef* usartx, s8 mode, u32 br, u8 wl, s8 parity, float sb, s8 fc);
+void TIM_Config(TIM_TypeDef* timx, u16 ps, u16 mode, u32 period, u16 div, u8 re);
+void TIM_OC_Config(TIM_TypeDef* timx, u8 channel, u16 mode, u32 pulse);
+void NVIC_Config(u8 channel, u8 pre, u8 sub);
+void CAN_Config(CAN_TypeDef* canx, u16 ps, u8 mode, u8 sjw, u8 bs1, u8 bs2);
+void CAN_Filter_Config(u16 id_h, u16 id_l, u16 msk_h, u16 msk_l, u16 fifo, u8 num);
+void DMA_Config(DMA_Stream_TypeDef* DMAy_Streamx, u32 channel, u32 pba, u32 mba, u32 dir, u32 bs);
+void EXIT_Config(u32 line, EXTIMode_TypeDef mode, EXTITrigger_TypeDef trig);
 
 #endif
 

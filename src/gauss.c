@@ -18,9 +18,9 @@
 
 #define SQR(x) (x*x)
 
-Gauss* GaussCreate(uint16_t N)
+Gauss_t* GaussCreate(uint16_t N)
 {
-  Gauss* gauss = (Gauss*)malloc(sizeof(Gauss));
+  Gauss_t* gauss = (Gauss_t*)malloc(sizeof(Gauss_t));
   if (gauss == NULL) return NULL;
   gauss->buf = (float*)malloc(N * sizeof(float));
   if (gauss->buf == NULL) {
@@ -33,7 +33,7 @@ Gauss* GaussCreate(uint16_t N)
   return gauss;
 }
 
-void GaussReset(Gauss* gauss)
+void GaussReset(Gauss_t* gauss)
 {
   memset(gauss->buf, 0, gauss->N * sizeof(float));
   gauss->n = 0;
@@ -52,7 +52,7 @@ void GaussReset(Gauss* gauss)
   gauss->delta_mse = 0;
 }
 
-float GaussFilter(Gauss* gauss, float x) {
+float GaussFilter(Gauss_t* gauss, float x) {
   gauss->last_mean = gauss->mean;
   gauss->last_mse = gauss->mse;
   if (gauss->n < gauss->N) {
@@ -81,7 +81,7 @@ float GaussFilter(Gauss* gauss, float x) {
   return gauss->mean;
 }
 
-void GaussDestroy(Gauss* gauss)
+void GaussDestroy(Gauss_t* gauss)
 {
   if (gauss != NULL) {
     if (gauss->buf != NULL) {

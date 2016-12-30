@@ -14,16 +14,31 @@
  * limitations under the License.
  */
  
-#ifndef __USART3_H__
-#define __USART3_H__
+#ifndef __COM_H__
+#define __COM_H__
 
-#include <stdint.h>
+#include "stm32util.h"
+#include "fifo.h"
 
-#define USART3_TX_FIFO_SIZE 256u
+/* COM Port, USE USART3 BY DEFAULT */
 
-void USART3_Config(void);
+/*-----USART3_TX-----PB10-----*/
+/*-----USART3_RX-----PB11-----*/
 
-void USART3_WriteByte(uint8_t byte);
-void USART3_WriteBlock(uint8_t* pdata, uint8_t len);
+#define COM_USART USART3
+#define COM_IRQ_HANDLER() IRQ_HANDLER(USART3)
+#define COM_NVIC USART3_IRQn
+#define COM_GPIO_AF GPIO_AF_USART3
+#define COM_TX_PIN PB10
+#define COM_RX_PIN PB11
+
+#define COM_TX_FIFO_SIZE 256u
+
+void COM_Config(void);
+
+void COM_WriteByte(uint8_t byte);
+void COM_Write(uint8_t* pdata, uint8_t len);
+
+extern void COM_Callback(u8 data);
 
 #endif

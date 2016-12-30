@@ -25,7 +25,7 @@ extern "C" {
 #include <stdint.h>
 #include <string.h>
 
-typedef struct Gauss
+typedef struct Gauss_t
 {
   /* Critical Section */
   uint16_t N; // buffer length
@@ -46,12 +46,12 @@ typedef struct Gauss
   float mse; // mean square error
   float last_mse; // last mse
   float delta_mse; // delta mse
-}Gauss;
+}Gauss_t;
 
-Gauss* GaussCreate(uint16_t N);
-void GaussReset(Gauss* gauss);
-float GaussFilter(Gauss* gauss, float x);
-void GaussDestroy(Gauss* gauss);
+Gauss_t* GaussCreate(uint16_t N);
+void GaussReset(Gauss_t* gauss);
+float GaussFilter(Gauss_t* gauss, float x);
+void GaussDestroy(Gauss_t* gauss);
 
 #ifdef __cplusplus
 }

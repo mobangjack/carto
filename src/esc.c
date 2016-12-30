@@ -16,7 +16,7 @@
  
 #include "esc.h"
 
-void ESC_Process(ESC* esc, uint8_t* data)
+void ESC_Process(ESC_t* esc, uint8_t* data)
 {
 	esc->angle_fdb = (data[0]<<8) | data[1];
 	esc->current_fdb = (data[2]<<8) | data[3];

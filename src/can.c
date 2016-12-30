@@ -18,12 +18,12 @@
 
 float ZGyroAngle = 0;
 
-ESC ESC1;
-ESC ESC2;
-ESC ESC3;
-ESC ESC4;
-ESC ESC5;
-ESC ESC6;
+ESC_t ESC1;
+ESC_t ESC2;
+ESC_t ESC3;
+ESC_t ESC4;
+ESC_t ESC5;
+ESC_t ESC6;
 
 void CAN_RX_Callback(CanRxMsg* canRxMsg)
 {

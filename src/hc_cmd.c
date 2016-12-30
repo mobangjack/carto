@@ -65,9 +65,9 @@ void GetFunctionalState(HC_t* hc)
 
 void GetChassisSpeedRef(HC_t* hc)
 {
-	static MAFilter* fx = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
-	static MAFilter* fy = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
-	static MAFilter* fz = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
+	static MAFilter_t* fx = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
+	static MAFilter_t* fy = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
+	static MAFilter_t* fz = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
 	static const float speed = (hc->key.val & KEY_SHIFT) ? CHASSIS_SPEED_MAX : CHASSIS_SPEED_MAX / 2.f;
 	float vx = (hc->key.val & KEY_A) ? -speed : ((hc->key.val & KEY_D) ? speed : 0);
 	float vy = (hc->key.val & KEY_S) ? -speed : ((hc->key.val & KEY_W) ? speed : 0);

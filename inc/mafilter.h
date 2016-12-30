@@ -25,7 +25,7 @@ extern "C" {
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct
+typedef struct MAFilter_t
 {
 	float* buf;
 	uint32_t len;
@@ -33,13 +33,13 @@ typedef struct
 	float delta;
 	float sum;
 	float out;
-}MAFilter;
+}MAFilter_t;
 
-void MAFilter_Init(MAFilter* mafilter, float* buf, uint32_t len);
-MAFilter* MAFilter_Create(uint32_t len);
-float MAFilter_Calc(MAFilter* mafilter, float v);
-void MAFilter_Reset(MAFilter* mafilter);
-void MAFilter_Destroy(MAFilter* mafilter);
+void MAFilter_Init(MAFilter_t* mafilter, float* buf, uint32_t len);
+MAFilter_t* MAFilter_Create(uint32_t len);
+float MAFilter_Calc(MAFilter_t* mafilter, float v);
+void MAFilter_Reset(MAFilter_t* mafilter);
+void MAFilter_Destroy(MAFilter_t* mafilter);
 
 #ifdef __cpluplus
 }

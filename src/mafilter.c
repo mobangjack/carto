@@ -20,7 +20,7 @@
 
 #include "mafilter.h"
 
-void MAFilter_Init(MAFilter* mafilter, float* buf, uint32_t len)
+void MAFilter_Init(MAFilter_t* mafilter, float* buf, uint32_t len)
 {
 	mafilter->buf = buf;
 	mafilter->len = len;
@@ -30,9 +30,9 @@ void MAFilter_Init(MAFilter* mafilter, float* buf, uint32_t len)
 	mafilter->out = 0;
 }
 
-MAFilter* MAFilter_Create(uint32_t len)
+MAFilter_t* MAFilter_Create(uint32_t len)
 {
-	MAFilter* mafilter = (MAFilter*)malloc(sizeof(MAFilter));
+	MAFilter_t* mafilter = (MAFilter_t*)malloc(sizeof(MAFilter_t));
 	if(mafilter == NULL) return NULL;
 	mafilter->buf = (float*)malloc(sizeof(float)*len);
 	if(mafilter->buf == NULL) {
@@ -51,7 +51,7 @@ MAFilter* MAFilter_Create(uint32_t len)
 	return mafilter;
 }
 
-float MAFilter_Calc(MAFilter* mafilter, float v)
+float MAFilter_Calc(MAFilter_t* mafilter, float v)
 {
 	mafilter->delta = v - mafilter->buf[mafilter->i];
 	mafilter->sum += mafilter->delta;
@@ -63,7 +63,7 @@ float MAFilter_Calc(MAFilter* mafilter, float v)
 	return mafilter->out;
 }
 
-void MAFilter_Reset(MAFilter* mafilter)
+void MAFilter_Reset(MAFilter_t* mafilter)
 {
 	for(mafilter->i = 0; mafilter->i < mafilter->len; mafilter->i++) {
 		mafilter->buf[mafilter->i] = 0;
@@ -73,7 +73,7 @@ void MAFilter_Reset(MAFilter* mafilter)
 	mafilter->out = 0;
 }
 
-void MAFilter_Destroy(MAFilter* mafilter)
+void MAFilter_Destroy(MAFilter_t* mafilter)
 {
 	if (mafilter != NULL) {
 		if (mafilter->buf != NULL) {

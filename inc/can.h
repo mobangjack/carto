@@ -35,11 +35,11 @@ void CAN_RX_Callback(CanRxMsg* canRxMsg);
 
 extern float ZGyroAngle;
 
-extern ESC ESC1;
-extern ESC ESC2;
-extern ESC ESC3;
-extern ESC ESC4;
-extern ESC ESC5;
-extern ESC ESC6;
+extern ESC_t ESC1;
+extern ESC_t ESC2;
+extern ESC_t ESC3;
+extern ESC_t ESC4;
+extern ESC_t ESC5;
+extern ESC_t ESC6;
 
 #endif /* __CAN_H__ */

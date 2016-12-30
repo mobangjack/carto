@@ -16,11 +16,9 @@
 
 #include "flash.h"
 
-void Flash_Read(u32 addr, u8 *buf, u32 bytes)
+void Flash_Read(u32 addr, u8 *buf, u32 size)
 {
-	u32 i;
-	for (i = 0; i < bytes; i++)
-		buf[i] = FLASH_READ_BYTE(addr++);
+	memcpy(buf, (void*)addr, size);
 }
 
 u8 Flash_Write(u32 addr, u8 *buf, u32 bytes)

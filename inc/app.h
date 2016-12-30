@@ -18,12 +18,14 @@
 #define __APP_H__
 
 // chip series
+#include <com.h>
 #include <encoder.h>
 #include <esc.h>
 #include "platform.h"
 
 // standard c libraries
 #include <math.h>
+#include <rc.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
@@ -39,8 +41,6 @@
 #include "can2.h"
 #include "tim2.h"
 #include "tim6.h"
-#include "usart1.h"
-#include "usart3.h"
 #include "motor.h"
 #include "zgyro.h"
 #include "encoder.h"

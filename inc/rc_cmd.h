@@ -38,7 +38,7 @@ typedef uint8_t SwitchEvent_t;
 
 void RC_CMD(RC_t* rc);
 
-extern SwitchState_t switchStates[SWITCH_NUMBER];
-extern SwitchEvent_t switchEvents[SWITCH_NUMBER];
+extern SwitchState_t switchStates[SWITCH_COUNT];
+extern SwitchEvent_t switchEvents[SWITCH_COUNT];
 
 #endif /* __RC_CMD_H__ */

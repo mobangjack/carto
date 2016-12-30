@@ -4,7 +4,7 @@
 
 struct Kalman* KalmanCreate()
 {
-  Kalman* kalman = (Kalman*)malloc(sizeof(Kalman));
+  Kalman_t* kalman = (Kalman_t*)malloc(sizeof(Kalman_t));
   if (kalman == NULL) return NULL;
   KalmanReset(kalman);
   return kalman;

@@ -16,16 +16,16 @@
 
 #include "main.h"
 
-SwitchState_t switchStates[SWITCH_NUMBER];
-SwitchEvent_t switchEvents[SWITCH_NUMBER];
+SwitchState_t switchStates[SWITCH_COUNT];
+SwitchEvent_t switchEvents[SWITCH_COUNT];
 
 void GetSwitchStates(RC_t* rc)
 {
-	static uint8_t last_state[SWITCH_NUMBER];
-	static uint32_t cnt[SWITCH_NUMBER];
+	static uint8_t last_state[SWITCH_COUNT];
+	static uint32_t cnt[SWITCH_COUNT];
 	uint8_t* this_state = rc->sw;
 	uint32_t i = 0;
-	for (; i < SWITCH_NUMBER; i++) {
+	for (; i < SWITCH_COUNT; i++) {
 		if (this_state[i] == last_state[i]) {
 			if (cnt[i] < SWITCH_STATE_CHANGE_DELAY) {
 				cnt[i]++;
@@ -41,9 +41,9 @@ void GetSwitchStates(RC_t* rc)
 
 void GetSwitchEvents(RC_t* rc)
 {
-	static SwitchState_t last_state[SWITCH_NUMBER];
+	static SwitchState_t last_state[SWITCH_COUNT];
 	uint32_t i = 0;
-	for (; i < SWITCH_NUMBER; i++) {
+	for (; i < SWITCH_COUNT; i++) {
 		switchEvents[i] = GET_SWITCH_EVENT(last_state[i], switchStates[i]);
 		last_state[i] = switchStates[i];
 	}

@@ -25,7 +25,7 @@ extern "C" {
 
 #define RAMP_SCALE_DEFAULT 4000
 	
-typedef struct
+typedef struct Ramp
 {
 	uint32_t count;
 	uint32_t scale;

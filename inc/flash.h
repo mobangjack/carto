@@ -17,7 +17,7 @@
 #ifndef __FLASH_H__
 #define __FLASH_H__
 
-#include "stm32f4xx.h" 
+#include "platform.h"
 
 #define STM32_FLASH_BASE 0x08000000 	//stm32 flash base address
  
@@ -34,8 +34,6 @@
 #define ADDR_FLASH_SECTOR_10    ((u32)0x080C0000) 	// 128 k
 #define ADDR_FLASH_SECTOR_11    ((u32)0x080E0000) 	// 128 k
 
-#define FLASH_READ_BYTE(addr) (*(vu8*)addr)
-
 #define FLASH_GET_SECTOR(addr) ( \
 	(addr < ADDR_FLASH_SECTOR_1) ? FLASH_Sector_0 : \
 	(addr < ADDR_FLASH_SECTOR_2) ? FLASH_Sector_1 : \
@@ -51,8 +49,8 @@
 	FLASH_Sector_11 \
 )
 
-void Flash_Read(u32 addr, u8 *buf, u32 bytes);
-u8 Flash_Write(u32 addr, u8 *buf, u32 bytes);
+void Flash_Read(u32 addr, u8 *buf, u32 size);
+u8 Flash_Write(u32 addr, u8 *buf, u32 size);
 
 #endif
 

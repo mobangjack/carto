@@ -16,9 +16,9 @@
  
 #include "fifo.h"
 
-FIFO* FIFO_Create(uint32_t len)
+FIFO_t* FIFO_Create(uint32_t len)
 {
-	FIFO* fifo = (FIFO*)malloc(sizeof(FIFO));
+	FIFO_t* fifo = (FIFO_t*)malloc(sizeof(FIFO_t));
 	if (fifo == NULL) return NULL;
 	fifo->buf = (uint8_t*)malloc(len);
 	if (fifo->buf == NULL)
@@ -34,7 +34,7 @@ FIFO* FIFO_Create(uint32_t len)
 	return fifo;
 }
 
-uint8_t FIFO_Push(FIFO* fifo, uint8_t element)
+uint8_t FIFO_Push(FIFO_t* fifo, uint8_t element)
 {
 	if (fifo->cnt == fifo->len) {
 		return 0;
@@ -45,7 +45,7 @@ uint8_t FIFO_Push(FIFO* fifo, uint8_t element)
 	return 1;
 }
 
-uint8_t FIFO_Pop(FIFO* fifo)
+uint8_t FIFO_Pop(FIFO_t* fifo)
 {
 	if (fifo->cnt == 0) {
 		return 0;
@@ -58,7 +58,7 @@ uint8_t FIFO_Pop(FIFO* fifo)
 
 }
 
-uint8_t FIFO_Peek(FIFO* fifo)
+uint8_t FIFO_Peek(FIFO_t* fifo)
 {
 	if (fifo->cnt == 0) {
 		return 0;
@@ -66,27 +66,27 @@ uint8_t FIFO_Peek(FIFO* fifo)
 	return *fifo->r;
 }
 
-uint8_t FIFO_IsFull(FIFO* fifo)
+uint8_t FIFO_IsFull(FIFO_t* fifo)
 {
 	return fifo->cnt == fifo->len;
 }
 
-uint8_t FIFO_IsEmpty(FIFO* fifo)
+uint8_t FIFO_IsEmpty(FIFO_t* fifo)
 {
 	return fifo->cnt == 0;
 }
 
-uint32_t FIFO_GetUsed(FIFO* fifo)
+uint32_t FIFO_GetUsed(FIFO_t* fifo)
 {
 	return fifo->cnt;
 }
 
-uint32_t FIFO_GetFree(FIFO* fifo)
+uint32_t FIFO_GetFree(FIFO_t* fifo)
 {
 	return fifo->len - fifo->cnt;
 }
 
-void FIFO_Destroy(FIFO* fifo)
+void FIFO_Destroy(FIFO_t* fifo)
 {
 	free(fifo);
 	fifo = NULL;

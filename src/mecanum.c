@@ -27,11 +27,18 @@
 /*                                         */
 /*******************************************/
 
+static const float MECANUM_L = MECANUM_LX + MECANUM_LY;
+static const float MECANUM_R = MECANUM_R1 + MECANUM_R2;
+
 void Mecanum_Synthesis(float* xyz, float* wheel)
 {
-	xyz[0] = ( wheel[0] + wheel[1] - wheel[2] - wheel[3]) * MECANUM_R / 4.f;
-	xyz[1] = (-wheel[0] + wheel[1] + wheel[2] - wheel[3]) * MECANUM_R / 4.f;
-	xyz[2] = ( wheel[0] + wheel[1] + wheel[2] + wheel[3]) * MECANUM_R / 4.f / MECANUM_L;
+	static const float coeff_x = MECANUM_R1 / 4.0f;
+	static const float coeff_y = MECANUM_R2 / 4.0f;
+	static const float coeff_z = MECANUM_R / 4.0f / MECANUM_L;
+
+	xyz[0] = ( wheel[0] + wheel[1] - wheel[2] - wheel[3]) * coeff_x;
+	xyz[1] = (-wheel[0] + wheel[1] + wheel[2] - wheel[3]) * coeff_y;
+	xyz[2] = ( wheel[0] + wheel[1] + wheel[2] + wheel[3]) * coeff_z;
 }
 
 void Mecanum_Decompose(float* xyz, float* wheel)

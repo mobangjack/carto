@@ -14,14 +14,23 @@
  * limitations under the License.
  */
  
-#ifndef __USART1_H__
-#define __USART1_H__
+#ifndef __RC_H__
+#define __RC_H__
 
-#define USART1_RX_PIN PB7
+#include "stm32util.h"
+
+#define RC_USART USART1
+#define RC_NVIC USART1_IRQn
+#define RC_IRQ_HANDLER() IRQ_HANDLER(USART1)
+#define RC_DMA_STREAM DMA2_Stream2
+#define RC_DMA_CHANNEL DMA_Channel_4
+#define RC_SIGNAL_PIN PB7
 
 #define RC_FRAME_LEN 18u
-#define USART1_DMA_RX_BUF_SIZE 36u
+#define RC_DMA_BUF_SIZE 36u
 
-void USART1_Config(void);
+void RC_Config(void);
+
+extern void RC_Callback(uint8_t* dbuf);
 
 #endif

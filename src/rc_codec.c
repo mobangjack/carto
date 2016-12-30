@@ -18,12 +18,14 @@
 
 void RC_ENC(RC_t* rc, uint8_t* buf)
 {
-	buf[0] = rc->ch0&0xff;
-	buf[1] = (rc->ch1<<3) | (rc->ch0>>8);
-	buf[2] = (rc->ch2<<6) | (rc->ch1>>5);
+	buf[0] = rc->ch0 & 0xff;
+	buf[1] = (rc->ch1 << 3) | (rc->ch0 >> 8);
+	buf[2] = (rc->ch2 << 6) | (rc->ch1 >> 5);
 	buf[3] = rc->ch2;
-	buf[4] = (rc->ch3<<1) | (rc->ch2>>10);
-	buf[5] = (rc->sw[SWITCH_INDEX_RIGHT]<<6) | (rc->sw[SWITCH_INDEX_LEFT]<<4) | (rc->ch3>>7);
+	buf[4] = (rc->ch3 << 1) | (rc->ch2 >> 10);
+	buf[5] = (rc->sw[SWITCH_INDEX_RIGHT] << 6) |
+			 (rc->sw[SWITCH_INDEX_LEFT] << 4) |
+			 (rc->ch3 >> 7);
 }
 
 void RC_DEC(RC_t* rc, uint8_t* buf)

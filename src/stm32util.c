@@ -1,9 +1,10 @@
 #include "stm32util.h"
 
+#define CHECK_EQ(a,v1,v2) ((a) == (v1) || (a) == (v2))
+
 void GPIO_Config(GPIO gpio, GPIOMode_TypeDef mode, GPIOSpeed_TypeDef speed, GPIOOType_TypeDef otype, GPIOPuPd_TypeDef pupd)
 {
 	GPIO_InitTypeDef io;
-	// GPIO_ENABLE_CLK(gpio);
 	GPIO_TypeDef* grp = GPIO_PIN_GRP(gpio);
 	if (grp == GPIOA) {
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
@@ -56,7 +57,7 @@ void GPIO_OUT(GPIO gpio)
 	GPIO_Config(gpio, GPIO_Mode_OUT, GPIO_Fast_Speed, GPIO_OType_PP, GPIO_PuPd_NOPULL);
 }
 
-void GPIO_AF(GPIO gpio, uint8_t af)
+void GPIO_AF(GPIO gpio, u8 af)
 {
 	GPIO_PinAFConfig(GPIO_PIN_GRP(gpio), GPIO_PIN_NUM(gpio), af);
 	GPIO_Config(gpio, GPIO_Mode_AF, GPIO_Fast_Speed, GPIO_OType_PP, GPIO_PuPd_NOPULL);
@@ -153,7 +154,81 @@ void GPIO_Encoder(GPIO A, GPIO B, TIM_TypeDef* timx, u16 mode, u16 IC1Polarity, 
 	TIM_Cmd(timx, ENABLE);
 }
 
-void TIM_Config(TIM_TypeDef* timx, u16 prescaler, u16 counter_mode, u32 period, u16 clock_division, u8 repetition_counter)
+void USART_Config(USART_TypeDef* usartx, s8 mode, u32 br, u8 wl, s8 parity, float sb, s8 fc)
+{
+	USART_InitTypeDef usart;
+	if (usartx == USART1) {
+		RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
+	}
+	if (usartx == USART2) {
+		RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
+	}
+	if (usartx == USART3) {
+		RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
+	}
+	if (usartx == UART4) {
+		RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART4, ENABLE);
+	}
+	if (usartx == UART5) {
+		RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART5, ENABLE);
+	}
+	if (usartx == USART6) {
+		RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART6, ENABLE);
+	}
+	if (usartx == UART7) {
+		RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART7, ENABLE);
+	}
+	if (usartx == UART8) {
+		RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART8, ENABLE);
+	}
+	// mode
+	if (CHECK_EQ(mode, 'r', 'R')) {
+		usart.USART_Mode = USART_Mode_Rx;
+	} else if (CHECK_EQ(mode, 't', 'T')) {
+		usart.USART_Mode = USART_Mode_Tx;
+	} else {
+		usart.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+	}
+	// baud rate
+	usart.USART_BaudRate = br;
+	// word length
+	if (wl == 9) {
+		usart.USART_WordLength = USART_WordLength_9b;
+	} else {
+		usart.USART_WordLength = USART_WordLength_8b;
+	}
+	// parity
+	if (CHECK_EQ(parity, 'o', 'O')) {
+		usart.USART_Parity = USART_Parity_Odd;
+	} else if (CHECK_EQ(parity, 'e', 'E')) {
+		usart.USART_Parity = USART_Parity_Even;
+	} else {
+		usart.USART_Parity = USART_Parity_No;
+	}
+	// stop bits
+	if (sb == 0.5f) {
+		usart.USART_StopBits = USART_StopBits_0_5;
+	} else if (sb == 1.5) {
+		usart.USART_StopBits = USART_StopBits_1_5;
+	} else if (sb == 2) {
+		usart.USART_StopBits = USART_StopBits_2;
+	} else {
+		usart.USART_StopBits = USART_StopBits_1;
+	}
+	// flow control
+	if (CHECK_EQ(fc, 'r', 'R')) {
+		usart.USART_HardwareFlowControl = USART_HardwareFlowControl_RTS;
+	} else if (CHECK_EQ(fc, 'c', 'C')) {
+		usart.USART_HardwareFlowControl = USART_HardwareFlowControl_CTS;
+	} else if (CHECK_EQ(fc, 'a', 'A')) {
+		usart.USART_HardwareFlowControl = USART_HardwareFlowControl_RTS_CTS;
+	} else {
+		usart.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+	}
+	USART_Init(usartx, &usart);
+}
+
+void TIM_Config(TIM_TypeDef* timx, u16 ps, u16 mode, u32 period, u16 div, u8 re)
 {
 	TIM_TimeBaseInitTypeDef tim;
 	if (timx == TIM1) {
@@ -198,11 +273,11 @@ void TIM_Config(TIM_TypeDef* timx, u16 prescaler, u16 counter_mode, u32 period, 
 	if (timx == TIM14) {
 		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM14, ENABLE);
 	}
-	tim.TIM_Prescaler = prescaler;
-	tim.TIM_CounterMode = counter_mode;
+	tim.TIM_Prescaler = ps;
+	tim.TIM_CounterMode = mode;
 	tim.TIM_Period = period;
-	tim.TIM_ClockDivision = clock_division;
-	tim.TIM_RepetitionCounter = repetition_counter;
+	tim.TIM_ClockDivision = div;
+	tim.TIM_RepetitionCounter = re;
 	TIM_TimeBaseInit(timx,&tim);
 }
 
@@ -235,41 +310,17 @@ void TIM_OC_Config(TIM_TypeDef* timx, u8 channel, u16 mode, u32 pulse)
 	}
 }
 
-void NVIC_Config(u8 channel, u8 preemption_priority, u8 subpriority)
+void NVIC_Config(u8 channel, u8 pre, u8 sub)
 {
 	NVIC_InitTypeDef nvic;
 	nvic.NVIC_IRQChannel = channel;
-	nvic.NVIC_IRQChannelPreemptionPriority = preemption_priority;
-	nvic.NVIC_IRQChannelSubPriority = subpriority;
+	nvic.NVIC_IRQChannelPreemptionPriority = pre;
+	nvic.NVIC_IRQChannelSubPriority = sub;
 	nvic.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&nvic);
 }
 
-void USART_Config(USART_TypeDef* usartx, u32 baudrate, u16 word_length, u16 stopbits, u16 parity, u16 mode, u16 flow_control)
-{
-	USART_InitTypeDef usart;
-	if (usartx == USART1) {
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
-	}
-	if (usartx == USART2) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
-	}
-	if (usartx == USART3) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
-	}
-	if (usartx == USART6) {
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART6, ENABLE);
-	}
-	usart.USART_BaudRate = baudrate;
-	usart.USART_WordLength = word_length;
-	usart.USART_StopBits = stopbits;
-	usart.USART_Parity = parity;
-	usart.USART_Mode = mode;
-	usart.USART_HardwareFlowControl = flow_control;
-	USART_Init(usartx, &usart);
-}
-
-void CAN_Config(CAN_TypeDef* canx, u16 prescaler, u8 mode, u8 sjw, u8 bs1, u8 bs2)
+void CAN_Config(CAN_TypeDef* canx, u16 ps, u8 mode, u8 sjw, u8 bs1, u8 bs2)
 {
 	CAN_InitTypeDef can;
 	if (canx == CAN1) {
@@ -278,7 +329,7 @@ void CAN_Config(CAN_TypeDef* canx, u16 prescaler, u8 mode, u8 sjw, u8 bs1, u8 bs
 	if (canx == CAN2) {
 		RCC_APB1PeriphClockCmd(RCC_APB1Periph_CAN2, ENABLE);
 	}
-	can.CAN_Prescaler = prescaler;
+	can.CAN_Prescaler = ps;
 	can.CAN_Mode = mode;
 	can.CAN_SJW = sjw;
 	can.CAN_BS1 = bs1;
@@ -291,29 +342,35 @@ void CAN_Config(CAN_TypeDef* canx, u16 prescaler, u8 mode, u8 sjw, u8 bs1, u8 bs
 	CAN_Init(canx, &can);
 }
 
-void CAN_Filter_Config(u16 id_high, u16 id_low, u16 mask_id_high, u16 mask_id_low, u16 fifo, u8 number)
+void CAN_Filter_Config(u16 id_h, u16 id_l, u16 msk_h, u16 msk_l, u16 fifo, u8 num)
 {
 	CAN_FilterInitTypeDef can_filter;
-	can_filter.CAN_FilterIdHigh = id_high;
-	can_filter.CAN_FilterIdLow = id_low;
-	can_filter.CAN_FilterMaskIdHigh = mask_id_high;
-	can_filter.CAN_FilterMaskIdLow = mask_id_low;
+	can_filter.CAN_FilterIdHigh = id_h;
+	can_filter.CAN_FilterIdLow = id_l;
+	can_filter.CAN_FilterMaskIdHigh = msk_h;
+	can_filter.CAN_FilterMaskIdLow = msk_l;
 	can_filter.CAN_FilterFIFOAssignment = fifo;
-	can_filter.CAN_FilterNumber = number;
+	can_filter.CAN_FilterNumber = num;
 	can_filter.CAN_FilterMode = CAN_FilterMode_IdMask;
 	can_filter.CAN_FilterScale = CAN_FilterScale_32bit;
 	can_filter.CAN_FilterActivation = ENABLE;
 	CAN_FilterInit(&can_filter);
 }
 
-void DMA_Config(DMA_Stream_TypeDef* DMAy_Streamx, u32 channel, u32 pba, u32 mba, u32 dir, u32 bufSize)
+void DMA_Config(DMA_Stream_TypeDef* DMAy_Streamx, u32 channel, u32 pba, u32 mba, u32 dir, u32 bs)
 {
 	DMA_InitTypeDef dma;
+	if (DMA1_BASE & (u32)DMAy_Streamx == DMA1_BASE) {
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE);
+	}
+	if (DMA2_BASE & (u32)DMAy_Streamx == DMA2_BASE) {
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);
+	}
 	dma.DMA_Channel = channel;
 	dma.DMA_PeripheralBaseAddr = pba;
 	dma.DMA_Memory0BaseAddr = mba;
 	dma.DMA_DIR = dir;
-	dma.DMA_BufferSize = bufSize;
+	dma.DMA_BufferSize = bs;
 	dma.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
 	dma.DMA_MemoryInc = DMA_MemoryInc_Enable;
 	dma.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
@@ -327,12 +384,12 @@ void DMA_Config(DMA_Stream_TypeDef* DMAy_Streamx, u32 channel, u32 pba, u32 mba,
 	DMA_Init(DMAy_Streamx,&dma);
 }
 
-void EXIT_Config(u32 line, EXTIMode_TypeDef mode, EXTITrigger_TypeDef trigger)
+void EXIT_Config(u32 line, EXTIMode_TypeDef mode, EXTITrigger_TypeDef trig)
 {
 	EXTI_InitTypeDef exti;
 	exti.EXTI_Line = line;
 	exti.EXTI_Mode = mode;
-	exti.EXTI_Trigger = trigger;
+	exti.EXTI_Trigger = trig;
 	exti.EXTI_LineCmd = ENABLE;
 	EXTI_Init(&exti);
 }

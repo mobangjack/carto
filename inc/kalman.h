@@ -9,7 +9,7 @@ extern "C" {
 #include <stdint.h>
 #include <string.h>
 
-typedef struct Kalman
+typedef struct Kalman_t
 {
   /* Critical Section */
   float q;    // process noise
@@ -20,16 +20,16 @@ typedef struct Kalman
   float d;    // difference
   float k;    // inverse of kalman gain
   float p;    // fused variance
-}Kalman;
+}Kalman_t;
 
-Kalman* KalmanCreate();
-void KalmanReset(Kalman* kalman);
-void KalmanSetE(Kalman* kalman, float e);
-void KalmanSetD(Kalman* kalman, float d);
-void KalmanSetQ(Kalman* kalman, float q);
-void KalmanSetR(Kalman* kalman, float r);
-float KalmanFilter(Kalman* kalman, float x);
-void KalmanDestroy(Kalman* kalman);
+Kalman_t* KalmanCreate();
+void KalmanReset(Kalman_t* kalman);
+void KalmanSetE(Kalman_t* kalman, float e);
+void KalmanSetD(Kalman_t* kalman, float d);
+void KalmanSetQ(Kalman_t* kalman, float q);
+void KalmanSetR(Kalman_t* kalman, float r);
+float KalmanFilter(Kalman_t* kalman, float x);
+void KalmanDestroy(Kalman_t* kalman);
 
 #ifdef __cplusplus
 }

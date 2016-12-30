@@ -28,10 +28,10 @@
 /*                                         */
 /*******************************************/
 
-#define MECANUM_A 0.160f  //Mecanum wheel span
-#define MECANUM_B 0.160f  //Mecanum wheel base
-#define MECANUM_L 0.226f  //MECANUM_L = SQRT(A^2+B^2)
-#define MECANUM_R 0.076f  //Mecanum wheel radius
+#define MECANUM_LX 0.160f  // Mecanum wheel span
+#define MECANUM_LY 0.160f  // Mecanum wheel base
+#define MECANUM_R1 0.009f  // Mecanum wheel radius 1
+#define MECANUM_R2 0.070f  // Mecanum wheel radius 2
 
 void Mecanum_Synthesis(float* xyz, float* wheel);
 void Mecanum_Decompose(float* xyz, float* wheel);

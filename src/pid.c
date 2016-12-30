@@ -31,11 +31,11 @@ void PID_Calc(PID_t *pid)
 {
 	pid->err[1] = pid->ref - pid->fdb; // calculate error
 	pid->P = (pid->kp + pid->kp_offset) * pid->err[1]; // P
-	LIMIT(pid->P, -pid->Pm, pid->Pm);
+	LIMIT(pid->P, -pid->Pmax, pid->Pmax);
 	pid->I+= (pid->ki + pid->ki_offset) * pid->err[1]; // I
-	LIMIT(pid->I, -pid->Im, pid->Im);
+	LIMIT(pid->I, -pid->Imax, pid->Imax);
 	pid->D = (pid->kd + pid->kd_offset) * (pid->err[1] - pid->err[0]); // D
-	LIMIT(pid->D, -pid->Dm, pid->Dm);
+	LIMIT(pid->D, -pid->Dmax, pid->Dmax);
 	pid->out = pid->P + pid->I + pid->D; // output
 	LIMIT(pid->out, -pid->outmax, pid->outmax);
 	pid->err[0] = pid->err[1]; // save the last err

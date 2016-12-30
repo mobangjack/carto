@@ -30,13 +30,13 @@
 #define ESC5_FEEDBACK_CAN_MSG_ID  0x205
 #define ESC6_FEEDBACK_CAN_MSG_ID  0x206
 
-typedef struct ESC
+typedef struct ESC_t
 {
 	uint16_t angle_fdb;    // angle feedback
 	uint16_t current_fdb;  // electric current feedback
 	uint16_t current_ref;  // electric current reference
-}ESC;
+}ESC_t;
 
-void ESC_Process(ESC* esc, uint8_t* data);
+void ESC_Process(ESC_t* esc, uint8_t* data);
 
 #endif

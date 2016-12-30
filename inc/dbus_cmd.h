@@ -17,7 +17,7 @@
 #ifndef __DBUS_CMD_H__
 #define __DBUS_CMD_H__
 
-#include "rc_codec.h"
+#include "dbus_codec.h"
 
 typedef uint8_t InputMode_t;
 
