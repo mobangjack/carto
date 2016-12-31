@@ -26,10 +26,10 @@ void BSP_Config(void)
 	TIM6_Config();
 	CAN1_Config();           
 	CAN2_Config(); 
-	RC_Config();
 	COM_Config();
 	Encoder_Config();
-	TIM6_Start();
+	Recv_Config();
+	//TIM6_Start();
 	LED_GREEN_ON();
 }
 

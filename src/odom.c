@@ -18,11 +18,12 @@
 
 Odom odom;
 
+/*
 void OdomTask(void)
 {
 	Mecanum_t mecanum;
 	
-	/* Velocity Synthesis */
+	// Velocity Synthesis
 	mecanum.w1 = CM1Encoder.rate;
 	mecanum.w2 = CM2Encoder.rate;
 	mecanum.w3 = CM3Encoder.rate;
@@ -34,7 +35,7 @@ void OdomTask(void)
 	odom.vy = mecanum.y * 1000;
 	odom.vz = mecanum.z * 1000;
 	
-	/* Position Synthesis */
+	// Position Synthesis
 	mecanum.w1 = CM1Encoder.angle;
 	mecanum.w2 = CM2Encoder.angle;
 	mecanum.w3 = CM3Encoder.angle;
@@ -52,4 +53,4 @@ void OdomTask(void)
 	USART3_WriteBlock((uint8_t*)&odom, sizeof(Odom));
 	
 }
-
+*/

@@ -19,7 +19,7 @@
 SwitchState_t switchStates[SWITCH_COUNT];
 SwitchEvent_t switchEvents[SWITCH_COUNT];
 
-void GetSwitchStates(RC_t* rc)
+static void GetSwitchStates(RC_t* rc)
 {
 	static uint8_t last_state[SWITCH_COUNT];
 	static uint32_t cnt[SWITCH_COUNT];
@@ -39,7 +39,7 @@ void GetSwitchStates(RC_t* rc)
 	}
 }
 
-void GetSwitchEvents(RC_t* rc)
+static void GetSwitchEvents(RC_t* rc)
 {
 	static SwitchState_t last_state[SWITCH_COUNT];
 	uint32_t i = 0;
@@ -49,7 +49,7 @@ void GetSwitchEvents(RC_t* rc)
 	}
 }
 
-void GetFunctionalState(RC_t* rc)
+static void GetFunctionalState(RC_t* rc)
 {
 	GetSwitchStates(rc);
 	GetSwitchEvents(rc);
@@ -72,14 +72,14 @@ void GetFunctionalState(RC_t* rc)
 	}
 }
 
-void GetChassisSpeedRef(RC_t* rc)
+static void GetChassisSpeedRef(RC_t* rc)
 {
 	chassisSpeedRef.x = MAP(rc->ch0, CH_MIN, CH_MAX, -CHASSIS_SPEED_MAX, CHASSIS_SPEED_MAX);
 	chassisSpeedRef.y = MAP(rc->ch1, CH_MIN, CH_MAX, -CHASSIS_SPEED_MAX, CHASSIS_SPEED_MAX);
 	chassisSpeedRef.z = MAP(rc->ch2, CH_MIN, CH_MAX, -CHASSIS_SPEED_MAX, CHASSIS_SPEED_MAX);
 }
 
-void GetGimbalsSpeedRef(RC_t* rc)
+static void GetGimbalsSpeedRef(RC_t* rc)
 {
 	gimbalsSpeedRef.y = MAP(rc->ch2, CH_MIN, CH_MAX, -GIMBALS_SPEED_MAX, GIMBALS_SPEED_MAX);
 	gimbalsSpeedRef.p = MAP(rc->ch3, CH_MIN, CH_MAX, -GIMBALS_SPEED_MAX, GIMBALS_SPEED_MAX);

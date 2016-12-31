@@ -34,6 +34,13 @@ FIFO_t* FIFO_Create(uint32_t len)
 	return fifo;
 }
 
+void FIFO_Flush(FIFO_t* fifo)
+{
+	fifo->r = fifo->buf;
+	fifo->w = fifo->buf;
+	fifo->cnt = 0;
+}
+
 uint8_t FIFO_Push(FIFO_t* fifo, uint8_t element)
 {
 	if (fifo->cnt == fifo->len) {

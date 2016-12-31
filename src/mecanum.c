@@ -32,9 +32,9 @@ static const float MECANUM_R = MECANUM_R1 + MECANUM_R2;
 
 void Mecanum_Synthesis(float* xyz, float* wheel)
 {
-	static const float coeff_x = MECANUM_R1 / 4.0f;
-	static const float coeff_y = MECANUM_R2 / 4.0f;
-	static const float coeff_z = MECANUM_R / 4.0f / MECANUM_L;
+	float coeff_x = MECANUM_R1 / 4.0f;
+	float coeff_y = MECANUM_R2 / 4.0f;
+	float coeff_z = MECANUM_R / 4.0f / MECANUM_L;
 
 	xyz[0] = ( wheel[0] + wheel[1] - wheel[2] - wheel[3]) * coeff_x;
 	xyz[1] = (-wheel[0] + wheel[1] + wheel[2] - wheel[3]) * coeff_y;

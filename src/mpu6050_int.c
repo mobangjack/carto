@@ -19,22 +19,19 @@
 void MPU6050_INT_Config(void)
 {
     GPIO_INT(MPU6050_INT_PIN, EXTI_Trigger_Falling);
-    NVIC_Config(EXTI4_IRQn, 2, 0);
+    NVIC_Config(MPU6050_NVIC, MPU6050_NVIC_PRE_PRIORITY, MPU6050_NVIC_SUB_PRIORITY);
 }
 
-void EXTI4_IRQHandler(void)         //1KHz
+void MPU6050_IRQ_HANDLER()         //1KHz
 {   
-    if(EXTI_GetITStatus(EXTI_Line4) != RESET)
+    if(EXTI_GetITStatus(MPU6050_EXTI_LINE) != RESET)
     {    
-        EXTI_ClearFlag(EXTI_Line4);          
-        EXTI_ClearITPendingBit(EXTI_Line4);
+        EXTI_ClearFlag(MPU6050_EXTI_LINE);
+        EXTI_ClearITPendingBit(MPU6050_EXTI_LINE);
 
-        MPU6050_IRQ_Handler();
+        MPU6050_Callback();
     }
 }
-
-
-
 
 
 

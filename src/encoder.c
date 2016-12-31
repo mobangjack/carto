@@ -21,7 +21,7 @@
 
 void Encoder_Config(void)
 {
-	GPIO_Encoder(
+	Encoder_Bind(
 			ENCODER_PIN_A,
 			ENCODER_PIN_B,
 			ENCODER_TIM,

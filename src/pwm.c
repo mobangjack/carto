@@ -18,13 +18,7 @@
 
 void PWM_Config(void)
 {
-    GPIO_AF(PWM_PIN_1, PWM_GPIO_AF);
-    GPIO_AF(PWM_PIN_2, PWM_GPIO_AF);
-
-    TIM_Config(PWM_TIM, 83, TIM_CounterMode_Up, 2500, TIM_CKD_DIV1);
-    TIM_OC_Config(PWM_TIM, 0xff, TIM_OCMode_PWM2, 1000);
-	
-	TIM_ARRPreloadConfig(PWM_TIM, ENABLE);
-	
+    PWM_Bind(PWM_PIN_1, PWM_PIN_2, 0, 0, PWM_TIM, 83, 2500, 1000);
+    TIM_Cmd(PWM_TIM, ENABLE);
 	PWM_OFF();
 }

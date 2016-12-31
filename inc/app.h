@@ -17,23 +17,22 @@
 #ifndef __APP_H__
 #define __APP_H__
 
-// chip series
-#include <com.h>
-#include <encoder.h>
-#include <esc.h>
+// platform
 #include "platform.h"
 
 // standard c libraries
 #include <math.h>
-#include <rc.h>
+
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
-#include <sysctl.h>
+
+#include "sysctl.h"
 
 // board supported packages
 #include "bsp.h"
 #include "led.h"
+#include "com.h"
 #include "esc.h"
 #include "imu.h"
 #include "pwm.h"
@@ -44,6 +43,7 @@
 #include "motor.h"
 #include "zgyro.h"
 #include "encoder.h"
+#include "receiver.h"
 
 // kits
 #include "pid.h"
@@ -72,7 +72,7 @@
 
 // commonly used macros
 #define PI 3.1415926f
-#define PI2 6.2831855f
+//#define PI2 6.2831855f
 #define PIOVER180 (PI/180.f)
 #define MAP(val,min1,max1,min2,max2) ((val-min1)*(max2-min2)/(max1-min1)+min2)
 #define SQR(x) (x*x)

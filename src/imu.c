@@ -1,5 +1,5 @@
 #include "main.h"
-
+/*
 volatile float exInt, eyInt, ezInt;  //
 volatile float q0 = 1.0f;
 volatile float q1 = 0.0f;
@@ -350,3 +350,4 @@ void GetPitchYawGxGyGz()
 	pitch_angle = angle[1];
     roll_angle = angle[2];	
 }
+*/

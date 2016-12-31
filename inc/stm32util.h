@@ -215,22 +215,72 @@ typedef uint32_t GPIO;
 #define PK14 GPIO_BASE(K,14)
 #define PK15 GPIO_BASE(K,15)
 
-#define GPIO_SET(gpio)    GPIO_SetBits(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio))
-#define GPIO_RST(gpio)    GPIO_ResetBits(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio))
-#define GPIO_TOG(gpio)    GPIO_ToggleBits(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio))
-#define GPIO_READ_IN(gpio)   GPIO_ReadInputDataBit(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio))
-#define GPIO_READ_OUT(gpio)   GPIO_ReadOutputDataBit(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio))
-#define GPIO_WRITE(gpio,v)  GPIO_WriteBit(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio), (v) > 0 ? Bit_SET : Bit_RESET)
+#define GPIO_SET(gpio) GPIO_SetBits(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio))
+#define GPIO_RST(gpio) GPIO_ResetBits(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio))
+#define GPIO_TOG(gpio) GPIO_ToggleBits(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio))
+#define GPIO_READ_IN(gpio) GPIO_ReadInputDataBit(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio))
+#define GPIO_READ_OUT(gpio) GPIO_ReadOutputDataBit(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio))
+#define GPIO_WRITE(gpio,v) GPIO_WriteBit(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio), (v) > 0 ? Bit_SET : Bit_RESET)
 
-#define IRQ_HANDLER(NAME) (NAME##_IRQHandler())
+#define GPIO_BIND(PIN,TO) do { if (IS_VALID_GPIO(PIN)) GPIO_AF(rx,GPIO_AF_##TO); } while(0)
+
+#define USART_BIND(RX,TX,USART,BR,WL,PR,SB,FC) do { \
+	if (IS_VALID_GPIO(RX) && IS_VALID_GPIO(TX)) { \
+		GPIO_AF(RX,GPIO_AF_##USART); \
+		GPIO_AF(TX,GPIO_AF_##USART); \
+		USART_Config(USART, ' ', BR, WL, PR, SB, FC); \
+	} else if (IS_VALID_GPIO(RX)) { \
+		GPIO_AF(RX,GPIO_AF_##USART); \
+		USART_Config(USART, 'r', BR, WL, PR, SB, FC); \
+	} else if (IS_VALID_GPIO(TX)) { \
+		GPIO_AF(TX,GPIO_AF_##USART); \
+		USART_Config(USART, 't', BR, WL, PR, SB, FC); \
+	} \
+} while(0)
+
+#define PWM_BIND(A,B,C,D,TIM,PS,PD,PW) do { \
+	uint8_t channel = 0; \
+	if (IS_VALID_GPIO(A)) { \
+		GPIO_AF(A, GPIO_AF_##TIM); \
+		channel |= 0x01; \
+	} \
+	if (IS_VALID_GPIO(B)) { \
+		GPIO_AF(B, GPIO_AF_##TIM); \
+		channel |= 0x02; \
+	} \
+	if (IS_VALID_GPIO(C)) { \
+		GPIO_AF(C, GPIO_AF_##TIM); \
+		channel |= 0x04; \
+	} \
+	if (IS_VALID_GPIO(D)) { \
+		GPIO_AF(D, GPIO_AF_##TIM); \
+		channel |= 0x08; \
+	} \
+	TIM_Config(TIM, PS, TIM_CounterMode_Up, PD, TIM_CKD_DIV1, 0); \
+	TIM_OC_Config(TIM, channel, TIM_OCMode_PWM2, PW); \
+	TIM_ARRPreloadConfig(TIM, ENABLE); \
+	TIM_Cmd(TIM, ENABLE); \
+} while(0)
+
+/*
+#define EXTI_BIND(PIN) do { \
+	\
+while(0)
+*/
+
+#define IRQ_HANDLER(NAME) NAME##_IRQHandler
+
+typedef void* (*Callback)(void* p);
 
 void GPIO_Config(GPIO gpio, GPIOMode_TypeDef mode, GPIOSpeed_TypeDef speed, GPIOOType_TypeDef otype, GPIOPuPd_TypeDef pupd);
 void GPIO_IN(GPIO gpio);
 void GPIO_OUT(GPIO gpio);
 void GPIO_AF(GPIO gpio, u8 af);
 void GPIO_INT(GPIO gpio, EXTITrigger_TypeDef trig);
-void GPIO_Encoder(GPIO A, GPIO B, TIM_TypeDef* timx, u16 mode, u16 IC1Polarity, u16 IC2Polarity);
+void Encoder_Bind(GPIO A, GPIO B, TIM_TypeDef* timx, u16 mode, u16 IC1Polarity, u16 IC2Polarity);
+void USART_Bind(GPIO rx, GPIO tx, USART_TypeDef* usartx, u32 br, u8 wl, s8 parity, float sb, s8 fc);
 void USART_Config(USART_TypeDef* usartx, s8 mode, u32 br, u8 wl, s8 parity, float sb, s8 fc);
+void PWM_Bind(GPIO A, GPIO B, GPIO C, GPIO D, TIM_TypeDef* timx, u16 ps, u32 period, u32 pulse);
 void TIM_Config(TIM_TypeDef* timx, u16 ps, u16 mode, u32 period, u16 div, u8 re);
 void TIM_OC_Config(TIM_TypeDef* timx, u8 channel, u16 mode, u32 pulse);
 void NVIC_Config(u8 channel, u8 pre, u8 sub);

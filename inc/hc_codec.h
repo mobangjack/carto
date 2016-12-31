@@ -17,6 +17,8 @@
 #ifndef __HC_CODEC_H__
 #define __HC_CODEC_H__
 
+#include <stdint.h>
+
 /* ----------------------- PC Mouse Value Definition------------------------------ */
 #define MOUSE_SPEED_MIN            	 ((int16_t)-32768 )
 #define MOUSE_SPEED_MID              ((int16_t)0      )

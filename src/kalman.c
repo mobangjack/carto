@@ -1,8 +1,24 @@
+/**
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 #include "kalman.h"
 
 #define SQR(x) (x*x)
 
-struct Kalman* KalmanCreate()
+Kalman_t* KalmanCreate()
 {
   Kalman_t* kalman = (Kalman_t*)malloc(sizeof(Kalman_t));
   if (kalman == NULL) return NULL;
@@ -10,7 +26,7 @@ struct Kalman* KalmanCreate()
   return kalman;
 }
 
-void KalmanReset(struct Kalman* kalman)
+void KalmanReset(Kalman_t* kalman)
 {
   kalman->e = 0;
   kalman->d = 0;
@@ -18,27 +34,27 @@ void KalmanReset(struct Kalman* kalman)
   kalman->p = 0;
 }
 
-void KalmanSetE(struct Kalman* kalman, float e)
+void KalmanSetE(Kalman_t* kalman, float e)
 {
   kalman->e = e;
 }
 
-void KalmanSetD(struct Kalman* kalman, float d)
+void KalmanSetD(Kalman_t* kalman, float d)
 {
   kalman->d = d;
 }
 
-void KalmanSetQ(struct Kalman* kalman, float q)
+void KalmanSetQ(Kalman_t* kalman, float q)
 {
   kalman->q = q;
 }
 
-void KalmanSetR(struct Kalman* kalman, float r)
+void KalmanSetR(Kalman_t* kalman, float r)
 {
   kalman->r = r;
 }
 
-float KalmanFilter(struct Kalman* kalman, float x) {
+float KalmanFilter(Kalman_t* kalman, float x) {
   // update
   kalman->e += kalman->d;
   kalman->p += kalman->q;
@@ -50,7 +66,7 @@ float KalmanFilter(struct Kalman* kalman, float x) {
   return kalman->e;
 }
 
-void KalmanDestroy(struct Kalman* kalman)
+void KalmanDestroy(Kalman_t* kalman)
 {
   if (kalman != NULL) {
     free(kalman);

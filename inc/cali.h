@@ -43,21 +43,21 @@ typedef uint32_t CaliFlag_t;
 #define CALI_FLAG_NONE   0x00
 #define CALI_FLAG_DONE   0x5A
 
-typedef __packed struct
+typedef struct
 {
 	int16_t max;
 	int16_t min;
 	int16_t offset;
 }PosCali_t;
 
-typedef __packed struct
+typedef struct
 {
 	float kp;
 	float ki;
 	float kd;
 }PIDCali_t;
 
-typedef __packed struct
+typedef struct
 {
 	Version_t version;
 	CaliFlag_t caliFlag;
@@ -69,7 +69,7 @@ typedef __packed struct
 	PIDCali_t yawSpdPID;
 }Cali_t;
 
-uint8_t Cali_Get(Cali_t* cali);
+void Cali_Get(Cali_t* cali);
 uint8_t Cali_Set(Cali_t* cali);
 
 #endif

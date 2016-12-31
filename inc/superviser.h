@@ -72,19 +72,5 @@ void Superviser_Feed(uint8_t i);
 uint32_t Superviser_GetErrorCode(void);
 uint8_t Superviser_IsErrorSet(uint32_t mask);
 
-extern const uint32_t LOST_COUNTER[LOST_COUNTER_NUM] = {
-		LOST_COUNTER_NUM_RC,
-		LOST_COUNTER_NUM_CALI,
-		LOST_COUNTER_NUM_API,
-		LOST_COUNTER_NUM_IMU,
-		LOST_COUNTER_NUM_ZGYRO,
-		LOST_COUNTER_NUM_MOTOR,
-		LOST_COUNTER_NUM_MOTOR,
-		LOST_COUNTER_NUM_MOTOR,
-		LOST_COUNTER_NUM_MOTOR,
-		LOST_COUNTER_NUM_MOTOR,
-		LOST_COUNTER_NUM_MOTOR,
-};
-
 #endif
 

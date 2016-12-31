@@ -23,7 +23,6 @@ int main(void)
 	{
 		if(Micros() % 10000 == 0)
 		{
-			OdomTask();
 		}
     }
 }

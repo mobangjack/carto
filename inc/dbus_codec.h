@@ -17,6 +17,9 @@
 #ifndef __DBUS_CODEC_H__
 #define __DBUS_CODEC_H__
 
+#include "rc_codec.h"
+#include "hc_codec.h"
+
 #define HC_OFFSET 6
 
 typedef struct

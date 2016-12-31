@@ -19,17 +19,17 @@
 void HC_ENC(HC_t* hc, uint8_t* buf)
 {
 	buf[0] = hc->mouse.x;
-	buf[1] = hc->mouse.x>>8;
+	buf[1] = hc->mouse.x >> 8;
 	buf[2] = hc->mouse.y;
-	buf[3] = hc->mouse.y>>8;
+	buf[3] = hc->mouse.y >> 8;
 	buf[4] = hc->mouse.z;
-	buf[5] = hc->mouse.z>>8;
+	buf[5] = hc->mouse.z >> 8;
 	buf[6] = hc->mouse.b[MOUSE_BUTTON_INDEX_LEFT];
 	buf[7] = hc->mouse.b[MOUSE_BUTTON_INDEX_RIGHT];
 	buf[8] = hc->key.val;
-	buf[9] = hc->key.val>>8;
+	buf[9] = hc->key.val >> 8;
 	buf[10] = hc->res.val;
-	buf[11] = hc->res.val>>8;
+	buf[11] = hc->res.val >> 8;
 }
 
 void HC_DEC(HC_t* hc, uint8_t* buf)

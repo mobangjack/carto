@@ -45,13 +45,6 @@ typedef struct
 	float p;
 }GimbalsSpeedRef_t;
 
-typedef struct
-{
-	FunctionalState_t functionalState;
-	ChassisSpeedRef_t chassisSpeedRef;
-	GimbalsSpeedRef_t gimbalsSpeedRef;
-}SYS_t;
-
 extern FunctionalState_t functionalState;
 extern ChassisSpeedRef_t chassisSpeedRef;
 extern GimbalsSpeedRef_t gimbalsSpeedRef;

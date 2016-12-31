@@ -29,15 +29,15 @@ void CAN2_Config(void)
 
     CAN_Filter_Config(0x0000, 0x0000, 0x0000, 0x0000, 0, 14);
     
-    CAN_ITConfig(CAN2,CAN_IT_FMP0,ENABLE);
-    CAN_ITConfig(CAN2,CAN_IT_TME,ENABLE);
+    CAN_ITConfig(CAN2,CAN_IT_FMP0, ENABLE);
+    CAN_ITConfig(CAN2,CAN_IT_TME, ENABLE);
 }
 
 void CAN2_TX_IRQHandler(void)
 {
 	if (CAN_GetITStatus(CAN2,CAN_IT_TME)!= RESET)
 	{
-	   CAN_ClearITPendingBit(CAN2,CAN_IT_TME);
+		CAN_ClearITPendingBit(CAN2,CAN_IT_TME);
 	}
 }
 

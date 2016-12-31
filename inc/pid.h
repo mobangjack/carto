@@ -23,7 +23,7 @@ extern "C" {
 	
 #include <stdint.h>
 	
-typedef struct PID
+typedef struct
 {
 	float ref;
 	float fdb;
@@ -42,8 +42,6 @@ typedef struct PID
 	float kp_offset;
 	float ki_offset;
 	float kd_offset;
-	void (*Calc)(struct PID_t *pid);
-	void (*Reset)(struct PID_t *pid);
 }PID_t;
 
 void PID_Reset(PID_t *pid);

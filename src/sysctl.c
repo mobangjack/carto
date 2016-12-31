@@ -42,8 +42,9 @@ Ramp_t GMPSpeedRamp = RAMP_DEFAULT;
 ChassisCurrent_t chassisCurrent;
 GimbalsCurrent_t gimbalsCurrent;
 
-float ZGyroAngle = 0;
+//float ZGyroAngle = 0;
 
+/*
 void WorkingStateSM(void)
 {
 	static WorkingState_t lastWorkingState = WORKING_STATE_PREPARE;
@@ -82,7 +83,8 @@ void WorkingStateSM(void)
 		}break;
 	}
 }
-
+*/
+/*
 void CMControlLoop(void)
 {
 	Mecanum_t mecanum;
@@ -162,4 +164,4 @@ void Control(void)
 	}
 	
 }
-
+*/

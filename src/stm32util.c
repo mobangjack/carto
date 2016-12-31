@@ -74,7 +74,7 @@ void GPIO_INT(GPIO gpio, EXTITrigger_TypeDef trig)
 	EXIT_Config(pinMsk, EXTI_Mode_Interrupt, trig);
 }
 
-void GPIO_Encoder(GPIO A, GPIO B, TIM_TypeDef* timx, u16 mode, u16 IC1Polarity, u16 IC2Polarity)
+void Encoder_Bind(GPIO A, GPIO B, TIM_TypeDef* timx, u16 mode, u16 IC1Polarity, u16 IC2Polarity)
 {
 	if (timx == TIM1) {
 		RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE);
@@ -154,6 +154,34 @@ void GPIO_Encoder(GPIO A, GPIO B, TIM_TypeDef* timx, u16 mode, u16 IC1Polarity, 
 	TIM_Cmd(timx, ENABLE);
 }
 
+void USART_Bind(GPIO rx, GPIO tx, USART_TypeDef* usartx, u32 br, u8 wl, s8 parity, float sb, s8 fc)
+{
+	if (usartx == USART1) {
+		USART_BIND(rx, tx, USART1, br, wl, parity, sb, fc);
+	}
+	if (usartx == USART2) {
+		USART_BIND(rx, tx, USART2, br, wl, parity, sb, fc);
+	}
+	if (usartx == USART3) {
+		USART_BIND(rx, tx, USART3, br, wl, parity, sb, fc);
+	}
+	if (usartx == UART4) {
+		USART_BIND(rx, tx, UART4, br, wl, parity, sb, fc);
+	}
+	if (usartx == UART5) {
+		USART_BIND(rx, tx, UART5, br, wl, parity, sb, fc);
+	}
+	if (usartx == USART6) {
+		USART_BIND(rx, tx, USART6, br, wl, parity, sb, fc);
+	}
+	if (usartx == UART7) {
+		USART_BIND(rx, tx, UART7, br, wl, parity, sb, fc);
+	}
+	if (usartx == UART8) {
+		USART_BIND(rx, tx, UART8, br, wl, parity, sb, fc);
+	}
+}
+
 void USART_Config(USART_TypeDef* usartx, s8 mode, u32 br, u8 wl, s8 parity, float sb, s8 fc)
 {
 	USART_InitTypeDef usart;
@@ -226,6 +254,52 @@ void USART_Config(USART_TypeDef* usartx, s8 mode, u32 br, u8 wl, s8 parity, floa
 		usart.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
 	}
 	USART_Init(usartx, &usart);
+}
+
+void PWM_Bind(GPIO A, GPIO B, GPIO C, GPIO D, TIM_TypeDef* timx, u16 ps, u32 period, u32 pulse)
+{
+	if (timx == TIM1) {
+		PWM_BIND(A, B, C, D, TIM1, ps, period, pulse);
+	}
+	if (timx == TIM2) {
+		PWM_BIND(A, B, C, D, TIM2, ps, period, pulse);
+	}
+	if (timx == TIM3) {
+		PWM_BIND(A, B, C, D, TIM3, ps, period, pulse);
+	}
+	if (timx == TIM4) {
+		PWM_BIND(A, B, C, D, TIM4, ps, period, pulse);
+	}
+	if (timx == TIM5) {
+		PWM_BIND(A, B, C, D, TIM5, ps, period, pulse);
+	}
+	if (timx == TIM6) {
+		//PWM_BIND(A, B, C, D, TIM6, ps, period, pulse);
+	}
+	if (timx == TIM7) {
+		//PWM_BIND(A, B, C, D, TIM7, ps, period, pulse);
+	}
+	if (timx == TIM8) {
+		PWM_BIND(A, B, C, D, TIM8, ps, period, pulse);
+	}
+	if (timx == TIM9) {
+		PWM_BIND(A, B, C, D, TIM9, ps, period, pulse);
+	}
+	if (timx == TIM10) {
+		PWM_BIND(A, B, C, D, TIM10, ps, period, pulse);
+	}
+	if (timx == TIM11) {
+		PWM_BIND(A, B, C, D, TIM11, ps, period, pulse);
+	}
+	if (timx == TIM12) {
+		PWM_BIND(A, B, C, D, TIM12, ps, period, pulse);
+	}
+	if (timx == TIM13) {
+		PWM_BIND(A, B, C, D, TIM13, ps, period, pulse);
+	}
+	if (timx == TIM14) {
+		PWM_BIND(A, B, C, D, TIM14, ps, period, pulse);
+	}
 }
 
 void TIM_Config(TIM_TypeDef* timx, u16 ps, u16 mode, u32 period, u16 div, u8 re)

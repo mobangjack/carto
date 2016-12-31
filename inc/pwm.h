@@ -26,7 +26,6 @@
 #define PWM_PIN_2 PA1
 
 #define PWM_TIM TIM5
-#define PWM_GPIO_AF GPIO_AF_TIM5
 
 #define PWM1 PWM_TIM->CCR1
 #define PWM2 PWM_TIM->CCR2

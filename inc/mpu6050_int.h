@@ -20,9 +20,14 @@
 #include "stm32util.h"
 
 #define MPU6050_INT_PIN PA4
+#define MPU6050_NVIC EXTI4_IRQn
+#define MPU6050_NVIC_PRE_PRIORITY 2
+#define MPU6050_NVIC_SUB_PRIORITY 0
+#define MPU6050_EXTI_LINE GPIO_PIN_MSK(MPU6050_INT_PIN)
+#define MPU6050_IRQ_HANDLER IRQ_HANDLER(EXTI4)
 
 void MPU6050_INT_Config(void);
 
-extern void MPU6050_IRQ_Handler(void);
+void MPU6050_Callback();
 
 #endif

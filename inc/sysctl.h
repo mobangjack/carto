@@ -19,6 +19,8 @@
 
 #include <stdint.h>
 
+#include "pid.h"
+
 typedef uint8_t WorkingState_t;
 
 #define WORKING_STATE_PREPARE 0x00
@@ -50,16 +52,14 @@ typedef struct
 	.P = 0,\
 	.I = 0,\
 	.D = 0,\
-	.Pm = 4900,\
-	.Im = 3500,\
-	.Dm = 1500,\
+	.Pmax = 4900,\
+	.Imax = 3500,\
+	.Dmax = 1500,\
 	.out = 0,\
 	.outmax = 4950,\
 	.kp_offset = 0,\
 	.ki_offset = 0,\
 	.kd_offset = 0,\
-	&PID_Calc,\
-	&PID_Reset,\
 }\
 
 #define CM_SPEED_PID_DEFAULT \
@@ -73,16 +73,14 @@ typedef struct
 	.P = 0,\
 	.I = 0,\
 	.D = 0,\
-	.Pm = 4900,\
-	.Im = 3500,\
-	.Dm = 1500,\
+	.Pmax = 4900,\
+	.Imax = 3500,\
+	.Dmax = 1500,\
 	.out = 0,\
 	.outmax = 4950,\
 	.kp_offset = 0,\
 	.ki_offset = 0,\
 	.kd_offset = 0,\
-	&PID_Calc,\
-	&PID_Reset,\
 }\
 
 #define GM_SPEED_PID_DEFAULT \
@@ -96,16 +94,14 @@ typedef struct
 	.P = 0,\
 	.I = 0,\
 	.D = 0,\
-	.Pm = 4900,\
-	.Im = 3500,\
-	.Dm = 1500,\
+	.Pmax = 4900,\
+	.Imax = 3500,\
+	.Dmax = 1500,\
 	.out = 0,\
 	.outmax = 4950,\
 	.kp_offset = 0,\
 	.ki_offset = 0,\
 	.kd_offset = 0,\
-	&PID_Calc,\
-	&PID_Reset,\
 }\
 
 #define CM_SPEED_RAMP_DEFAULT \

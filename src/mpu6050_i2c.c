@@ -112,7 +112,7 @@ uint8_t MPU6050_IIC_ReadByte(void)
 		MPU6050_IIC_Delay(1);
 		MPU6050_IIC_SCL_H();
 		byte <<= 1;
-		if(IIC_SDA_Read()) {
+		if(MPU6050_IIC_SDA_READ()) {
 		   byte++;
 		}
 		MPU6050_IIC_Delay(1);

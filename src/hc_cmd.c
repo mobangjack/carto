@@ -63,12 +63,21 @@ void GetFunctionalState(HC_t* hc)
 	}
 }
 
+MAFilter_t* fx = NULL;
+MAFilter_t* fy = NULL;
+MAFilter_t* fz = NULL;
 void GetChassisSpeedRef(HC_t* hc)
 {
-	static MAFilter_t* fx = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
-	static MAFilter_t* fy = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
-	static MAFilter_t* fz = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
-	static const float speed = (hc->key.val & KEY_SHIFT) ? CHASSIS_SPEED_MAX : CHASSIS_SPEED_MAX / 2.f;
+	float speed = (hc->key.val & KEY_SHIFT) ? CHASSIS_SPEED_MAX : CHASSIS_SPEED_MAX / 2.f;
+	if (fx == NULL) {
+		fx = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
+	}
+	if (fy == NULL) {
+		fy = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
+	}
+	if (fz == NULL) {
+		fz = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
+	}
 	float vx = (hc->key.val & KEY_A) ? -speed : ((hc->key.val & KEY_D) ? speed : 0);
 	float vy = (hc->key.val & KEY_S) ? -speed : ((hc->key.val & KEY_W) ? speed : 0);
 	float vz = MAP(hc->mouse.x, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -GIMBALS_SPEED_MAX, GIMBALS_SPEED_MAX);

@@ -20,28 +20,28 @@ FIFO_t* fifo = NULL;
 
 void COM_Config(void)
 {
-    GPIO_AF(COM_TX_PIN, COM_GPIO_AF);
-    GPIO_AF(COM_RX_PIN, COM_GPIO_AF);
-
-    USART_Config(COM_USART, ' ', 115200, 8, 'n', 1, ' ');
+    USART_Bind(COM_RX_PIN, COM_TX_PIN, COM_USART, COM_BR, COM_WL, COM_PR, COM_SB, COM_FC);
 
     USART_ITConfig(COM_USART,USART_IT_RXNE, ENABLE);
 
     USART_Cmd(COM_USART, ENABLE);
 
-    NVIC_Config(COM_NVIC, 1, 0);
+    NVIC_Config(COM_NVIC, COM_NVIC_PRE_PRIORITY, COM_NVIC_SUB_PRIORITY);
 
-	fifo = FIFO_Create(COM_TX_FIFO_SIZE);
+    if (fifo == NULL) {
+    	fifo = FIFO_Create(COM_TX_FIFO_SIZE);
+    } else {
+    	FIFO_Flush(fifo);
+    }
 }
 
-
-void COM_WriteByte(uint8_t byte)
+void COM_WriteByte(u8 byte)
 {    
     FIFO_Push(fifo, byte);
     USART_ITConfig(COM_USART, USART_IT_TXE, ENABLE);
 }
 
-void COM_Write(uint8_t* pdata, uint8_t len)
+void COM_Write(u8* pdata, u8 len)
 {
 	uint8_t i = 0;
 	for (; i < len; i++) {

@@ -19,26 +19,34 @@
 
 #include "stm32util.h"
 #include "fifo.h"
+#include <stdio.h>
 
 /* COM Port, USE USART3 BY DEFAULT */
 
 /*-----USART3_TX-----PB10-----*/
 /*-----USART3_RX-----PB11-----*/
-
-#define COM_USART USART3
-#define COM_IRQ_HANDLER() IRQ_HANDLER(USART3)
-#define COM_NVIC USART3_IRQn
-#define COM_GPIO_AF GPIO_AF_USART3
 #define COM_TX_PIN PB10
 #define COM_RX_PIN PB11
+#define COM_USART USART3
+#define COM_BR 115200
+#define COM_WL 8
+#define COM_PR 'N'
+#define COM_SB 1
+#define COM_FC 'N'
+
+#define COM_NVIC USART3_IRQn
+#define COM_NVIC_PRE_PRIORITY 1
+#define COM_NVIC_SUB_PRIORITY 0
+
+#define COM_IRQ_HANDLER IRQ_HANDLER(USART3)
 
 #define COM_TX_FIFO_SIZE 256u
 
 void COM_Config(void);
 
-void COM_WriteByte(uint8_t byte);
-void COM_Write(uint8_t* pdata, uint8_t len);
+void COM_WriteByte(u8 byte);
+void COM_Write(u8* pdata, u8 len);
 
-extern void COM_Callback(u8 data);
+void COM_Callback(u8 data);
 
 #endif

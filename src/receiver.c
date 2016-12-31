@@ -14,15 +14,13 @@
  * limitations under the License.
  */
  
-#include "rc.h"
+#include "receiver.h"
 
 uint8_t buf[2][RC_DMA_BUF_SIZE];
 
-void RC_Config(void)
+void Recv_Config(void)
 {
-	GPIO_AF(RC_SIGNAL_PIN, GPIO_AF_USART3);
-
-	USART_Config(RC_USART, 'r', 10000, 8, 'e', 1, ' ');
+	USART_Bind(RC_SIGNAL_PIN,  0, RC_USART, RC_BR, RC_WL, RC_PR, RC_SB, RC_FC);
 
     USART_DMACmd(RC_USART, USART_DMAReq_Rx, ENABLE);
     
@@ -33,7 +31,7 @@ void RC_Config(void)
     
     DMA_Cmd(RC_DMA_STREAM, ENABLE);
     
-    NVIC_Config(RC_NVIC, 0, 0);
+    NVIC_Config(RC_NVIC, RC_NVIC_PRE_PRIORITY, RC_NVIC_SUB_PRIORITY);
     
 	USART_ITConfig(RC_USART, USART_IT_IDLE, ENABLE); // 14mspf
     USART_Cmd(RC_USART, ENABLE);
@@ -46,7 +44,7 @@ void RC_IRQ_HANDLER()
 	{
 		uint8_t* dbuf = buf[0];
 
-		uint32_t rx_len = 0;
+		uint16_t rx_len = 0;
 
 		//clear the idle pending flag 
 		(void)RC_USART->SR;
@@ -54,7 +52,7 @@ void RC_IRQ_HANDLER()
 
 		DMA_Cmd(RC_DMA_STREAM, DISABLE);
 		rx_len = RC_DMA_BUF_SIZE - DMA_GetCurrDataCounter(RC_DMA_STREAM);
-		RC_DMA_STREAM->NDTR = (uint16_t)RC_DMA_BUF_SIZE;     //relocate the dma memory pointer to the beginning position
+		RC_DMA_STREAM->NDTR = (uint16_t)RC_DMA_BUF_SIZE;     //relocate the DMA memory pointer to the beginning position
 		//Target is Memory0
 		if(DMA_GetCurrentMemoryTarget(RC_DMA_STREAM) == 0)
 		{

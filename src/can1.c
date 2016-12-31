@@ -27,12 +27,11 @@ void CAN1_Config(void)
 	//CAN BaudRate 42/(1+9+4)/3=1Mbps
 	CAN_Config(CAN1, 3, 0, CAN_SJW_1tq, CAN_BS1_9tq, CAN_BS2_4tq);
 
-	CAN_Filter_Config(0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0, 0);
+	CAN_Filter_Config(0x0000, 0x0000, 0x0000, 0x0000, 0, 0);
 
 	CAN_ITConfig(CAN1,CAN_IT_FMP0, ENABLE);
 	CAN_ITConfig(CAN1,CAN_IT_TME, ENABLE);
 }
-
 
 void CAN1_TX_IRQHandler(void)
 {

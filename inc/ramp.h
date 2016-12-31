@@ -30,12 +30,6 @@ typedef struct Ramp
 	uint32_t count;
 	uint32_t scale;
 	float output;
-	void (*Init)(struct Ramp_t* ramp, uint32_t scale);
-	float (*Calc)(struct Ramp_t* ramp);
-	void (*SetCounter)(struct Ramp_t* ramp, uint32_t count);
-	void (*ResetCounter)(struct Ramp_t* ramp);
-	void (*SetScale)(struct Ramp_t* ramp, uint32_t scale);
-	uint8_t (*IsOverflow)(struct Ramp_t* ramp);
 }Ramp_t;
 
 void Ramp_Init(Ramp_t* ramp, uint32_t scale);
@@ -48,13 +42,7 @@ uint8_t Ramp_IsOverflow(Ramp_t* ramp);
 #define RAMP_DEFAULT { \
 	.count = 0, \
 	.scale = RAMP_SCALE_DEFAULT, \
-	.output = 0, \
-	.Init = &Ramp_Init, \
-	.Calc = &Ramp_Calc, \
-	.SetCounter = &Ramp_SetCounter, \
-	.ResetCounter = &Ramp_ResetCounter, \
-	.SetScale = &Ramp_SetScale, \
-	.IsOverflow = Ramp_IsOverflow, \
+	.output = 0 \
 } \
 	
 #ifdef __cpluplus
