@@ -46,6 +46,7 @@
 									<listOptionValue builtIn="false" value="STM32F40XX"/>
 									<listOptionValue builtIn="false" value="STM32F40_41xxx"/>
 								</option>
+								<option id="gnu.c.compiler.option.dialect.std.244914566" superClass="gnu.c.compiler.option.dialect.std" useByScannerDiscovery="true" value="gnu.c.compiler.dialect.default" valueType="enumerated"/>
 								<inputType id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.c.118055593" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.c"/>
 								<inputType id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.s.519262609" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.s"/>
 							</tool>
@@ -68,9 +69,13 @@
 							<tool id="fr.ac6.managedbuild.tool.gnu.cross.cpp.linker.1461707022" name="MCU G++ Linker" superClass="fr.ac6.managedbuild.tool.gnu.cross.cpp.linker"/>
 							<tool id="fr.ac6.managedbuild.tool.gnu.archiver.1327951890" name="MCU GCC Archiver" superClass="fr.ac6.managedbuild.tool.gnu.archiver"/>
 							<tool id="fr.ac6.managedbuild.tool.gnu.cross.assembler.383744392" name="MCU GCC Assembler" superClass="fr.ac6.managedbuild.tool.gnu.cross.assembler">
-								<option id="gnu.both.asm.option.include.paths.1993940524" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+								<option id="gnu.both.asm.option.include.paths.1993940524" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/stm32f405rg_stdperiph_lib}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/carto/usr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/carto/app/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/carto/srv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/carto/asp/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/carto/bsp/inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/stm32f405rg_stdperiph_lib/CMSIS/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/stm32f405rg_stdperiph_lib/CMSIS/device}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/stm32f405rg_stdperiph_lib/StdPeriph_Driver/inc}&quot;"/>

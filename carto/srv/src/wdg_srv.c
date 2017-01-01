@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include <wdg_srv.h>
+#include "wdg_srv.h"
 
 const uint32_t LOST_COUNTER[LOST_COUNTER_NUM] = {
 		LOST_COUNTER_NUM_RC,

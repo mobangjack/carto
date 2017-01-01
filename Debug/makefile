@@ -29,7 +29,7 @@ endif
 all: carto_alpha.elf
 
 dependents:
-	-cd /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/Debug && $(MAKE) all
+	-cd /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/Debug && $(MAKE) clean all
 
 # Tool invocations
 carto_alpha.elf: $(OBJS) $(USER_OBJS) /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/Debug/libstm32f405rg_stdperiph_lib.a
