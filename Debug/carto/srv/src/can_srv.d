@@ -1,6 +1,7 @@
 carto/srv/src/can_srv.o: ../carto/srv/src/can_srv.c \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/srv/inc/can_srv.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/asp.h \
+ /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/cbus.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/crc16.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/dbus.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/fifo.h \
@@ -68,6 +69,8 @@ carto/srv/src/can_srv.o: ../carto/srv/src/can_srv.c \
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/srv/inc/can_srv.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/asp.h:
+
+/home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/cbus.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/crc16.h:
 

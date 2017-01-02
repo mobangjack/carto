@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,20 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#ifndef __ASP_H__
-#define __ASP_H__
 
-#include "cbus.h"
-#include "crc16.h"
-#include "dbus.h"
-#include "fifo.h"
-#include "gauss.h"
-#include "kalman.h"
-#include "mafilter.h"
-#include "mecanum.h"
-#include "pid.h"
-#include "ramp.h"
+#ifndef __ECD_H__
+#define __ECD_H__
+
+#include "motor.h"
+#include <stdint.h>
+
+#define MOTOR_NUM 6
+
+typedef struct
+{
+	int32_t raw;  // raw value
+	int32_t rnd;  // round
+	int32_t dif;  // difference
+	int32_t con;  // continuous value
+	int32_t exp;  // expected continuous value
+	int32_t arc;  // arc
+	float deg;    // expected value in degree
+	float rad;    // expected value in radian
+	float vel;    // velocity
+}ECD_t;
+
+void ECD_PROC(uint8_t i, uint8_t* data);
+
+extern ECD_t ecd[MOTOR_NUM];
 
 #endif
-

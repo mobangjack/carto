@@ -17,9 +17,8 @@
 #ifndef __RCV_SRV_H__
 #define __RCV_SRV_H__
 
-#include "asp.h"
-#include "bsp.h"
-
-extern DBUS_t dbus;
+#include "cmd.h"
+#include "rcv.h"
+#include "wdg.h"
 
 #endif

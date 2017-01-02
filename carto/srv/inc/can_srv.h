@@ -17,18 +17,12 @@
 #ifndef __CAN_SRV_H__
 #define __CAN_SRV_H__
 
-#include "asp.h"
-#include "bsp.h"
+#include "ecd.h"
 #include "wdg.h"
+#include "zgyro.h"
 
 #define MOTOR_NUM 6
 
-typedef struct
-{
-	uint32_t round;
-	float angle;
-	float rate;
-}ECD_t;
 
 extern ECD_t ECD[MOTOR_NUM];
 extern float ZGyroAngle;

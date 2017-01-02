@@ -16,53 +16,53 @@
 
 #include "wdg.h"
 
-const uint32_t LOST_COUNTER[LOST_COUNTER_NUM] = {
-		LOST_COUNTER_NUM_RC,
-		LOST_COUNTER_NUM_CALI,
-		LOST_COUNTER_NUM_API,
-		LOST_COUNTER_NUM_IMU,
-		LOST_COUNTER_NUM_ZGYRO,
-		LOST_COUNTER_NUM_MOTOR,
-		LOST_COUNTER_NUM_MOTOR,
-		LOST_COUNTER_NUM_MOTOR,
-		LOST_COUNTER_NUM_MOTOR,
-		LOST_COUNTER_NUM_MOTOR,
-		LOST_COUNTER_NUM_MOTOR,
+const uint32_t WDG[WDG_NUM] = {
+		WDG_OVERFLOW_CNT_RC,
+		WDG_OVERFLOW_CNT_CALI,
+		WDG_OVERFLOW_CNT_API,
+		WDG_OVERFLOW_CNT_IMU,
+		WDG_OVERFLOW_CNT_ZGYRO,
+		WDG_OVERFLOW_CNT_MOTOR,
+		WDG_OVERFLOW_CNT_MOTOR,
+		WDG_OVERFLOW_CNT_MOTOR,
+		WDG_OVERFLOW_CNT_MOTOR,
+		WDG_OVERFLOW_CNT_MOTOR,
+		WDG_OVERFLOW_CNT_MOTOR,
 };
 
-uint32_t lost_counter[LOST_COUNTER_NUM] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-uint32_t err_code = 0xFFFFFFFF;
+uint32_t wdg[WDG_NUM] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+uint32_t err = 0xFFFFFFFF;
 
-void Supervise(void)
+void WDG_SRV(void)
 {
 	int i = 0;
-	for(i = 0; i < LOST_COUNTER_NUM; i++)
+	for(i = 0; i < WDG_NUM; i++)
 	{
-		if(lost_counter[i] >= LOST_COUNTER[i])
+		if(wdg[i] >= WDG[i])
 		{
-			err_code |= (uint32_t)(1 << i); //set the error bit
+			err |= (uint32_t)(1 << i); //set the error bit
 
 		}
 		else
 		{
-			err_code &= ~(uint32_t)(1 << i); //clear the error bit
-			lost_counter[i]++;			     //add 1 each time
+			err &= ~(uint32_t)(1 << i); //clear the error bit
+			wdg[i]++;			     //add 1 each time
 		}
 	}
 }
 
-void Superviser_Feed(uint8_t i)
+void WDG_Feed(uint8_t i)
 {
-	lost_counter[i] = 0;
+	wdg[i] = 0;
 }
 
-uint32_t Superviser_GetErrorCode(void)
+uint32_t WDG_GetErr(void)
 {
-	return err_code;
+	return err;
 }
 
-uint8_t Superviser_IsErrorSet(uint32_t mask)
+uint8_t WDG_IsErrSet(uint32_t mask)
 {
-	return (err_code & mask) == mask;
+	return (err & mask) == mask;
 }
 

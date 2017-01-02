@@ -36,7 +36,9 @@
 #include "cali.h"
 #include "cmd.h"
 #include "ctl.h"
+#include "hci.h"
 #include "odo.h"
+#include "rci.h"
 #include "wdg.h"
 
 // commonly used macros

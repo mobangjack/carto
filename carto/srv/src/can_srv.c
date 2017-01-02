@@ -16,20 +16,38 @@
 
 #include "can_srv.h"
 
-Gauss_t* gauss[MOTOR_NUM];
-
-void CAN_SRV(CanRxMsg* canRxMsg)
+static void CAN_SRV(CanRxMsg* canRxMsg)
 {
 	uint32_t id = canRxMsg->StdId;
 	uint8_t* data = canRxMsg->Data;
 	switch (id) {
-	case ZGYRO_FEEDBACK_CAN_MSG_ID:
-		Superviser_Feed(LOST_COUNTER_INDEX_ZGYRO);
+	case ZGYRO_FDB_CAN_MSG_ID:
+		WDG_Feed(WDG_IDX_ZGYRO);
 		ZGyro_GetAngle(&ZGyroAngle, data);
 		break;
-	case MOTOR1_FEEDBACK_CAN_MSG_ID:
-		Superviser_Feed(LOST_COUNTER_INDEX_ZGYRO);
-		//ZGyro_GetAngle(&ZGyroAngle, canRxMsg->Data);
+	case MOTOR1_FDB_CAN_MSG_ID:
+		WDG_Feed(WDG_IDX_MOTOR1);
+		ECD_PROC(0, data);
+		break;
+	case MOTOR2_FDB_CAN_MSG_ID:
+		WDG_Feed(WDG_IDX_MOTOR2);
+		ECD_PROC(1, data);
+		break;
+	case MOTOR3_FDB_CAN_MSG_ID:
+		WDG_Feed(WDG_IDX_MOTOR3);
+		ECD_PROC(2, data);
+		break;
+	case MOTOR4_FDB_CAN_MSG_ID:
+		WDG_Feed(WDG_IDX_MOTOR4);
+		ECD_PROC(3, data);
+		break;
+	case MOTOR5_FDB_CAN_MSG_ID:
+		WDG_Feed(WDG_IDX_MOTOR5);
+		ECD_PROC(4, data);
+		break;
+	case MOTOR6_FDB_CAN_MSG_ID:
+		WDG_Feed(WDG_IDX_MOTOR6);
+		ECD_PROC(5, data);
 		break;
 	default:
 		break;

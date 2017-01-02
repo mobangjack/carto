@@ -9,7 +9,9 @@ C_SRCS += \
 ../carto/app/src/cmd.c \
 ../carto/app/src/com.c \
 ../carto/app/src/ctl.c \
+../carto/app/src/hci.c \
 ../carto/app/src/odo.c \
+../carto/app/src/rci.c \
 ../carto/app/src/wdg.c 
 
 OBJS += \
@@ -18,7 +20,9 @@ OBJS += \
 ./carto/app/src/cmd.o \
 ./carto/app/src/com.o \
 ./carto/app/src/ctl.o \
+./carto/app/src/hci.o \
 ./carto/app/src/odo.o \
+./carto/app/src/rci.o \
 ./carto/app/src/wdg.o 
 
 C_DEPS += \
@@ -27,7 +31,9 @@ C_DEPS += \
 ./carto/app/src/cmd.d \
 ./carto/app/src/com.d \
 ./carto/app/src/ctl.d \
+./carto/app/src/hci.d \
 ./carto/app/src/odo.d \
+./carto/app/src/rci.d \
 ./carto/app/src/wdg.d 
 
 

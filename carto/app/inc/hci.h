@@ -14,19 +14,23 @@
  * limitations under the License.
  */
  
-#ifndef __ASP_H__
-#define __ASP_H__
+#ifndef __HCI_H__
+#define __HCI_H__
 
-#include "cbus.h"
-#include "crc16.h"
-#include "dbus.h"
-#include "fifo.h"
-#include "gauss.h"
-#include "kalman.h"
+#include "cmd.h"
 #include "mafilter.h"
-#include "mecanum.h"
-#include "pid.h"
-#include "ramp.h"
+
+typedef uint8_t MouseButtonState_t;
+typedef uint8_t MouseButtonEvent_t;
+
+#define KEY_CONTROL_MAFILTER_LEN 10
+#define MOUSE_BUTTON_STATE_CHANGE_DELAY 10
+
+#define GET_MOUSE_BUTTON_EVENT(last,this) ((last<<2)|this)
+#define MOUSE_BUTTON_EVENT_UP GET_MOUSE_BUTTON_EVENT(MOUSE_BUTTON_DOWM, MOUSE_BUTTON_UP)
+#define MOUSE_BUTTON_EVENT_DOWN GET_MOUSE_BUTTON_EVENT(MOUSE_BUTTON_UP, MOUSE_BUTTON_DOWM)
+#define MOUSE_BUTTON_EVENT_NONE 0
+
+void HCI_CMD(HC_t* hc);
 
 #endif
-

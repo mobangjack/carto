@@ -14,31 +14,11 @@
  * limitations under the License.
  */
  
-#ifndef __ODOM_TASK_H__
-#define __ODOM_TASK_H__
+#ifndef __ODO_H__
+#define __ODO_H__
 
 #include <stdint.h>
 #include <string.h>
 #include "crc16.h"
-	
-#define ODOM_HEADER 0xabcd  
-#define ODOM_INIT_CRC16 0xdcba
-#define ODOM_SIZE 16
-
-typedef struct
-{
-	uint16_t header : 16;
-	int16_t px : 16;
-	int16_t py : 16;
-	int16_t pz : 16;
-	int16_t vx : 16;
-	int16_t vy : 16;
-	int16_t vz : 16;
-	uint16_t check_sum : 16;
-}Odom_t;
-
-void OdomTask(void);
-
-extern Odom_t odom;
 
 #endif

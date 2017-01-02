@@ -223,7 +223,9 @@ typedef uint32_t GPIO;
 #define GPIO_WRITE(gpio,v) GPIO_WriteBit(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio), (v) > 0 ? Bit_SET : Bit_RESET)
 
 // TO DO
-#define GPIO_BIND(PIN,TO) do { if (IS_VALID_GPIO(PIN)) GPIO_AF(rx,GPIO_AF_##TO); } while(0)
+#define GPIO_BIND(PIN,TO) do { \
+	GPIO_AF(PIN,GPIO_AF_##TO); \
+} while(0)
 
 #define USART_BIND(RX,TX,USART,BR,WL,PR,SB,FC) do { \
 	if (IS_VALID_GPIO(RX) && IS_VALID_GPIO(TX)) { \

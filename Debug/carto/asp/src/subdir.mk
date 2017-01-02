@@ -4,6 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../carto/asp/src/cbus.c \
 ../carto/asp/src/crc16.c \
 ../carto/asp/src/dbus.c \
 ../carto/asp/src/fifo.c \
@@ -15,6 +16,7 @@ C_SRCS += \
 ../carto/asp/src/ramp.c 
 
 OBJS += \
+./carto/asp/src/cbus.o \
 ./carto/asp/src/crc16.o \
 ./carto/asp/src/dbus.o \
 ./carto/asp/src/fifo.o \
@@ -26,6 +28,7 @@ OBJS += \
 ./carto/asp/src/ramp.o 
 
 C_DEPS += \
+./carto/asp/src/cbus.d \
 ./carto/asp/src/crc16.d \
 ./carto/asp/src/dbus.d \
 ./carto/asp/src/fifo.d \

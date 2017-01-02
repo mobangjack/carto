@@ -17,8 +17,10 @@
 #include "rcv_srv.h"
 
 DBUS_t dbus;
-void Receiver_Callback(u8* dbuf)
+void Rcv_Callback(uint8_t* dbuf)
 {
+	WDG_Feed(WDG_IDX_RC);
 	DBUS_DEC(&dbus, dbuf);
+	DBUS_CMD(&dbus);
 }
 

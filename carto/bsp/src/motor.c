@@ -45,7 +45,7 @@ void EC60_CMD(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16
 void RM6025_CMD(CAN_TypeDef *CANx, int16_t c205, int16_t c206)
 {
 	CanTxMsg canTxMsg;
-    canTxMsg.StdId = GIMBAL_MOTOR_CMD_CAN_MSG_ID;
+    canTxMsg.StdId = PANTILT_MOTOR_CMD_CAN_MSG_ID;
     canTxMsg.IDE = CAN_Id_Standard;
     canTxMsg.RTR = CAN_RTR_Data;
     canTxMsg.DLC = 0x08;

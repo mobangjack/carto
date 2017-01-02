@@ -13,20 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#ifndef __ASP_H__
-#define __ASP_H__
 
-#include "cbus.h"
+#ifndef __CBUS_H__
+#define __CBUS_H__
+
 #include "crc16.h"
-#include "dbus.h"
-#include "fifo.h"
-#include "gauss.h"
-#include "kalman.h"
-#include "mafilter.h"
-#include "mecanum.h"
-#include "pid.h"
-#include "ramp.h"
+#include <string.h>
+
+#define CBUS_HEADER ((uint16_t)0x1234)
+#define CBUS_CRC ((uint16_t)0x1234)
+#define CBUS_FRAME_LEN 16
+
+typedef struct
+{
+	int16_t x;
+	int16_t y;
+	int16_t z;
+	int16_t p;
+	int16_t t;
+	int16_t f;
+}CBUS_t;
+
+void CBUS_ENC(CBUS_t* cbus, uint8_t* cbuf);
+uint8_t CBUS_DEC(CBUS_t* cbus, uint8_t* cbuf);
 
 #endif
-

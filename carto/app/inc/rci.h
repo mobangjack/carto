@@ -14,19 +14,28 @@
  * limitations under the License.
  */
  
-#ifndef __ASP_H__
-#define __ASP_H__
+#ifndef __RCI_H__
+#define __RCI_H__
 
-#include "cbus.h"
-#include "crc16.h"
-#include "dbus.h"
-#include "fifo.h"
-#include "gauss.h"
-#include "kalman.h"
-#include "mafilter.h"
-#include "mecanum.h"
-#include "pid.h"
-#include "ramp.h"
+#include "cmd.h"
+
+typedef uint8_t SwitchState_t;
+typedef uint8_t SwitchEvent_t;
+
+#define SWITCH_STATE_CHANGE_DELAY 10
+
+#define SWITCH_STATE_0 ((uint8_t)0)
+#define SWITCH_STATE_1 ((uint8_t)1)
+#define SWITCH_STATE_3 ((uint8_t)3)
+#define SWITCH_STATE_2 ((uint8_t)2)
+
+#define GET_SWITCH_EVENT(last,this) (((last)<<2)|(this))
+#define SWITCH_EVENT_3TO1 GET_SWITCH_EVENT(3, 1)
+#define SWITCH_EVENT_1TO3 GET_SWITCH_EVENT(1, 3)
+#define SWITCH_EVENT_3TO2 GET_SWITCH_EVENT(3, 2)
+#define SWITCH_EVENT_2TO3 GET_SWITCH_EVENT(2, 3)
+#define SWITCH_EVENT_NONE 0
+
+void RCI_CMD(RC_t* rc);
 
 #endif
-

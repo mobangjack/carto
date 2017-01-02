@@ -23,15 +23,14 @@
 #define CH_MIN              	 ((uint16_t)364   )
 #define CH_MID	           	 	 ((uint16_t)1024  )
 #define CH_MAX              	 ((uint16_t)1684  )
-#define CH_OFFSET              	 ((uint16_t)660   )
 /* ----------------------- RC Switch Value Definition----------------------------- */
 #define SW_UP                    ((uint8_t)1      )
 #define SW_MID                	 ((uint8_t)3      )
 #define SW_DOWN                  ((uint8_t)2      )
 
-#define SWITCH_COUNT 2
-#define SWITCH_INDEX_LEFT 0
-#define SWITCH_INDEX_RIGHT 1
+#define SW_CNT   2
+#define SW_IDX_L 0
+#define SW_IDX_R 1
 
 typedef struct
 {
@@ -39,18 +38,18 @@ typedef struct
 	uint16_t ch1;
 	uint16_t ch2;
 	uint16_t ch3;
-	uint8_t  sw[SWITCH_COUNT];
+	uint8_t  sw[SW_CNT];
 }RC_t; // remote control frame structure
 
 void RC_ENC(RC_t* rc, uint8_t* buf);
 void RC_DEC(RC_t* rc, uint8_t* buf);
 
 /* ----------------------- PC Mouse Value Definition------------------------------ */
-#define MOUSE_SPEED_MIN            	 ((int16_t)-32768 )
-#define MOUSE_SPEED_MID              ((int16_t)0      )
-#define MOUSE_SPEED_MAX		         ((int16_t)32767  )
-#define MOUSE_BUTTON_UP         	 ((uint8_t)0      )
-#define MOUSE_BUTTON_DOWN            ((uint8_t)1      )
+#define MOUSE_SPEED_MIN          ((int16_t)-32768 )
+#define MOUSE_SPEED_MID          ((int16_t)0      )
+#define MOUSE_SPEED_MAX		     ((int16_t)32767  )
+#define MOUSE_BTN_UP         	 ((uint8_t)0      )
+#define MOUSE_BTN_DOWN           ((uint8_t)1      )
 /* ----------------------- PC Key Value Definition-------------------------------- */
 #define KEY_W         			 ((uint8_t)0x01<<0)
 #define KEY_S         			 ((uint8_t)0x01<<1)
@@ -61,16 +60,16 @@ void RC_DEC(RC_t* rc, uint8_t* buf);
 #define KEY_Q         		     ((uint8_t)0x01<<6)
 #define KEY_E         			 ((uint8_t)0x01<<7)
 
-#define MOUSE_BUTTON_NUMBER 2
-#define MOUSE_BUTTON_INDEX_LEFT 0
-#define MOUSE_BUTTON_INDEX_RIGHT 1
+#define MOUSE_BTN_CNT   2
+#define MOUSE_BTN_IDX_L 0
+#define MOUSE_BTN_IDX_R 1
 
 typedef struct
 {
 	int16_t x;
 	int16_t y;
 	int16_t z;
-	uint8_t b[MOUSE_BUTTON_NUMBER];
+	uint8_t b[MOUSE_BTN_CNT];
 }Mouse_t; // Mouse control domain
 
 typedef struct
