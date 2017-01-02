@@ -19,7 +19,7 @@
 
 #include "asp.h"
 #include "bsp.h"
-#include "wdg_srv.h"
+#include "wdg.h"
 
 #define MOTOR_NUM 6
 

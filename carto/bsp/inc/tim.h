@@ -23,8 +23,11 @@
 #define TICK_TIM TIM2
 #define TICK_TIM_PS 83
 #define TICK_TIM_PD 0xFFFFFFFF
-#define TICK_US() REAL_TIM->CNT
+#define TICK_TIM_NVIC TIM6_DAC_IRQn
+#define TICK_TIM_NVIC_PRE_PRIORITY 0
+#define TICK_TIM_NVIC_SUB_PRIORITY 0
 #define TICK_TIM_IRQ_HANDLER IRQ_HANDLER(TIM2)
+#define TICK_US() TICK_TIM->CNT
 
 // Sync timer
 #define SYNC_TIM TIM6
@@ -50,4 +53,4 @@ void Tim_Stop(void);
 void TickTim_Callback(void);
 void SyncTim_Callback(void);
 
-#endif /* __TIMER_H__ */
+#endif /* __TIM_H__ */

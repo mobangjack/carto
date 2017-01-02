@@ -20,6 +20,7 @@ void TickTim_Config(void)
 {
 	TIM_Config(TICK_TIM, TICK_TIM_PS, TIM_CounterMode_Up, TICK_TIM_PD, TIM_CKD_DIV1, 0);
 	TIM_ARRPreloadConfig(TICK_TIM, ENABLE);
+	NVIC_Config(TICK_TIM_NVIC, TICK_TIM_NVIC_PRE_PRIORITY, TICK_TIM_NVIC_SUB_PRIORITY);
 }
 
 void TickTim_Start(void)

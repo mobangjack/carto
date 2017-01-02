@@ -50,8 +50,8 @@
 	FLASH_Sector_11 \
 )
 
-void Flash_Read(u32 addr, u8 *buf, u32 size);
-u8 Flash_Write(u32 addr, u8 *buf, u32 size);
+void Flash_Read(u32 addr, u8* buf, u32 size);
+u8 Flash_Write(u32 addr, u8* buf, u32 size);
 
 #endif
 

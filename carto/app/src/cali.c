@@ -18,10 +18,10 @@
 
 void Cali_Get(Cali_t* cali)
 {
-	Flash_Read(cali, (void*)CALI_FLASH_DATA_START_ADDRESS, sizeof(Cali_t));
+	Flash_Read(CALI_FLASH_DATA_START_ADDRESS, (u8*)cali, sizeof(Cali_t));
 }
 
 uint8_t Cali_Set(Cali_t* cali)
 {
-	return Flash_Write(CALI_FLASH_DATA_START_ADDRESS, cali, sizeof(Cali_t));
+	return Flash_Write(CALI_FLASH_DATA_START_ADDRESS, (u8*)cali, sizeof(Cali_t));
 }

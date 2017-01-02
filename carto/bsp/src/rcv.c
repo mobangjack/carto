@@ -36,7 +36,7 @@ void Rcv_Config(void)
 			   (u32)buf[0], 0,
 			   RCV_DMA_BUF_SIZE);
 
-    DMA_DoubleBufferModeConfig(RCV_DMA_STREAM, (u32)&buf[1][0], DMA_Memory_0);   //first used memory configuration
+    DMA_DoubleBufferModeConfig(RCV_DMA_STREAM, (u32)buf[1], DMA_Memory_0);
     DMA_DoubleBufferModeCmd(RCV_DMA_STREAM, ENABLE);
     
     DMA_Cmd(RCV_DMA_STREAM, ENABLE);

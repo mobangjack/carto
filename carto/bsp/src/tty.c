@@ -26,11 +26,10 @@ void TTY_Config(void)
 			   TTY_USART_WL,
 			   TTY_USART_PA,
 			   TTY_USART_SB,
-			   TTY_USART_FC);
+			   TTY_USART_FC
+			   );
 
-    USART_ITConfig(TTY_USART,USART_IT_RXNE, ENABLE);
-
-    USART_Cmd(TTY_USART, ENABLE);
+    USART_ITConfig(TTY_USART, USART_IT_RXNE, ENABLE);
 
     NVIC_Config(TTY_NVIC, TTY_NVIC_PRE_PRIORITY, TTY_NVIC_SUB_PRIORITY);
 
@@ -39,6 +38,8 @@ void TTY_Config(void)
     } else {
     	FIFO_Flush(fifo);
     }
+
+    USART_Cmd(TTY_USART, ENABLE);
 }
 
 void TTY_WriteByte(u8 byte)

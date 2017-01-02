@@ -222,6 +222,7 @@ typedef uint32_t GPIO;
 #define GPIO_READ_OUT(gpio) GPIO_ReadOutputDataBit(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio))
 #define GPIO_WRITE(gpio,v) GPIO_WriteBit(GPIO_PIN_GRP(gpio), GPIO_PIN_MSK(gpio), (v) > 0 ? Bit_SET : Bit_RESET)
 
+// TO DO
 #define GPIO_BIND(PIN,TO) do { if (IS_VALID_GPIO(PIN)) GPIO_AF(rx,GPIO_AF_##TO); } while(0)
 
 #define USART_BIND(RX,TX,USART,BR,WL,PR,SB,FC) do { \
@@ -276,10 +277,10 @@ void GPIO_IN(GPIO gpio);
 void GPIO_OUT(GPIO gpio);
 void GPIO_AF(GPIO gpio, u8 af);
 void EXTI_Bind(GPIO gpio, EXTITrigger_TypeDef trig);
-void Encoder_Bind(GPIO A, GPIO B, TIM_TypeDef* timx, u16 mode, u16 IC1Polarity, u16 IC2Polarity);
+void Encoder_Bind(GPIO A, GPIO B, TIM_TypeDef* timx, u16 mode, u16 p1, u16 p2);
 void USART_Bind(GPIO rx, GPIO tx, USART_TypeDef* usartx, u32 br, u8 wl, s8 parity, float sb, s8 fc);
 void USART_Config(USART_TypeDef* usartx, s8 mode, u32 br, u8 wl, s8 parity, float sb, s8 fc);
-void PWM_Bind(GPIO A, GPIO B, GPIO C, GPIO D, TIM_TypeDef* timx, u16 ps, u32 period, u32 pulse);
+void PWM_Bind(GPIO A, GPIO B, GPIO C, GPIO D, TIM_TypeDef* timx, u16 ps, u32 pd, u32 pw);
 void TIM_Config(TIM_TypeDef* timx, u16 ps, u16 mode, u32 period, u16 div, u8 re);
 void TIM_OC_Config(TIM_TypeDef* timx, u8 channel, u16 mode, u32 pulse);
 void NVIC_Config(u8 channel, u8 pre, u8 sub);

@@ -8,7 +8,11 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include startup/subdir.mk
+-include carto/usr/src/subdir.mk
+-include carto/srv/src/subdir.mk
+-include carto/bsp/src/subdir.mk
+-include carto/asp/src/subdir.mk
+-include carto/app/src/subdir.mk
 -include subdir.mk
 -include objects.mk
 

@@ -16,11 +16,11 @@
  
 #include "motor.h"
 
-void ESC_Proc(ESC_t* esc, uint8_t* data)
+void Motor_Proc(Motor_t* motor, uint8_t* data)
 {
-	esc->angle_fdb = (data[0]<<8) | data[1];
-	esc->current_fdb = (data[2]<<8) | data[3];
-	esc->current_ref = (data[4]<<8) | data[5];
+	motor->angle_fdb = (data[0]<<8) | data[1];
+	motor->current_fdb = (data[2]<<8) | data[3];
+	motor->current_ref = (data[4]<<8) | data[5];
 }
 
 void EC60_CMD(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16_t c204)

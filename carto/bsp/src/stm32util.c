@@ -74,7 +74,7 @@ void EXTI_Bind(GPIO gpio, EXTITrigger_TypeDef trig)
 	EXTI_Config(pinMsk, EXTI_Mode_Interrupt, trig);
 }
 
-void Encoder_Bind(GPIO A, GPIO B, TIM_TypeDef* timx, u16 mode, u16 IC1Polarity, u16 IC2Polarity)
+void Encoder_Bind(GPIO A, GPIO B, TIM_TypeDef* timx, u16 mode, u16 p1, u16 p2)
 {
 	if (timx == TIM1) {
 		RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE);
@@ -150,7 +150,7 @@ void Encoder_Bind(GPIO A, GPIO B, TIM_TypeDef* timx, u16 mode, u16 IC1Polarity, 
 		GPIO_AF(A, GPIO_AF_TIM14);
 		GPIO_AF(B, GPIO_AF_TIM14);
 	}
-	TIM_EncoderInterfaceConfig(timx, mode, IC1Polarity, IC2Polarity);
+	TIM_EncoderInterfaceConfig(timx, mode, p1, p2);
 }
 
 void USART_Bind(GPIO rx, GPIO tx, USART_TypeDef* usartx, u32 br, u8 wl, s8 parity, float sb, s8 fc)
@@ -255,22 +255,22 @@ void USART_Config(USART_TypeDef* usartx, s8 mode, u32 br, u8 wl, s8 parity, floa
 	USART_Init(usartx, &usart);
 }
 
-void PWM_Bind(GPIO A, GPIO B, GPIO C, GPIO D, TIM_TypeDef* timx, u16 ps, u32 period, u32 pulse)
+void PWM_Bind(GPIO A, GPIO B, GPIO C, GPIO D, TIM_TypeDef* timx, u16 ps, u32 pd, u32 pw)
 {
 	if (timx == TIM1) {
-		PWM_BIND(A, B, C, D, TIM1, ps, period, pulse);
+		PWM_BIND(A, B, C, D, TIM1, ps, pd, pw);
 	}
 	if (timx == TIM2) {
-		PWM_BIND(A, B, C, D, TIM2, ps, period, pulse);
+		PWM_BIND(A, B, C, D, TIM2, ps, pd, pw);
 	}
 	if (timx == TIM3) {
-		PWM_BIND(A, B, C, D, TIM3, ps, period, pulse);
+		PWM_BIND(A, B, C, D, TIM3, ps, pd, pw);
 	}
 	if (timx == TIM4) {
-		PWM_BIND(A, B, C, D, TIM4, ps, period, pulse);
+		PWM_BIND(A, B, C, D, TIM4, ps, pd, pw);
 	}
 	if (timx == TIM5) {
-		PWM_BIND(A, B, C, D, TIM5, ps, period, pulse);
+		PWM_BIND(A, B, C, D, TIM5, ps, pd, pw);
 	}
 	if (timx == TIM6) {
 		//PWM_BIND(A, B, C, D, TIM6, ps, period, pulse);
@@ -279,25 +279,25 @@ void PWM_Bind(GPIO A, GPIO B, GPIO C, GPIO D, TIM_TypeDef* timx, u16 ps, u32 per
 		//PWM_BIND(A, B, C, D, TIM7, ps, period, pulse);
 	}
 	if (timx == TIM8) {
-		PWM_BIND(A, B, C, D, TIM8, ps, period, pulse);
+		PWM_BIND(A, B, C, D, TIM8, ps, pd, pw);
 	}
 	if (timx == TIM9) {
-		PWM_BIND(A, B, C, D, TIM9, ps, period, pulse);
+		PWM_BIND(A, B, C, D, TIM9, ps, pd, pw);
 	}
 	if (timx == TIM10) {
-		PWM_BIND(A, B, C, D, TIM10, ps, period, pulse);
+		PWM_BIND(A, B, C, D, TIM10, ps, pd, pw);
 	}
 	if (timx == TIM11) {
-		PWM_BIND(A, B, C, D, TIM11, ps, period, pulse);
+		PWM_BIND(A, B, C, D, TIM11, ps, pd, pw);
 	}
 	if (timx == TIM12) {
-		PWM_BIND(A, B, C, D, TIM12, ps, period, pulse);
+		PWM_BIND(A, B, C, D, TIM12, ps, pd, pw);
 	}
 	if (timx == TIM13) {
-		PWM_BIND(A, B, C, D, TIM13, ps, period, pulse);
+		PWM_BIND(A, B, C, D, TIM13, ps, pd, pw);
 	}
 	if (timx == TIM14) {
-		PWM_BIND(A, B, C, D, TIM14, ps, period, pulse);
+		PWM_BIND(A, B, C, D, TIM14, ps, pd, pw);
 	}
 }
 

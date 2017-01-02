@@ -18,6 +18,8 @@
 #define __MPU6050_DRV_H__
 
 #include "platform.h"
+#include "delay.h"
+#include "mpu6050_i2c.h"
 
 #define	SMPLRT_DIV		          0x19	// 0X07 125Hz
 #define	CONFIG			          0x1A	// 0x00
@@ -25,7 +27,7 @@
 #define	ACCEL_CONFIG	          0x1C	//2G 5Hz
 #define INT_PIN_CFG               0x37
 #define INT_ENABLE                0x38
-#define INT_STATUS                0x3A  //
+#define INT_STATUS                0x3A
 #define	ACCEL_XOUT_H	          0x3B
 #define	ACCEL_XOUT_L	          0x3C
 #define	ACCEL_YOUT_H	          0x3D
@@ -40,13 +42,13 @@
 #define	GYRO_YOUT_L		          0x46
 #define	GYRO_ZOUT_H		          0x47
 #define	GYRO_ZOUT_L		          0x48
-#define	PWR_MGMT_1		          0x6B	//
-#define	WHO_AM_I		          0x75	// MPU6050_ID = 0x68
+#define	PWR_MGMT_1		          0x6B
+#define	WHO_AM_I		          0x75
 #define MPU6050_ID                0x68
 #define MPU6050_DEVICE_ADDRESS    0xD0
 
 
-#define MPU6050_DATA_START        				ACCEL_XOUT_H   //
+#define MPU6050_DATA_START        				ACCEL_XOUT_H
 #define MPU6050_RA_SELF_TEST_X                  0x0D
 #define MPU6050_RA_SLEF_TEST_Y                  0x0E
 #define MPU6050_RA_SELF_TEST_Z                  0x0F

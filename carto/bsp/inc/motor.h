@@ -19,6 +19,9 @@
 
 #include "platform.h"
 
+#define CHASSIS_MOTOR_CMD(c201,c202,c203,c204) EC60_CMD(CAN2,c201,c202,c203,c204)
+#define GIMBAL_MOTOR_CMD(c205,c206) RM6025_CMD(CAN2,c205,c206)
+
 #define MOTOR1_FEEDBACK_CAN_MSG_ID  0x201
 #define MOTOR2_FEEDBACK_CAN_MSG_ID  0x202
 #define MOTOR3_FEEDBACK_CAN_MSG_ID  0x203
@@ -29,21 +32,18 @@
 #define CHASSIS_MOTOR_CMD_CAN_MSG_ID 0x200
 #define GIMBAL_MOTOR_CMD_CAN_MSG_ID  0x1ff
 
-#define ESC_ANGLE_FDB_MAX 8191
-#define ESC_CURRENT_FDB_MAX 13000
-#define ESC_CURRENT_REF_MAX 5000
+#define MOTOR_ANGLE_FDB_MAX   8191
+#define MOTOR_CURRENT_FDB_MAX 13000
+#define MOTOR_CURRENT_REF_MAX 5000
 
-/*
- * EC60 & RM6025 Electronic Speed Controller
- */
 typedef struct
 {
 	uint16_t angle_fdb;    // angle feedback
 	uint16_t current_fdb;  // electric current feedback
 	uint16_t current_ref;  // electric current reference
-}ESC_t;
+}Motor_t; // For EC60 & RM6025 Electronic Speed Controller
 
-void ESC_Proc(ESC_t* esc, uint8_t* data);
+void Motor_Proc(Motor_t* motor, uint8_t* data);
 void EC60_CMD(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16_t c204);
 void RM6025_CMD(CAN_TypeDef *CANx, int16_t c205, int16_t c206);
 

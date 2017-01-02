@@ -19,8 +19,10 @@
 void Gun_Config(void)
 {
     PWM_Bind(GUN_PWM_PIN_1, GUN_PWM_PIN_2, 0, 0,
-    		 GUN_PWM_TIM, GUN_PWM_TIM_PS,
-			 GUN_PWM_TIM_PD, GUN_PWM_TIM_PW);
+    		 GUN_PWM_TIM,
+			 GUN_PWM_TIM_PS,
+			 GUN_PWM_TIM_PD,
+			 GUN_PWM_TIM_PW);
     TIM_Cmd(GUN_PWM_TIM, ENABLE);
 	GUN_OFF();
 }

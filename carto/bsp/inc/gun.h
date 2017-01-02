@@ -19,9 +19,6 @@
 
 #include "stm32util.h"
 
-/*-GUN_PWM_PIN_1---(PA0---TIM5_CH1)--*/
-/*-GUN_PWM_PIN_2---(PA1---TIM5_CH2)--*/
-
 #define GUN_PWM_PIN_1 PA0
 #define GUN_PWM_PIN_2 PA1
 

@@ -15,5 +15,9 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
-startup \
+carto/app/src \
+carto/asp/src \
+carto/bsp/src \
+carto/srv/src \
+carto/usr/src \
 

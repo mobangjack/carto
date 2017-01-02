@@ -21,7 +21,6 @@
 #include "com_srv.h"
 #include "imu_srv.h"
 #include "rcv_srv.h"
-#include "wdg_srv.h"
 
 #endif
 

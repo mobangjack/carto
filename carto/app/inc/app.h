@@ -22,7 +22,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
-#include <wdg_srv.h>
 
 // Application Support Packages
 #include "asp.h"
@@ -36,8 +35,9 @@
 // Applications
 #include "cali.h"
 #include "cmd.h"
-#include "odom.h"
-#include "sysctl.h"
+#include "ctl.h"
+#include "odo.h"
+#include "wdg.h"
 
 // commonly used macros
 #define PI 3.1415926f

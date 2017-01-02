@@ -27,12 +27,12 @@
 #include "motor.h"
 #include "mpu6050.h"
 #include "rcv.h"
-#include "spiner.h"
+#include "spinner.h"
 #include "zgyro.h"
 #include "tim.h"
 #include "tty.h"
 
-void BSP_Config(void);
+void Bsp_Config(void);
 
 #endif
 

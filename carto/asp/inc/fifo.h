@@ -35,7 +35,7 @@ typedef struct FIFO
 }FIFO_t;
 
 FIFO_t* FIFO_Create(uint32_t len);
-void FIFI_Flush(FIFO_t* fifo);
+void FIFO_Flush(FIFO_t* fifo);
 uint8_t FIFO_Push(FIFO_t* fifo, uint8_t element);
 uint8_t FIFO_Pop(FIFO_t* fifo);
 uint8_t FIFO_Peek(FIFO_t* fifo);

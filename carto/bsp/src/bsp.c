@@ -14,19 +14,22 @@
  * limitations under the License.
  */
  
-#include "app.h"
+#include "bsp.h"
 
-void BSP_Config(void)
+void Bsp_Config(void)
 {
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	
-	Gun_Config();
 	LED_Config();
 	Tim_Config();
 	CAN1_Config();
 	CAN2_Config();
 	TTY_Config();
 	Rcv_Config();
+	Gun_Config();
+	Laser_Config();
+	Spinner_Config();
+	MPU6050_Config();
 	Tim_Start();
 	LED_GREEN_ON();
 }
