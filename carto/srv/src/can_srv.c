@@ -16,50 +16,12 @@
 
 #include "can_srv.h"
 
-static void CAN_SRV(CanRxMsg* canRxMsg)
-{
-	uint32_t id = canRxMsg->StdId;
-	uint8_t* data = canRxMsg->Data;
-	switch (id) {
-	case ZGYRO_FDB_CAN_MSG_ID:
-		WDG_Feed(WDG_IDX_ZGYRO);
-		ZGyro_GetAngle(&ZGyroAngle, data);
-		break;
-	case MOTOR1_FDB_CAN_MSG_ID:
-		WDG_Feed(WDG_IDX_MOTOR1);
-		ECD_PROC(0, data);
-		break;
-	case MOTOR2_FDB_CAN_MSG_ID:
-		WDG_Feed(WDG_IDX_MOTOR2);
-		ECD_PROC(1, data);
-		break;
-	case MOTOR3_FDB_CAN_MSG_ID:
-		WDG_Feed(WDG_IDX_MOTOR3);
-		ECD_PROC(2, data);
-		break;
-	case MOTOR4_FDB_CAN_MSG_ID:
-		WDG_Feed(WDG_IDX_MOTOR4);
-		ECD_PROC(3, data);
-		break;
-	case MOTOR5_FDB_CAN_MSG_ID:
-		WDG_Feed(WDG_IDX_MOTOR5);
-		ECD_PROC(4, data);
-		break;
-	case MOTOR6_FDB_CAN_MSG_ID:
-		WDG_Feed(WDG_IDX_MOTOR6);
-		ECD_PROC(5, data);
-		break;
-	default:
-		break;
-	}
-}
-
 void CAN1_RX_Callback(CanRxMsg* canRxMsg)
 {
-	CAN_SRV(canRxMsg);
+	CAN_Proc(canRxMsg);
 }
 
 void CAN2_RX_Callback(CanRxMsg* canRxMsg)
 {
-	CAN_SRV(canRxMsg);
+	CAN_Proc(canRxMsg);
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,19 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#ifndef __ZGYRO_H__
-#define __ZGYRO_H__
 
-#include "platform.h"
+#ifndef __AHRS_H__
+#define __AHRS_H__
 
-#define ZGYRO_CAN CAN1
-#define ZGYRO_RST() ZGyro_RST(ZGYRO_CAN)
+#include <math.h>
 
-#define ZGYRO_CMD_CAN_MSG_ID 0x404
-#define ZGYRO_FDB_CAN_MSG_ID 0x401
-
-void ZGyro_RST(CAN_TypeDef* CANx);
-void ZGyro_GetAngle(float* angle, uint8_t* data);
+typedef struct
+{
+	float yaw;
+	float pitch;
+	float roll;
+}AHRS_t;
 
 #endif
+

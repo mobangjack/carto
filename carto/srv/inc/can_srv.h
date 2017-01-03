@@ -17,14 +17,6 @@
 #ifndef __CAN_SRV_H__
 #define __CAN_SRV_H__
 
-#include "ecd.h"
-#include "wdg.h"
-#include "zgyro.h"
-
-#define MOTOR_NUM 6
-
-
-extern ECD_t ECD[MOTOR_NUM];
-extern float ZGyroAngle;
+#include "can.h"
 
 #endif

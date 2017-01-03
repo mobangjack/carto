@@ -16,11 +16,46 @@
  
 #include "motor.h"
 
+#define PI 3.1415926f
+#define GAP 7500
+void ECD_Proc(ECD_t* ecd, uint8_t* data)
+{
+	ecd->last_angle_fdb = ecd->angle_fdb;
+	ecd->angle_fdb = (data[0] << 8) | data[1];
+	if (!ecd->ini_flag) {
+		ecd->bias = ecd->angle_fdb;
+		ecd->ini_flag = 1;
+	}
+	ecd->dif = ecd->angle_fdb - ecd->last_angle_fdb;
+	if (ecd->dif > GAP) {
+		ecd->rnd--;
+		ecd->speed = ecd->dif - MOTOR_ECD_ANGLE_FDB_MOD;
+	} else if (ecd->dif < -GAP) {
+		ecd->rnd++;
+		ecd->speed = ecd->dif + MOTOR_ECD_ANGLE_FDB_MOD;
+	} else {
+		ecd->speed = ecd->dif;
+	}
+	ecd->angle = (ecd->angle_fdb - ecd->bias) + ecd->rnd * MOTOR_ECD_ANGLE_FDB_MOD;
+	ecd->angle_rad = ecd->angle / MOTOR_ECD_ANGLE_FDB_MOD * 2 * PI;
+	ecd->speed_rad = ecd->speed / MOTOR_ECD_ANGLE_FDB_MOD * 2 * PI;
+}
+
+void ECD_RST(ECD_t* ecd)
+{
+	memset(ecd, 0, sizeof(ECD_t));
+}
+
+void ESC_Proc(ESC_t* esc, uint8_t* data)
+{
+	esc->current_fdb = (data[0] << 8) | data[1];
+	esc->current_ref = (data[2] << 8) | data[3];
+}
+
 void Motor_Proc(Motor_t* motor, uint8_t* data)
 {
-	motor->angle_fdb = (data[0]<<8) | data[1];
-	motor->current_fdb = (data[2]<<8) | data[3];
-	motor->current_ref = (data[4]<<8) | data[5];
+	ECD_Proc(&motor->ecd, data);
+	ESC_Proc(&motor->esc, data + 2);
 }
 
 void EC60_CMD(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16_t c204)

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,19 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#ifndef __ZGYRO_H__
-#define __ZGYRO_H__
 
-#include "platform.h"
+#ifndef __CAN_H__
+#define __CAN_H__
 
-#define ZGYRO_CAN CAN1
-#define ZGYRO_RST() ZGyro_RST(ZGYRO_CAN)
+#define MOTOR_NUM 6
 
-#define ZGYRO_CMD_CAN_MSG_ID 0x404
-#define ZGYRO_FDB_CAN_MSG_ID 0x401
+#include "motor.h"
+#include "zgyro.h"
+#include "est.h"
+#include "wdg.h"
 
-void ZGyro_RST(CAN_TypeDef* CANx);
-void ZGyro_GetAngle(float* angle, uint8_t* data);
+typedef struct
+{
+	float angle;
+	float speed;
+}Encoder_t;
+
+void CAN_Proc(CanRxMsg* canRxMsg);
+
+extern float ZGyroAngle;
+extern Motor_t motor[MOTOR_NUM];
+extern Encoder_t encoder[MOTOR_NUM];
 
 #endif

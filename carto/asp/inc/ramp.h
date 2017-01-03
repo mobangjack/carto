@@ -23,8 +23,6 @@ extern "C" {
 
 #include <stdint.h>
 
-#define RAMP_SCALE_DEFAULT 4000
-	
 typedef struct Ramp
 {
 	uint32_t count;
@@ -39,10 +37,10 @@ void Ramp_ResetCounter(Ramp_t* ramp);
 void Ramp_SetScale(Ramp_t* ramp, uint32_t scale);
 uint8_t Ramp_IsOverflow(Ramp_t* ramp);
 
-#define RAMP_DEFAULT { \
+#define RAMP(SCALE) { \
 	.count = 0, \
-	.scale = RAMP_SCALE_DEFAULT, \
-	.output = 0 \
+	.scale = SCALE, \
+	.output = 0, \
 } \
 	
 #ifdef __cpluplus

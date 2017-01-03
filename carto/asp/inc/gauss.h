@@ -50,7 +50,7 @@ typedef struct
 
 Gauss_t* GaussCreate(uint16_t N);
 void GaussReset(Gauss_t* gauss);
-float GaussFilter(Gauss_t* gauss, float x);
+float GaussProc(Gauss_t* gauss, float x);
 void GaussDestroy(Gauss_t* gauss);
 
 #ifdef __cplusplus

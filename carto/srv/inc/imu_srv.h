@@ -17,7 +17,9 @@
 #ifndef __IMU_SRV_H__
 #define __IMU_SRV_H__
 
-#include "asp.h"
-#include "bsp.h"
+#include "ahrs.h"
+#include "mpu6050.h"
+
+
 
 #endif

@@ -16,13 +16,8 @@
  
 #include "ctl.h"
 
-/*
 WorkingState_t workingState = WORKING_STATE_PREPARE;
 
-PID_t CM1PositionPID = CM_POSITION_PID_DEFAULT;
-PID_t CM2PositionPID = CM_POSITION_PID_DEFAULT;
-PID_t CM3PositionPID = CM_POSITION_PID_DEFAULT;
-PID_t CM4PositionPID = CM_POSITION_PID_DEFAULT;
 PID_t GMYPositionPID = CM_POSITION_PID_DEFAULT;
 PID_t GMPPositionPID = CM_POSITION_PID_DEFAULT;
 
@@ -33,22 +28,18 @@ PID_t CM4SpeedPID = CM_SPEED_PID_DEFAULT;
 PID_t GMYSpeedPID = GM_SPEED_PID_DEFAULT;
 PID_t GMPSpeedPID = GM_SPEED_PID_DEFAULT;
 
-Ramp_t CM1SpeedRamp = RAMP_DEFAULT;
-Ramp_t CM2SpeedRamp = RAMP_DEFAULT;
-Ramp_t CM3SpeedRamp = RAMP_DEFAULT;
-Ramp_t CM4SpeedRamp = RAMP_DEFAULT;
-Ramp_t GMYSpeedRamp = RAMP_DEFAULT;
-Ramp_t GMPSpeedRamp = RAMP_DEFAULT;
+Ramp_t CM1SpeedRamp = CM_SPEED_RAMP_DEFAULT;
+Ramp_t CM2SpeedRamp = CM_SPEED_RAMP_DEFAULT;
+Ramp_t CM3SpeedRamp = CM_SPEED_RAMP_DEFAULT;
+Ramp_t CM4SpeedRamp = CM_SPEED_RAMP_DEFAULT;
+Ramp_t GMYSpeedRamp = GM_SPEED_RAMP_DEFAULT;
+Ramp_t GMPSpeedRamp = GM_SPEED_RAMP_DEFAULT;
 
 ChassisCurrent_t chassisCurrent;
-GimbalsCurrent_t gimbalsCurrent;
+PantiltCurrent_t pantiltCurrent;
 
-//float ZGyroAngle = 0;
-
-void WorkingStateSM(void)
+static void WorkingStateSM(void)
 {
-	static WorkingState_t lastWorkingState = WORKING_STATE_PREPARE;
-	lastWorkingState = workingState;
 	if(inputMode == INPUT_MODE_NO)
 	{
 		workingState = WORKING_STATE_STOP;
@@ -58,14 +49,14 @@ void WorkingStateSM(void)
 	{
 		case WORKING_STATE_PREPARE:
 		{
-			if(Encoder_IsOk(&ESC1) && Encoder_IsOk(&ESC1) && Encoder_IsOk(&ESC1) && Encoder_IsOk(&ESC1))
+			if(10)
 			{
 				workingState = WORKING_STATE_NORMAL;
 			}
 		}break;
 		case WORKING_STATE_NORMAL:
 		{
-			if(!(Encoder_IsOk(&ESC1) && Encoder_IsOk(&ESC1) && Encoder_IsOk(&ESC1) && Encoder_IsOk(&ESC1)))
+			if(0)
 			{
 				workingState = WORKING_STATE_PREPARE;
 			}
@@ -84,62 +75,91 @@ void WorkingStateSM(void)
 	}
 }
 
-void CMControlLoop(void)
+static void FunctionControl(void)
 {
-	Mecanum_t mecanum;
+	if (GET_FS(FUNCTIONAL_STATE_GUN)) {
+		GUN_ON();
+	} else {
+		GUN_OFF();
+	}
+	if (GET_FS(FUNCTIONAL_STATE_LASER)) {
+		LASER_ON();
+	} else {
+		LASER_OFF();
+	}
+	if (GET_FS(FUNCTIONAL_STATE_SPINNER)) {
+		SPINNER_ON();
+	} else {
+		SPINNER_OFF();
+	}
+}
+
+#define LIMIT(X,M) (X=X>M?M:(X<-M>?-M:X))
+static void ChassisControl(void)
+{
+	Mecanum_t mecanumVelocity;
+
+	mecanumVelocity.x = chassisSpeedRef.x;
+	mecanumVelocity.y = chassisSpeedRef.y;
+	mecanumVelocity.z = chassisSpeedRef.z;
 	
-	mecanum.x = chassisSpeedRef.x;
-	mecanum.y = chassisSpeedRef.y;
-	mecanum.z = chassisSpeedRef.z;
+	Mecanum_Decompose(&mecanumVelocity);
 	
-	Mecanum_Decompose(&mecanum);
+	CM1SpeedPID.ref = mecanumVelocity.w1;
+	CM2SpeedPID.ref = mecanumVelocity.w2;
+	CM3SpeedPID.ref = mecanumVelocity.w3;
+	CM4SpeedPID.ref = mecanumVelocity.w4;
 	
-	CM1SpeedPID.ref = mecanum.w1;
-	CM2SpeedPID.ref = mecanum.w2;
-	CM3SpeedPID.ref = mecanum.w3;
-	CM4SpeedPID.ref = mecanum.w4;
+	CM1SpeedPID.fdb = encoder[0].speed;
+	CM2SpeedPID.fdb = encoder[1].speed;
+	CM3SpeedPID.fdb = encoder[2].speed;
+	CM4SpeedPID.fdb = encoder[3].speed;
 	
-	CM1SpeedPID.fdb = ESC1.rate;
-	CM2SpeedPID.fdb = ESC2.rate;
-	CM3SpeedPID.fdb = ESC3.rate;
-	CM4SpeedPID.fdb = ESC4.rate;
-	
-	CM1SpeedPID.Calc(&CM1SpeedPID);
-	CM2SpeedPID.Calc(&CM2SpeedPID);
-	CM3SpeedPID.Calc(&CM3SpeedPID);
-	CM4SpeedPID.Calc(&CM4SpeedPID);
-	
-	CM1SpeedRamp.Calc(&CM1SpeedRamp);
-	CM2SpeedRamp.Calc(&CM2SpeedRamp);
-	CM3SpeedRamp.Calc(&CM3SpeedRamp);
-	CM4SpeedRamp.Calc(&CM4SpeedRamp);
+	PID_Calc(&CM1SpeedPID);
+	PID_Calc(&CM2SpeedPID);
+	PID_Calc(&CM3SpeedPID);
+	PID_Calc(&CM4SpeedPID);
+
+	Ramp_Calc(&CM1SpeedRamp);
+	Ramp_Calc(&CM2SpeedRamp);
+	Ramp_Calc(&CM3SpeedRamp);
+	Ramp_Calc(&CM4SpeedRamp);
 	
 	chassisCurrent.m1 = CM1SpeedPID.out * CM1SpeedRamp.output;
 	chassisCurrent.m2 = CM2SpeedPID.out * CM2SpeedRamp.output;
 	chassisCurrent.m3 = CM3SpeedPID.out * CM3SpeedRamp.output;
 	chassisCurrent.m4 = CM4SpeedPID.out * CM4SpeedRamp.output;
 	
-	EC60_CMD(CAN2, chassisCurrent.m1, chassisCurrent.m2, chassisCurrent.m3, chassisCurrent.m4);
+	CM_CMD(chassisCurrent.m1, chassisCurrent.m2, chassisCurrent.m3, chassisCurrent.m4);
 }
 
-void GMControlLoop(void)
+static void PantiltControl(void)
 {
-	GMYSpeedPID.ref = gimbalsSpeedRef.y;
-	GMPSpeedPID.ref = gimbalsSpeedRef.p;
+	GMYPositionPID.ref += pantiltSpeedRef.y;
+	GMPPositionPID.ref += pantiltSpeedRef.p;
+
+	GMYPositionPID.fdb = encoder[4].angle;
+	GMPPositionPID.fdb = encoder[5].angle;
+
+	PID_Calc(&GMYPositionPID);
+	PID_Calc(&GMPPositionPID);
+
+	GMYSpeedPID.ref = GMYPositionPID.out;
+	GMPSpeedPID.ref = GMPPositionPID.out;
 	
-	GMYSpeedPID.fdb = ESC5.rate;
-	GMPSpeedPID.fdb = ESC6.rate;
+	GMYSpeedPID.fdb = encoder[4].speed;
+	GMPSpeedPID.fdb = encoder[5].speed;
 	
-	GMYSpeedPID.Calc(&CM1SpeedPID);
-	GMPSpeedPID.Calc(&CM2SpeedPID);
+	PID_Calc(&GMYSpeedPID);
+	PID_Calc(&GMPSpeedPID);
+
+	Ramp_Calc(&GMYSpeedRamp);
+	Ramp_Calc(&GMPSpeedRamp);
 	
-	GMYSpeedRamp.Calc(&GMYSpeedRamp);
-	GMPSpeedRamp.Calc(&GMPSpeedRamp);
+	pantiltCurrent.y = GMYSpeedPID.out * GMYSpeedRamp.output;
+	pantiltCurrent.p = GMPSpeedPID.out * GMPSpeedRamp.output;
 	
-	gimbalsCurrent.y = GMYSpeedPID.out * GMYSpeedRamp.output;
-	gimbalsCurrent.p = GMPSpeedPID.out * GMPSpeedRamp.output;
-	
-	RM6025_CMD(CAN2, gimbalsCurrent.y, gimbalsCurrent.p);
+	GM_CMD(pantiltCurrent.y, pantiltCurrent.p);
 }
 
 static uint32_t ms_tick = 0;
@@ -149,18 +169,18 @@ void Control(void)
 	WorkingStateSM();
 	if(workingState == WORKING_STATE_STOP)
 	{
-		Encoder_Reset(&ESC1);
-		Encoder_Reset(&ESC2);
-		Encoder_Reset(&ESC3);
-		Encoder_Reset(&ESC4);
-		Encoder_Reset(&ESC5);
-		Encoder_Reset(&ESC6);
+		GUN_OFF();
+		LASER_OFF();
+		SPINNER_OFF();
+		CM_CMD(0, 0, 0, 0);
+		GM_CMD(0, 0);
 	}
 	else if(workingState == WORKING_STATE_NORMAL)
 	{
-		//GMControlLoop();
-		CMControlLoop();
+		FunctionControl();
+		ChassisControl();
+		PantiltControl();
 	}
 	
 }
-*/
+

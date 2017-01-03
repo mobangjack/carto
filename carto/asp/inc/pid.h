@@ -47,6 +47,27 @@ typedef struct
 void PID_Reset(PID_t *pid);
 void PID_Calc(PID_t *pid);
 
+#define PID(KP,KI,KD,PM,IM,DM,OM) \
+{\
+	.ref = 0,\
+	.fdb = 0,\
+	.err = {0,0},\
+	.kp = KP,\
+	.ki = KI,\
+	.kd = KD,\
+	.P = 0,\
+	.I = 0,\
+	.D = 0,\
+	.Pmax = PM,\
+	.Imax = IM,\
+	.Dmax = DM,\
+	.out = 0,\
+	.outmax = OM,\
+	.kp_offset = 0,\
+	.ki_offset = 0,\
+	.kd_offset = 0,\
+}\
+
 #ifdef __cplusplus
 }
 #endif

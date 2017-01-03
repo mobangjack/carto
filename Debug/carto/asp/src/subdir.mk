@@ -4,9 +4,11 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../carto/asp/src/ahrs.c \
 ../carto/asp/src/cbus.c \
 ../carto/asp/src/crc16.c \
 ../carto/asp/src/dbus.c \
+../carto/asp/src/est.c \
 ../carto/asp/src/fifo.c \
 ../carto/asp/src/gauss.c \
 ../carto/asp/src/kalman.c \
@@ -16,9 +18,11 @@ C_SRCS += \
 ../carto/asp/src/ramp.c 
 
 OBJS += \
+./carto/asp/src/ahrs.o \
 ./carto/asp/src/cbus.o \
 ./carto/asp/src/crc16.o \
 ./carto/asp/src/dbus.o \
+./carto/asp/src/est.o \
 ./carto/asp/src/fifo.o \
 ./carto/asp/src/gauss.o \
 ./carto/asp/src/kalman.o \
@@ -28,9 +32,11 @@ OBJS += \
 ./carto/asp/src/ramp.o 
 
 C_DEPS += \
+./carto/asp/src/ahrs.d \
 ./carto/asp/src/cbus.d \
 ./carto/asp/src/crc16.d \
 ./carto/asp/src/dbus.d \
+./carto/asp/src/est.d \
 ./carto/asp/src/fifo.d \
 ./carto/asp/src/gauss.d \
 ./carto/asp/src/kalman.d \

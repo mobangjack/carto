@@ -52,7 +52,7 @@ void GaussReset(Gauss_t* gauss)
   gauss->delta_mse = 0;
 }
 
-float GaussFilter(Gauss_t* gauss, float x) {
+float GaussProc(Gauss_t* gauss, float x) {
   gauss->last_mean = gauss->mean;
   gauss->last_mse = gauss->mse;
   if (gauss->n < gauss->N) {

@@ -16,3 +16,29 @@
  
 #include "odo.h"
 
+void Odo_Calc(void)
+{
+	Mecanum_t mecanum;
+
+	mecanum.w1 = encoder[0].angle;
+	mecanum.w1 = encoder[1].angle;
+	mecanum.w1 = encoder[2].angle;
+	mecanum.w1 = encoder[3].angle;
+
+	Mecanum_Synthesis(&mecanum);
+
+	odo.px = mecanum.x;
+	odo.py = mecanum.y;
+	odo.pz = mecanum.z;
+
+	mecanum.w1 = encoder[0].speed;
+	mecanum.w1 = encoder[1].speed;
+	mecanum.w1 = encoder[2].speed;
+	mecanum.w1 = encoder[3].speed;
+
+	Mecanum_Synthesis(&mecanum);
+
+	odo.vx = mecanum.x;
+	odo.vy = mecanum.y;
+	odo.vz = mecanum.z;
+}

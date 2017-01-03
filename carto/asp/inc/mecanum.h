@@ -33,7 +33,18 @@
 #define MECANUM_R1 0.009f  // Mecanum wheel radius 1
 #define MECANUM_R2 0.070f  // Mecanum wheel radius 2
 
-void Mecanum_Synthesis(float* xyz, float* wheel);
-void Mecanum_Decompose(float* xyz, float* wheel);
+typedef struct
+{
+	float x;
+	float y;
+	float z;
+	float w1;
+	float w2;
+	float w3;
+	float w4;
+}Mecanum_t;
+
+void Mecanum_Synthesis(Mecanum_t* mecanum);
+void Mecanum_Decompose(Mecanum_t* mecanum);
 
 #endif

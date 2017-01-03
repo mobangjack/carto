@@ -19,9 +19,19 @@
 
 #include <stdint.h>
 
+#include "cmd.h"
+#include "can.h"
+#include "gun.h"
+#include "laser.h"
+#include "spinner.h"
+#include "mecanum.h"
+#include "odo.h"
 #include "pid.h"
+#include "ramp.h"
+#include "motor.h"
+#include "wdg.h"
 
-typedef unsigned char WorkingState_t;
+typedef uint8_t WorkingState_t;
 
 #define WORKING_STATE_PREPARE 0x00
 #define WORKING_STATE_NORMAL  0x01
@@ -39,100 +49,19 @@ typedef struct
 {
 	float y;
 	float p;
-}GimbalsCurrent_t;
+}PantiltCurrent_t;
 
-#define CM_POSITION_PID_DEFAULT \
-{\
-	.ref = 0,\
-	.fdb = 0,\
-	.err = {0,0},\
-	.kp = 220.f,\
-	.ki = 0.0f,\
-	.kd = 0.0f,\
-	.P = 0,\
-	.I = 0,\
-	.D = 0,\
-	.Pmax = 4900,\
-	.Imax = 3500,\
-	.Dmax = 1500,\
-	.out = 0,\
-	.outmax = 4950,\
-	.kp_offset = 0,\
-	.ki_offset = 0,\
-	.kd_offset = 0,\
-}\
-
-#define CM_SPEED_PID_DEFAULT \
-{\
-	.ref = 0,\
-	.fdb = 0,\
-	.err = {0,0},\
-	.kp = 220.f,\
-	.ki = 0.0f,\
-	.kd = 0.0f,\
-	.P = 0,\
-	.I = 0,\
-	.D = 0,\
-	.Pmax = 4900,\
-	.Imax = 3500,\
-	.Dmax = 1500,\
-	.out = 0,\
-	.outmax = 4950,\
-	.kp_offset = 0,\
-	.ki_offset = 0,\
-	.kd_offset = 0,\
-}\
-
-#define GM_SPEED_PID_DEFAULT \
-{\
-	.ref = 0,\
-	.fdb = 0,\
-	.err = {0,0},\
-	.kp = 220.f,\
-	.ki = 0.0f,\
-	.kd = 0.0f,\
-	.P = 0,\
-	.I = 0,\
-	.D = 0,\
-	.Pmax = 4900,\
-	.Imax = 3500,\
-	.Dmax = 1500,\
-	.out = 0,\
-	.outmax = 4950,\
-	.kp_offset = 0,\
-	.ki_offset = 0,\
-	.kd_offset = 0,\
-}\
-
-#define CM_SPEED_RAMP_DEFAULT \
-{\
-	.count = 0,\
-	.scale = 5000,\
-	.Init = Ramp_Init,\
-	.Calc = Ramp_Calc,\
-	.SetCounter = Ramp_SetCounetr,\
-	.ResetCounter = Ramp_ResetCounter,\
-	.SetScale = Ramp_SetScale,\
-	.IsOverflow = Ramp_IsOverflow,\
-}\
-
-#define GM_SPEED_RAMP_DEFAULT \
-{\
-	.count = 0,\
-	.scale = 5000,\
-	.Init = Ramp_Init,\
-	.Calc = Ramp_Calc,\
-	.SetCounter = Ramp_SetCounetr,\
-	.ResetCounter = Ramp_ResetCounter,\
-	.SetScale = Ramp_SetScale,\
-	.IsOverflow = Ramp_IsOverflow,\
-}\
+#define CM_POSITION_PID_DEFAULT PID(220, 0, 0, 4900, 3500, 1500, 4950)
+#define CM_SPEED_PID_DEFAULT PID(220, 0, 0, 4900, 3500, 1500, 4950)
+#define GM_SPEED_PID_DEFAULT PID(220, 0, 0, 4900, 3500, 1500, 4950)
+#define CM_SPEED_RAMP_DEFAULT RAMP(5000)
+#define GM_SPEED_RAMP_DEFAULT RAMP(5000)
 
 //void Control(void);
 
 extern WorkingState_t workingState;
 extern ChassisCurrent_t chassisCurrent;
-extern GimbalsCurrent_t gimbalsCurrent;
+extern PantiltCurrent_t pantiltCurrent;
 
 #endif
 

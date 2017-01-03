@@ -17,8 +17,21 @@
 #ifndef __ODO_H__
 #define __ODO_H__
 
-#include <stdint.h>
-#include <string.h>
-#include "crc16.h"
+#include "can.h"
+#include "mecanum.h"
+
+typedef struct
+{
+	float px;
+	float py;
+	float pz;
+	float vx;
+	float vy;
+	float vz;
+}Odo_t;
+
+void Odo_Calc(void);
+
+extern Odo_t odo;
 
 #endif

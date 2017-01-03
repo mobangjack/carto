@@ -14,29 +14,31 @@
  * limitations under the License.
  */
 
-#ifndef __ECD_H__
-#define __ECD_H__
+#ifndef __EST_H__
+#define __EST_H__
 
-#include "motor.h"
+// Estimator
+#include "gauss.h"
+#include "kalman.h"
 #include <stdint.h>
-
-#define MOTOR_NUM 6
+#include <stdlib.h>
+#include <string.h>
 
 typedef struct
 {
-	int32_t raw;  // raw value
-	int32_t rnd;  // round
-	int32_t dif;  // difference
-	int32_t con;  // continuous value
-	int32_t exp;  // expected continuous value
-	int32_t arc;  // arc
-	float deg;    // expected value in degree
-	float rad;    // expected value in radian
-	float vel;    // velocity
-}ECD_t;
+	uint8_t ini_flag;   // initialization flag
+	uint16_t gaussN;    // referred by gauss->N
+	float precision;    // precision (delta mean square error threshold)
+	Gauss_t* gauss;     // gauss processor
+	Kalman_t* kalman;   // kalman filter
+	float value;        // estimated value
+	float delta;        // delta value
+}EST_t;
 
-void ECD_PROC(uint8_t i, uint8_t* data);
-
-extern ECD_t ecd[MOTOR_NUM];
+EST_t* EST_Create(uint32_t gaussN, float pre, float kalmanQ);
+float EST_Proc(EST_t* est, float v);
+uint8_t EST_OK(EST_t* est);
+void EST_Reset(EST_t* est);
+void EST_Destroy(EST_t* est);
 
 #endif
