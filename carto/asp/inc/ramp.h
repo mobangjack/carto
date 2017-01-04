@@ -32,8 +32,8 @@ typedef struct Ramp
 
 void Ramp_Init(Ramp_t* ramp, uint32_t scale);
 float Ramp_Calc(Ramp_t* ramp);
-void Ramp_SetCounter(Ramp_t* ramp, uint32_t count);
-void Ramp_ResetCounter(Ramp_t* ramp);
+void Ramp_SetCount(Ramp_t* ramp, uint32_t count);
+void Ramp_Reset(Ramp_t* ramp);
 void Ramp_SetScale(Ramp_t* ramp, uint32_t scale);
 uint8_t Ramp_IsOverflow(Ramp_t* ramp);
 

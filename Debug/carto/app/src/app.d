@@ -72,6 +72,8 @@ carto/app/src/app.o: ../carto/app/src/app.c \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/est.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/wdg.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/srv/inc/com_srv.h \
+ /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/com.h \
+ /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/tty.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/srv/inc/imu_srv.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/ahrs.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/mpu6050.h \
@@ -83,7 +85,6 @@ carto/app/src/app.o: ../carto/app/src/app.c \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/hci.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/mafilter.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/rcv.h \
- /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/wdg.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/cali.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/flash.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/ctl.h \
@@ -242,6 +243,10 @@ carto/app/src/app.o: ../carto/app/src/app.c \
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/srv/inc/com_srv.h:
 
+/home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/com.h:
+
+/home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/tty.h:
+
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/srv/inc/imu_srv.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/ahrs.h:
@@ -263,8 +268,6 @@ carto/app/src/app.o: ../carto/app/src/app.c \
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/mafilter.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/rcv.h:
-
-/home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/wdg.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/cali.h:
 

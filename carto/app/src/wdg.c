@@ -18,8 +18,7 @@
 
 const uint32_t WDG[WDG_NUM] = {
 		WDG_OVERFLOW_CNT_RC,
-		WDG_OVERFLOW_CNT_CALI,
-		WDG_OVERFLOW_CNT_API,
+		WDG_OVERFLOW_CNT_COM,
 		WDG_OVERFLOW_CNT_IMU,
 		WDG_OVERFLOW_CNT_ZGYRO,
 		WDG_OVERFLOW_CNT_MOTOR,
@@ -30,10 +29,22 @@ const uint32_t WDG[WDG_NUM] = {
 		WDG_OVERFLOW_CNT_MOTOR,
 };
 
-uint32_t wdg[WDG_NUM] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+uint32_t wdg[WDG_NUM] = {
+		WDG_OVERFLOW_CNT_RC,
+		WDG_OVERFLOW_CNT_COM,
+		WDG_OVERFLOW_CNT_IMU,
+		WDG_OVERFLOW_CNT_ZGYRO,
+		WDG_OVERFLOW_CNT_MOTOR,
+		WDG_OVERFLOW_CNT_MOTOR,
+		WDG_OVERFLOW_CNT_MOTOR,
+		WDG_OVERFLOW_CNT_MOTOR,
+		WDG_OVERFLOW_CNT_MOTOR,
+		WDG_OVERFLOW_CNT_MOTOR,
+};
+
 uint32_t err = 0xFFFFFFFF;
 
-void WDG_SRV(void)
+void WDG_Proc(void)
 {
 	int i = 0;
 	for(i = 0; i < WDG_NUM; i++)
@@ -46,7 +57,7 @@ void WDG_SRV(void)
 		else
 		{
 			err &= ~(uint32_t)(1 << i); //clear the error bit
-			wdg[i]++;			     //add 1 each time
+			wdg[i]++;			        //add 1 each time
 		}
 	}
 }

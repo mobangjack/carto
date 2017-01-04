@@ -5,6 +5,7 @@ carto/app/src/ctl.o: ../carto/app/src/ctl.c \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/rci.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/hci.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/mafilter.h \
+ /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/wdg.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/can.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/motor.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/platform.h \
@@ -44,7 +45,6 @@ carto/app/src/ctl.o: ../carto/app/src/ctl.c \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/est.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/gauss.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/kalman.h \
- /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/wdg.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/gun.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/stm32util.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/laser.h \
@@ -65,6 +65,8 @@ carto/app/src/ctl.o: ../carto/app/src/ctl.c \
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/hci.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/mafilter.h:
+
+/home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/wdg.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/can.h:
 
@@ -143,8 +145,6 @@ carto/app/src/ctl.o: ../carto/app/src/ctl.c \
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/gauss.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/kalman.h:
-
-/home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/wdg.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/gun.h:
 

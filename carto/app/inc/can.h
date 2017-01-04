@@ -31,9 +31,9 @@ typedef struct
 }Encoder_t;
 
 void CAN_Proc(CanRxMsg* canRxMsg);
+void Encoder_Reset(uint8_t i);
 
 extern float ZGyroAngle;
-extern Motor_t motor[MOTOR_NUM];
-extern Encoder_t encoder[MOTOR_NUM];
+extern Encoder_t encoder[MOTOR_NUM]; // encoder group
 
 #endif

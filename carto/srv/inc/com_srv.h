@@ -17,7 +17,7 @@
 #ifndef __COM_SRV_H__
 #define __COM_SRV_H__
 
-#include "asp.h"
-#include "bsp.h"
+#include "com.h"
+#include "tty.h"
 
 #endif

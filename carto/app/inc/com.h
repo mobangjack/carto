@@ -18,5 +18,8 @@
 #define __COM_H__
 
 #include "tty.h"
+#include "wdg.h"
+
+void Com_Proc(uint8_t data);
 
 #endif

@@ -16,4 +16,7 @@
  
 #include "com.h"
 
-
+void Com_Proc(uint8_t data)
+{
+	WDG_Feed(WDG_IDX_COM);
+}

@@ -6,6 +6,7 @@ carto/srv/src/rcv_srv.o: ../carto/srv/src/rcv_srv.c \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/cmd.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/hci.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/mafilter.h \
+ /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/wdg.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/rcv.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/stm32util.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/platform.h \
@@ -40,8 +41,7 @@ carto/srv/src/rcv_srv.o: ../carto/srv/src/rcv_srv.c \
  /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/StdPeriph_Driver/inc/stm32f4xx_rng.h \
  /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/StdPeriph_Driver/inc/stm32f4xx_can.h \
  /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/StdPeriph_Driver/inc/stm32f4xx_dac.h \
- /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/StdPeriph_Driver/inc/stm32f4xx_dcmi.h \
- /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/wdg.h
+ /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/StdPeriph_Driver/inc/stm32f4xx_dcmi.h
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/srv/inc/rcv_srv.h:
 
@@ -56,6 +56,8 @@ carto/srv/src/rcv_srv.o: ../carto/srv/src/rcv_srv.c \
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/hci.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/mafilter.h:
+
+/home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/wdg.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/rcv.h:
 
@@ -126,5 +128,3 @@ carto/srv/src/rcv_srv.o: ../carto/srv/src/rcv_srv.c \
 /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/StdPeriph_Driver/inc/stm32f4xx_dac.h:
 
 /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/StdPeriph_Driver/inc/stm32f4xx_dcmi.h:
-
-/home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/wdg.h:

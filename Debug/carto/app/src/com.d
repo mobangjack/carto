@@ -35,7 +35,8 @@ carto/app/src/com.o: ../carto/app/src/com.c \
  /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/StdPeriph_Driver/inc/stm32f4xx_can.h \
  /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/StdPeriph_Driver/inc/stm32f4xx_dac.h \
  /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/StdPeriph_Driver/inc/stm32f4xx_dcmi.h \
- /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/fifo.h
+ /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/fifo.h \
+ /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/wdg.h
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/com.h:
 
@@ -110,3 +111,5 @@ carto/app/src/com.o: ../carto/app/src/com.c \
 /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/StdPeriph_Driver/inc/stm32f4xx_dcmi.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/fifo.h:
+
+/home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/wdg.h:

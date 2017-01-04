@@ -37,7 +37,7 @@ typedef struct
 
 EST_t* EST_Create(uint32_t gaussN, float pre, float kalmanQ);
 float EST_Proc(EST_t* est, float v);
-uint8_t EST_OK(EST_t* est);
+uint8_t EST_Ok(EST_t* est);
 void EST_Reset(EST_t* est);
 void EST_Destroy(EST_t* est);
 

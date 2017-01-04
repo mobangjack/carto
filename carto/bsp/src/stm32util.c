@@ -47,12 +47,12 @@ void GPIO_Config(GPIO gpio, GPIOMode_TypeDef mode, GPIOSpeed_TypeDef speed, GPIO
 	GPIO_Init(grp, &io);
 }
 
-void GPIO_IN(GPIO gpio)
+void GPIO_In(GPIO gpio)
 {
 	GPIO_Config(gpio, GPIO_Mode_IN, GPIO_Fast_Speed, GPIO_OType_OD, GPIO_PuPd_NOPULL);
 }
 
-void GPIO_OUT(GPIO gpio)
+void GPIO_Out(GPIO gpio)
 {
 	GPIO_Config(gpio, GPIO_Mode_OUT, GPIO_Fast_Speed, GPIO_OType_PP, GPIO_PuPd_NOPULL);
 }
@@ -69,7 +69,7 @@ void EXTI_Bind(GPIO gpio, EXTITrigger_TypeDef trig)
 	uint32_t pinNum = GPIO_PIN_NUM(gpio);
 	uint32_t pinMsk = GPIO_PIN_MSK(gpio);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
-	GPIO_IN(gpio);
+	GPIO_In(gpio);
 	SYSCFG_EXTILineConfig(pinGrp, pinNum);
 	EXTI_Config(pinMsk, EXTI_Mode_Interrupt, trig);
 }

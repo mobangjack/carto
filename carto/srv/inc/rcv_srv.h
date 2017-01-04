@@ -19,6 +19,5 @@
 
 #include "cmd.h"
 #include "rcv.h"
-#include "wdg.h"
 
 #endif

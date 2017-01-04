@@ -19,24 +19,22 @@
 
 #include <stdint.h>
 
-#define WDG_NUM              11u
+#define WDG_NUM              10u
 
 #define WDG_IDX_RC           0u
-#define WDG_IDX_CALI         1u
-#define WDG_IDX_API          2u
-#define WDG_IDX_IMU          3u
-#define WDG_IDX_ZGYRO        4u
-#define WDG_IDX_MOTOR1       5u
-#define WDG_IDX_MOTOR2       6u
-#define WDG_IDX_MOTOR3       7u
-#define WDG_IDX_MOTOR4       8u
-#define WDG_IDX_MOTOR5       9u
-#define WDG_IDX_MOTOR6       10u
+#define WDG_IDX_COM          1u
+#define WDG_IDX_IMU          2u
+#define WDG_IDX_ZGYRO        3u
+#define WDG_IDX_MOTOR1       4u
+#define WDG_IDX_MOTOR2       5u
+#define WDG_IDX_MOTOR3       6u
+#define WDG_IDX_MOTOR4       7u
+#define WDG_IDX_MOTOR5       8u
+#define WDG_IDX_MOTOR6       9u
 
 
 #define WDG_ERR_RC			 (1<<WDG_IDX_RC)
-#define WDG_ERR_CALI		 (1<<WDG_IDX_CALI)
-#define WDG_ERR_API			 (1<<WDG_IDX_API)
+#define WDG_ERR_COM			 (1<<WDG_IDX_COM)
 #define WDG_ERR_IMU			 (1<<WDG_IDX_IMU)
 #define WDG_ERR_ZGYRO		 (1<<WDG_IDX_ZGYRO)
 #define WDG_ERR_MOTOR1		 (1<<WDG_IDX_MOTOR1)
@@ -48,8 +46,7 @@
 
 #define WDG_ERR_ALL ( \
 		WDG_ERR_RC | \
-		WDG_ERR_CALI | \
-		WDG_ERR_API | \
+		WDG_ERR_COM | \
 		WDG_ERR_IMU | \
 		WDG_ERR_ZGYRO | \
 		WDG_ERR_MOTOR1 | \
@@ -61,13 +58,12 @@
 		)
 
 #define WDG_OVERFLOW_CNT_RC   	    10
-#define WDG_OVERFLOW_CNT_CALI 		50
-#define WDG_OVERFLOW_CNT_API  		50
+#define WDG_OVERFLOW_CNT_COM  		50
 #define WDG_OVERFLOW_CNT_IMU  		50
 #define WDG_OVERFLOW_CNT_ZGYRO 		50
 #define WDG_OVERFLOW_CNT_MOTOR 		50
 
-void WDG_SRV(void);
+void WDG_Proc(void);
 void WDG_Feed(uint8_t i);
 uint32_t WDG_GetErr(void);
 uint8_t WDG_IsErrSet(uint32_t mask);

@@ -20,6 +20,7 @@
 #include "dbus.h"
 #include "rci.h"
 #include "hci.h"
+#include "wdg.h"
 
 typedef uint8_t InputMode_t;
 

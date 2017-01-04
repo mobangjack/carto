@@ -17,7 +17,7 @@
 #include "can.h"
 
 Motor_t motor[MOTOR_NUM]; // Motor Group
-EST_t* est[MOTOR_NUM]; // Encoder State Estimator Group
+EST_t* est[MOTOR_NUM];    // Estimator Group
 
 #define EST_GAUSS_N   500u
 #define EST_PRECISION 0.01f
@@ -70,4 +70,11 @@ void CAN_Proc(CanRxMsg* canRxMsg)
 	default:
 		break;
 	}
+}
+
+void Encoder_Reset(uint8_t i)
+{
+	EST_Reset(est[i]);
+	ECD_Reset(&motor[i].ecd);
+	memset(&encoder[i], 0, sizeof(Encoder_t));
 }

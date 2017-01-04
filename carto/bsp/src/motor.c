@@ -41,7 +41,7 @@ void ECD_Proc(ECD_t* ecd, uint8_t* data)
 	ecd->speed_rad = ecd->speed / MOTOR_ECD_ANGLE_FDB_MOD * 2 * PI;
 }
 
-void ECD_RST(ECD_t* ecd)
+void ECD_Reset(ECD_t* ecd)
 {
 	memset(ecd, 0, sizeof(ECD_t));
 }

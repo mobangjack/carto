@@ -61,6 +61,7 @@ void GetInputMode(DBUS_t* dbus)
 
 void DBUS_CMD(DBUS_t* dbus)
 {
+	WDG_Feed(WDG_IDX_RC);
 	GetInputMode(dbus);
 	if(inputMode == INPUT_MODE_RC)
 	{

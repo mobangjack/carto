@@ -31,14 +31,15 @@ float Ramp_Calc(Ramp_t* ramp)
 	return ramp->output;
 }
 
-void Ramp_SetCounter(Ramp_t* ramp, uint32_t count)
+void Ramp_SetCount(Ramp_t* ramp, uint32_t count)
 {
 	ramp->count = count;
 }
 
-void Ramp_ResetCounter(Ramp_t* ramp)
+void Ramp_Reset(Ramp_t* ramp)
 {
 	ramp->count = 0;
+	ramp->output = 0;
 }
 
 void Ramp_SetScale(Ramp_t* ramp, uint32_t scale)

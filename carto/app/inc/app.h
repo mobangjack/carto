@@ -20,6 +20,7 @@
 // standard c libraries
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
 
@@ -33,8 +34,10 @@
 #include "srv.h"
 
 // Applications
-#include "cali.h"
+#include "can.h"
+#include "cfg.h"
 #include "cmd.h"
+#include "com.h"
 #include "ctl.h"
 #include "hci.h"
 #include "odo.h"
@@ -43,8 +46,6 @@
 
 // commonly used macros
 #define PI 3.1415926f
-//#define PI2 6.2831855f
-#define PIOVER180 (PI/180.f)
 #define MAP(val,min1,max1,min2,max2) ((val-min1)*(max2-min2)/(max1-min1)+min2)
 #define SQR(x) (x*x)
 

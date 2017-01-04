@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-#ifndef __CALI_H__
-#define __CALI_H__
+#ifndef __CFG_H__
+#define __CFG_H__
 
 #include "flash.h"
 

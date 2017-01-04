@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include "cali.h"
+#include "cfg.h"
 
 void Cali_Get(Cali_t* cali)
 {

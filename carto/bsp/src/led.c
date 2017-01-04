@@ -18,8 +18,8 @@
 
 void LED_Config(void)
 {
-    GPIO_OUT(LED_GREEN_PIN);
-    GPIO_OUT(LED_RED_PIN);
+    GPIO_Out(LED_GREEN_PIN);
+    GPIO_Out(LED_RED_PIN);
 
     LED_GREEN_OFF();
     LED_RED_OFF();

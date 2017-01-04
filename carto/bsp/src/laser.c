@@ -18,7 +18,7 @@
 
 void Laser_Config(void)
 {
-	GPIO_OUT(LASER_PIN);
+	GPIO_Out(LASER_PIN);
 
 	LASER_OFF();
 }

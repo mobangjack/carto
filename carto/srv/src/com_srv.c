@@ -18,5 +18,5 @@
 
 void TTY_RX_Callback(u8 data)
 {
-
+	Com_Proc(data);
 }

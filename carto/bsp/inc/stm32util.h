@@ -275,8 +275,8 @@ while(0)
 typedef void* (*Callback)(void* p);
 
 void GPIO_Config(GPIO gpio, GPIOMode_TypeDef mode, GPIOSpeed_TypeDef speed, GPIOOType_TypeDef otype, GPIOPuPd_TypeDef pupd);
-void GPIO_IN(GPIO gpio);
-void GPIO_OUT(GPIO gpio);
+void GPIO_In(GPIO gpio);
+void GPIO_Out(GPIO gpio);
 void GPIO_AF(GPIO gpio, u8 af);
 void EXTI_Bind(GPIO gpio, EXTITrigger_TypeDef trig);
 void Encoder_Bind(GPIO A, GPIO B, TIM_TypeDef* timx, u16 mode, u16 p1, u16 p2);

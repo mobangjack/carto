@@ -66,7 +66,7 @@ typedef struct
 }Motor_t; // For EC60 & RM6025 Motor
 
 void ECD_Proc(ECD_t* ecd, uint8_t* data);
-void ECD_RST(ECD_t* ecd);
+void ECD_Reset(ECD_t* ecd);
 void ESC_Proc(ESC_t* esc, uint8_t* data);
 void Motor_Proc(Motor_t* motor, uint8_t* data);
 void EC60_CMD(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16_t c204);
