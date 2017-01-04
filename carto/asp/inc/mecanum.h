@@ -28,11 +28,6 @@
 /*                                         */
 /*******************************************/
 
-#define MECANUM_LX 0.160f  // Mecanum wheel span
-#define MECANUM_LY 0.160f  // Mecanum wheel base
-#define MECANUM_R1 0.009f  // Mecanum wheel radius 1
-#define MECANUM_R2 0.070f  // Mecanum wheel radius 2
-
 typedef struct
 {
 	float lx;

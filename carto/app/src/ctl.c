@@ -18,8 +18,8 @@
 
 WorkingState_t workingState = WORKING_STATE_PREPARE;
 
-PID_t GMYPositionPID = CM_POSITION_PID_DEFAULT;
-PID_t GMPPositionPID = CM_POSITION_PID_DEFAULT;
+PID_t GMYAnglePID = CM_ANGLE_PID_DEFAULT;
+PID_t GMPAnglePID = CM_ANGLE_PID_DEFAULT;
 
 PID_t CM1SpeedPID = CM_SPEED_PID_DEFAULT;
 PID_t CM2SpeedPID = CM_SPEED_PID_DEFAULT;
@@ -135,17 +135,17 @@ static void ChassisControl(void)
 
 static void PantiltControl(void)
 {
-	GMYPositionPID.ref += pantiltSpeedRef.y;
-	GMPPositionPID.ref += pantiltSpeedRef.p;
+	GMYAnglePID.ref += pantiltSpeedRef.y;
+	GMPAnglePID.ref += pantiltSpeedRef.p;
 
-	GMYPositionPID.fdb = encoder[4].angle;
-	GMPPositionPID.fdb = encoder[5].angle;
+	GMYAnglePID.fdb = encoder[4].angle;
+	GMPAnglePID.fdb = encoder[5].angle;
 
-	PID_Calc(&GMYPositionPID);
-	PID_Calc(&GMPPositionPID);
+	PID_Calc(&GMYAnglePID);
+	PID_Calc(&GMPAnglePID);
 
-	GMYSpeedPID.ref = GMYPositionPID.out;
-	GMPSpeedPID.ref = GMPPositionPID.out;
+	GMYSpeedPID.ref = GMYAnglePID.out;
+	GMPSpeedPID.ref = GMPAnglePID.out;
 	
 	GMYSpeedPID.fdb = encoder[4].speed;
 	GMPSpeedPID.fdb = encoder[5].speed;

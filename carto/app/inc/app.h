@@ -54,4 +54,15 @@ uint8_t App_Cfg(void);
 
 extern Cfg_t cfg;
 
+//extern AHRS_t ahrs;
+extern Mecanum_t mecanum;
+extern PID_t GMYAnglePID;
+extern PID_t GMPAnglePID;
+extern PID_t CM1SpeedPID;
+extern PID_t CM2SpeedPID;
+extern PID_t CM3SpeedPID;
+extern PID_t CM4SpeedPID;
+extern PID_t GMYSpeedPID;
+extern PID_t GMPSpeedPID;
+
 #endif /* __APP_H__ */

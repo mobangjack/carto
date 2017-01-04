@@ -14,13 +14,28 @@
  * limitations under the License.
  */
 
-#ifndef __AHRS_H__
-#define __AHRS_H__
+#ifndef __IMU_H__
+#define __IMU_H__
 
-#include <math.h>
+#include "ahrs.h"
+#include "mpu6050.h"
 
-void AHRS_Update(float* buf, float* q, float* e, float kp, float ki, float dt);
-void AHRS_Q2YPR(float* q, float* ypr);
+typedef struct
+{
+	float ax;
+	float ay;
+	float az;
+	float gx;
+	float gy;
+	float gz;
+	float mx;
+	float my;
+	float mz;
+}IMU_t;
+
+void IMU_Proc(void);
+
+extern IMU_t imu;
+//extern A
 
 #endif
-

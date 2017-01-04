@@ -57,11 +57,11 @@
 		WDG_ERR_MOTOR6 \
 		)
 
-#define WDG_OVERFLOW_CNT_RC   	    10
-#define WDG_OVERFLOW_CNT_COM  		50
-#define WDG_OVERFLOW_CNT_IMU  		50
-#define WDG_OVERFLOW_CNT_ZGYRO 		50
-#define WDG_OVERFLOW_CNT_MOTOR 		50
+#define WDG_OVERFLOW_CNT_RC   	    100
+#define WDG_OVERFLOW_CNT_COM  		100
+#define WDG_OVERFLOW_CNT_IMU  		100
+#define WDG_OVERFLOW_CNT_ZGYRO 		100
+#define WDG_OVERFLOW_CNT_MOTOR 		100
 
 void WDG_Proc(void);
 void WDG_Feed(uint8_t i);

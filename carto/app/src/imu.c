@@ -14,13 +14,3 @@
  * limitations under the License.
  */
 
-#ifndef __AHRS_H__
-#define __AHRS_H__
-
-#include <math.h>
-
-void AHRS_Update(float* buf, float* q, float* e, float kp, float ki, float dt);
-void AHRS_Q2YPR(float* q, float* ypr);
-
-#endif
-

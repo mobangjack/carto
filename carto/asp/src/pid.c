@@ -16,6 +16,28 @@
  
 #include "pid.h"
 
+void PID_Config(PID_t* pid, float kp, float ki, float kd, float Pmax, float Imax, float Dmax, float outmax)
+{
+	pid->kp = kp;
+	pid->ki = ki;
+	pid->kd = kd;
+	pid->Pmax = Pmax;
+	pid->Imax = Imax;
+	pid->Dmax = Dmax;
+	pid->outmax = outmax;
+
+	/*
+	pid->P = 0;
+	pid->I = 0;
+	pid->D = 0;
+	pid->fdb = 0;
+	pid->ref = 0;
+	pid->out = 0;
+	pid->err[0] = 0;
+	pid->err[1] = 0;
+	*/
+}
+
 void PID_Reset(PID_t *pid)
 {
 	pid->err[0] = 0;

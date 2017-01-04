@@ -16,7 +16,7 @@
 
 #include "cfg.h"
 
-void Cfg_Read(Cfg_t* cfg)
+void Cfg_Load(Cfg_t* cfg)
 {
 	Flash_Read(CFG_DATA_START_ADDRESS, (u8*)cfg, sizeof(Cfg_t));
 }

@@ -41,6 +41,7 @@ typedef struct
 	float outmax;
 }PID_t;
 
+void PID_Config(PID_t* pid, float kp, float ki, float kd, float Pmax, float Imax, float Dmax, float outmax);
 void PID_Reset(PID_t *pid);
 void PID_Calc(PID_t *pid);
 

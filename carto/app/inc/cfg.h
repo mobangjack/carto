@@ -34,7 +34,7 @@ typedef uint32_t CfgFlag_t;
 #define CFG_FLAG_MAG 		        (((uint32_t)1)<<2)
 #define CFG_FLAG_YAW 			    (((uint32_t)1)<<3)
 #define CFG_FLAG_PIT 			    (((uint32_t)1)<<4)
-#define CFG_FLAG_CHA 		        (((uint32_t)1)<<11)
+#define CFG_FLAG_CHA 		        (((uint32_t)1)<<5)
 
 #define CFG_FLAG_NO   0x00
 #define CFG_FLAG_OK   0x5A
@@ -83,13 +83,15 @@ typedef struct
 
 typedef struct
 {
-	float x;
-	float y;
-}DimCfg_t; // Dimension Configuration
+	float lx;
+	float ly;
+	float r1;
+	float r2;
+}MecCfg_t; // Mecanum Wheel Configuration
 
 typedef struct
 {
-	DimCfg_t dim;
+	MecCfg_t mec;
 	PIDCfg_t pid;
 }ChaCfg_t; // Chassis Configuration
 
@@ -139,46 +141,46 @@ typedef struct
 
 #define YAW_POS_PID_CFG_DEFAULT \
 { \
-	.kp = 0, \
+	.kp = 220, \
 	.ki = 0, \
 	.kd = 0, \
-	.Pmax = 4000, \
+	.Pmax = 4950, \
 	.Imax = 2000, \
 	.Dmax = 2000, \
-	.outmax = 4900, \
+	.outmax = 4950, \
 }
 
 #define YAW_SPD_PID_CFG_DEFAULT \
 { \
-	.kp = 0, \
+	.kp = 220, \
 	.ki = 0, \
 	.kd = 0, \
-	.Pmax = 4000, \
+	.Pmax = 4950, \
 	.Imax = 2000, \
 	.Dmax = 2000, \
-	.outmax = 4900, \
+	.outmax = 4950, \
 }
 
 #define PIT_POS_PID_CFG_DEFAULT \
 { \
-	.kp = 0, \
+	.kp = 220, \
 	.ki = 0, \
 	.kd = 0, \
-	.Pmax = 4000, \
+	.Pmax = 4950, \
 	.Imax = 2000, \
 	.Dmax = 2000, \
-	.outmax = 4900, \
+	.outmax = 4950, \
 }
 
 #define PIT_SPD_PID_CFG_DEFAULT \
 { \
-	.kp = 0, \
+	.kp = 220, \
 	.ki = 0, \
 	.kd = 0, \
-	.Pmax = 4000, \
+	.Pmax = 4950, \
 	.Imax = 2000, \
 	.Dmax = 2000, \
-	.outmax = 4900, \
+	.outmax = 4950, \
 }
 
 #define YAW_CFG_DEFAULT \
@@ -197,19 +199,21 @@ typedef struct
 
 #define CHA_DIM_CFG_DEFAULT \
 { \
-	.x = 0, \
-	.y = 0, \
+	.lx = 0.160f, \
+	.ly = 0.160f, \
+	.r1 = 0.009f, \
+	.r2 = 0.070f, \
 }
 
 #define CHA_PID_CFG_DEFAULT \
 { \
-	.kp = 0, \
+	.kp = 220, \
 	.ki = 0, \
 	.kd = 0, \
-	.Pmax = 4000, \
+	.Pmax = 4950, \
 	.Imax = 2000, \
 	.Dmax = 2000, \
-	.outmax = 4900, \
+	.outmax = 4950, \
 }
 
 #define CHA_CFG_DEFAULT \
@@ -229,7 +233,7 @@ typedef struct
 	CHA_CFG_DEFAULT, \
 }
 
-void Cfg_Read(Cfg_t* cfg);
+void Cfg_Load(Cfg_t* cfg);
 uint8_t Cfg_Save(Cfg_t* cfg);
 uint8_t Cfg_Reset(void);
 

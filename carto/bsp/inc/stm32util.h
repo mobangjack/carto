@@ -270,6 +270,7 @@ typedef uint32_t GPIO;
 while(0)
 */
 
+#define IRQ(NAME) NAME##_IRQn
 #define IRQ_HANDLER(NAME) NAME##_IRQHandler
 
 typedef void* (*Callback)(void* p);
