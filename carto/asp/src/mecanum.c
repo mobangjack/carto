@@ -33,17 +33,32 @@
 #define COEFF_Y   (MECANUM_R2 / 4.0f)
 #define COEFF_Z   (MECANUM_R / 4.0f / MECANUM_L)
 
+void Mecanum_Config(Mecanum_t* mecanum, float lx, float ly, float r1, float r2)
+{
+	mecanum->lx = lx;
+	mecanum->ly = ly;
+	mecanum->r1 = r1;
+	mecanum->r1 = r2;
+
+	mecanum->l = mecanum->lx + mecanum->ly;
+	mecanum->r = mecanum->r1 + mecanum->r2;
+
+	mecanum->cx = mecanum->r1 / 4.0f;
+	mecanum->cy = mecanum->r2 / 4.0f;
+	mecanum->cz = mecanum->r / 4.0f / mecanum->l;
+}
+
 void Mecanum_Synthesis(Mecanum_t* mecanum)
 {
-	mecanum->x = ( mecanum->w1 + mecanum->w2 - mecanum->w3 - mecanum->w4) * COEFF_X;
-	mecanum->y = (-mecanum->w1 + mecanum->w2 + mecanum->w3 - mecanum->w4) * COEFF_Y;
-	mecanum->z = ( mecanum->w1 + mecanum->w2 + mecanum->w3 + mecanum->w4) * COEFF_Z;
+	mecanum->x = ( mecanum->w1 + mecanum->w2 - mecanum->w3 - mecanum->w4) * mecanum->cx;
+	mecanum->y = (-mecanum->w1 + mecanum->w2 + mecanum->w3 - mecanum->w4) * mecanum->cy;
+	mecanum->z = ( mecanum->w1 + mecanum->w2 + mecanum->w3 + mecanum->w4) * mecanum->cz;
 }
 
 void Mecanum_Decompose(Mecanum_t* mecanum)
 {
-	mecanum->w1 = ( mecanum->x - mecanum->z + mecanum->z * MECANUM_L) / MECANUM_R;
-	mecanum->w2 = ( mecanum->x + mecanum->y + mecanum->z * MECANUM_L) / MECANUM_R;
-	mecanum->w3 = (-mecanum->x + mecanum->y + mecanum->z * MECANUM_L) / MECANUM_R;
-	mecanum->w4 = (-mecanum->x - mecanum->y + mecanum->z * MECANUM_L) / MECANUM_R;
+	mecanum->w1 = ( mecanum->x - mecanum->z + mecanum->z * mecanum->l) / mecanum->r;
+	mecanum->w2 = ( mecanum->x + mecanum->y + mecanum->z * mecanum->l) / mecanum->r;
+	mecanum->w3 = (-mecanum->x + mecanum->y + mecanum->z * mecanum->l) / mecanum->r;
+	mecanum->w4 = (-mecanum->x - mecanum->y + mecanum->z * mecanum->l) / mecanum->r;
 }

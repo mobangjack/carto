@@ -16,17 +16,18 @@
 
 #include "cfg.h"
 
-void Cfg_Get(Cfg_t* cfg)
+void Cfg_Read(Cfg_t* cfg)
 {
 	Flash_Read(CFG_DATA_START_ADDRESS, (u8*)cfg, sizeof(Cfg_t));
-}
-
-uint8_t Cali_Set(Cfg_t* cfg)
-{
-	return Flash_Write(CFG_DATA_START_ADDRESS, (u8*)cfg, sizeof(Cfg_t));
 }
 
 uint8_t Cfg_Save(Cfg_t* cfg)
 {
 	return Flash_Write(CFG_DATA_START_ADDRESS, (u8*)cfg, sizeof(Cfg_t));
+}
+
+uint8_t Cfg_Reset(void)
+{
+	Cfg_t cfg = CFG_DEFAULT;
+	return Cfg_Save(&cfg);
 }

@@ -35,15 +35,29 @@
 
 typedef struct
 {
+	float lx;
+	float ly;
+	float l;
+
+	float r1;
+	float r2;
+	float r;
+
+	float cx;
+	float cy;
+	float cz;
+
 	float x;
 	float y;
 	float z;
+
 	float w1;
 	float w2;
 	float w3;
 	float w4;
 }Mecanum_t;
 
+void Mecanum_Config(Mecanum_t* mecanum, float lx, float ly, float r1, float r2);
 void Mecanum_Synthesis(Mecanum_t* mecanum);
 void Mecanum_Decompose(Mecanum_t* mecanum);
 

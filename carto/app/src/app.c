@@ -16,9 +16,15 @@
 
 #include "app.h"
 
-Cfg_t cfg;
+Cfg_t cfg = CFG_DEFAULT;
 
 void App_Init(void)
 {
-	Cfg_Get(&cfg);
+	Cfg_Read(&cfg);
 }
+
+uint8_t App_Cfg(void)
+{
+	return Cfg_Save(&cfg);
+}
+

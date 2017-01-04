@@ -17,7 +17,7 @@
 #ifndef __APP_H__
 #define __APP_H__
 
-// standard c libraries
+// Standard c libraries
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -50,5 +50,8 @@
 #define SQR(x) (x*x)
 
 void App_Init(void);
+uint8_t App_Cfg(void);
+
+extern Cfg_t cfg;
 
 #endif /* __APP_H__ */
