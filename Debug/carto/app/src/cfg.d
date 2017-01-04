@@ -1,5 +1,5 @@
-carto/app/src/cali.o: ../carto/app/src/cali.c \
- /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/cali.h \
+carto/app/src/cfg.o: ../carto/app/src/cfg.c \
+ /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/cfg.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/flash.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/platform.h \
  /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/CMSIS/device/stm32f4xx.h \
@@ -35,7 +35,7 @@ carto/app/src/cali.o: ../carto/app/src/cali.c \
  /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/StdPeriph_Driver/inc/stm32f4xx_dac.h \
  /home/bj/workspace/eclipse/stm32/stm32f405rg_stdperiph_lib/StdPeriph_Driver/inc/stm32f4xx_dcmi.h
 
-/home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/cali.h:
+/home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/cfg.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/flash.h:
 

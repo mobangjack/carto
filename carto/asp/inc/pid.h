@@ -39,9 +39,6 @@ typedef struct
 	float Dmax;
 	float out;
 	float outmax;
-	float kp_offset;
-	float ki_offset;
-	float kd_offset;
 }PID_t;
 
 void PID_Reset(PID_t *pid);
@@ -63,9 +60,6 @@ void PID_Calc(PID_t *pid);
 	.Dmax = DM,\
 	.out = 0,\
 	.outmax = OM,\
-	.kp_offset = 0,\
-	.ki_offset = 0,\
-	.kd_offset = 0,\
 }\
 
 #ifdef __cplusplus

@@ -16,9 +16,9 @@
 
 #include "app.h"
 
-Cali_t cali;
+Cfg_t cfg;
 
 void App_Init(void)
 {
-	Cali_Get(&cali);
+	Cfg_Get(&cfg);
 }
