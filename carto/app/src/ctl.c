@@ -18,22 +18,12 @@
 
 WorkingState_t workingState = WORKING_STATE_PREPARE;
 
-PID_t GMYAnglePID = CM_ANGLE_PID_DEFAULT;
-PID_t GMPAnglePID = CM_ANGLE_PID_DEFAULT;
-
-PID_t CM1SpeedPID = CM_SPEED_PID_DEFAULT;
-PID_t CM2SpeedPID = CM_SPEED_PID_DEFAULT;
-PID_t CM3SpeedPID = CM_SPEED_PID_DEFAULT;
-PID_t CM4SpeedPID = CM_SPEED_PID_DEFAULT;
-PID_t GMYSpeedPID = GM_SPEED_PID_DEFAULT;
-PID_t GMPSpeedPID = GM_SPEED_PID_DEFAULT;
-
-Ramp_t CM1SpeedRamp = CM_SPEED_RAMP_DEFAULT;
-Ramp_t CM2SpeedRamp = CM_SPEED_RAMP_DEFAULT;
-Ramp_t CM3SpeedRamp = CM_SPEED_RAMP_DEFAULT;
-Ramp_t CM4SpeedRamp = CM_SPEED_RAMP_DEFAULT;
-Ramp_t GMYSpeedRamp = GM_SPEED_RAMP_DEFAULT;
-Ramp_t GMPSpeedRamp = GM_SPEED_RAMP_DEFAULT;
+Ramp_t CM1Ramp = CM_RAMP_DEFAULT;
+Ramp_t CM2Ramp = CM_RAMP_DEFAULT;
+Ramp_t CM3Ramp = CM_RAMP_DEFAULT;
+Ramp_t CM4Ramp = CM_RAMP_DEFAULT;
+Ramp_t GMYRamp = GM_RAMP_DEFAULT;
+Ramp_t GMPRamp = GM_RAMP_DEFAULT;
 
 ChassisCurrent_t chassisCurrent;
 PantiltCurrent_t pantiltCurrent;
@@ -95,20 +85,36 @@ static void FunctionControl(void)
 }
 
 #define LIMIT(X,M) (X=X>M?M:(X<-M>?-M:X))
-static void ChassisControl(void)
+static void ChassisPositionControl(void)
 {
-	Mecanum_t mecanumVelocity;
+	mecanum.x = chassisSpeedRef.x;
+	mecanum.y = chassisSpeedRef.y;
+	mecanum.z = chassisSpeedRef.z;
 
-	mecanumVelocity.x = chassisSpeedRef.x;
-	mecanumVelocity.y = chassisSpeedRef.y;
-	mecanumVelocity.z = chassisSpeedRef.z;
-	
-	Mecanum_Decompose(&mecanumVelocity);
-	
-	CM1SpeedPID.ref = mecanumVelocity.w1;
-	CM2SpeedPID.ref = mecanumVelocity.w2;
-	CM3SpeedPID.ref = mecanumVelocity.w3;
-	CM4SpeedPID.ref = mecanumVelocity.w4;
+	Mecanum_Decompose(&mecanum);
+
+	CM1AnglePID.ref = mecanum.w1;
+	CM2AnglePID.ref = mecanum.w2;
+	CM3AnglePID.ref = mecanum.w3;
+	CM4AnglePID.ref = mecanum.w4;
+
+	CM1AnglePID.fdb = encoder[0].angle;
+	CM2AnglePID.fdb = encoder[1].angle;
+	CM3AnglePID.fdb = encoder[2].angle;
+	CM4AnglePID.fdb = encoder[3].angle;
+
+	PID_Calc(&CM1AnglePID);
+	PID_Calc(&CM2AnglePID);
+	PID_Calc(&CM3AnglePID);
+	PID_Calc(&CM4AnglePID);
+}
+
+static void ChassisVelocityControl(void)
+{
+	CM1SpeedPID.ref = CM1AnglePID.out;
+	CM2SpeedPID.ref = CM2AnglePID.out;
+	CM3SpeedPID.ref = CM3AnglePID.out;
+	CM4SpeedPID.ref = CM4AnglePID.out;
 	
 	CM1SpeedPID.fdb = encoder[0].speed;
 	CM2SpeedPID.fdb = encoder[1].speed;
@@ -119,21 +125,27 @@ static void ChassisControl(void)
 	PID_Calc(&CM2SpeedPID);
 	PID_Calc(&CM3SpeedPID);
 	PID_Calc(&CM4SpeedPID);
+}
 
-	Ramp_Calc(&CM1SpeedRamp);
-	Ramp_Calc(&CM2SpeedRamp);
-	Ramp_Calc(&CM3SpeedRamp);
-	Ramp_Calc(&CM4SpeedRamp);
+static void ChassisCurrentControl(void)
+{
+	Ramp_Calc(&CM1Ramp);
+	Ramp_Calc(&CM2Ramp);
+	Ramp_Calc(&CM3Ramp);
+	Ramp_Calc(&CM4Ramp);
 	
-	chassisCurrent.m1 = CM1SpeedPID.out * CM1SpeedRamp.output;
-	chassisCurrent.m2 = CM2SpeedPID.out * CM2SpeedRamp.output;
-	chassisCurrent.m3 = CM3SpeedPID.out * CM3SpeedRamp.output;
-	chassisCurrent.m4 = CM4SpeedPID.out * CM4SpeedRamp.output;
-	
+	chassisCurrent.m1 = CM1SpeedPID.out * CM1Ramp.output;
+	chassisCurrent.m2 = CM2SpeedPID.out * CM2Ramp.output;
+	chassisCurrent.m3 = CM3SpeedPID.out * CM3Ramp.output;
+	chassisCurrent.m4 = CM4SpeedPID.out * CM4Ramp.output;
+}
+
+static void ChassisMotorCommand(void)
+{
 	CM_CMD(chassisCurrent.m1, chassisCurrent.m2, chassisCurrent.m3, chassisCurrent.m4);
 }
 
-static void PantiltControl(void)
+static void PantiltPositionControl(void)
 {
 	GMYAnglePID.ref += pantiltSpeedRef.y;
 	GMPAnglePID.ref += pantiltSpeedRef.p;
@@ -143,7 +155,10 @@ static void PantiltControl(void)
 
 	PID_Calc(&GMYAnglePID);
 	PID_Calc(&GMPAnglePID);
+}
 
+static void PantiltVelocityControl(void)
+{
 	GMYSpeedPID.ref = GMYAnglePID.out;
 	GMPSpeedPID.ref = GMPAnglePID.out;
 	
@@ -152,13 +167,19 @@ static void PantiltControl(void)
 	
 	PID_Calc(&GMYSpeedPID);
 	PID_Calc(&GMPSpeedPID);
+}
 
-	Ramp_Calc(&GMYSpeedRamp);
-	Ramp_Calc(&GMPSpeedRamp);
-	
-	pantiltCurrent.y = GMYSpeedPID.out * GMYSpeedRamp.output;
-	pantiltCurrent.p = GMPSpeedPID.out * GMPSpeedRamp.output;
-	
+static void PantiltCurrentControl(void)
+{
+	Ramp_Calc(&GMYRamp);
+	Ramp_Calc(&GMPRamp);
+
+	pantiltCurrent.y = GMYSpeedPID.out * GMYRamp.output;
+	pantiltCurrent.p = GMPSpeedPID.out * GMPRamp.output;
+}
+
+static void PantiltMotorCommand(void)
+{
 	GM_CMD(pantiltCurrent.y, pantiltCurrent.p);
 }
 
@@ -178,8 +199,15 @@ void Control(void)
 	else if(workingState == WORKING_STATE_NORMAL)
 	{
 		FunctionControl();
-		ChassisControl();
-		PantiltControl();
+		ChassisPositionControl();
+		ChassisVelocityControl();
+		ChassisCurrentControl();
+		ChassisMotorCommand();
+
+		PantiltPositionControl();
+		PantiltVelocityControl();
+		PantiltCurrentControl();
+		PantiltMotorCommand();
 	}
 	
 }

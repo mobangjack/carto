@@ -19,6 +19,7 @@
 
 #include <stdint.h>
 
+#include "app.h"
 #include "cmd.h"
 #include "can.h"
 #include "gun.h"
@@ -51,11 +52,8 @@ typedef struct
 	float p;
 }PantiltCurrent_t;
 
-#define CM_ANGLE_PID_DEFAULT PID(220, 0, 0, 4900, 3500, 1500, 4950)
-#define CM_SPEED_PID_DEFAULT PID(220, 0, 0, 4900, 3500, 1500, 4950)
-#define GM_SPEED_PID_DEFAULT PID(220, 0, 0, 4900, 3500, 1500, 4950)
-#define CM_SPEED_RAMP_DEFAULT RAMP(5000)
-#define GM_SPEED_RAMP_DEFAULT RAMP(5000)
+#define CM_RAMP_DEFAULT RAMP(5000)
+#define GM_RAMP_DEFAULT RAMP(5000)
 
 //void Control(void);
 

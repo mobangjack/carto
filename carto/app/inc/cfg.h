@@ -19,12 +19,13 @@
 
 #include "flash.h"
 
-#define CFG_DATA_START_ADDRESS 	FLASH_SECTOR_11_ADDR
+#define CFG_DATA_START_ADDR 	FLASH_SECTOR_11_ADDR
 
+// VERSION: (20)17/1/7
 #define VERSION_A		1u
-#define VERSION_B		6u
-#define VERSION_C		4u
-#define VERSION_D		0u
+#define VERSION_B		7u
+#define VERSION_C		1u
+#define VERSION_D		7u
 #define VERSION			(VERSION_A<<24)|(VERSION_B<<16)|(VERSION_C<<8)|(VERSION_D)
 
 typedef uint32_t Version_t;
@@ -36,8 +37,9 @@ typedef uint32_t CfgFlag_t;
 #define CFG_FLAG_PIT 			    (((uint32_t)1)<<4)
 #define CFG_FLAG_CHA 		        (((uint32_t)1)<<5)
 
-#define CFG_FLAG_NO   0x00
-#define CFG_FLAG_OK   0x5A
+#define CFG_FLAG_NON   0u
+#define CFG_FLAG_ALL   (CFG_FLAG_IMU | CFG_FLAG_MAG | CFG_FLAG_YAW | \
+                        CFG_FLAG_PIT | CFG_FLAG_CHA)
 
 typedef struct
 {
@@ -91,8 +93,9 @@ typedef struct
 
 typedef struct
 {
-	MecCfg_t mec;
-	PIDCfg_t pid;
+	MecCfg_t mecCfg;
+	PIDCfg_t posPID;
+	PIDCfg_t spdPID;
 }ChaCfg_t; // Chassis Configuration
 
 typedef struct
@@ -197,7 +200,7 @@ typedef struct
 	PIT_SPD_PID_CFG_DEFAULT, \
 }
 
-#define CHA_DIM_CFG_DEFAULT \
+#define CHA_MEC_CFG_DEFAULT \
 { \
 	.lx = 0.160f, \
 	.ly = 0.160f, \
@@ -205,7 +208,18 @@ typedef struct
 	.r2 = 0.070f, \
 }
 
-#define CHA_PID_CFG_DEFAULT \
+#define CHA_POS_PID_CFG_DEFAULT \
+{ \
+	.kp = 220, \
+	.ki = 0, \
+	.kd = 0, \
+	.Pmax = 4950, \
+	.Imax = 2000, \
+	.Dmax = 2000, \
+	.outmax = 4950, \
+}
+
+#define CHA_SPD_PID_CFG_DEFAULT \
 { \
 	.kp = 220, \
 	.ki = 0, \
@@ -218,14 +232,15 @@ typedef struct
 
 #define CHA_CFG_DEFAULT \
 { \
-	CHA_DIM_CFG_DEFAULT, \
-	CHA_PID_CFG_DEFAULT, \
+	CHA_MEC_CFG_DEFAULT, \
+	CHA_POS_PID_CFG_DEFAULT, \
+	CHA_SPD_PID_CFG_DEFAULT, \
 }
 
 #define CFG_DEFAULT \
 { \
 	VERSION, \
-	0, \
+	CFG_FLAG_NON, \
 	IMU_CFG_DEFAULT, \
 	MAG_CFG_DEFAULT, \
 	YAW_CFG_DEFAULT, \
@@ -235,7 +250,7 @@ typedef struct
 
 void Cfg_Load(Cfg_t* cfg);
 uint8_t Cfg_Save(Cfg_t* cfg);
-uint8_t Cfg_Reset(void);
+void Cfg_Reset(Cfg_t* cfg);
 
 #endif
 

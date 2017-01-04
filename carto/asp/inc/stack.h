@@ -13,59 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#ifndef __PID_H__
-#define __PID_H__
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-	
+#ifndef __STACK_H__
+#define __STACK_H__
+
 #include <stdint.h>
-	
+#include <stdlib.h>
+#include <string.h>
+
 typedef struct
 {
-	float ref;
-	float fdb;
-	float err[2];
-	float kp;
-	float ki;
-	float kd;
-	float P;
-	float I;
-	float D;
-	float out;
-	float Pmax;
-	float Imax;
-	float Dmax;
-	float outmax;
-}PID_t;
+	uint8_t* buf;
+	uint32_t size;
+	uint32_t p;
+}Stack_t;
 
-void PID_Config(PID_t* pid, float kp, float ki, float kd, float Pmax, float Imax, float Dmax, float outmax);
-void PID_Reset(PID_t *pid);
-void PID_Calc(PID_t *pid);
+Stack_t* Stack_Create(uint32_t size);
+uint8_t Stack_Push(Stack_t* stack, uint8_t element);
+uint8_t Stack_Pop(Stack_t* stack);
+uint8_t Stack_Peek(Stack_t* stack);
+uint32_t Stack_GetUsed(Stack_t* stack);
+uint32_t Stack_GetFree(Stack_t* stack);
+uint8_t Stack_GetSize(Stack_t* stack);
+uint8_t Stack_IsFull(Stack_t* stack);
+uint8_t Stack_IsEmpty(Stack_t* stack);
 
-#define PID(KP,KI,KD,PM,IM,DM,OM) \
-{\
-	.ref = 0,\
-	.fdb = 0,\
-	.err = {0,0},\
-	.kp = KP,\
-	.ki = KI,\
-	.kd = KD,\
-	.P = 0,\
-	.I = 0,\
-	.D = 0,\
-	.out = 0,\
-	.Pmax = PM,\
-	.Imax = IM,\
-	.Dmax = DM,\
-	.outmax = OM,\
-}\
-
-#ifdef __cplusplus
-}
-#endif
-	
 #endif
 

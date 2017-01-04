@@ -19,7 +19,40 @@
 
 #include <math.h>
 
-void AHRS_Update(float* buf, float* q, float* e, float kp, float ki, float dt);
+typedef struct
+{
+	float ax;
+	float ay;
+	float az;
+	float gx;
+	float gy;
+	float gz;
+	float mx;
+	float my;
+	float mz;
+	float ax_offset;
+	float ay_offset;
+	float az_offset;
+	float gx_offset;
+	float gy_offset;
+	float gz_offset;
+	float mx_offset;
+	float my_offset;
+	float mz_offset;
+	float q[4];
+	float kp;
+	float ki;
+	float dt;
+	float exInt;
+	float eyInt;
+	float ezInt;
+	float yaw;
+	float pitch;
+	float roll;
+}AHRS_t;
+
+void AHRS_Config(AHRS_t* ahrs);
+void AHRS_Update(AHRS_t* ahrs, float* buf, float halfT);
 void AHRS_Q2YPR(float* q, float* ypr);
 
 #endif

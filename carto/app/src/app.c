@@ -18,10 +18,27 @@
 
 Cfg_t cfg = CFG_DEFAULT;
 
+AHRS_t ahrs;
+Mecanum_t mecanum;
+PID_t GMYAnglePID;
+PID_t GMYSpeedPID;
+PID_t GMPAnglePID;
+PID_t GMPSpeedPID;
+PID_t CM1AnglePID;
+PID_t CM1SpeedPID;
+PID_t CM2AnglePID;
+PID_t CM2SpeedPID;
+PID_t CM3AnglePID;
+PID_t CM3SpeedPID;
+PID_t CM4AnglePID;
+PID_t CM4SpeedPID;
+
 void App_Init(void)
 {
 	Cfg_Load(&cfg);
 
+	// Attitude Heading REference System Configuration
+	AHRS_Config(&ahrs);
 	/*******************************************/
 	/* Mecanum Wheel Power Transmission System */
 	/*              Configuration              */
@@ -34,10 +51,10 @@ void App_Init(void)
 	/*                                         */
 	/*******************************************/
 	Mecanum_Config(&mecanum,
-			cfg.cha.mec.lx,
-			cfg.cha.mec.ly,
-			cfg.cha.mec.r1,
-			cfg.cha.mec.r2);
+			cfg.cha.mecCfg.lx,
+			cfg.cha.mecCfg.ly,
+			cfg.cha.mecCfg.r1,
+			cfg.cha.mecCfg.r2);
 	// Gimbal Yaw Angle PID Configuration
 	PID_Config(&GMYAnglePID,
 			cfg.yaw.posPID.kp,
@@ -74,42 +91,78 @@ void App_Init(void)
 			cfg.pit.spdPID.Imax,
 			cfg.pit.spdPID.Dmax,
 			cfg.pit.spdPID.outmax);
+	// Chassis Motor Number 1 Angle PID Configuration
+	PID_Config(&CM1AnglePID,
+			cfg.cha.posPID.kp,
+			cfg.cha.posPID.ki,
+			cfg.cha.posPID.kd,
+			cfg.cha.posPID.Pmax,
+			cfg.cha.posPID.Imax,
+			cfg.cha.posPID.Dmax,
+			cfg.cha.posPID.outmax);
 	// Chassis Motor Number 1 Speed PID Configuration
 	PID_Config(&CM1SpeedPID,
-			cfg.cha.pid.kp,
-			cfg.cha.pid.ki,
-			cfg.cha.pid.kd,
-			cfg.cha.pid.Pmax,
-			cfg.cha.pid.Imax,
-			cfg.cha.pid.Dmax,
-			cfg.cha.pid.outmax);
+			cfg.cha.spdPID.kp,
+			cfg.cha.spdPID.ki,
+			cfg.cha.spdPID.kd,
+			cfg.cha.spdPID.Pmax,
+			cfg.cha.spdPID.Imax,
+			cfg.cha.spdPID.Dmax,
+			cfg.cha.spdPID.outmax);
+	// Chassis Motor Number 2 Angle PID Configuration
+	PID_Config(&CM2AnglePID,
+			cfg.cha.posPID.kp,
+			cfg.cha.posPID.ki,
+			cfg.cha.posPID.kd,
+			cfg.cha.posPID.Pmax,
+			cfg.cha.posPID.Imax,
+			cfg.cha.posPID.Dmax,
+			cfg.cha.posPID.outmax);
 	// Chassis Motor Number 2 Speed PID Configuration
 	PID_Config(&CM2SpeedPID,
-			cfg.cha.pid.kp,
-			cfg.cha.pid.ki,
-			cfg.cha.pid.kd,
-			cfg.cha.pid.Pmax,
-			cfg.cha.pid.Imax,
-			cfg.cha.pid.Dmax,
-			cfg.cha.pid.outmax);
-	// Chassis Motor Number 2 Speed PID Configuration
+			cfg.cha.spdPID.kp,
+			cfg.cha.spdPID.ki,
+			cfg.cha.spdPID.kd,
+			cfg.cha.spdPID.Pmax,
+			cfg.cha.spdPID.Imax,
+			cfg.cha.spdPID.Dmax,
+			cfg.cha.spdPID.outmax);
+	// Chassis Motor Number 3 Angle PID Configuration
+	PID_Config(&CM3AnglePID,
+			cfg.cha.posPID.kp,
+			cfg.cha.posPID.ki,
+			cfg.cha.posPID.kd,
+			cfg.cha.posPID.Pmax,
+			cfg.cha.posPID.Imax,
+			cfg.cha.posPID.Dmax,
+			cfg.cha.posPID.outmax);
+	// Chassis Motor Number 3 Speed PID Configuration
 	PID_Config(&CM3SpeedPID,
-			cfg.cha.pid.kp,
-			cfg.cha.pid.ki,
-			cfg.cha.pid.kd,
-			cfg.cha.pid.Pmax,
-			cfg.cha.pid.Imax,
-			cfg.cha.pid.Dmax,
-			cfg.cha.pid.outmax);
+			cfg.cha.spdPID.kp,
+			cfg.cha.spdPID.ki,
+			cfg.cha.spdPID.kd,
+			cfg.cha.spdPID.Pmax,
+			cfg.cha.spdPID.Imax,
+			cfg.cha.spdPID.Dmax,
+			cfg.cha.spdPID.outmax);
+	// Chassis Motor Number 4 Angle PID Configuration
+	PID_Config(&CM4AnglePID,
+			cfg.cha.posPID.kp,
+			cfg.cha.posPID.ki,
+			cfg.cha.posPID.kd,
+			cfg.cha.posPID.Pmax,
+			cfg.cha.posPID.Imax,
+			cfg.cha.posPID.Dmax,
+			cfg.cha.posPID.outmax);
 	// Chassis Motor Number 4 Speed PID Configuration
 	PID_Config(&CM4SpeedPID,
-			cfg.cha.pid.kp,
-			cfg.cha.pid.ki,
-			cfg.cha.pid.kd,
-			cfg.cha.pid.Pmax,
-			cfg.cha.pid.Imax,
-			cfg.cha.pid.Dmax,
-			cfg.cha.pid.outmax);
+			cfg.cha.spdPID.kp,
+			cfg.cha.spdPID.ki,
+			cfg.cha.spdPID.kd,
+			cfg.cha.spdPID.Pmax,
+			cfg.cha.spdPID.Imax,
+			cfg.cha.spdPID.Dmax,
+			cfg.cha.spdPID.outmax);
 
 }
 

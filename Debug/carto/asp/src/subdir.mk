@@ -15,7 +15,8 @@ C_SRCS += \
 ../carto/asp/src/mafilter.c \
 ../carto/asp/src/mecanum.c \
 ../carto/asp/src/pid.c \
-../carto/asp/src/ramp.c 
+../carto/asp/src/ramp.c \
+../carto/asp/src/stack.c 
 
 OBJS += \
 ./carto/asp/src/ahrs.o \
@@ -29,7 +30,8 @@ OBJS += \
 ./carto/asp/src/mafilter.o \
 ./carto/asp/src/mecanum.o \
 ./carto/asp/src/pid.o \
-./carto/asp/src/ramp.o 
+./carto/asp/src/ramp.o \
+./carto/asp/src/stack.o 
 
 C_DEPS += \
 ./carto/asp/src/ahrs.d \
@@ -43,7 +45,8 @@ C_DEPS += \
 ./carto/asp/src/mafilter.d \
 ./carto/asp/src/mecanum.d \
 ./carto/asp/src/pid.d \
-./carto/asp/src/ramp.d 
+./carto/asp/src/ramp.d \
+./carto/asp/src/stack.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
