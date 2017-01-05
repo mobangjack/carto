@@ -20,6 +20,9 @@
 #include "tty.h"
 #include "wdg.h"
 
+#define COM_MOD_CFG 0x01
+#define COM_MOD_API 0x01
+
 void Com_Proc(uint8_t data);
 
 #endif

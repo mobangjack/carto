@@ -18,7 +18,7 @@
 
 FIFO_t* fifo = NULL;
 
-void TTY_Config(void)
+void Tty_Config(void)
 {
     USART_Bind(TTY_RX_PIN, TTY_TX_PIN,
     		   TTY_USART,
@@ -42,13 +42,13 @@ void TTY_Config(void)
     USART_Cmd(TTY_USART, ENABLE);
 }
 
-void TTY_WriteByte(u8 byte)
+void Tty_WriteByte(u8 byte)
 {    
     FIFO_Push(fifo, byte);
     USART_ITConfig(TTY_USART, USART_IT_TXE, ENABLE);
 }
 
-void TTY_Write(u8* pdata, u8 len)
+void Tty_Write(u8* pdata, u8 len)
 {
 	uint8_t i = 0;
 	for (; i < len; i++) {
@@ -79,7 +79,7 @@ void TTY_IRQ_HANDLER()
 	else if (USART_GetITStatus(TTY_USART, USART_IT_RXNE) != RESET)
     {
         uint8_t rx_data = USART_ReceiveData(TTY_USART);
-        TTY_RX_Callback(rx_data);
+        TtyRxCallback(rx_data);
     }       
 }
 

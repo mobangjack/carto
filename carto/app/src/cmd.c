@@ -59,17 +59,17 @@ void GetInputMode(DBUS_t* dbus)
 	inputMode = dbus->rc.sw[SW_IDX_R];
 }
 
-void DBUS_CMD(DBUS_t* dbus)
+void DBUS_Cmd(DBUS_t* dbus)
 {
 	WDG_Feed(WDG_IDX_RC);
 	GetInputMode(dbus);
 	if(inputMode == INPUT_MODE_RC)
 	{
-		RCI_CMD(&dbus->rc);
+		RCI_Cmd(&dbus->rc);
 	}
 	else if(inputMode == INPUT_MODE_HC)
 	{
-		HCI_CMD(&dbus->hc);
+		HCI_Cmd(&dbus->hc);
 	}
 }
 

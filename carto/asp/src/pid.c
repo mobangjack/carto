@@ -25,27 +25,18 @@ void PID_Config(PID_t* pid, float kp, float ki, float kd, float Pmax, float Imax
 	pid->Imax = Imax;
 	pid->Dmax = Dmax;
 	pid->outmax = outmax;
-
-	/*
-	pid->P = 0;
-	pid->I = 0;
-	pid->D = 0;
-	pid->fdb = 0;
-	pid->ref = 0;
-	pid->out = 0;
-	pid->err[0] = 0;
-	pid->err[1] = 0;
-	*/
 }
 
 void PID_Reset(PID_t *pid)
 {
-	pid->err[0] = 0;
-	pid->err[1] = 0;
 	pid->P = 0;
 	pid->I = 0;
 	pid->D = 0;
+	pid->ref = 0;
+	pid->fdb = 0;
 	pid->out = 0;
+	pid->err[0] = 0;
+	pid->err[1] = 0;
 }
 
 #define LIMIT(val,min,max) (val=val>max?max:(val<min?min:val))

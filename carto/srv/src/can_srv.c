@@ -16,12 +16,12 @@
 
 #include "can_srv.h"
 
-void CAN1_RX_Callback(CanRxMsg* canRxMsg)
+void Can1RxCallback(CanRxMsg* canRxMsg)
 {
-	CAN_Proc(canRxMsg);
+	Can_Proc(canRxMsg);
 }
 
-void CAN2_RX_Callback(CanRxMsg* canRxMsg)
+void Can2RxCallback(CanRxMsg* canRxMsg)
 {
-	CAN_Proc(canRxMsg);
+	Can_Proc(canRxMsg);
 }

@@ -17,6 +17,7 @@
 #ifndef __ODO_H__
 #define __ODO_H__
 
+#include "app.h"
 #include "can.h"
 #include "mecanum.h"
 

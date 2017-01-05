@@ -20,11 +20,11 @@ void Bsp_Config(void)
 {
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	
-	LED_Config();
+	Led_Config();
+	Tty_Config();
 	Tim_Config();
-	CAN1_Config();
-	CAN2_Config();
-	TTY_Config();
+	Can1_Config();
+	Can2_Config();
 	Rcv_Config();
 	Gun_Config();
 	Laser_Config();

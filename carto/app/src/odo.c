@@ -18,8 +18,6 @@
 
 void Odo_Calc(void)
 {
-	Mecanum_t mecanum;
-
 	mecanum.w1 = encoder[0].angle;
 	mecanum.w1 = encoder[1].angle;
 	mecanum.w1 = encoder[2].angle;

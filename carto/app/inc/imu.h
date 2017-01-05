@@ -17,25 +17,8 @@
 #ifndef __IMU_H__
 #define __IMU_H__
 
-#include "ahrs.h"
-#include "mpu6050.h"
+#include "app.h"
 
-typedef struct
-{
-	float ax;
-	float ay;
-	float az;
-	float gx;
-	float gy;
-	float gz;
-	float mx;
-	float my;
-	float mz;
-}IMU_t;
-
-void IMU_Proc(void);
-
-extern IMU_t imu;
-//extern A
+void IMU_Proc(float* buf);
 
 #endif

@@ -2,6 +2,7 @@ carto/usr/src/main.o: ../carto/usr/src/main.c \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/usr/inc/main.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/app.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/asp.h \
+ /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/ahrs.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/cbus.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/crc16.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/dbus.h \
@@ -76,8 +77,9 @@ carto/usr/src/main.o: ../carto/usr/src/main.c \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/com.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/tty.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/srv/inc/imu_srv.h \
- /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/ahrs.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/mpu6050.h \
+ /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/imu.h \
+ /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/app.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/srv/inc/rcv_srv.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/cmd.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/dbus.h \
@@ -91,20 +93,16 @@ carto/usr/src/main.o: ../carto/usr/src/main.c \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/flash.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/com.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/ctl.h \
- /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/app.h \
- /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/gun.h \
- /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/laser.h \
- /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/spinner.h \
- /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/mecanum.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/odo.h \
- /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/pid.h \
- /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/ramp.h
+ /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/mecanum.h
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/usr/inc/main.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/app.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/asp.h:
+
+/home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/ahrs.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/cbus.h:
 
@@ -254,9 +252,11 @@ carto/usr/src/main.o: ../carto/usr/src/main.c \
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/srv/inc/imu_srv.h:
 
-/home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/ahrs.h:
-
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/mpu6050.h:
+
+/home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/imu.h:
+
+/home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/app.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/srv/inc/rcv_srv.h:
 
@@ -284,18 +284,6 @@ carto/usr/src/main.o: ../carto/usr/src/main.c \
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/ctl.h:
 
-/home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/app.h:
-
-/home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/gun.h:
-
-/home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/laser.h:
-
-/home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/spinner.h:
-
-/home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/mecanum.h:
-
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/odo.h:
 
-/home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/pid.h:
-
-/home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/ramp.h:
+/home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/mecanum.h:

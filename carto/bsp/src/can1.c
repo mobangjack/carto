@@ -16,7 +16,7 @@
  
 #include "can1.h"
 
-void CAN1_Config(void)
+void Can1_Config(void)
 {
 	GPIO_AF(CAN1_RX_PIN, GPIO_AF_CAN1);
 	GPIO_AF(CAN1_TX_PIN, GPIO_AF_CAN1);
@@ -42,7 +42,7 @@ void CAN1_RX_IRQ_HANDLER(void)
 		CAN_ClearFlag(CAN1, CAN_FLAG_FF0);
 		CAN_Receive(CAN1, CAN_FIFO0, &canRxMsg);
 
-		CAN1_RX_Callback(&canRxMsg);
+		Can1RxCallback(&canRxMsg);
     }
 }
 

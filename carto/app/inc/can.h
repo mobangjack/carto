@@ -30,7 +30,7 @@ typedef struct
 	float speed;
 }Encoder_t;
 
-void CAN_Proc(CanRxMsg* canRxMsg);
+void Can_Proc(CanRxMsg* canRxMsg);
 void Encoder_Reset(uint8_t i);
 
 extern float ZGyroAngle;

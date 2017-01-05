@@ -58,7 +58,7 @@ void              TOG_FS(FunctionalState_t mask);
 void              SET_CS(float x, float y, float z);
 void              SET_GS(float yaw, float pitch);
 
-void DBUS_CMD(DBUS_t* dbus);
+void DBUS_Cmd(DBUS_t* dbus);
 
 extern InputMode_t inputMode;
 extern FunctionalState_t functionalState;

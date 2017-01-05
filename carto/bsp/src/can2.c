@@ -42,7 +42,7 @@ void CAN2_RX_IRQ_HANDLER(void)
         CAN_ClearFlag(CAN2, CAN_FLAG_FF0);
         CAN_Receive(CAN2, CAN_FIFO0, &canRxMsg);
 
-        CAN2_RX_Callback(&canRxMsg);
+        Can2RxCallback(&canRxMsg);
     }
 }
 

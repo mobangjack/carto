@@ -17,6 +17,8 @@
 #ifndef __MECANUM_H__
 #define __MECANUM_H__
 
+#include <stdint.h>
+
 /*******************************************/
 /* Mecanum Wheel Power Transmission System */
 /*******************************************/
@@ -53,6 +55,7 @@ typedef struct
 }Mecanum_t;
 
 void Mecanum_Config(Mecanum_t* mecanum, float lx, float ly, float r1, float r2);
+uint8_t Mecanum_Ok(Mecanum_t* mecanum);
 void Mecanum_Synthesis(Mecanum_t* mecanum);
 void Mecanum_Decompose(Mecanum_t* mecanum);
 

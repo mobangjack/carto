@@ -41,8 +41,8 @@ typedef struct
 	uint8_t  sw[SW_CNT];
 }RC_t; // remote control frame structure
 
-void RC_ENC(RC_t* rc, uint8_t* buf);
-void RC_DEC(RC_t* rc, uint8_t* buf);
+void RC_Enc(RC_t* rc, uint8_t* buf);
+void RC_Dec(RC_t* rc, uint8_t* buf);
 
 /* ----------------------- PC Mouse Value Definition------------------------------ */
 #define MOUSE_SPEED_MIN          ((int16_t)-32768 )
@@ -89,8 +89,8 @@ typedef struct
 	Res_t res;
 }HC_t; // Host Control frame structure
 
-void HC_ENC(HC_t* hc, uint8_t* buf);
-void HC_DEC(HC_t* hc, uint8_t* buf);
+void HC_Enc(HC_t* hc, uint8_t* buf);
+void HC_Dec(HC_t* hc, uint8_t* buf);
 
 /* ----------------------- DBUS = RC + HC -------------------------------- */
 #define HC_OFFSET 6
@@ -101,7 +101,7 @@ typedef struct
 	HC_t hc;
 }DBUS_t; // Robomasters DT7 receiver DBUS frame structure
 
-void DBUS_ENC(DBUS_t* dbus, uint8_t* buf);
-void DBUS_DEC(DBUS_t* dbus, uint8_t* buf);
+void DBUS_Enc(DBUS_t* dbus, uint8_t* buf);
+void DBUS_Dec(DBUS_t* dbus, uint8_t* buf);
 
 #endif

@@ -47,7 +47,6 @@
 #define MPU6050_ID                0x68
 #define MPU6050_DEVICE_ADDRESS    0xD0
 
-
 #define MPU6050_DATA_START        				ACCEL_XOUT_H
 #define MPU6050_RA_SELF_TEST_X                  0x0D
 #define MPU6050_RA_SLEF_TEST_Y                  0x0E

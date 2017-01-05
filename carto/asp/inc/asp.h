@@ -17,6 +17,7 @@
 #ifndef __ASP_H__
 #define __ASP_H__
 
+#include "ahrs.h"
 #include "cbus.h"
 #include "crc16.h"
 #include "dbus.h"

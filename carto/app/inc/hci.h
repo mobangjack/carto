@@ -31,6 +31,6 @@ typedef uint8_t MouseButtonEvent_t;
 #define MOUSE_BUTTON_EVENT_DOWN GET_MOUSE_BUTTON_EVENT(MOUSE_BUTTON_UP, MOUSE_BUTTON_DOWM)
 #define MOUSE_BUTTON_EVENT_NONE 0
 
-void HCI_CMD(HC_t* hc);
+void HCI_Cmd(HC_t* hc);
 
 #endif

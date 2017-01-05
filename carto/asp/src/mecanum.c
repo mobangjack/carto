@@ -53,6 +53,13 @@ void Mecanum_Config(Mecanum_t* mecanum, float lx, float ly, float r1, float r2)
 	mecanum->cz = mecanum->r / 4.0f / mecanum->l;
 }
 
+uint8_t Mecanum_Ok(Mecanum_t* mecanum)
+{
+	return mecanum->lx > 0 && mecanum->ly > 0 && mecanum->l > 0 &&
+		   mecanum->r1 > 0 && mecanum->r2 > 0 && mecanum->r > 0 &&
+		   mecanum->cx > 0 && mecanum->cy > 0 && mecanum->cz > 0;
+}
+
 void Mecanum_Synthesis(Mecanum_t* mecanum)
 {
 	mecanum->x = ( mecanum->w1 + mecanum->w2 - mecanum->w3 - mecanum->w4) * mecanum->cx;

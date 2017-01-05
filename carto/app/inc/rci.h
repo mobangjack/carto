@@ -36,6 +36,6 @@ typedef uint8_t SwitchEvent_t;
 #define SWITCH_EVENT_2TO3 GET_SWITCH_EVENT(2, 3)
 #define SWITCH_EVENT_NONE 0
 
-void RCI_CMD(RC_t* rc);
+void RCI_Cmd(RC_t* rc);
 
 #endif

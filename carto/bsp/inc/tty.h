@@ -37,11 +37,11 @@
 
 #define TTY_TX_FIFO_SIZE 256u
 
-void TTY_Config(void);
+void Tty_Config(void);
 
-void TTY_WriteByte(u8 byte);
-void TTY_Write(u8* pdata, u8 len);
+void Tty_WriteByte(u8 byte);
+void Tty_Write(u8* pdata, u8 len);
 
-void TTY_RX_Callback(u8 data);
+void TtyRxCallback(u8 data);
 
 #endif

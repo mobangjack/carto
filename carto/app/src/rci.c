@@ -87,7 +87,7 @@ static void GetPantiltSpeedRef(RC_t* rc)
 	pantiltSpeedRef.p = MAP(rc->ch3, CH_MIN, CH_MAX, -PANTILT_SPEED_MAX, PANTILT_SPEED_MAX);
 }
 
-void RCI_CMD(RC_t* rc)
+void RCI_Cmd(RC_t* rc)
 {
 	GetFunctionalState(rc);
 	GetChassisSpeedRef(rc);

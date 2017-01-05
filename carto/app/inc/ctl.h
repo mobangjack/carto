@@ -20,17 +20,6 @@
 #include <stdint.h>
 
 #include "app.h"
-#include "cmd.h"
-#include "can.h"
-#include "gun.h"
-#include "laser.h"
-#include "spinner.h"
-#include "mecanum.h"
-#include "odo.h"
-#include "pid.h"
-#include "ramp.h"
-#include "motor.h"
-#include "wdg.h"
 
 typedef uint8_t WorkingState_t;
 

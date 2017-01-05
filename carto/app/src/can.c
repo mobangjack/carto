@@ -34,7 +34,7 @@ static void ECD_Proc(uint8_t i, uint8_t* data)
 	encoder[i].speed = est[i]->delta;
 }
 
-void CAN_Proc(CanRxMsg* canRxMsg)
+void Can_Proc(CanRxMsg* canRxMsg)
 {
 	uint32_t id = canRxMsg->StdId;
 	uint8_t* data = canRxMsg->Data;

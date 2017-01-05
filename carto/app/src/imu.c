@@ -14,3 +14,9 @@
  * limitations under the License.
  */
 
+#include "imu.h"
+
+void IMU_Proc(float* buf)
+{
+	AHRS_Update(&ahrs, buf, 0.05);
+}

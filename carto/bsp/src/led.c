@@ -16,7 +16,7 @@
  
 #include "led.h"
 
-void LED_Config(void)
+void Led_Config(void)
 {
     GPIO_Out(LED_GREEN_PIN);
     GPIO_Out(LED_RED_PIN);

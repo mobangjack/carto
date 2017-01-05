@@ -19,7 +19,7 @@
 DBUS_t dbus;
 void Rcv_Callback(uint8_t* dbuf)
 {
-	DBUS_DEC(&dbus, dbuf);
-	DBUS_CMD(&dbus);
+	DBUS_Dec(&dbus, dbuf);
+	DBUS_Cmd(&dbus);
 }
 

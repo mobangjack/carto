@@ -94,7 +94,7 @@ static void GetPantiltSpeedRef(HC_t* hc)
 	pantiltSpeedRef.p = MAP(hc->mouse.y, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -PANTILT_SPEED_MAX, PANTILT_SPEED_MAX);
 }
 
-void HCI_CMD(HC_t* hc)
+void HCI_Cmd(HC_t* hc)
 {
 	GetFunctionalState(hc);
 	GetChassisSpeedRef(hc);
