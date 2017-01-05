@@ -235,9 +235,9 @@ void USART_Config(USART_TypeDef* usartx, s8 mode, u32 br, u8 wl, s8 parity, floa
 	// stop bits
 	if (sb == 0.5f) {
 		usart.USART_StopBits = USART_StopBits_0_5;
-	} else if (sb == 1.5) {
+	} else if (sb == 1.5f) {
 		usart.USART_StopBits = USART_StopBits_1_5;
-	} else if (sb == 2) {
+	} else if (sb == 2.0f) {
 		usart.USART_StopBits = USART_StopBits_2;
 	} else {
 		usart.USART_StopBits = USART_StopBits_1;
