@@ -33,12 +33,12 @@ typedef struct
 	Kalman_t* kalman;   // kalman filter
 	float value;        // estimated value
 	float delta;        // delta value
-}EST_t;
+}Est_t; // Estimator
 
-EST_t* EST_Create(uint32_t gaussN, float pre, float kalmanQ);
-float EST_Proc(EST_t* est, float v);
-uint8_t EST_Ok(EST_t* est);
-void EST_Reset(EST_t* est);
-void EST_Destroy(EST_t* est);
+Est_t* Est_Create(uint32_t gaussN, float precision, float kalmanQ);
+float Est_Proc(Est_t* est, float v);
+uint8_t Est_Ok(Est_t* est);
+void Est_Reset(Est_t* est);
+void Est_Destroy(Est_t* est);
 
 #endif

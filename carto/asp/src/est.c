@@ -16,37 +16,37 @@
 
 #include "est.h"
 
-EST_t* EST_Create(uint32_t gaussN, float pre, float kalmanQ)
+Est_t* Est_Create(uint32_t gaussN, float precision, float kalmanQ)
 {
-	EST_t* est = (EST_t*)malloc(sizeof(EST_t));
-	if (!est) {
+	Est_t* est = (Est_t*)malloc(sizeof(Est_t));
+	if (est == NULL) {
 		return NULL;
 	}
 	est->gauss = GaussCreate(gaussN);
-	if (!est->gauss) {
+	if (est->gauss == NULL) {
 		free(est);
 		est = NULL;
 		return NULL;
 	}
 	est->kalman = KalmanCreate();
-	if (!est->kalman) {
+	if (est->kalman == NULL) {
+		GaussDestroy(est->gauss);
 		free(est);
 		est = NULL;
-		GaussDestroy(est->gauss);
 		return NULL;
 	}
 	KalmanSetQ(est->kalman, kalmanQ);
 	est->gaussN = gaussN;
-	est->precision = pre;
-	est->gauss->delta_mse = pre;
+	est->precision = precision;
+	est->gauss->delta_mse = precision;
 	est->ini_flag = 0;
 	return est;
 }
 
-float EST_Proc(EST_t* est, float v)
+float Est_Proc(Est_t* est, float v)
 {
 	if (est->gauss->delta_mse >= est->precision) {
-		if (!est->gauss) {
+		if (est->gauss == NULL) {
 			est->gauss = GaussCreate(est->gaussN);
 		}
 		GaussProc(est->gauss, v);
@@ -57,7 +57,7 @@ float EST_Proc(EST_t* est, float v)
 		KalmanSetR(est->kalman, est->gauss->mse);
 		KalmanSetE(est->kalman, est->gauss->mean);
 		KalmanSetD(est->kalman, est->gauss->diff);
-		if (est->gauss) {
+		if (est->gauss != NULL) {
 			GaussDestroy(est->gauss);
 		}
 		est->ini_flag = 1;
@@ -72,21 +72,27 @@ float EST_Proc(EST_t* est, float v)
 	}
 }
 
-uint8_t EST_Ok(EST_t* est)
+uint8_t Est_Ok(Est_t* est)
 {
 	return est->ini_flag;
 }
 
-void EST_Reset(EST_t* est)
+void Est_Reset(Est_t* est)
 {
-	GaussReset(est->gauss);
-	KalmanReset(est->kalman);
-	est->ini_flag = 0;
+	if (est != NULL) {
+		if (est->gauss != NULL) {
+			GaussReset(est->gauss);
+		}
+		if (est->kalman != NULL) {
+			KalmanReset(est->kalman);
+		}
+		est->ini_flag = 0;
+	}
 }
 
-void EST_Destroy(EST_t* est)
+void Est_Destroy(Est_t* est)
 {
-	if (est) {
+	if (est != NULL) {
 		GaussDestroy(est->gauss);
 		KalmanDestroy(est->kalman);
 		free(est);

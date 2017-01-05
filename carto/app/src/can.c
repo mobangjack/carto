@@ -17,19 +17,19 @@
 #include "can.h"
 
 Motor_t motor[MOTOR_NUM]; // Motor Group
-EST_t* est[MOTOR_NUM];    // Estimator Group
+Est_t* est[MOTOR_NUM];    // Estimator Group
 
-#define EST_GAUSS_N   500u
+#define EST_GAUSS_N   100u
 #define EST_PRECISION 0.01f
 #define EST_KALMAN_Q  0.1f
 
-static void ECD_PROC(uint8_t i, uint8_t* data)
+static void ECD_Proc(uint8_t i, uint8_t* data)
 {
-	if(!est[i]) {
-		est[i] = EST_Create(EST_GAUSS_N, EST_PRECISION, EST_KALMAN_Q);
+	if(est[i] == NULL) {
+		est[i] = Est_Create(EST_GAUSS_N, EST_PRECISION, EST_KALMAN_Q);
 	}
 	Motor_Proc(&motor[i], data);
-	EST_Proc(est[i], motor[i].ecd.angle_rad);
+	Est_Proc(est[i], motor[i].ecd.angle);
 	encoder[i].angle = est[i]->value;
 	encoder[i].speed = est[i]->delta;
 }
@@ -45,27 +45,27 @@ void CAN_Proc(CanRxMsg* canRxMsg)
 		break;
 	case MOTOR1_FDB_CAN_MSG_ID:
 		WDG_Feed(WDG_IDX_MOTOR1);
-		ECD_PROC(0, data);
+		ECD_Proc(0, data);
 		break;
 	case MOTOR2_FDB_CAN_MSG_ID:
 		WDG_Feed(WDG_IDX_MOTOR2);
-		ECD_PROC(1, data);
+		ECD_Proc(1, data);
 		break;
 	case MOTOR3_FDB_CAN_MSG_ID:
 		WDG_Feed(WDG_IDX_MOTOR3);
-		ECD_PROC(2, data);
+		ECD_Proc(2, data);
 		break;
 	case MOTOR4_FDB_CAN_MSG_ID:
 		WDG_Feed(WDG_IDX_MOTOR4);
-		ECD_PROC(3, data);
+		ECD_Proc(3, data);
 		break;
 	case MOTOR5_FDB_CAN_MSG_ID:
 		WDG_Feed(WDG_IDX_MOTOR5);
-		ECD_PROC(4, data);
+		ECD_Proc(4, data);
 		break;
 	case MOTOR6_FDB_CAN_MSG_ID:
 		WDG_Feed(WDG_IDX_MOTOR6);
-		ECD_PROC(5, data);
+		ECD_Proc(5, data);
 		break;
 	default:
 		break;
@@ -74,7 +74,7 @@ void CAN_Proc(CanRxMsg* canRxMsg)
 
 void Encoder_Reset(uint8_t i)
 {
-	EST_Reset(est[i]);
-	ECD_Reset(&motor[i].ecd);
+	Est_Reset(est[i]);
+	Ecd_Reset(&motor[i].ecd);
 	memset(&encoder[i], 0, sizeof(Encoder_t));
 }

@@ -18,35 +18,36 @@
 
 #define PI 3.1415926f
 #define GAP 7500
-void ECD_Proc(ECD_t* ecd, uint8_t* data)
+void Ecd_Proc(Ecd_t* ecd, uint8_t* data)
 {
-	ecd->last_angle_fdb = ecd->angle_fdb;
-	ecd->angle_fdb = (data[0] << 8) | data[1];
+	ecd->angle_fdb[0] = ecd->angle_fdb[1];
+	ecd->angle_fdb[1] = (data[0] << 8) | data[1];
 	if (!ecd->ini_flag) {
-		ecd->bias = ecd->angle_fdb;
+		ecd->bias = ecd->angle_fdb[1];
+		ecd->angle_coeff = MOTOR_ECD_ANGLE_COEFF;
+		ecd->speed_coeff = MOTOR_ECD_SPEED_COEFF;
 		ecd->ini_flag = 1;
 	}
-	ecd->dif = ecd->angle_fdb - ecd->last_angle_fdb;
+	ecd->dif = ecd->angle_fdb[1] - ecd->angle_fdb[0];
 	if (ecd->dif > GAP) {
 		ecd->rnd--;
-		ecd->speed = ecd->dif - MOTOR_ECD_ANGLE_FDB_MOD;
+		ecd->speed_fdb = ecd->dif - MOTOR_ECD_ANGLE_FDB_MOD;
 	} else if (ecd->dif < -GAP) {
 		ecd->rnd++;
-		ecd->speed = ecd->dif + MOTOR_ECD_ANGLE_FDB_MOD;
+		ecd->speed_fdb = ecd->dif + MOTOR_ECD_ANGLE_FDB_MOD;
 	} else {
-		ecd->speed = ecd->dif;
+		ecd->speed_fdb = ecd->dif;
 	}
-	ecd->angle = (ecd->angle_fdb - ecd->bias) + ecd->rnd * MOTOR_ECD_ANGLE_FDB_MOD;
-	ecd->angle_rad = ecd->angle / MOTOR_ECD_ANGLE_FDB_MOD * 2 * PI;
-	ecd->speed_rad = ecd->speed / MOTOR_ECD_ANGLE_FDB_MOD * 2 * PI;
+	ecd->angle = (ecd->angle_fdb[1] - ecd->bias) * ecd->angle_coeff + ecd->rnd * 2 * PI;
+	ecd->speed = ecd->speed_fdb * ecd->speed_coeff;
 }
 
-void ECD_Reset(ECD_t* ecd)
+void Ecd_Reset(Ecd_t* ecd)
 {
-	memset(ecd, 0, sizeof(ECD_t));
+	memset(ecd, 0, sizeof(Ecd_t));
 }
 
-void ESC_Proc(ESC_t* esc, uint8_t* data)
+void Esc_Proc(Esc_t* esc, uint8_t* data)
 {
 	esc->current_fdb = (data[0] << 8) | data[1];
 	esc->current_ref = (data[2] << 8) | data[3];
@@ -54,11 +55,11 @@ void ESC_Proc(ESC_t* esc, uint8_t* data)
 
 void Motor_Proc(Motor_t* motor, uint8_t* data)
 {
-	ECD_Proc(&motor->ecd, data);
-	ESC_Proc(&motor->esc, data + 2);
+	Ecd_Proc(&motor->ecd, data);
+	Esc_Proc(&motor->esc, data + 2);
 }
 
-void EC60_CMD(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16_t c204)
+void EC60_Cmd(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16_t c204)
 {
 	CanTxMsg canTxMsg;
     canTxMsg.StdId = CHASSIS_MOTOR_CMD_CAN_MSG_ID;
@@ -77,7 +78,7 @@ void EC60_CMD(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16
     CAN_Transmit(CANx,&canTxMsg);
 }
 
-void RM6025_CMD(CAN_TypeDef *CANx, int16_t c205, int16_t c206)
+void RM6025_Cmd(CAN_TypeDef *CANx, int16_t c205, int16_t c206)
 {
 	CanTxMsg canTxMsg;
     canTxMsg.StdId = PANTILT_MOTOR_CMD_CAN_MSG_ID;

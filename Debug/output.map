@@ -114,7 +114,7 @@ inputMode           0x1               carto/app/src/cmd.o
 pantiltSpeedRef     0x8               carto/app/src/cmd.o
 buf                 0x48              carto/bsp/src/rcv.o
 CM4AnglePID         0x3c              carto/app/src/app.o
-motor               0xf0              carto/app/src/can.o
+motor               0x120             carto/app/src/can.o
 CM3SpeedPID         0x3c              carto/app/src/app.o
 GMYSpeedPID         0x3c              carto/app/src/app.o
 
@@ -315,7 +315,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x58 carto/app/src/app.o
  .debug_macro   0x00000000       0x34 carto/app/src/app.o
  .debug_macro   0x00000000       0x5e carto/app/src/app.o
- .debug_macro   0x00000000       0x64 carto/app/src/app.o
+ .debug_macro   0x00000000       0x70 carto/app/src/app.o
  .debug_macro   0x00000000       0x40 carto/app/src/app.o
  .debug_macro   0x00000000      0x26f carto/app/src/app.o
  .debug_macro   0x00000000       0x2e carto/app/src/app.o
@@ -333,7 +333,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x22 carto/app/src/app.o
  .debug_macro   0x00000000       0x16 carto/app/src/app.o
  .debug_line    0x00000000      0xaa6 carto/app/src/app.o
- .debug_str     0x00000000    0x67349 carto/app/src/app.o
+ .debug_str     0x00000000    0x673b7 carto/app/src/app.o
  .comment       0x00000000       0x6f carto/app/src/app.o
  .debug_frame   0x00000000       0x68 carto/app/src/app.o
  .ARM.attributes
@@ -399,13 +399,13 @@ Discarded input sections
  .text          0x00000000        0x0 carto/app/src/can.o
  .data          0x00000000        0x0 carto/app/src/can.o
  .bss           0x00000000        0x0 carto/app/src/can.o
- .text.ECD_PROC
-                0x00000000       0xb4 carto/app/src/can.o
+ .text.ECD_Proc
+                0x00000000       0xb0 carto/app/src/can.o
  .text.CAN_Proc
                 0x00000000       0xd4 carto/app/src/can.o
  .text.Encoder_Reset
                 0x00000000       0x54 carto/app/src/can.o
- .debug_info    0x00000000      0x536 carto/app/src/can.o
+ .debug_info    0x00000000      0x546 carto/app/src/can.o
  .debug_abbrev  0x00000000      0x139 carto/app/src/can.o
  .debug_aranges
                 0x00000000       0x30 carto/app/src/can.o
@@ -462,19 +462,19 @@ Discarded input sections
  .debug_macro   0x00000000      0x30d carto/app/src/can.o
  .debug_macro   0x00000000       0x10 carto/app/src/can.o
  .debug_macro   0x00000000       0x35 carto/app/src/can.o
- .debug_macro   0x00000000       0x5e carto/app/src/can.o
+ .debug_macro   0x00000000       0x6a carto/app/src/can.o
  .debug_macro   0x00000000       0x22 carto/app/src/can.o
  .debug_macro   0x00000000       0x16 carto/app/src/can.o
  .debug_macro   0x00000000       0x16 carto/app/src/can.o
  .debug_macro   0x00000000       0x29 carto/app/src/can.o
  .debug_macro   0x00000000       0xac carto/app/src/can.o
  .debug_line    0x00000000      0x800 carto/app/src/can.o
- .debug_str     0x00000000    0x613eb carto/app/src/can.o
+ .debug_str     0x00000000    0x61458 carto/app/src/can.o
  .comment       0x00000000       0x6f carto/app/src/can.o
  .debug_frame   0x00000000       0x80 carto/app/src/can.o
  .ARM.attributes
                 0x00000000       0x39 carto/app/src/can.o
- COMMON         0x00000000      0x108 carto/app/src/can.o
+ COMMON         0x00000000      0x138 carto/app/src/can.o
  .group         0x00000000        0x8 carto/app/src/cfg.o
  .group         0x00000000        0x8 carto/app/src/cfg.o
  .group         0x00000000        0x8 carto/app/src/cfg.o
@@ -1037,7 +1037,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x58 carto/app/src/ctl.o
  .debug_macro   0x00000000       0x34 carto/app/src/ctl.o
  .debug_macro   0x00000000       0x5e carto/app/src/ctl.o
- .debug_macro   0x00000000       0x64 carto/app/src/ctl.o
+ .debug_macro   0x00000000       0x70 carto/app/src/ctl.o
  .debug_macro   0x00000000       0x40 carto/app/src/ctl.o
  .debug_macro   0x00000000      0x26f carto/app/src/ctl.o
  .debug_macro   0x00000000       0x2e carto/app/src/ctl.o
@@ -1055,7 +1055,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 carto/app/src/ctl.o
  .debug_macro   0x00000000       0x22 carto/app/src/ctl.o
  .debug_line    0x00000000      0xb55 carto/app/src/ctl.o
- .debug_str     0x00000000    0x6763b carto/app/src/ctl.o
+ .debug_str     0x00000000    0x676a9 carto/app/src/ctl.o
  .comment       0x00000000       0x6f carto/app/src/ctl.o
  .debug_frame   0x00000000      0x160 carto/app/src/ctl.o
  .ARM.attributes
@@ -1278,14 +1278,14 @@ Discarded input sections
  .debug_macro   0x00000000      0x30d carto/app/src/odo.o
  .debug_macro   0x00000000       0x10 carto/app/src/odo.o
  .debug_macro   0x00000000       0x35 carto/app/src/odo.o
- .debug_macro   0x00000000       0x5e carto/app/src/odo.o
+ .debug_macro   0x00000000       0x6a carto/app/src/odo.o
  .debug_macro   0x00000000       0x22 carto/app/src/odo.o
  .debug_macro   0x00000000       0x16 carto/app/src/odo.o
  .debug_macro   0x00000000       0x16 carto/app/src/odo.o
  .debug_macro   0x00000000       0x29 carto/app/src/odo.o
  .debug_macro   0x00000000       0xac carto/app/src/odo.o
  .debug_line    0x00000000      0x7d7 carto/app/src/odo.o
- .debug_str     0x00000000    0x6125c carto/app/src/odo.o
+ .debug_str     0x00000000    0x612ca carto/app/src/odo.o
  .comment       0x00000000       0x6f carto/app/src/odo.o
  .debug_frame   0x00000000       0x34 carto/app/src/odo.o
  .ARM.attributes
@@ -1623,14 +1623,14 @@ Discarded input sections
  .text          0x00000000        0x0 carto/asp/src/est.o
  .data          0x00000000        0x0 carto/asp/src/est.o
  .bss           0x00000000        0x0 carto/asp/src/est.o
- .text.EST_Create
+ .text.Est_Create
                 0x00000000       0xa8 carto/asp/src/est.o
- .text.EST_Proc
+ .text.Est_Proc
                 0x00000000      0x114 carto/asp/src/est.o
- .text.EST_Ok   0x00000000       0x18 carto/asp/src/est.o
- .text.EST_Reset
-                0x00000000       0x2c carto/asp/src/est.o
- .text.EST_Destroy
+ .text.Est_Ok   0x00000000       0x18 carto/asp/src/est.o
+ .text.Est_Reset
+                0x00000000       0x40 carto/asp/src/est.o
+ .text.Est_Destroy
                 0x00000000       0x34 carto/asp/src/est.o
  .debug_info    0x00000000      0x35e carto/asp/src/est.o
  .debug_abbrev  0x00000000      0x105 carto/asp/src/est.o
@@ -1661,7 +1661,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x1df carto/asp/src/est.o
  .debug_macro   0x00000000       0x16 carto/asp/src/est.o
  .debug_macro   0x00000000       0x35 carto/asp/src/est.o
- .debug_line    0x00000000      0x43d carto/asp/src/est.o
+ .debug_line    0x00000000      0x440 carto/asp/src/est.o
  .debug_str     0x00000000     0x5ff4 carto/asp/src/est.o
  .comment       0x00000000       0x6f carto/asp/src/est.o
  .debug_frame   0x00000000       0xc8 carto/asp/src/est.o
@@ -1777,7 +1777,7 @@ Discarded input sections
  .text.GaussCreate
                 0x00000000       0x5c carto/asp/src/gauss.o
  .text.GaussReset
-                0x00000000       0x90 carto/asp/src/gauss.o
+                0x00000000       0x80 carto/asp/src/gauss.o
  .text.GaussProc
                 0x00000000      0x230 carto/asp/src/gauss.o
  .text.GaussDestroy
@@ -1811,10 +1811,10 @@ Discarded input sections
  .debug_macro   0x00000000      0x1df carto/asp/src/gauss.o
  .debug_macro   0x00000000       0x16 carto/asp/src/gauss.o
  .debug_macro   0x00000000       0x35 carto/asp/src/gauss.o
- .debug_line    0x00000000      0x42b carto/asp/src/gauss.o
- .debug_str     0x00000000     0x5f7d carto/asp/src/gauss.o
+ .debug_line    0x00000000      0x42a carto/asp/src/gauss.o
+ .debug_str     0x00000000     0x5f80 carto/asp/src/gauss.o
  .comment       0x00000000       0x6f carto/asp/src/gauss.o
- .debug_frame   0x00000000       0xa4 carto/asp/src/gauss.o
+ .debug_frame   0x00000000       0xa8 carto/asp/src/gauss.o
  .ARM.attributes
                 0x00000000       0x39 carto/asp/src/gauss.o
  .group         0x00000000        0x8 carto/asp/src/kalman.o
@@ -2291,7 +2291,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x58 carto/bsp/src/bsp.o
  .debug_macro   0x00000000       0x34 carto/bsp/src/bsp.o
  .debug_macro   0x00000000       0x5e carto/bsp/src/bsp.o
- .debug_macro   0x00000000       0x64 carto/bsp/src/bsp.o
+ .debug_macro   0x00000000       0x70 carto/bsp/src/bsp.o
  .debug_macro   0x00000000       0x40 carto/bsp/src/bsp.o
  .debug_macro   0x00000000      0x26f carto/bsp/src/bsp.o
  .debug_macro   0x00000000       0x2e carto/bsp/src/bsp.o
@@ -2315,7 +2315,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x189 carto/bsp/src/bsp.o
  .debug_macro   0x00000000       0x52 carto/bsp/src/bsp.o
  .debug_line    0x00000000      0x8b7 carto/bsp/src/bsp.o
- .debug_str     0x00000000    0x653fd carto/bsp/src/bsp.o
+ .debug_str     0x00000000    0x6546b carto/bsp/src/bsp.o
  .comment       0x00000000       0x6f carto/bsp/src/bsp.o
  .debug_frame   0x00000000       0x2c carto/bsp/src/bsp.o
  .ARM.attributes
@@ -3009,19 +3009,19 @@ Discarded input sections
  .text          0x00000000        0x0 carto/bsp/src/motor.o
  .data          0x00000000        0x0 carto/bsp/src/motor.o
  .bss           0x00000000        0x0 carto/bsp/src/motor.o
- .text.ECD_Proc
-                0x00000000      0x138 carto/bsp/src/motor.o
- .text.ECD_Reset
+ .text.Ecd_Proc
+                0x00000000      0x130 carto/bsp/src/motor.o
+ .text.Ecd_Reset
                 0x00000000       0x1c carto/bsp/src/motor.o
- .text.ESC_Proc
+ .text.Esc_Proc
                 0x00000000       0x3c carto/bsp/src/motor.o
  .text.Motor_Proc
                 0x00000000       0x30 carto/bsp/src/motor.o
- .text.EC60_CMD
+ .text.EC60_Cmd
                 0x00000000       0x98 carto/bsp/src/motor.o
- .text.RM6025_CMD
+ .text.RM6025_Cmd
                 0x00000000       0x6c carto/bsp/src/motor.o
- .debug_info    0x00000000      0x656 carto/bsp/src/motor.o
+ .debug_info    0x00000000      0x666 carto/bsp/src/motor.o
  .debug_abbrev  0x00000000      0x15c carto/bsp/src/motor.o
  .debug_aranges
                 0x00000000       0x48 carto/bsp/src/motor.o
@@ -3077,9 +3077,9 @@ Discarded input sections
  .debug_macro   0x00000000      0x30d carto/bsp/src/motor.o
  .debug_macro   0x00000000       0x10 carto/bsp/src/motor.o
  .debug_macro   0x00000000       0x35 carto/bsp/src/motor.o
- .debug_macro   0x00000000       0x5e carto/bsp/src/motor.o
+ .debug_macro   0x00000000       0x6a carto/bsp/src/motor.o
  .debug_line    0x00000000      0x75e carto/bsp/src/motor.o
- .debug_str     0x00000000    0x60f96 carto/bsp/src/motor.o
+ .debug_str     0x00000000    0x61003 carto/bsp/src/motor.o
  .comment       0x00000000       0x6f carto/bsp/src/motor.o
  .debug_frame   0x00000000       0xf0 carto/bsp/src/motor.o
  .ARM.attributes
@@ -4405,14 +4405,14 @@ Discarded input sections
  .debug_macro   0x00000000      0x30d carto/srv/src/can_srv.o
  .debug_macro   0x00000000       0x10 carto/srv/src/can_srv.o
  .debug_macro   0x00000000       0x35 carto/srv/src/can_srv.o
- .debug_macro   0x00000000       0x5e carto/srv/src/can_srv.o
+ .debug_macro   0x00000000       0x6a carto/srv/src/can_srv.o
  .debug_macro   0x00000000       0x22 carto/srv/src/can_srv.o
  .debug_macro   0x00000000       0x16 carto/srv/src/can_srv.o
  .debug_macro   0x00000000       0x16 carto/srv/src/can_srv.o
  .debug_macro   0x00000000       0x29 carto/srv/src/can_srv.o
  .debug_macro   0x00000000       0xac carto/srv/src/can_srv.o
  .debug_line    0x00000000      0x80f carto/srv/src/can_srv.o
- .debug_str     0x00000000    0x61281 carto/srv/src/can_srv.o
+ .debug_str     0x00000000    0x612ef carto/srv/src/can_srv.o
  .comment       0x00000000       0x6f carto/srv/src/can_srv.o
  .debug_frame   0x00000000       0x58 carto/srv/src/can_srv.o
  .ARM.attributes
@@ -4994,7 +4994,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x58 carto/srv/src/tim_srv.o
  .debug_macro   0x00000000       0x34 carto/srv/src/tim_srv.o
  .debug_macro   0x00000000       0x5e carto/srv/src/tim_srv.o
- .debug_macro   0x00000000       0x64 carto/srv/src/tim_srv.o
+ .debug_macro   0x00000000       0x70 carto/srv/src/tim_srv.o
  .debug_macro   0x00000000       0x40 carto/srv/src/tim_srv.o
  .debug_macro   0x00000000      0x26f carto/srv/src/tim_srv.o
  .debug_macro   0x00000000       0x2e carto/srv/src/tim_srv.o
@@ -5015,7 +5015,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x189 carto/srv/src/tim_srv.o
  .debug_macro   0x00000000       0x52 carto/srv/src/tim_srv.o
  .debug_line    0x00000000      0x973 carto/srv/src/tim_srv.o
- .debug_str     0x00000000    0x657cb carto/srv/src/tim_srv.o
+ .debug_str     0x00000000    0x65839 carto/srv/src/tim_srv.o
  .comment       0x00000000       0x6f carto/srv/src/tim_srv.o
  .debug_frame   0x00000000       0x50 carto/srv/src/tim_srv.o
  .ARM.attributes
@@ -5194,7 +5194,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x58 carto/usr/src/main.o
  .debug_macro   0x00000000       0x34 carto/usr/src/main.o
  .debug_macro   0x00000000       0x5e carto/usr/src/main.o
- .debug_macro   0x00000000       0x64 carto/usr/src/main.o
+ .debug_macro   0x00000000       0x70 carto/usr/src/main.o
  .debug_macro   0x00000000       0x40 carto/usr/src/main.o
  .debug_macro   0x00000000      0x26f carto/usr/src/main.o
  .debug_macro   0x00000000       0x2e carto/usr/src/main.o
@@ -7375,12 +7375,12 @@ OUTPUT(carto_alpha.elf elf32-littlearm)
  .debug_macro   0x00000ec0       0x16 carto/usr/src/syscalls.o
  .debug_macro   0x00000ed6       0x88 carto/usr/src/syscalls.o
 
-.debug_str      0x00000000    0x680cc
+.debug_str      0x00000000    0x6813a
  .debug_str     0x00000000    0x5e228 carto/bsp/src/system_stm32f4xx.o
                               0x5e3dd (size before relaxing)
- .debug_str     0x0005e228     0x8df9 carto/usr/src/main.o
-                              0x67159 (size before relaxing)
- .debug_str     0x00067021     0x10ab carto/usr/src/syscalls.o
+ .debug_str     0x0005e228     0x8e67 carto/usr/src/main.o
+                              0x671c7 (size before relaxing)
+ .debug_str     0x0006708f     0x10ab carto/usr/src/syscalls.o
                                0x7729 (size before relaxing)
 
 .comment        0x00000000       0x6e
