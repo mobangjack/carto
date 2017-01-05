@@ -29,7 +29,7 @@ void MPU6050_IRQ_HANDLER()         //1KHz
         EXTI_ClearFlag(MPU6050_EXTI_LINE);
         EXTI_ClearITPendingBit(MPU6050_EXTI_LINE);
 
-        MPU6050_INT_Callback();
+        MPU6050INTCallback();
     }
 }
 

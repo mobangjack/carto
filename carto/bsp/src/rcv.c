@@ -24,7 +24,7 @@ void Rcv_Config(void)
 			   RCV_USART,
 			   RCV_USART_BR,
 			   RCV_USART_WL,
-			   RCV_USART_PA,
+			   RCV_USART_PR,
 			   RCV_USART_SB,
 			   RCV_USART_FC);
 
@@ -77,7 +77,7 @@ void RCV_IRQ_HANDLER()
 		DMA_Cmd(RCV_DMA_STREAM, ENABLE);
 		if(rx_len == RCV_FRAME_LEN)
 		{
-			Rcv_Callback(dbuf);
+			RcvCallback(dbuf);
 		}
 	}       
 }

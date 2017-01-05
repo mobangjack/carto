@@ -50,7 +50,7 @@ void Tim_Config(void);
 void Tim_Start(void);
 void Tim_Stop(void);
 
-void TickTim_Callback(void);
-void SyncTim_Callback(void);
+void TickTimCallback(void);
+void SyncTimCallback(void);
 
 #endif /* __TIM_H__ */

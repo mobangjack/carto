@@ -28,6 +28,6 @@
 
 void MPU6050_INT_Config(void);
 
-void MPU6050_INT_Callback();
+void MPU6050INTCallback();
 
 #endif

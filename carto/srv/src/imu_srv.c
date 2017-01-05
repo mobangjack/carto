@@ -18,7 +18,7 @@
 
 float buf[9];
 int16_t raw[17];
-void MPU6050_INT_Callback()
+void MPU6050INTCallback()
 {
 	MPU6050_Read(raw);
 	HMC5883_Read(raw + 14);

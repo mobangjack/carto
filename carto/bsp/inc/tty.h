@@ -26,7 +26,7 @@
 #define TTY_USART USART3
 #define TTY_USART_BR 115200
 #define TTY_USART_WL 8
-#define TTY_USART_PA 'N'
+#define TTY_USART_PR 'N'
 #define TTY_USART_SB 1
 #define TTY_USART_FC 'N'
 

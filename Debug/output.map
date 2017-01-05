@@ -4959,7 +4959,7 @@ Discarded input sections
  .text          0x00000000        0x0 carto/srv/src/imu_srv.o
  .data          0x00000000        0x0 carto/srv/src/imu_srv.o
  .bss           0x00000000        0x0 carto/srv/src/imu_srv.o
- .text.MPU6050_INT_Callback
+ .text.MPU6050INTCallback
                 0x00000000      0x130 carto/srv/src/imu_srv.o
  .debug_info    0x00000000      0x123 carto/srv/src/imu_srv.o
  .debug_abbrev  0x00000000       0x8b carto/srv/src/imu_srv.o
@@ -5063,7 +5063,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x22 carto/srv/src/imu_srv.o
  .debug_macro   0x00000000       0x16 carto/srv/src/imu_srv.o
  .debug_line    0x00000000      0xa5a carto/srv/src/imu_srv.o
- .debug_str     0x00000000    0x67214 carto/srv/src/imu_srv.o
+ .debug_str     0x00000000    0x67212 carto/srv/src/imu_srv.o
  .comment       0x00000000       0x6f carto/srv/src/imu_srv.o
  .debug_frame   0x00000000       0x2c carto/srv/src/imu_srv.o
  .ARM.attributes
@@ -5297,9 +5297,9 @@ Discarded input sections
  .text          0x00000000        0x0 carto/srv/src/tim_srv.o
  .data          0x00000000        0x0 carto/srv/src/tim_srv.o
  .bss           0x00000000        0x0 carto/srv/src/tim_srv.o
- .text.TickTim_Callback
+ .text.TickTimCallback
                 0x00000000       0x10 carto/srv/src/tim_srv.o
- .text.SyncTim_Callback
+ .text.SyncTimCallback
                 0x00000000       0x10 carto/srv/src/tim_srv.o
  .debug_info    0x00000000       0xdc carto/srv/src/tim_srv.o
  .debug_abbrev  0x00000000       0x6a carto/srv/src/tim_srv.o
@@ -5393,7 +5393,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x189 carto/srv/src/tim_srv.o
  .debug_macro   0x00000000       0x52 carto/srv/src/tim_srv.o
  .debug_line    0x00000000      0x987 carto/srv/src/tim_srv.o
- .debug_str     0x00000000    0x660b3 carto/srv/src/tim_srv.o
+ .debug_str     0x00000000    0x660b1 carto/srv/src/tim_srv.o
  .comment       0x00000000       0x6f carto/srv/src/tim_srv.o
  .debug_frame   0x00000000       0x50 carto/srv/src/tim_srv.o
  .ARM.attributes

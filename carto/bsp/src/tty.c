@@ -24,7 +24,7 @@ void Tty_Config(void)
     		   TTY_USART,
 			   TTY_USART_BR,
 			   TTY_USART_WL,
-			   TTY_USART_PA,
+			   TTY_USART_PR,
 			   TTY_USART_SB,
 			   TTY_USART_FC
 			   );
