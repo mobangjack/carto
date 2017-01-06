@@ -17,6 +17,10 @@
 #ifndef __STACK_H__
 #define __STACK_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
@@ -37,6 +41,10 @@ uint32_t Stack_GetFree(Stack_t* stack);
 uint8_t Stack_GetSize(Stack_t* stack);
 uint8_t Stack_IsFull(Stack_t* stack);
 uint8_t Stack_IsEmpty(Stack_t* stack);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

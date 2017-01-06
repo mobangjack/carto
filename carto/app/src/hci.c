@@ -16,6 +16,10 @@
  
 #include "hci.h"
 
+/**********************************************/
+/*              Host Control Input            */
+/**********************************************/
+
 MouseButtonState_t mouseButtonStates[MOUSE_BTN_CNT];
 MouseButtonEvent_t mouseButtonEvents[MOUSE_BTN_CNT];
 
@@ -54,12 +58,12 @@ static void GetFunctionalState(HC_t* hc)
 	GetMouseButtonStates(hc);
 	GetMouseButtonEvents(hc);
 	if (mouseButtonStates[MOUSE_BTN_IDX_R]) {
-		SET_FS(FUNCTIONAL_STATE_GUN | FUNCTIONAL_STATE_LASER);
+		FS_Set(FUNCTIONAL_STATE_GUN | FUNCTIONAL_STATE_LASER);
 		if (mouseButtonStates[MOUSE_BTN_IDX_L]) {
-			SET_FS(FUNCTIONAL_STATE_SPINNER);
+			FS_Set(FUNCTIONAL_STATE_SPINNER);
 		}
 	} else {
-		CLR_FS(FUNCTIONAL_STATE_GUN | FUNCTIONAL_STATE_LASER | FUNCTIONAL_STATE_SPINNER);
+		FS_Clr(FUNCTIONAL_STATE_GUN | FUNCTIONAL_STATE_LASER | FUNCTIONAL_STATE_SPINNER);
 	}
 }
 

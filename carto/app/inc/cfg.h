@@ -17,6 +17,10 @@
 #ifndef __CFG_H__
 #define __CFG_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "flash.h"
 
 #define CFG_DATA_START_ADDR 	FLASH_SECTOR_11_ADDR
@@ -251,6 +255,10 @@ typedef struct
 void Cfg_Load(Cfg_t* cfg);
 uint8_t Cfg_Save(Cfg_t* cfg);
 void Cfg_Reset(Cfg_t* cfg);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

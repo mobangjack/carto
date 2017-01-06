@@ -17,6 +17,10 @@
 #ifndef __COM_H__
 #define __COM_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "tty.h"
 #include "wdg.h"
 
@@ -24,5 +28,9 @@
 #define COM_MOD_API 0x01
 
 void Com_Proc(uint8_t data);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

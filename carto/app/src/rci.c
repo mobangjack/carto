@@ -16,6 +16,10 @@
  
 #include "rci.h"
 
+/**********************************************/
+/*            Remote Control Input            */
+/**********************************************/
+
 SwitchState_t switchStates[SW_CNT];
 SwitchEvent_t switchEvents[SW_CNT];
 
@@ -55,16 +59,16 @@ static void GetFunctionalState(RC_t* rc)
 	GetSwitchEvents(rc);
 	switch (switchEvents[SW_IDX_L]) {
 		case SWITCH_EVENT_3TO1:
-			TOG_FS(FUNCTIONAL_STATE_GUN);
-			if (GET_FS(FUNCTIONAL_STATE_GUN)) {
-				TOG_FS(FUNCTIONAL_STATE_LASER);
+			FS_Tog(FUNCTIONAL_STATE_GUN);
+			if (FS_Get(FUNCTIONAL_STATE_GUN)) {
+				FS_Tog(FUNCTIONAL_STATE_LASER);
 			}
 			break;
 		case SWITCH_EVENT_3TO2:
-			if (GET_FS(FUNCTIONAL_STATE_GUN)) {
-				TOG_FS(FUNCTIONAL_STATE_SPINNER);
+			if (FS_Get(FUNCTIONAL_STATE_GUN)) {
+				FS_Tog(FUNCTIONAL_STATE_SPINNER);
 			} else {
-				CLR_FS(FUNCTIONAL_STATE_SPINNER);
+				FS_Clr(FUNCTIONAL_STATE_SPINNER);
 			}
 			break;
 		default:

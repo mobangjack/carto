@@ -273,7 +273,7 @@ while(0)
 #define IRQ(NAME) NAME##_IRQn
 #define IRQ_HANDLER(NAME) NAME##_IRQHandler
 
-typedef void* (*Callback)(void* p);
+// typedef void* (*Callback)(void* p);
 
 void GPIO_Config(GPIO gpio, GPIOMode_TypeDef mode, GPIOSpeed_TypeDef speed, GPIOOType_TypeDef otype, GPIOPuPd_TypeDef pupd);
 void GPIO_In(GPIO gpio);

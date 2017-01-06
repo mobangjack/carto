@@ -30,7 +30,7 @@ typedef struct
 	float* buf;
 	uint32_t len;
 	uint32_t i;
-	float delta;
+	float delta_sum;
 	float sum;
 	float out;
 }MAFilter_t;

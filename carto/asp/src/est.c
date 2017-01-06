@@ -16,7 +16,7 @@
 
 #include "est.h"
 
-Est_t* Est_Create(uint32_t gaussN, float precision, float kalmanQ)
+Est_t* Est_Create(uint32_t gaussN, float kalmanQ)
 {
 	Est_t* est = (Est_t*)malloc(sizeof(Est_t));
 	if (est == NULL) {
@@ -36,58 +36,34 @@ Est_t* Est_Create(uint32_t gaussN, float precision, float kalmanQ)
 		return NULL;
 	}
 	KalmanSetQ(est->kalman, kalmanQ);
-	est->gaussN = gaussN;
-	est->precision = precision;
-	est->gauss->delta_mse = precision;
-	est->ini_flag = 0;
+	est->error = FLT_MAX;
 	return est;
 }
 
-float Est_Proc(Est_t* est, float v)
+void Est_Proc(Est_t* est, float v)
 {
-	if (est->gauss->delta_mse >= est->precision) {
-		if (est->gauss == NULL) {
-			est->gauss = GaussCreate(est->gaussN);
-		}
+	if (est->error > 0) {
 		GaussProc(est->gauss, v);
-		est->value = est->gauss->mean;
-		est->delta = est->gauss->delta_mean;
-		return est->value;
-	} else if (!est->ini_flag) {
-		KalmanSetR(est->kalman, est->gauss->mse);
-		KalmanSetE(est->kalman, est->gauss->mean);
-		KalmanSetD(est->kalman, est->gauss->diff);
-		if (est->gauss != NULL) {
-			GaussDestroy(est->gauss);
+		if (est->gauss->err < est->error) {
+			est->error = est->gauss->err;
+			KalmanSetR(est->kalman, est->gauss->mse);
+			KalmanSetE(est->kalman, est->gauss->mean);
+			KalmanSetD(est->kalman, est->gauss->delta_mean);
 		}
-		est->ini_flag = 1;
 		est->value = est->gauss->mean;
 		est->delta = est->gauss->delta_mean;
-		return est->value;
 	} else {
 		KalmanFilter(est->kalman, v);
 		est->value = est->kalman->e;
 		est->delta = est->kalman->d;
-		return est->value;
 	}
-}
-
-uint8_t Est_Ok(Est_t* est)
-{
-	return est->ini_flag;
 }
 
 void Est_Reset(Est_t* est)
 {
-	if (est != NULL) {
-		if (est->gauss != NULL) {
-			GaussReset(est->gauss);
-		}
-		if (est->kalman != NULL) {
-			KalmanReset(est->kalman);
-		}
-		est->ini_flag = 0;
-	}
+	GaussReset(est->gauss);
+	KalmanReset(est->kalman);
+	est->error = FLT_MAX;
 }
 
 void Est_Destroy(Est_t* est)

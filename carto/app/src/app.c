@@ -38,7 +38,7 @@ void App_Init(void)
 	Cfg_Load(&cfg);
 
 	// Attitude Heading Reference System Configuration
-	AHRS_Config(&ahrs);
+	AHRS_Config(&ahrs, 2.0f, 0.02f);
 	/*******************************************/
 	/* Mecanum Wheel Power Transmission System */
 	/*              Configuration              */

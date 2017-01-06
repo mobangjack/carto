@@ -17,6 +17,14 @@
 #ifndef __RCI_H__
 #define __RCI_H__
 
+/**********************************************/
+/*            Remote Control Input            */
+/**********************************************/
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "cmd.h"
 
 typedef uint8_t SwitchState_t;
@@ -37,5 +45,9 @@ typedef uint8_t SwitchEvent_t;
 #define SWITCH_EVENT_NONE 0
 
 void RCI_Cmd(RC_t* rc);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

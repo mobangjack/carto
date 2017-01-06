@@ -20,13 +20,12 @@ Motor_t motor[MOTOR_NUM]; // Motor Group
 Est_t* est[MOTOR_NUM];    // Estimator Group
 
 #define EST_GAUSS_N   100u
-#define EST_PRECISION 0.01f
 #define EST_KALMAN_Q  0.1f
 
 static void ECD_Proc(uint8_t i, uint8_t* data)
 {
 	if(est[i] == NULL) {
-		est[i] = Est_Create(EST_GAUSS_N, EST_PRECISION, EST_KALMAN_Q);
+		est[i] = Est_Create(EST_GAUSS_N, EST_KALMAN_Q);
 	}
 	Motor_Proc(&motor[i], data);
 	Est_Proc(est[i], motor[i].ecd.angle);

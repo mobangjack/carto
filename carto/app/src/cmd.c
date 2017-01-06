@@ -21,37 +21,37 @@ FunctionalState_t functionalState;
 ChassisSpeedRef_t chassisSpeedRef;
 PantiltSpeedRef_t pantiltSpeedRef;
 
-FunctionalState_t GET_FS(FunctionalState_t mask)
+FunctionalState_t FS_Get(FunctionalState_t mask)
 {
 	return functionalState & mask;
 }
 
-void SET_FS(FunctionalState_t mask)
+void FS_Set(FunctionalState_t mask)
 {
 	functionalState |= mask;
 }
 
-void CLR_FS(FunctionalState_t mask)
+void FS_Clr(FunctionalState_t mask)
 {
 	functionalState &= ~mask;
 }
 
-void TOG_FS(FunctionalState_t mask)
+void FS_Tog(FunctionalState_t mask)
 {
-	GET_FS(mask) ? CLR_FS(mask) : SET_FS(mask);
+	FS_Get(mask) ? FS_Clr(mask) : FS_Set(mask);
 }
 
-void SET_CS(float x, float y, float z)
+void CS_Set(float x, float y, float z)
 {
 	chassisSpeedRef.x = x;
 	chassisSpeedRef.y = y;
 	chassisSpeedRef.z = z;
 }
 
-void SET_GS(float yaw, float pitch)
+void GS_Set(float y, float p)
 {
-	pantiltSpeedRef.y = yaw;
-	pantiltSpeedRef.p = pitch;
+	pantiltSpeedRef.y = y;
+	pantiltSpeedRef.p = p;
 }
 
 void GetInputMode(DBUS_t* dbus)

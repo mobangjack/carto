@@ -57,11 +57,21 @@ void Tty_Write(u8* pdata, u8 len)
     USART_ITConfig(TTY_USART, USART_IT_TXE, ENABLE);
 }
 
-int fputc(int ch, FILE *f)
+char* tx_buf[TTY_TX_FIFO_SIZE];
+void Tty_Print(const char* fmt,...)
 {
-    while (USART_GetFlagStatus(TTY_USART,USART_FLAG_TC) == RESET);
-    USART_SendData(TTY_USART, (uint8_t)ch);
-    return ch;
+	uint32_t i = 0;
+	uint32_t len = sprintf(tx_buf, fmt);
+	for (; i < len; i++) {
+		FIFO_Push(fifo, tx_buf[i]);
+	}
+	USART_ITConfig(TTY_USART, USART_IT_TXE, ENABLE);
+}
+
+int fputc(int c, FILE *f)
+{
+	Tty_WriteByte((u8)c);
+    return c;
 }
 
 void TTY_IRQ_HANDLER()

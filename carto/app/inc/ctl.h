@@ -17,6 +17,10 @@
 #ifndef __CTL_H__
 #define __CTL_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 #include "app.h"
@@ -49,6 +53,11 @@ typedef struct
 extern WorkingState_t workingState;
 extern ChassisCurrent_t chassisCurrent;
 extern PantiltCurrent_t pantiltCurrent;
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

@@ -24,6 +24,7 @@ extern "C" {
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
+#include <float.h>
 
 typedef struct
 {
@@ -35,7 +36,7 @@ typedef struct
   uint16_t n; // initialization counter
   uint16_t i; // current enqueuing buffer index
   float sum;  // sum of buffer
-  float diff; // diff of sum
+  float delta_sum;  // delta of sum
   float res0; // residual of the number 0 parameter
   float resn; // residual of the number (n - 1) parameter
   float mean; // mean of buffer
@@ -46,11 +47,12 @@ typedef struct
   float mse; // mean square error
   float last_mse; // last mse
   float delta_mse; // delta mse
+  float err; // gauss err
 }Gauss_t;
 
 Gauss_t* GaussCreate(uint16_t N);
 void GaussReset(Gauss_t* gauss);
-float GaussProc(Gauss_t* gauss, float x);
+void GaussProc(Gauss_t* gauss, float x);
 void GaussDestroy(Gauss_t* gauss);
 
 #ifdef __cplusplus

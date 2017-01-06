@@ -17,6 +17,10 @@
 #ifndef __MECANUM_H__
 #define __MECANUM_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 /*******************************************/
@@ -58,5 +62,9 @@ void Mecanum_Config(Mecanum_t* mecanum, float lx, float ly, float r1, float r2);
 uint8_t Mecanum_Ok(Mecanum_t* mecanum);
 void Mecanum_Synthesis(Mecanum_t* mecanum);
 void Mecanum_Decompose(Mecanum_t* mecanum);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

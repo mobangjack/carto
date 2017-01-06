@@ -46,18 +46,54 @@ Archive member included to satisfy reference by file (symbol)
                               /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mallocr.o) (__malloc_lock)
 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sbrkr.o)
                               /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mallocr.o) (_sbrk_r)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sprintf.o)
+                              carto/bsp/src/tty.o (sprintf)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o)
+                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sprintf.o) (_svfprintf_r)
 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-__call_atexit.o)
                               /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-exit.o) (__call_exitprocs)
 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-atexit.o)
                               /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-__call_atexit.o) (atexit)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-dtoa.o)
+                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o) (_dtoa_r)
 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-fini.o)
                               /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-__call_atexit.o) (__libc_fini_array)
 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-freer.o)
                               /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-malloc.o) (_free_r)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o) (_localeconv_r)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memchr.o)
+                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o) (memchr)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-dtoa.o) (_Balloc)
 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reent.o)
                               /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sbrkr.o) (errno)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-strcmp.o)
+                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o) (strcmp)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-strlen.o)
+                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o) (strlen)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfiprintf.o)
+                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o) (__ssprint_r)
 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-__atexit.o)
                               /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-atexit.o) (__register_exitproc)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-callocr.o)
+                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o) (_calloc_r)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memmove.o)
+                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfiprintf.o) (memmove)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reallocr.o)
+                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfiprintf.o) (_realloc_r)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_cmpdf2.o)
+                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o) (__aeabi_dcmpeq)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_unorddf2.o)
+                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o) (__aeabi_dcmpun)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_fixdfsi.o)
+                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-dtoa.o) (__aeabi_d2iz)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_aeabi_uldivmod.o)
+                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o) (__aeabi_uldivmod)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_udivmoddi4.o)
+                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_aeabi_uldivmod.o) (__udivmoddi4)
+/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_dvmd_tls.o)
+                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_aeabi_uldivmod.o) (__aeabi_ldiv0)
 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libm.a(lib_a-w_asin.o)
                               carto/asp/src/ahrs.o (asin)
 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libm.a(lib_a-w_atan2.o)
@@ -80,15 +116,11 @@ Archive member included to satisfy reference by file (symbol)
                               /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libm.a(lib_a-w_asin.o) (matherr)
 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libm.a(lib_a-s_nan.o)
                               /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libm.a(lib_a-w_asin.o) (nan)
-/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_cmpdf2.o)
-                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libm.a(lib_a-w_sqrt.o) (__aeabi_dcmplt)
-/home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_unorddf2.o)
-                              /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libm.a(lib_a-w_asin.o) (__aeabi_dcmpun)
 
 Allocating common symbols
 Common symbol       size              file
 
-ahrs                0x7c              carto/app/src/app.o
+ahrs                0x24              carto/app/src/app.o
 dbus                0x16              carto/srv/src/rcv_srv.o
 switchEvents        0x2               carto/app/src/rci.o
 errno               0x4               /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reent.o)
@@ -112,6 +144,7 @@ mouseButtonEvents   0x2               carto/app/src/hci.o
 GMPAnglePID         0x3c              carto/app/src/app.o
 pantiltCurrent      0x8               carto/app/src/ctl.o
 inputMode           0x1               carto/app/src/cmd.o
+tx_buf              0x400             carto/bsp/src/tty.o
 pantiltSpeedRef     0x8               carto/app/src/cmd.o
 buf                 0x48              carto/bsp/src/rcv.o
 CM4AnglePID         0x3c              carto/app/src/app.o
@@ -227,19 +260,20 @@ Discarded input sections
  .group         0x00000000        0x8 carto/app/src/app.o
  .group         0x00000000        0x8 carto/app/src/app.o
  .group         0x00000000        0x8 carto/app/src/app.o
+ .group         0x00000000        0x8 carto/app/src/app.o
  .text          0x00000000        0x0 carto/app/src/app.o
  .data          0x00000000       0xfc carto/app/src/app.o
  .bss           0x00000000        0x0 carto/app/src/app.o
  .text.App_Init
-                0x00000000      0x418 carto/app/src/app.o
+                0x00000000      0x420 carto/app/src/app.o
  .text.App_Cfg  0x00000000       0x14 carto/app/src/app.o
  .text.App_Run  0x00000000       0x10 carto/app/src/app.o
- .debug_info    0x00000000      0x763 carto/app/src/app.o
+ .debug_info    0x00000000      0x665 carto/app/src/app.o
  .debug_abbrev  0x00000000       0xfb carto/app/src/app.o
  .debug_aranges
                 0x00000000       0x30 carto/app/src/app.o
  .debug_ranges  0x00000000       0x20 carto/app/src/app.o
- .debug_macro   0x00000000      0x586 carto/app/src/app.o
+ .debug_macro   0x00000000      0x58f carto/app/src/app.o
  .debug_macro   0x00000000      0x8aa carto/app/src/app.o
  .debug_macro   0x00000000       0x22 carto/app/src/app.o
  .debug_macro   0x00000000       0x4c carto/app/src/app.o
@@ -277,6 +311,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x1df carto/app/src/app.o
  .debug_macro   0x00000000       0x16 carto/app/src/app.o
  .debug_macro   0x00000000       0xa6 carto/app/src/app.o
+ .debug_macro   0x00000000      0x201 carto/app/src/app.o
  .debug_macro   0x00000000       0x10 carto/app/src/app.o
  .debug_macro   0x00000000       0x10 carto/app/src/app.o
  .debug_macro   0x00000000       0x6b carto/app/src/app.o
@@ -332,16 +367,17 @@ Discarded input sections
  .debug_macro   0x00000000       0x46 carto/app/src/app.o
  .debug_macro   0x00000000       0x28 carto/app/src/app.o
  .debug_macro   0x00000000       0x3a carto/app/src/app.o
- .debug_macro   0x00000000       0xbf carto/app/src/app.o
+ .debug_macro   0x00000000       0xc0 carto/app/src/app.o
  .debug_macro   0x00000000       0x28 carto/app/src/app.o
  .debug_macro   0x00000000       0x16 carto/app/src/app.o
- .debug_line    0x00000000      0xaaf carto/app/src/app.o
- .debug_str     0x00000000    0x673eb carto/app/src/app.o
+ .debug_line    0x00000000      0xaba carto/app/src/app.o
+ .debug_str     0x00000000    0x67a35 carto/app/src/app.o
  .comment       0x00000000       0x6f carto/app/src/app.o
  .debug_frame   0x00000000       0x68 carto/app/src/app.o
  .ARM.attributes
                 0x00000000       0x39 carto/app/src/app.o
- COMMON         0x00000000      0x38c carto/app/src/app.o
+ COMMON         0x00000000      0x334 carto/app/src/app.o
+ .group         0x00000000        0x8 carto/app/src/can.o
  .group         0x00000000        0x8 carto/app/src/can.o
  .group         0x00000000        0x8 carto/app/src/can.o
  .group         0x00000000        0x8 carto/app/src/can.o
@@ -403,17 +439,17 @@ Discarded input sections
  .data          0x00000000        0x0 carto/app/src/can.o
  .bss           0x00000000        0x0 carto/app/src/can.o
  .text.ECD_Proc
-                0x00000000       0xb0 carto/app/src/can.o
+                0x00000000       0xa8 carto/app/src/can.o
  .text.Can_Proc
                 0x00000000       0xd4 carto/app/src/can.o
  .text.Encoder_Reset
                 0x00000000       0x54 carto/app/src/can.o
- .debug_info    0x00000000      0x546 carto/app/src/can.o
+ .debug_info    0x00000000      0x53a carto/app/src/can.o
  .debug_abbrev  0x00000000      0x139 carto/app/src/can.o
  .debug_aranges
                 0x00000000       0x30 carto/app/src/can.o
  .debug_ranges  0x00000000       0x20 carto/app/src/can.o
- .debug_macro   0x00000000      0x2f4 carto/app/src/can.o
+ .debug_macro   0x00000000      0x2f7 carto/app/src/can.o
  .debug_macro   0x00000000      0x8aa carto/app/src/can.o
  .debug_macro   0x00000000       0x10 carto/app/src/can.o
  .debug_macro   0x00000000       0x6b carto/app/src/can.o
@@ -470,9 +506,10 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 carto/app/src/can.o
  .debug_macro   0x00000000       0x16 carto/app/src/can.o
  .debug_macro   0x00000000       0x29 carto/app/src/can.o
+ .debug_macro   0x00000000      0x201 carto/app/src/can.o
  .debug_macro   0x00000000       0xac carto/app/src/can.o
- .debug_line    0x00000000      0x800 carto/app/src/can.o
- .debug_str     0x00000000    0x61458 carto/app/src/can.o
+ .debug_line    0x00000000      0x80b carto/app/src/can.o
+ .debug_str     0x00000000    0x61ac7 carto/app/src/can.o
  .comment       0x00000000       0x6f carto/app/src/can.o
  .debug_frame   0x00000000       0x80 carto/app/src/can.o
  .ARM.attributes
@@ -597,7 +634,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x10 carto/app/src/cfg.o
  .debug_macro   0x00000000       0x35 carto/app/src/cfg.o
  .debug_macro   0x00000000       0x58 carto/app/src/cfg.o
- .debug_macro   0x00000000       0xbf carto/app/src/cfg.o
+ .debug_macro   0x00000000       0xc0 carto/app/src/cfg.o
  .debug_line    0x00000000      0x742 carto/app/src/cfg.o
  .debug_str     0x00000000    0x6181a carto/app/src/cfg.o
  .comment       0x00000000       0x6f carto/app/src/cfg.o
@@ -635,17 +672,17 @@ Discarded input sections
  .text          0x00000000        0x0 carto/app/src/cmd.o
  .data          0x00000000        0x0 carto/app/src/cmd.o
  .bss           0x00000000        0x0 carto/app/src/cmd.o
- .text.GET_FS   0x00000000       0x20 carto/app/src/cmd.o
- .text.SET_FS   0x00000000       0x24 carto/app/src/cmd.o
- .text.CLR_FS   0x00000000       0x28 carto/app/src/cmd.o
- .text.TOG_FS   0x00000000       0x2c carto/app/src/cmd.o
- .text.SET_CS   0x00000000       0x34 carto/app/src/cmd.o
- .text.SET_GS   0x00000000       0x2c carto/app/src/cmd.o
+ .text.FS_Get   0x00000000       0x20 carto/app/src/cmd.o
+ .text.FS_Set   0x00000000       0x24 carto/app/src/cmd.o
+ .text.FS_Clr   0x00000000       0x28 carto/app/src/cmd.o
+ .text.FS_Tog   0x00000000       0x2c carto/app/src/cmd.o
+ .text.CS_Set   0x00000000       0x34 carto/app/src/cmd.o
+ .text.GS_Set   0x00000000       0x2c carto/app/src/cmd.o
  .text.GetInputMode
                 0x00000000       0x20 carto/app/src/cmd.o
  .text.DBUS_Cmd
                 0x00000000       0x44 carto/app/src/cmd.o
- .debug_info    0x00000000      0x423 carto/app/src/cmd.o
+ .debug_info    0x00000000      0x41f carto/app/src/cmd.o
  .debug_abbrev  0x00000000       0xff carto/app/src/cmd.o
  .debug_aranges
                 0x00000000       0x58 carto/app/src/cmd.o
@@ -680,7 +717,7 @@ Discarded input sections
  .debug_macro   0x00000000       0xac carto/app/src/cmd.o
  .debug_macro   0x00000000       0x3a carto/app/src/cmd.o
  .debug_line    0x00000000      0x4b1 carto/app/src/cmd.o
- .debug_str     0x00000000     0x69ac carto/app/src/cmd.o
+ .debug_str     0x00000000     0x69a6 carto/app/src/cmd.o
  .comment       0x00000000       0x6f carto/app/src/cmd.o
  .debug_frame   0x00000000      0x148 carto/app/src/cmd.o
  .ARM.attributes
@@ -936,6 +973,7 @@ Discarded input sections
  .group         0x00000000        0x8 carto/app/src/ctl.o
  .group         0x00000000        0x8 carto/app/src/ctl.o
  .group         0x00000000        0x8 carto/app/src/ctl.o
+ .group         0x00000000        0x8 carto/app/src/ctl.o
  .text          0x00000000        0x0 carto/app/src/ctl.o
  .data          0x00000000       0x48 carto/app/src/ctl.o
  .bss           0x00000000        0x8 carto/app/src/ctl.o
@@ -960,12 +998,12 @@ Discarded input sections
  .text.PantiltMotorCommand
                 0x00000000       0x44 carto/app/src/ctl.o
  .text.Control  0x00000000       0xa0 carto/app/src/ctl.o
- .debug_info    0x00000000      0xafe carto/app/src/ctl.o
- .debug_abbrev  0x00000000      0x176 carto/app/src/ctl.o
+ .debug_info    0x00000000      0xb4c carto/app/src/ctl.o
+ .debug_abbrev  0x00000000      0x1b6 carto/app/src/ctl.o
  .debug_aranges
                 0x00000000       0x70 carto/app/src/ctl.o
- .debug_ranges  0x00000000       0x60 carto/app/src/ctl.o
- .debug_macro   0x00000000      0x59c carto/app/src/ctl.o
+ .debug_ranges  0x00000000       0x78 carto/app/src/ctl.o
+ .debug_macro   0x00000000      0x5a5 carto/app/src/ctl.o
  .debug_macro   0x00000000      0x8aa carto/app/src/ctl.o
  .debug_macro   0x00000000       0x22 carto/app/src/ctl.o
  .debug_macro   0x00000000       0x87 carto/app/src/ctl.o
@@ -1003,6 +1041,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x52 carto/app/src/ctl.o
  .debug_macro   0x00000000       0x16 carto/app/src/ctl.o
  .debug_macro   0x00000000       0xa6 carto/app/src/ctl.o
+ .debug_macro   0x00000000      0x201 carto/app/src/ctl.o
  .debug_macro   0x00000000       0x10 carto/app/src/ctl.o
  .debug_macro   0x00000000       0x10 carto/app/src/ctl.o
  .debug_macro   0x00000000       0x6b carto/app/src/ctl.o
@@ -1058,11 +1097,11 @@ Discarded input sections
  .debug_macro   0x00000000       0x46 carto/app/src/ctl.o
  .debug_macro   0x00000000       0x28 carto/app/src/ctl.o
  .debug_macro   0x00000000       0x3a carto/app/src/ctl.o
- .debug_macro   0x00000000       0xbf carto/app/src/ctl.o
+ .debug_macro   0x00000000       0xc0 carto/app/src/ctl.o
  .debug_macro   0x00000000       0x16 carto/app/src/ctl.o
  .debug_macro   0x00000000       0x22 carto/app/src/ctl.o
- .debug_line    0x00000000      0xb5e carto/app/src/ctl.o
- .debug_str     0x00000000    0x676dd carto/app/src/ctl.o
+ .debug_line    0x00000000      0xb69 carto/app/src/ctl.o
+ .debug_str     0x00000000    0x67d39 carto/app/src/ctl.o
  .comment       0x00000000       0x6f carto/app/src/ctl.o
  .debug_frame   0x00000000      0x160 carto/app/src/ctl.o
  .ARM.attributes
@@ -1145,7 +1184,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x35 carto/app/src/hci.o
  .debug_macro   0x00000000       0x28 carto/app/src/hci.o
  .debug_line    0x00000000      0x513 carto/app/src/hci.o
- .debug_str     0x00000000     0x6a41 carto/app/src/hci.o
+ .debug_str     0x00000000     0x6a45 carto/app/src/hci.o
  .comment       0x00000000       0x6f carto/app/src/hci.o
  .debug_frame   0x00000000       0xf4 carto/app/src/hci.o
  .ARM.attributes
@@ -1246,17 +1285,18 @@ Discarded input sections
  .group         0x00000000        0x8 carto/app/src/imu.o
  .group         0x00000000        0x8 carto/app/src/imu.o
  .group         0x00000000        0x8 carto/app/src/imu.o
+ .group         0x00000000        0x8 carto/app/src/imu.o
  .text          0x00000000        0x0 carto/app/src/imu.o
  .data          0x00000000        0x0 carto/app/src/imu.o
  .bss           0x00000000        0x0 carto/app/src/imu.o
  .text.IMU_Proc
                 0x00000000       0x24 carto/app/src/imu.o
- .debug_info    0x00000000      0x255 carto/app/src/imu.o
+ .debug_info    0x00000000      0x157 carto/app/src/imu.o
  .debug_abbrev  0x00000000       0xd2 carto/app/src/imu.o
  .debug_aranges
                 0x00000000       0x20 carto/app/src/imu.o
  .debug_ranges  0x00000000       0x10 carto/app/src/imu.o
- .debug_macro   0x00000000      0x590 carto/app/src/imu.o
+ .debug_macro   0x00000000      0x599 carto/app/src/imu.o
  .debug_macro   0x00000000      0x8aa carto/app/src/imu.o
  .debug_macro   0x00000000       0x22 carto/app/src/imu.o
  .debug_macro   0x00000000       0x4c carto/app/src/imu.o
@@ -1294,6 +1334,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x1df carto/app/src/imu.o
  .debug_macro   0x00000000       0x16 carto/app/src/imu.o
  .debug_macro   0x00000000       0xa6 carto/app/src/imu.o
+ .debug_macro   0x00000000      0x201 carto/app/src/imu.o
  .debug_macro   0x00000000       0x10 carto/app/src/imu.o
  .debug_macro   0x00000000       0x10 carto/app/src/imu.o
  .debug_macro   0x00000000       0x6b carto/app/src/imu.o
@@ -1349,15 +1390,16 @@ Discarded input sections
  .debug_macro   0x00000000       0x46 carto/app/src/imu.o
  .debug_macro   0x00000000       0x28 carto/app/src/imu.o
  .debug_macro   0x00000000       0x3a carto/app/src/imu.o
- .debug_macro   0x00000000       0xbf carto/app/src/imu.o
+ .debug_macro   0x00000000       0xc0 carto/app/src/imu.o
  .debug_macro   0x00000000       0x22 carto/app/src/imu.o
  .debug_macro   0x00000000       0x16 carto/app/src/imu.o
- .debug_line    0x00000000      0xa4b carto/app/src/imu.o
- .debug_str     0x00000000    0x67275 carto/app/src/imu.o
+ .debug_line    0x00000000      0xa56 carto/app/src/imu.o
+ .debug_str     0x00000000    0x67865 carto/app/src/imu.o
  .comment       0x00000000       0x6f carto/app/src/imu.o
  .debug_frame   0x00000000       0x34 carto/app/src/imu.o
  .ARM.attributes
                 0x00000000       0x39 carto/app/src/imu.o
+ .group         0x00000000        0x8 carto/app/src/odo.o
  .group         0x00000000        0x8 carto/app/src/odo.o
  .group         0x00000000        0x8 carto/app/src/odo.o
  .group         0x00000000        0x8 carto/app/src/odo.o
@@ -1463,7 +1505,7 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x20 carto/app/src/odo.o
  .debug_ranges  0x00000000       0x10 carto/app/src/odo.o
- .debug_macro   0x00000000      0x58a carto/app/src/odo.o
+ .debug_macro   0x00000000      0x593 carto/app/src/odo.o
  .debug_macro   0x00000000      0x8aa carto/app/src/odo.o
  .debug_macro   0x00000000       0x22 carto/app/src/odo.o
  .debug_macro   0x00000000       0x4c carto/app/src/odo.o
@@ -1501,6 +1543,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x1df carto/app/src/odo.o
  .debug_macro   0x00000000       0x16 carto/app/src/odo.o
  .debug_macro   0x00000000       0xa6 carto/app/src/odo.o
+ .debug_macro   0x00000000      0x201 carto/app/src/odo.o
  .debug_macro   0x00000000       0x10 carto/app/src/odo.o
  .debug_macro   0x00000000       0x10 carto/app/src/odo.o
  .debug_macro   0x00000000       0x6b carto/app/src/odo.o
@@ -1556,11 +1599,11 @@ Discarded input sections
  .debug_macro   0x00000000       0x46 carto/app/src/odo.o
  .debug_macro   0x00000000       0x28 carto/app/src/odo.o
  .debug_macro   0x00000000       0x3a carto/app/src/odo.o
- .debug_macro   0x00000000       0xbf carto/app/src/odo.o
+ .debug_macro   0x00000000       0xc0 carto/app/src/odo.o
  .debug_macro   0x00000000       0x28 carto/app/src/odo.o
  .debug_macro   0x00000000       0x16 carto/app/src/odo.o
- .debug_line    0x00000000      0xa5a carto/app/src/odo.o
- .debug_str     0x00000000    0x67228 carto/app/src/odo.o
+ .debug_line    0x00000000      0xa65 carto/app/src/odo.o
+ .debug_str     0x00000000    0x6787d carto/app/src/odo.o
  .comment       0x00000000       0x6f carto/app/src/odo.o
  .debug_frame   0x00000000       0x2c carto/app/src/odo.o
  .ARM.attributes
@@ -1707,15 +1750,17 @@ Discarded input sections
  .data          0x00000000        0x0 carto/asp/src/ahrs.o
  .bss           0x00000000        0x0 carto/asp/src/ahrs.o
  .text.invSqrt  0x00000000       0x78 carto/asp/src/ahrs.o
+ .text.AHRS_Config
+                0x00000000       0x28 carto/asp/src/ahrs.o
  .text.AHRS_Update
-                0x00000000      0x7a8 carto/asp/src/ahrs.o
+                0x00000000      0x7c0 carto/asp/src/ahrs.o
  .text.AHRS_Q2YPR
                 0x00000000      0x24c carto/asp/src/ahrs.o
- .debug_info    0x00000000      0x4e0 carto/asp/src/ahrs.o
- .debug_abbrev  0x00000000      0x10a carto/asp/src/ahrs.o
+ .debug_info    0x00000000      0x417 carto/asp/src/ahrs.o
+ .debug_abbrev  0x00000000      0x124 carto/asp/src/ahrs.o
  .debug_aranges
-                0x00000000       0x30 carto/asp/src/ahrs.o
- .debug_ranges  0x00000000       0x20 carto/asp/src/ahrs.o
+                0x00000000       0x38 carto/asp/src/ahrs.o
+ .debug_ranges  0x00000000       0x28 carto/asp/src/ahrs.o
  .debug_macro   0x00000000       0xe6 carto/asp/src/ahrs.o
  .debug_macro   0x00000000      0x8aa carto/asp/src/ahrs.o
  .debug_macro   0x00000000       0x22 carto/asp/src/ahrs.o
@@ -1732,10 +1777,10 @@ Discarded input sections
  .debug_macro   0x00000000      0x187 carto/asp/src/ahrs.o
  .debug_macro   0x00000000      0x30d carto/asp/src/ahrs.o
  .debug_macro   0x00000000      0x1e1 carto/asp/src/ahrs.o
- .debug_line    0x00000000      0x3e0 carto/asp/src/ahrs.o
- .debug_str     0x00000000     0x5c7e carto/asp/src/ahrs.o
+ .debug_line    0x00000000      0x3f9 carto/asp/src/ahrs.o
+ .debug_str     0x00000000     0x5bdd carto/asp/src/ahrs.o
  .comment       0x00000000       0x6f carto/asp/src/ahrs.o
- .debug_frame   0x00000000       0x94 carto/asp/src/ahrs.o
+ .debug_frame   0x00000000       0xbc carto/asp/src/ahrs.o
  .ARM.attributes
                 0x00000000       0x39 carto/asp/src/ahrs.o
  .group         0x00000000        0x8 carto/asp/src/cbus.o
@@ -1895,24 +1940,24 @@ Discarded input sections
  .group         0x00000000        0x8 carto/asp/src/est.o
  .group         0x00000000        0x8 carto/asp/src/est.o
  .group         0x00000000        0x8 carto/asp/src/est.o
+ .group         0x00000000        0x8 carto/asp/src/est.o
  .text          0x00000000        0x0 carto/asp/src/est.o
  .data          0x00000000        0x0 carto/asp/src/est.o
  .bss           0x00000000        0x0 carto/asp/src/est.o
  .text.Est_Create
-                0x00000000       0xa8 carto/asp/src/est.o
+                0x00000000       0x94 carto/asp/src/est.o
  .text.Est_Proc
-                0x00000000      0x114 carto/asp/src/est.o
- .text.Est_Ok   0x00000000       0x18 carto/asp/src/est.o
+                0x00000000       0xd0 carto/asp/src/est.o
  .text.Est_Reset
-                0x00000000       0x40 carto/asp/src/est.o
+                0x00000000       0x30 carto/asp/src/est.o
  .text.Est_Destroy
                 0x00000000       0x34 carto/asp/src/est.o
- .debug_info    0x00000000      0x35e carto/asp/src/est.o
- .debug_abbrev  0x00000000      0x105 carto/asp/src/est.o
+ .debug_info    0x00000000      0x302 carto/asp/src/est.o
+ .debug_abbrev  0x00000000       0xe9 carto/asp/src/est.o
  .debug_aranges
-                0x00000000       0x40 carto/asp/src/est.o
- .debug_ranges  0x00000000       0x30 carto/asp/src/est.o
- .debug_macro   0x00000000      0x157 carto/asp/src/est.o
+                0x00000000       0x38 carto/asp/src/est.o
+ .debug_ranges  0x00000000       0x28 carto/asp/src/est.o
+ .debug_macro   0x00000000      0x160 carto/asp/src/est.o
  .debug_macro   0x00000000      0x8aa carto/asp/src/est.o
  .debug_macro   0x00000000       0x22 carto/asp/src/est.o
  .debug_macro   0x00000000       0x4c carto/asp/src/est.o
@@ -1936,10 +1981,11 @@ Discarded input sections
  .debug_macro   0x00000000      0x1df carto/asp/src/est.o
  .debug_macro   0x00000000       0x16 carto/asp/src/est.o
  .debug_macro   0x00000000       0x35 carto/asp/src/est.o
- .debug_line    0x00000000      0x440 carto/asp/src/est.o
- .debug_str     0x00000000     0x5ff4 carto/asp/src/est.o
+ .debug_macro   0x00000000      0x201 carto/asp/src/est.o
+ .debug_line    0x00000000      0x42a carto/asp/src/est.o
+ .debug_str     0x00000000     0x665c carto/asp/src/est.o
  .comment       0x00000000       0x6f carto/asp/src/est.o
- .debug_frame   0x00000000       0xc8 carto/asp/src/est.o
+ .debug_frame   0x00000000       0xa0 carto/asp/src/est.o
  .ARM.attributes
                 0x00000000       0x39 carto/asp/src/est.o
  .group         0x00000000        0x8 carto/asp/src/fifo.o
@@ -2046,23 +2092,24 @@ Discarded input sections
  .group         0x00000000        0x8 carto/asp/src/gauss.o
  .group         0x00000000        0x8 carto/asp/src/gauss.o
  .group         0x00000000        0x8 carto/asp/src/gauss.o
+ .group         0x00000000        0x8 carto/asp/src/gauss.o
  .text          0x00000000        0x0 carto/asp/src/gauss.o
  .data          0x00000000        0x0 carto/asp/src/gauss.o
  .bss           0x00000000        0x0 carto/asp/src/gauss.o
  .text.GaussCreate
                 0x00000000       0x5c carto/asp/src/gauss.o
  .text.GaussReset
-                0x00000000       0x80 carto/asp/src/gauss.o
+                0x00000000       0x98 carto/asp/src/gauss.o
  .text.GaussProc
-                0x00000000      0x230 carto/asp/src/gauss.o
+                0x00000000      0x284 carto/asp/src/gauss.o
  .text.GaussDestroy
                 0x00000000       0x38 carto/asp/src/gauss.o
- .debug_info    0x00000000      0x228 carto/asp/src/gauss.o
- .debug_abbrev  0x00000000      0x105 carto/asp/src/gauss.o
+ .debug_info    0x00000000      0x230 carto/asp/src/gauss.o
+ .debug_abbrev  0x00000000      0x103 carto/asp/src/gauss.o
  .debug_aranges
                 0x00000000       0x38 carto/asp/src/gauss.o
  .debug_ranges  0x00000000       0x28 carto/asp/src/gauss.o
- .debug_macro   0x00000000      0x149 carto/asp/src/gauss.o
+ .debug_macro   0x00000000      0x152 carto/asp/src/gauss.o
  .debug_macro   0x00000000      0x8aa carto/asp/src/gauss.o
  .debug_macro   0x00000000       0x22 carto/asp/src/gauss.o
  .debug_macro   0x00000000       0x4c carto/asp/src/gauss.o
@@ -2086,10 +2133,11 @@ Discarded input sections
  .debug_macro   0x00000000      0x1df carto/asp/src/gauss.o
  .debug_macro   0x00000000       0x16 carto/asp/src/gauss.o
  .debug_macro   0x00000000       0x35 carto/asp/src/gauss.o
- .debug_line    0x00000000      0x42a carto/asp/src/gauss.o
- .debug_str     0x00000000     0x5f80 carto/asp/src/gauss.o
+ .debug_macro   0x00000000      0x201 carto/asp/src/gauss.o
+ .debug_line    0x00000000      0x440 carto/asp/src/gauss.o
+ .debug_str     0x00000000     0x660b carto/asp/src/gauss.o
  .comment       0x00000000       0x6f carto/asp/src/gauss.o
- .debug_frame   0x00000000       0xa8 carto/asp/src/gauss.o
+ .debug_frame   0x00000000       0xa4 carto/asp/src/gauss.o
  .ARM.attributes
                 0x00000000       0x39 carto/asp/src/gauss.o
  .group         0x00000000        0x8 carto/asp/src/kalman.o
@@ -2198,15 +2246,15 @@ Discarded input sections
  .text.MAFilter_Init
                 0x00000000       0x44 carto/asp/src/mafilter.o
  .text.MAFilter_Create
-                0x00000000       0xa4 carto/asp/src/mafilter.o
+                0x00000000       0x84 carto/asp/src/mafilter.o
  .text.MAFilter_Calc
                 0x00000000       0x9c carto/asp/src/mafilter.o
  .text.MAFilter_Reset
-                0x00000000       0x5c carto/asp/src/mafilter.o
+                0x00000000       0x38 carto/asp/src/mafilter.o
  .text.MAFilter_Destroy
                 0x00000000       0x38 carto/asp/src/mafilter.o
  .debug_info    0x00000000      0x1f6 carto/asp/src/mafilter.o
- .debug_abbrev  0x00000000      0x105 carto/asp/src/mafilter.o
+ .debug_abbrev  0x00000000      0x11f carto/asp/src/mafilter.o
  .debug_aranges
                 0x00000000       0x40 carto/asp/src/mafilter.o
  .debug_ranges  0x00000000       0x30 carto/asp/src/mafilter.o
@@ -2234,10 +2282,10 @@ Discarded input sections
  .debug_macro   0x00000000       0x29 carto/asp/src/mafilter.o
  .debug_macro   0x00000000       0x16 carto/asp/src/mafilter.o
  .debug_macro   0x00000000       0x35 carto/asp/src/mafilter.o
- .debug_line    0x00000000      0x44b carto/asp/src/mafilter.o
- .debug_str     0x00000000     0x5f5a carto/asp/src/mafilter.o
+ .debug_line    0x00000000      0x429 carto/asp/src/mafilter.o
+ .debug_str     0x00000000     0x5f5e carto/asp/src/mafilter.o
  .comment       0x00000000       0x6f carto/asp/src/mafilter.o
- .debug_frame   0x00000000       0xd0 carto/asp/src/mafilter.o
+ .debug_frame   0x00000000       0xcc carto/asp/src/mafilter.o
  .ARM.attributes
                 0x00000000       0x39 carto/asp/src/mafilter.o
  .group         0x00000000        0x8 carto/asp/src/mecanum.o
@@ -4394,14 +4442,16 @@ Discarded input sections
                 0x00000000       0x34 carto/bsp/src/tty.o
  .text.Tty_Write
                 0x00000000       0x50 carto/bsp/src/tty.o
- .text.fputc    0x00000000       0x38 carto/bsp/src/tty.o
+ .text.Tty_Print
+                0x00000000       0x64 carto/bsp/src/tty.o
+ .text.fputc    0x00000000       0x20 carto/bsp/src/tty.o
  .text.USART3_IRQHandler
                 0x00000000       0x94 carto/bsp/src/tty.o
- .debug_info    0x00000000      0xd85 carto/bsp/src/tty.o
- .debug_abbrev  0x00000000      0x29d carto/bsp/src/tty.o
+ .debug_info    0x00000000      0xde4 carto/bsp/src/tty.o
+ .debug_abbrev  0x00000000      0x2a2 carto/bsp/src/tty.o
  .debug_aranges
-                0x00000000       0x40 carto/bsp/src/tty.o
- .debug_ranges  0x00000000       0x30 carto/bsp/src/tty.o
+                0x00000000       0x48 carto/bsp/src/tty.o
+ .debug_ranges  0x00000000       0x38 carto/bsp/src/tty.o
  .debug_macro   0x00000000      0x362 carto/bsp/src/tty.o
  .debug_macro   0x00000000      0x8aa carto/bsp/src/tty.o
  .debug_macro   0x00000000       0x6b carto/bsp/src/tty.o
@@ -4470,12 +4520,13 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 carto/bsp/src/tty.o
  .debug_macro   0x00000000      0x189 carto/bsp/src/tty.o
  .debug_macro   0x00000000       0x52 carto/bsp/src/tty.o
- .debug_line    0x00000000      0x861 carto/bsp/src/tty.o
- .debug_str     0x00000000    0x63f41 carto/bsp/src/tty.o
+ .debug_line    0x00000000      0x87f carto/bsp/src/tty.o
+ .debug_str     0x00000000    0x63f52 carto/bsp/src/tty.o
  .comment       0x00000000       0x6f carto/bsp/src/tty.o
- .debug_frame   0x00000000       0xc4 carto/bsp/src/tty.o
+ .debug_frame   0x00000000      0x100 carto/bsp/src/tty.o
  .ARM.attributes
                 0x00000000       0x39 carto/bsp/src/tty.o
+ COMMON         0x00000000      0x400 carto/bsp/src/tty.o
  .group         0x00000000        0x8 carto/bsp/src/zgyro.o
  .group         0x00000000        0x8 carto/bsp/src/zgyro.o
  .group         0x00000000        0x8 carto/bsp/src/zgyro.o
@@ -4630,6 +4681,7 @@ Discarded input sections
  .group         0x00000000        0x8 carto/srv/src/can_srv.o
  .group         0x00000000        0x8 carto/srv/src/can_srv.o
  .group         0x00000000        0x8 carto/srv/src/can_srv.o
+ .group         0x00000000        0x8 carto/srv/src/can_srv.o
  .text          0x00000000        0x0 carto/srv/src/can_srv.o
  .data          0x00000000        0x0 carto/srv/src/can_srv.o
  .bss           0x00000000        0x0 carto/srv/src/can_srv.o
@@ -4642,7 +4694,7 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x28 carto/srv/src/can_srv.o
  .debug_ranges  0x00000000       0x18 carto/srv/src/can_srv.o
- .debug_macro   0x00000000      0x2ec carto/srv/src/can_srv.o
+ .debug_macro   0x00000000      0x2f5 carto/srv/src/can_srv.o
  .debug_macro   0x00000000      0x8aa carto/srv/src/can_srv.o
  .debug_macro   0x00000000       0x10 carto/srv/src/can_srv.o
  .debug_macro   0x00000000       0x6b carto/srv/src/can_srv.o
@@ -4699,9 +4751,10 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 carto/srv/src/can_srv.o
  .debug_macro   0x00000000       0x16 carto/srv/src/can_srv.o
  .debug_macro   0x00000000       0x29 carto/srv/src/can_srv.o
+ .debug_macro   0x00000000      0x201 carto/srv/src/can_srv.o
  .debug_macro   0x00000000       0xac carto/srv/src/can_srv.o
- .debug_line    0x00000000      0x80f carto/srv/src/can_srv.o
- .debug_str     0x00000000    0x612eb carto/srv/src/can_srv.o
+ .debug_line    0x00000000      0x81a carto/srv/src/can_srv.o
+ .debug_str     0x00000000    0x61974 carto/srv/src/can_srv.o
  .comment       0x00000000       0x6f carto/srv/src/can_srv.o
  .debug_frame   0x00000000       0x58 carto/srv/src/can_srv.o
  .ARM.attributes
@@ -4778,13 +4831,15 @@ Discarded input sections
  .text          0x00000000        0x0 carto/srv/src/com_srv.o
  .data          0x00000000        0x0 carto/srv/src/com_srv.o
  .bss           0x00000000        0x0 carto/srv/src/com_srv.o
+ .text.TtyIdleCallback
+                0x00000000       0x10 carto/srv/src/com_srv.o
  .text.TtyRxCallback
                 0x00000000       0x1c carto/srv/src/com_srv.o
- .debug_info    0x00000000       0xf1 carto/srv/src/com_srv.o
- .debug_abbrev  0x00000000       0x88 carto/srv/src/com_srv.o
+ .debug_info    0x00000000      0x102 carto/srv/src/com_srv.o
+ .debug_abbrev  0x00000000       0x9e carto/srv/src/com_srv.o
  .debug_aranges
-                0x00000000       0x20 carto/srv/src/com_srv.o
- .debug_ranges  0x00000000       0x10 carto/srv/src/com_srv.o
+                0x00000000       0x28 carto/srv/src/com_srv.o
+ .debug_ranges  0x00000000       0x18 carto/srv/src/com_srv.o
  .debug_macro   0x00000000      0x384 carto/srv/src/com_srv.o
  .debug_macro   0x00000000      0x8aa carto/srv/src/com_srv.o
  .debug_macro   0x00000000       0x6b carto/srv/src/com_srv.o
@@ -4855,12 +4910,13 @@ Discarded input sections
  .debug_macro   0x00000000       0x52 carto/srv/src/com_srv.o
  .debug_macro   0x00000000       0xac carto/srv/src/com_srv.o
  .debug_macro   0x00000000       0x10 carto/srv/src/com_srv.o
- .debug_line    0x00000000      0x87f carto/srv/src/com_srv.o
- .debug_str     0x00000000    0x6390f carto/srv/src/com_srv.o
+ .debug_line    0x00000000      0x88f carto/srv/src/com_srv.o
+ .debug_str     0x00000000    0x6391f carto/srv/src/com_srv.o
  .comment       0x00000000       0x6f carto/srv/src/com_srv.o
- .debug_frame   0x00000000       0x34 carto/srv/src/com_srv.o
+ .debug_frame   0x00000000       0x54 carto/srv/src/com_srv.o
  .ARM.attributes
                 0x00000000       0x39 carto/srv/src/com_srv.o
+ .group         0x00000000        0x8 carto/srv/src/imu_srv.o
  .group         0x00000000        0x8 carto/srv/src/imu_srv.o
  .group         0x00000000        0x8 carto/srv/src/imu_srv.o
  .group         0x00000000        0x8 carto/srv/src/imu_srv.o
@@ -4966,7 +5022,7 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x20 carto/srv/src/imu_srv.o
  .debug_ranges  0x00000000       0x10 carto/srv/src/imu_srv.o
- .debug_macro   0x00000000      0x59d carto/srv/src/imu_srv.o
+ .debug_macro   0x00000000      0x5a6 carto/srv/src/imu_srv.o
  .debug_macro   0x00000000      0x8aa carto/srv/src/imu_srv.o
  .debug_macro   0x00000000       0x6b carto/srv/src/imu_srv.o
  .debug_macro   0x00000000       0x3b carto/srv/src/imu_srv.o
@@ -5039,6 +5095,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x52 carto/srv/src/imu_srv.o
  .debug_macro   0x00000000       0x16 carto/srv/src/imu_srv.o
  .debug_macro   0x00000000       0xa6 carto/srv/src/imu_srv.o
+ .debug_macro   0x00000000      0x201 carto/srv/src/imu_srv.o
  .debug_macro   0x00000000       0x10 carto/srv/src/imu_srv.o
  .debug_macro   0x00000000       0x10 carto/srv/src/imu_srv.o
  .debug_macro   0x00000000       0x46 carto/srv/src/imu_srv.o
@@ -5059,11 +5116,11 @@ Discarded input sections
  .debug_macro   0x00000000       0x46 carto/srv/src/imu_srv.o
  .debug_macro   0x00000000       0x28 carto/srv/src/imu_srv.o
  .debug_macro   0x00000000       0x3a carto/srv/src/imu_srv.o
- .debug_macro   0x00000000       0xbf carto/srv/src/imu_srv.o
+ .debug_macro   0x00000000       0xc0 carto/srv/src/imu_srv.o
  .debug_macro   0x00000000       0x22 carto/srv/src/imu_srv.o
  .debug_macro   0x00000000       0x16 carto/srv/src/imu_srv.o
- .debug_line    0x00000000      0xa5a carto/srv/src/imu_srv.o
- .debug_str     0x00000000    0x67212 carto/srv/src/imu_srv.o
+ .debug_line    0x00000000      0xa65 carto/srv/src/imu_srv.o
+ .debug_str     0x00000000    0x67867 carto/srv/src/imu_srv.o
  .comment       0x00000000       0x6f carto/srv/src/imu_srv.o
  .debug_frame   0x00000000       0x2c carto/srv/src/imu_srv.o
  .ARM.attributes
@@ -5133,7 +5190,7 @@ Discarded input sections
  .text          0x00000000        0x0 carto/srv/src/rcv_srv.o
  .data          0x00000000        0x0 carto/srv/src/rcv_srv.o
  .bss           0x00000000        0x0 carto/srv/src/rcv_srv.o
- .text.Rcv_Callback
+ .text.RcvCallback
                 0x00000000       0x24 carto/srv/src/rcv_srv.o
  .debug_info    0x00000000      0x26d carto/srv/src/rcv_srv.o
  .debug_abbrev  0x00000000       0xd2 carto/srv/src/rcv_srv.o
@@ -5203,12 +5260,13 @@ Discarded input sections
  .debug_macro   0x00000000      0x4fb carto/srv/src/rcv_srv.o
  .debug_macro   0x00000000       0x5e carto/srv/src/rcv_srv.o
  .debug_line    0x00000000      0x80b carto/srv/src/rcv_srv.o
- .debug_str     0x00000000    0x62e75 carto/srv/src/rcv_srv.o
+ .debug_str     0x00000000    0x62e74 carto/srv/src/rcv_srv.o
  .comment       0x00000000       0x6f carto/srv/src/rcv_srv.o
  .debug_frame   0x00000000       0x34 carto/srv/src/rcv_srv.o
  .ARM.attributes
                 0x00000000       0x39 carto/srv/src/rcv_srv.o
  COMMON         0x00000000       0x16 carto/srv/src/rcv_srv.o
+ .group         0x00000000        0x8 carto/srv/src/tim_srv.o
  .group         0x00000000        0x8 carto/srv/src/tim_srv.o
  .group         0x00000000        0x8 carto/srv/src/tim_srv.o
  .group         0x00000000        0x8 carto/srv/src/tim_srv.o
@@ -5306,7 +5364,7 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x28 carto/srv/src/tim_srv.o
  .debug_ranges  0x00000000       0x18 carto/srv/src/tim_srv.o
- .debug_macro   0x00000000      0x48e carto/srv/src/tim_srv.o
+ .debug_macro   0x00000000      0x497 carto/srv/src/tim_srv.o
  .debug_macro   0x00000000      0x8aa carto/srv/src/tim_srv.o
  .debug_macro   0x00000000       0x22 carto/srv/src/tim_srv.o
  .debug_macro   0x00000000       0x4c carto/srv/src/tim_srv.o
@@ -5332,6 +5390,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 carto/srv/src/tim_srv.o
  .debug_macro   0x00000000       0x16 carto/srv/src/tim_srv.o
  .debug_macro   0x00000000       0x29 carto/srv/src/tim_srv.o
+ .debug_macro   0x00000000      0x201 carto/srv/src/tim_srv.o
  .debug_macro   0x00000000       0x10 carto/srv/src/tim_srv.o
  .debug_macro   0x00000000       0x10 carto/srv/src/tim_srv.o
  .debug_macro   0x00000000       0x6b carto/srv/src/tim_srv.o
@@ -5392,12 +5451,13 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 carto/srv/src/tim_srv.o
  .debug_macro   0x00000000      0x189 carto/srv/src/tim_srv.o
  .debug_macro   0x00000000       0x52 carto/srv/src/tim_srv.o
- .debug_line    0x00000000      0x987 carto/srv/src/tim_srv.o
- .debug_str     0x00000000    0x660b1 carto/srv/src/tim_srv.o
+ .debug_line    0x00000000      0x992 carto/srv/src/tim_srv.o
+ .debug_str     0x00000000    0x66706 carto/srv/src/tim_srv.o
  .comment       0x00000000       0x6f carto/srv/src/tim_srv.o
  .debug_frame   0x00000000       0x50 carto/srv/src/tim_srv.o
  .ARM.attributes
                 0x00000000       0x39 carto/srv/src/tim_srv.o
+ .group         0x00000000        0x8 carto/usr/src/main.o
  .group         0x00000000        0x8 carto/usr/src/main.o
  .group         0x00000000        0x8 carto/usr/src/main.o
  .group         0x00000000        0x8 carto/usr/src/main.o
@@ -5533,6 +5593,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x1df carto/usr/src/main.o
  .debug_macro   0x00000000       0x16 carto/usr/src/main.o
  .debug_macro   0x00000000       0xa6 carto/usr/src/main.o
+ .debug_macro   0x00000000      0x201 carto/usr/src/main.o
  .debug_macro   0x00000000       0x10 carto/usr/src/main.o
  .debug_macro   0x00000000       0x10 carto/usr/src/main.o
  .debug_macro   0x00000000       0x6b carto/usr/src/main.o
@@ -5588,7 +5649,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x46 carto/usr/src/main.o
  .debug_macro   0x00000000       0x28 carto/usr/src/main.o
  .debug_macro   0x00000000       0x3a carto/usr/src/main.o
- .debug_macro   0x00000000       0xbf carto/usr/src/main.o
+ .debug_macro   0x00000000       0xc0 carto/usr/src/main.o
  .debug_macro   0x00000000       0x28 carto/usr/src/main.o
  .debug_macro   0x00000000       0x16 carto/usr/src/main.o
  .group         0x00000000        0x8 carto/usr/src/syscalls.o
@@ -7230,6 +7291,29 @@ Discarded input sections
  .text          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sbrkr.o)
  .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sbrkr.o)
  .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sbrkr.o)
+ .text          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sprintf.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sprintf.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sprintf.o)
+ .text._sprintf_r
+                0x00000000       0x44 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sprintf.o)
+ .text.sprintf  0x00000000       0x4c /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sprintf.o)
+ .debug_frame   0x00000000       0x84 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sprintf.o)
+ .ARM.attributes
+                0x00000000       0x34 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sprintf.o)
+ .text          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o)
+ .text._svfprintf_r
+                0x00000000     0x16d0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o)
+ .rodata.blanks.7057
+                0x00000000       0x10 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o)
+ .rodata.str1.4
+                0x00000000       0x42 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o)
+ .rodata.zeroes.7058
+                0x00000000       0x10 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o)
+ .debug_frame   0x00000000       0x44 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o)
+ .ARM.attributes
+                0x00000000       0x34 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o)
  .text          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-__call_atexit.o)
  .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-__call_atexit.o)
  .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-__call_atexit.o)
@@ -7238,12 +7322,106 @@ Discarded input sections
  .text          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-atexit.o)
  .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-atexit.o)
  .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-atexit.o)
+ .text          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-dtoa.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-dtoa.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-dtoa.o)
+ .text.quorem   0x00000000      0x128 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-dtoa.o)
+ .text._dtoa_r  0x00000000      0xe34 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-dtoa.o)
+ .rodata.str1.4
+                0x00000000       0x12 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-dtoa.o)
+ .debug_frame   0x00000000       0x88 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-dtoa.o)
+ .ARM.attributes
+                0x00000000       0x34 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-dtoa.o)
  .text          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-fini.o)
  .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-fini.o)
  .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-fini.o)
  .text          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-freer.o)
  .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-freer.o)
  .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-freer.o)
+ .text          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .text._setlocale_r
+                0x00000000       0x40 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .text.__locale_charset
+                0x00000000        0x8 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .text.__locale_mb_cur_max
+                0x00000000        0xc /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .text.__locale_msgcharset
+                0x00000000        0x8 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .text.__locale_cjk_lang
+                0x00000000        0x4 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .text._localeconv_r
+                0x00000000        0x8 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .text.setlocale
+                0x00000000       0x10 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .text.localeconv
+                0x00000000        0x8 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .data.lc_message_charset
+                0x00000000       0x20 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .bss._PathLocale
+                0x00000000        0x4 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .bss.__nlocale_changed
+                0x00000000        0x4 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .bss.__mlocale_changed
+                0x00000000        0x4 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .data.lconv    0x00000000       0x38 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .rodata.str1.4
+                0x00000000       0x12 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .data.lc_ctype_charset
+                0x00000000       0x20 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .data.__mb_cur_max
+                0x00000000        0x4 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .debug_frame   0x00000000       0x9c /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .ARM.attributes
+                0x00000000       0x34 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .text          0x00000000       0xa0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memchr.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memchr.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memchr.o)
+ .ARM.attributes
+                0x00000000       0x20 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memchr.o)
+ .text          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text._Balloc  0x00000000       0x4c /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text._Bfree   0x00000000       0x14 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text.__multadd
+                0x00000000       0x80 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text.__s2b    0x00000000       0x98 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text.__hi0bits
+                0x00000000       0x40 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text.__lo0bits
+                0x00000000       0x5c /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text.__i2b    0x00000000       0x14 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text.__multiply
+                0x00000000      0x130 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text.__pow5mult
+                0x00000000       0xa0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text.__lshift
+                0x00000000       0xb0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text.__mcmp   0x00000000       0x44 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text.__mdiff  0x00000000      0x114 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text.__ulp    0x00000000       0x54 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text.__b2d    0x00000000       0xd0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text.__d2b    0x00000000       0xbc /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text.__ratio  0x00000000       0x60 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text._mprec_log10
+                0x00000000       0x38 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text.__copybits
+                0x00000000       0x48 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .text.__any_on
+                0x00000000       0x60 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .rodata.p05.5398
+                0x00000000        0xc /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .rodata.__mprec_tens
+                0x00000000       0xc8 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .rodata.__mprec_bigtens
+                0x00000000       0x28 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .rodata.__mprec_tinytens
+                0x00000000       0x28 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .debug_frame   0x00000000      0x264 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .ARM.attributes
+                0x00000000       0x34 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
  .text          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reent.o)
  .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reent.o)
  .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reent.o)
@@ -7251,9 +7429,93 @@ Discarded input sections
                 0x00000000       0x1c /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reent.o)
  .text._reclaim_reent
                 0x00000000       0x88 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reent.o)
+ .text          0x00000000      0x2dc /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-strcmp.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-strcmp.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-strcmp.o)
+ .debug_frame   0x00000000       0x68 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-strcmp.o)
+ .ARM.attributes
+                0x00000000       0x20 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-strcmp.o)
+ .text          0x00000000       0xdc /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-strlen.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-strlen.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-strlen.o)
+ .ARM.attributes
+                0x00000000       0x20 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-strlen.o)
+ .text          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfiprintf.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfiprintf.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfiprintf.o)
+ .text.__ssprint_r
+                0x00000000      0x100 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfiprintf.o)
+ .text._svfiprintf_r
+                0x00000000      0xc5c /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfiprintf.o)
+ .rodata.blanks.7001
+                0x00000000       0x10 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfiprintf.o)
+ .rodata.str1.4
+                0x00000000       0x2f /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfiprintf.o)
+ .rodata.zeroes.7002
+                0x00000000       0x10 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfiprintf.o)
+ .debug_frame   0x00000000       0x78 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfiprintf.o)
+ .ARM.attributes
+                0x00000000       0x34 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfiprintf.o)
  .text          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-__atexit.o)
  .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-__atexit.o)
  .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-__atexit.o)
+ .text          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-callocr.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-callocr.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-callocr.o)
+ .text._calloc_r
+                0x00000000       0x60 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-callocr.o)
+ .debug_frame   0x00000000       0x28 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-callocr.o)
+ .ARM.attributes
+                0x00000000       0x34 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-callocr.o)
+ .text          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memmove.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memmove.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memmove.o)
+ .text.memmove  0x00000000       0xc8 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memmove.o)
+ .debug_frame   0x00000000       0x30 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memmove.o)
+ .ARM.attributes
+                0x00000000       0x34 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memmove.o)
+ .text          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reallocr.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reallocr.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reallocr.o)
+ .text._realloc_r
+                0x00000000      0x3e0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reallocr.o)
+ .debug_frame   0x00000000       0x60 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reallocr.o)
+ .ARM.attributes
+                0x00000000       0x34 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reallocr.o)
+ .text          0x00000000      0x110 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_cmpdf2.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_cmpdf2.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_cmpdf2.o)
+ .ARM.attributes
+                0x00000000       0x22 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_cmpdf2.o)
+ .text          0x00000000       0x2c /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_unorddf2.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_unorddf2.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_unorddf2.o)
+ .ARM.attributes
+                0x00000000       0x22 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_unorddf2.o)
+ .text          0x00000000       0x50 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_fixdfsi.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_fixdfsi.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_fixdfsi.o)
+ .ARM.attributes
+                0x00000000       0x22 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_fixdfsi.o)
+ .text          0x00000000       0x30 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_aeabi_uldivmod.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_aeabi_uldivmod.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_aeabi_uldivmod.o)
+ .debug_frame   0x00000000       0x2c /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_aeabi_uldivmod.o)
+ .ARM.attributes
+                0x00000000       0x22 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_aeabi_uldivmod.o)
+ .text          0x00000000      0x2e4 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_udivmoddi4.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_udivmoddi4.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_udivmoddi4.o)
+ .ARM.extab     0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_udivmoddi4.o)
+ .ARM.exidx     0x00000000        0x8 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x00000000       0x34 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_udivmoddi4.o)
+ .ARM.attributes
+                0x00000000       0x34 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_udivmoddi4.o)
+ .text          0x00000000        0x4 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_dvmd_tls.o)
+ .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_dvmd_tls.o)
+ .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x00000000       0x22 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_dvmd_tls.o)
  .text          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtend.o
  .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtend.o
  .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtend.o
@@ -7352,16 +7614,6 @@ Discarded input sections
  .debug_frame   0x00000000       0x20 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libm.a(lib_a-s_nan.o)
  .ARM.attributes
                 0x00000000       0x34 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libm.a(lib_a-s_nan.o)
- .text          0x00000000      0x110 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_cmpdf2.o)
- .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_cmpdf2.o)
- .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_cmpdf2.o)
- .ARM.attributes
-                0x00000000       0x22 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_cmpdf2.o)
- .text          0x00000000       0x2c /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_unorddf2.o)
- .data          0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_unorddf2.o)
- .bss           0x00000000        0x0 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_unorddf2.o)
- .ARM.attributes
-                0x00000000       0x22 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/libgcc.a(_arm_unorddf2.o)
 
 Memory Configuration
 
@@ -7706,11 +7958,11 @@ LOAD /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.
                 0x000003ca       0x22 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtn.o
 OUTPUT(carto_alpha.elf elf32-littlearm)
 
-.debug_line     0x00000000     0x1750
+.debug_line     0x00000000     0x175b
  .debug_line    0x00000000       0x7f carto/bsp/src/startup_stm32.o
  .debug_line    0x0000007f      0x68b carto/bsp/src/system_stm32f4xx.o
- .debug_line    0x0000070a      0xa94 carto/usr/src/main.o
- .debug_line    0x0000119e      0x5b2 carto/usr/src/syscalls.o
+ .debug_line    0x0000070a      0xa9f carto/usr/src/main.o
+ .debug_line    0x000011a9      0x5b2 carto/usr/src/syscalls.o
 
 .debug_info     0x00000000      0xe22
  .debug_info    0x00000000       0x78 carto/bsp/src/startup_stm32.o
@@ -7740,27 +7992,27 @@ OUTPUT(carto_alpha.elf elf32-littlearm)
  .debug_ranges  0x00000040       0x10 carto/usr/src/main.o
  .debug_ranges  0x00000050       0xa0 carto/usr/src/syscalls.o
 
-.debug_macro    0x00000000      0xf53
+.debug_macro    0x00000000      0xf5c
  .debug_macro   0x00000000      0x1d2 carto/bsp/src/system_stm32f4xx.o
- .debug_macro   0x000001d2      0x590 carto/usr/src/main.o
- .debug_macro   0x00000762      0x222 carto/usr/src/syscalls.o
- .debug_macro   0x00000984       0x10 carto/usr/src/syscalls.o
- .debug_macro   0x00000994       0x10 carto/usr/src/syscalls.o
- .debug_macro   0x000009a4       0x10 carto/usr/src/syscalls.o
- .debug_macro   0x000009b4       0x35 carto/usr/src/syscalls.o
- .debug_macro   0x000009e9      0x122 carto/usr/src/syscalls.o
- .debug_macro   0x00000b0b       0x10 carto/usr/src/syscalls.o
- .debug_macro   0x00000b1b      0x241 carto/usr/src/syscalls.o
- .debug_macro   0x00000d5c      0x159 carto/usr/src/syscalls.o
- .debug_macro   0x00000eb5       0x16 carto/usr/src/syscalls.o
- .debug_macro   0x00000ecb       0x88 carto/usr/src/syscalls.o
+ .debug_macro   0x000001d2      0x599 carto/usr/src/main.o
+ .debug_macro   0x0000076b      0x222 carto/usr/src/syscalls.o
+ .debug_macro   0x0000098d       0x10 carto/usr/src/syscalls.o
+ .debug_macro   0x0000099d       0x10 carto/usr/src/syscalls.o
+ .debug_macro   0x000009ad       0x10 carto/usr/src/syscalls.o
+ .debug_macro   0x000009bd       0x35 carto/usr/src/syscalls.o
+ .debug_macro   0x000009f2      0x122 carto/usr/src/syscalls.o
+ .debug_macro   0x00000b14       0x10 carto/usr/src/syscalls.o
+ .debug_macro   0x00000b24      0x241 carto/usr/src/syscalls.o
+ .debug_macro   0x00000d65      0x159 carto/usr/src/syscalls.o
+ .debug_macro   0x00000ebe       0x16 carto/usr/src/syscalls.o
+ .debug_macro   0x00000ed4       0x88 carto/usr/src/syscalls.o
 
-.debug_str      0x00000000    0x6816e
+.debug_str      0x00000000    0x68707
  .debug_str     0x00000000    0x5e228 carto/bsp/src/system_stm32f4xx.o
                               0x5e3dd (size before relaxing)
- .debug_str     0x0005e228     0x8e9b carto/usr/src/main.o
-                              0x671fb (size before relaxing)
- .debug_str     0x000670c3     0x10ab carto/usr/src/syscalls.o
+ .debug_str     0x0005e228     0x9434 carto/usr/src/main.o
+                              0x67850 (size before relaxing)
+ .debug_str     0x0006765c     0x10ab carto/usr/src/syscalls.o
                                0x7729 (size before relaxing)
 
 .comment        0x00000000       0x6e

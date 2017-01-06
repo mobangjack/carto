@@ -17,6 +17,14 @@
 #ifndef __HCI_H__
 #define __HCI_H__
 
+/**********************************************/
+/*              Host Control Input            */
+/**********************************************/
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "cmd.h"
 #include "mafilter.h"
 
@@ -32,5 +40,9 @@ typedef uint8_t MouseButtonEvent_t;
 #define MOUSE_BUTTON_EVENT_NONE 0
 
 void HCI_Cmd(HC_t* hc);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

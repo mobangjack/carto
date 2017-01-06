@@ -28,11 +28,17 @@ float invSqrt(float x) {
 	return y;
 }
 
-void AHRS_Update(AHRS_t* ahrs, float* buf, float halfT) {
+void AHRS_Config(AHRS_t* ahrs, float kp, float ki)
+{
+	ahrs->kp = kp;
+	ahrs->ki = ki;
+}
+
+void AHRS_Update(AHRS_t* ahrs, float* imu, float halfT) {
     float norm;
-    float ax_norm, ay_norm, az_norm;
-    float gx_norm, gy_norm, gz_norm;
-    float mx_norm, my_norm, mz_norm;
+    float ax, ay, az;
+    float gx, gy, gz;
+    float mx, my, mz;
     float hx, hy, hz, bx, bz;
     float vx, vy, vz, wx, wy, wz;
     float ex, ey, ez;
@@ -49,20 +55,30 @@ void AHRS_Update(AHRS_t* ahrs, float* buf, float halfT) {
     float q2q3 = ahrs->q[2]*ahrs->q[3];
     float q3q3 = ahrs->q[3]*ahrs->q[3];
 
-    norm = invSqrt(ahrs->ax*ahrs->ax + ahrs->ay*ahrs->ay + ahrs->az*ahrs->az);
-    ax_norm = ahrs->ax * norm;
-    ay_norm = ahrs->ay * norm;
-    az_norm = ahrs->az * norm;
+    ax = imu[0];
+    ay = imu[1];
+    az = imu[2];
+    gx = imu[3]; // rad/s
+    gy = imu[4]; // rad/s
+    gz = imu[5]; // rad/s
+    mx = imu[6];
+    my = imu[7];
+    mz = imu[8];
 
-    norm = invSqrt(ahrs->mx*ahrs->mx + ahrs->my*ahrs->my + ahrs->mz*ahrs->mz);
-    mx_norm = ahrs->mx * norm;
-    my_norm = ahrs->my * norm;
-    mz_norm = ahrs->mz * norm;
+    norm = invSqrt(ax*ax + ay*ay + az*az);
+    ax = ax * norm;
+    ay = ay * norm;
+    az = az * norm;
+
+    norm = invSqrt(mx*mx + my*my + mz*mz);
+    mx = mx * norm;
+    my = my * norm;
+    mz = mz * norm;
 
     // compute reference direction of flux
-    hx = 2.0f*mx_norm*(0.5f - q2q2 - q3q3) + 2.0f*my_norm*(q1q2 - q0q3) + 2.0f*mz_norm*(q1q3 + q0q2);
-    hy = 2.0f*mx_norm*(q1q2 + q0q3) + 2.0f*my_norm*(0.5f - q1q1 - q3q3) + 2.0f*mz_norm*(q2q3 - q0q1);
-    hz = 2.0f*mx_norm*(q1q3 - q0q2) + 2.0f*my_norm*(q2q3 + q0q1) + 2.0f*mz_norm*(0.5f - q1q1 - q2q2);
+    hx = 2.0f*mx*(0.5f - q2q2 - q3q3) + 2.0f*my*(q1q2 - q0q3) + 2.0f*mz*(q1q3 + q0q2);
+    hy = 2.0f*mx*(q1q2 + q0q3) + 2.0f*my*(0.5f - q1q1 - q3q3) + 2.0f*mz*(q2q3 - q0q1);
+    hz = 2.0f*mx*(q1q3 - q0q2) + 2.0f*my*(q2q3 + q0q1) + 2.0f*mz*(0.5f - q1q1 - q2q2);
     bx = sqrt((hx*hx) + (hy*hy));
     bz = hz;
 
@@ -75,24 +91,24 @@ void AHRS_Update(AHRS_t* ahrs, float* buf, float halfT) {
     wz = 2.0f*bx*(q0q2 + q1q3) + 2.0f*bz*(0.5f - q1q1 - q2q2);
 
     // error is sum of cross product between reference direction of fields and direction measured by sensors
-    ex = (ay_norm*vz - az_norm*vy) + (my_norm*wz - mz_norm*wy);
-    ey = (az_norm*vx - ax_norm*vz) + (mz_norm*wx - mx_norm*wz);
-    ez = (ax_norm*vy - ay_norm*vx) + (mx_norm*wy - my_norm*wx);
+    ex = (ay*vz - az*vy) + (my*wz - mz*wy);
+    ey = (az*vx - ax*vz) + (mz*wx - mx*wz);
+    ez = (ax*vy - ay*vx) + (mx*wy - my*wx);
 
     if(ex != 0.0f && ey != 0.0f && ez != 0.0f)
     {
     	ahrs->exInt = ahrs->exInt + ex * ahrs->ki * halfT;
     	ahrs->eyInt = ahrs->eyInt + ey * ahrs->ki * halfT;
     	ahrs->ezInt = ahrs->ezInt + ez * ahrs->ki * halfT;
-        gx_norm = gx_norm + ahrs->kp*ex + ahrs->exInt;
-        gy_norm = gy_norm + ahrs->kp*ey + ahrs->eyInt;
-        gz_norm = gz_norm + ahrs->kp*ez + ahrs->ezInt;
+        gx = gx + ahrs->kp*ex + ahrs->exInt;
+        gy = gy + ahrs->kp*ey + ahrs->eyInt;
+        gz = gz + ahrs->kp*ez + ahrs->ezInt;
     }
 
-    tempq0 = ahrs->q[0] + (-ahrs->q[1]*gx_norm - ahrs->q[2]*gy_norm - ahrs->q[3]*gz_norm)*halfT;
-    tempq1 = ahrs->q[1] + ( ahrs->q[0]*gx_norm + ahrs->q[2]*gz_norm - ahrs->q[3]*gy_norm)*halfT;
-    tempq2 = ahrs->q[2] + ( ahrs->q[0]*gy_norm - ahrs->q[1]*gz_norm + ahrs->q[3]*gx_norm)*halfT;
-    tempq3 = ahrs->q[3] + ( ahrs->q[0]*gz_norm + ahrs->q[1]*gy_norm - ahrs->q[2]*gx_norm)*halfT;
+    tempq0 = ahrs->q[0] + (-ahrs->q[1]*gx - ahrs->q[2]*gy - ahrs->q[3]*gz)*halfT;
+    tempq1 = ahrs->q[1] + ( ahrs->q[0]*gx + ahrs->q[2]*gz - ahrs->q[3]*gy)*halfT;
+    tempq2 = ahrs->q[2] + ( ahrs->q[0]*gy - ahrs->q[1]*gz + ahrs->q[3]*gx)*halfT;
+    tempq3 = ahrs->q[3] + ( ahrs->q[0]*gz + ahrs->q[1]*gy - ahrs->q[2]*gx)*halfT;
 
     norm = invSqrt(tempq0*tempq0 + tempq1*tempq1 + tempq2*tempq2 + tempq3*tempq3);
     ahrs->q[0] = tempq0 * norm;

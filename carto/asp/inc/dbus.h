@@ -17,6 +17,10 @@
 #ifndef __DBUS_H__
 #define __DBUS_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 /* ----------------------- RC Channel Value Definition---------------------------- */
@@ -103,5 +107,9 @@ typedef struct
 
 void DBUS_Enc(DBUS_t* dbus, uint8_t* buf);
 void DBUS_Dec(DBUS_t* dbus, uint8_t* buf);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

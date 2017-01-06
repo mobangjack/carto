@@ -17,6 +17,10 @@
 #ifndef __WDG_H__
 #define __WDG_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 #define WDG_NUM              10u
@@ -67,6 +71,10 @@ void WDG_Proc(void);
 void WDG_Feed(uint8_t i);
 uint32_t WDG_GetErr(void);
 uint8_t WDG_IsErrSet(uint32_t mask);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

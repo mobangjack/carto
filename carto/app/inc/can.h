@@ -17,6 +17,10 @@
 #ifndef __CAN_H__
 #define __CAN_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define MOTOR_NUM 6
 
 #include "motor.h"
@@ -35,5 +39,9 @@ void Encoder_Reset(uint8_t i);
 
 extern float ZGyroAngle;
 extern Encoder_t encoder[MOTOR_NUM]; // encoder group
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

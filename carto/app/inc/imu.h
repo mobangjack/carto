@@ -17,8 +17,16 @@
 #ifndef __IMU_H__
 #define __IMU_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "app.h"
 
 void IMU_Proc(float* buf);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

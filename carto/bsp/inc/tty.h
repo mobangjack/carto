@@ -41,6 +41,7 @@ void Tty_Config(void);
 
 void Tty_WriteByte(u8 byte);
 void Tty_Write(u8* pdata, u8 len);
+void Tty_Print(const char* fmt,...);
 
 void TtyRxCallback(u8 data);
 

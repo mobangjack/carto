@@ -17,28 +17,34 @@
 #ifndef __EST_H__
 #define __EST_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // Estimator
 #include "gauss.h"
 #include "kalman.h"
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+#include <float.h>
 
 typedef struct
 {
-	uint8_t ini_flag;   // initialization flag
-	uint16_t gaussN;    // referred by gauss->N
-	float precision;    // precision (delta mean square error threshold)
 	Gauss_t* gauss;     // gauss processor
 	Kalman_t* kalman;   // kalman filter
+	float error;        // error
 	float value;        // estimated value
 	float delta;        // delta value
 }Est_t; // Estimator
 
-Est_t* Est_Create(uint32_t gaussN, float precision, float kalmanQ);
-float Est_Proc(Est_t* est, float v);
-uint8_t Est_Ok(Est_t* est);
+Est_t* Est_Create(uint32_t gaussN, float kalmanQ);
+void Est_Proc(Est_t* est, float v);
 void Est_Reset(Est_t* est);
 void Est_Destroy(Est_t* est);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

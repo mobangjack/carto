@@ -17,6 +17,10 @@
 #ifndef __CBUS_H__
 #define __CBUS_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "crc16.h"
 #include <string.h>
 
@@ -36,5 +40,9 @@ typedef struct
 
 void CBUS_ENC(CBUS_t* cbus, uint8_t* cbuf);
 uint8_t CBUS_DEC(CBUS_t* cbus, uint8_t* cbuf);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

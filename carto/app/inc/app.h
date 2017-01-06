@@ -17,6 +17,10 @@
 #ifndef __APP_H__
 #define __APP_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // Standard c libraries
 #include <math.h>
 #include <stdio.h>
@@ -68,5 +72,9 @@ extern PID_t CM3AnglePID;
 extern PID_t CM3SpeedPID;
 extern PID_t CM4AnglePID;
 extern PID_t CM4SpeedPID;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* __APP_H__ */

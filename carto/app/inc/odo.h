@@ -17,6 +17,10 @@
 #ifndef __ODO_H__
 #define __ODO_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "app.h"
 #include "can.h"
 #include "mecanum.h"
@@ -34,5 +38,9 @@ typedef struct
 void Odo_Calc(void);
 
 extern Odo_t odo;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

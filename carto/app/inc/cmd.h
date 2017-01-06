@@ -17,6 +17,10 @@
 #ifndef __CMD_H__
 #define __CMD_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "dbus.h"
 #include "rci.h"
 #include "hci.h"
@@ -51,12 +55,12 @@ typedef struct
 	float p;
 }PantiltSpeedRef_t;
 
-FunctionalState_t GET_FS(FunctionalState_t mask);
-void              SET_FS(FunctionalState_t mask);
-void              CLR_FS(FunctionalState_t mask);
-void              TOG_FS(FunctionalState_t mask);
-void              SET_CS(float x, float y, float z);
-void              SET_GS(float yaw, float pitch);
+FunctionalState_t FS_Get(FunctionalState_t mask);
+void              FS_Set(FunctionalState_t mask);
+void              FS_Clr(FunctionalState_t mask);
+void              FS_Tog(FunctionalState_t mask);
+void              CS_Set(float x, float y, float z);
+void              GS_Set(float y, float p);
 
 void DBUS_Cmd(DBUS_t* dbus);
 
@@ -64,5 +68,9 @@ extern InputMode_t inputMode;
 extern FunctionalState_t functionalState;
 extern ChassisSpeedRef_t chassisSpeedRef;
 extern PantiltSpeedRef_t pantiltSpeedRef;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
