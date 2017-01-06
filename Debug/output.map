@@ -165,6 +165,21 @@ Discarded input sections
  .ARM.exidx     0x00000000        0x8 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o
  .ARM.attributes
                 0x00000000       0x20 /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o
+ .group         0x00000000        0x8 carto/app/src/act.o
+ .text          0x00000000        0x0 carto/app/src/act.o
+ .data          0x00000000        0x0 carto/app/src/act.o
+ .bss           0x00000000        0x0 carto/app/src/act.o
+ .debug_info    0x00000000       0x21 carto/app/src/act.o
+ .debug_abbrev  0x00000000       0x13 carto/app/src/act.o
+ .debug_aranges
+                0x00000000       0x18 carto/app/src/act.o
+ .debug_macro   0x00000000       0x11 carto/app/src/act.o
+ .debug_macro   0x00000000      0x8aa carto/app/src/act.o
+ .debug_line    0x00000000       0x37 carto/app/src/act.o
+ .debug_str     0x00000000     0x2534 carto/app/src/act.o
+ .comment       0x00000000       0x6f carto/app/src/act.o
+ .ARM.attributes
+                0x00000000       0x39 carto/app/src/act.o
  .group         0x00000000        0x8 carto/app/src/app.o
  .group         0x00000000        0x8 carto/app/src/app.o
  .group         0x00000000        0x8 carto/app/src/app.o
@@ -371,7 +386,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x28 carto/app/src/app.o
  .debug_macro   0x00000000       0x16 carto/app/src/app.o
  .debug_line    0x00000000      0xaba carto/app/src/app.o
- .debug_str     0x00000000    0x67a35 carto/app/src/app.o
+ .debug_str     0x00000000    0x67a32 carto/app/src/app.o
  .comment       0x00000000       0x6f carto/app/src/app.o
  .debug_frame   0x00000000       0x68 carto/app/src/app.o
  .ARM.attributes
@@ -998,11 +1013,11 @@ Discarded input sections
  .text.PantiltMotorCommand
                 0x00000000       0x44 carto/app/src/ctl.o
  .text.Control  0x00000000       0xa0 carto/app/src/ctl.o
- .debug_info    0x00000000      0xb4c carto/app/src/ctl.o
- .debug_abbrev  0x00000000      0x1b6 carto/app/src/ctl.o
+ .debug_info    0x00000000      0xafe carto/app/src/ctl.o
+ .debug_abbrev  0x00000000      0x176 carto/app/src/ctl.o
  .debug_aranges
                 0x00000000       0x70 carto/app/src/ctl.o
- .debug_ranges  0x00000000       0x78 carto/app/src/ctl.o
+ .debug_ranges  0x00000000       0x60 carto/app/src/ctl.o
  .debug_macro   0x00000000      0x5a5 carto/app/src/ctl.o
  .debug_macro   0x00000000      0x8aa carto/app/src/ctl.o
  .debug_macro   0x00000000       0x22 carto/app/src/ctl.o
@@ -1101,7 +1116,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x16 carto/app/src/ctl.o
  .debug_macro   0x00000000       0x22 carto/app/src/ctl.o
  .debug_line    0x00000000      0xb69 carto/app/src/ctl.o
- .debug_str     0x00000000    0x67d39 carto/app/src/ctl.o
+ .debug_str     0x00000000    0x67d2f carto/app/src/ctl.o
  .comment       0x00000000       0x6f carto/app/src/ctl.o
  .debug_frame   0x00000000      0x160 carto/app/src/ctl.o
  .ARM.attributes
@@ -1394,7 +1409,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x22 carto/app/src/imu.o
  .debug_macro   0x00000000       0x16 carto/app/src/imu.o
  .debug_line    0x00000000      0xa56 carto/app/src/imu.o
- .debug_str     0x00000000    0x67865 carto/app/src/imu.o
+ .debug_str     0x00000000    0x67862 carto/app/src/imu.o
  .comment       0x00000000       0x6f carto/app/src/imu.o
  .debug_frame   0x00000000       0x34 carto/app/src/imu.o
  .ARM.attributes
@@ -1499,9 +1514,9 @@ Discarded input sections
  .data          0x00000000        0x0 carto/app/src/odo.o
  .bss           0x00000000        0x0 carto/app/src/odo.o
  .text.Odo_Calc
-                0x00000000       0x90 carto/app/src/odo.o
- .debug_info    0x00000000      0x23d carto/app/src/odo.o
- .debug_abbrev  0x00000000       0xc9 carto/app/src/odo.o
+                0x00000000       0x94 carto/app/src/odo.o
+ .debug_info    0x00000000      0x24b carto/app/src/odo.o
+ .debug_abbrev  0x00000000       0xd2 carto/app/src/odo.o
  .debug_aranges
                 0x00000000       0x20 carto/app/src/odo.o
  .debug_ranges  0x00000000       0x10 carto/app/src/odo.o
@@ -1603,9 +1618,9 @@ Discarded input sections
  .debug_macro   0x00000000       0x28 carto/app/src/odo.o
  .debug_macro   0x00000000       0x16 carto/app/src/odo.o
  .debug_line    0x00000000      0xa65 carto/app/src/odo.o
- .debug_str     0x00000000    0x6787d carto/app/src/odo.o
+ .debug_str     0x00000000    0x6787a carto/app/src/odo.o
  .comment       0x00000000       0x6f carto/app/src/odo.o
- .debug_frame   0x00000000       0x2c carto/app/src/odo.o
+ .debug_frame   0x00000000       0x34 carto/app/src/odo.o
  .ARM.attributes
                 0x00000000       0x39 carto/app/src/odo.o
  .group         0x00000000        0x8 carto/app/src/rci.o
@@ -5120,7 +5135,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x22 carto/srv/src/imu_srv.o
  .debug_macro   0x00000000       0x16 carto/srv/src/imu_srv.o
  .debug_line    0x00000000      0xa65 carto/srv/src/imu_srv.o
- .debug_str     0x00000000    0x67867 carto/srv/src/imu_srv.o
+ .debug_str     0x00000000    0x67864 carto/srv/src/imu_srv.o
  .comment       0x00000000       0x6f carto/srv/src/imu_srv.o
  .debug_frame   0x00000000       0x2c carto/srv/src/imu_srv.o
  .ARM.attributes
@@ -7628,6 +7643,7 @@ LOAD /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.
 LOAD /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
 LOAD /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o
 LOAD /home/bj/.p2/pool/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.12.0.201611241417/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/libm.a
+LOAD carto/app/src/act.o
 LOAD carto/app/src/app.o
 LOAD carto/app/src/can.o
 LOAD carto/app/src/cfg.o
@@ -8007,12 +8023,12 @@ OUTPUT(carto_alpha.elf elf32-littlearm)
  .debug_macro   0x00000ebe       0x16 carto/usr/src/syscalls.o
  .debug_macro   0x00000ed4       0x88 carto/usr/src/syscalls.o
 
-.debug_str      0x00000000    0x68707
+.debug_str      0x00000000    0x68704
  .debug_str     0x00000000    0x5e228 carto/bsp/src/system_stm32f4xx.o
                               0x5e3dd (size before relaxing)
- .debug_str     0x0005e228     0x9434 carto/usr/src/main.o
-                              0x67850 (size before relaxing)
- .debug_str     0x0006765c     0x10ab carto/usr/src/syscalls.o
+ .debug_str     0x0005e228     0x9431 carto/usr/src/main.o
+                              0x6784d (size before relaxing)
+ .debug_str     0x00067659     0x10ab carto/usr/src/syscalls.o
                                0x7729 (size before relaxing)
 
 .comment        0x00000000       0x6e

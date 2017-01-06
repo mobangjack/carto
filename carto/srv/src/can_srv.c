@@ -18,10 +18,14 @@
 
 void Can1RxCallback(CanRxMsg* canRxMsg)
 {
-	Can_Proc(canRxMsg);
+	uint32_t id = canRxMsg->StdId;
+	uint8_t* data = canRxMsg->Data;
+	Can_Proc(id, data);
 }
 
 void Can2RxCallback(CanRxMsg* canRxMsg)
 {
-	Can_Proc(canRxMsg);
+	uint32_t id = canRxMsg->StdId;
+	uint8_t* data = canRxMsg->Data;
+	Can_Proc(id, data);
 }

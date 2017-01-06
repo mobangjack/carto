@@ -4,6 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../carto/app/src/act.c \
 ../carto/app/src/app.c \
 ../carto/app/src/can.c \
 ../carto/app/src/cfg.c \
@@ -17,6 +18,7 @@ C_SRCS += \
 ../carto/app/src/wdg.c 
 
 OBJS += \
+./carto/app/src/act.o \
 ./carto/app/src/app.o \
 ./carto/app/src/can.o \
 ./carto/app/src/cfg.o \
@@ -30,6 +32,7 @@ OBJS += \
 ./carto/app/src/wdg.o 
 
 C_DEPS += \
+./carto/app/src/act.d \
 ./carto/app/src/app.d \
 ./carto/app/src/can.d \
 ./carto/app/src/cfg.d \

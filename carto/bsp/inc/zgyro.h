@@ -23,9 +23,7 @@
 #define ZGYRO_RST() ZGyro_RST(ZGYRO_CAN)
 
 #define ZGYRO_CMD_CAN_MSG_ID 0x404
-#define ZGYRO_FDB_CAN_MSG_ID 0x401
 
 void ZGyro_RST(CAN_TypeDef* CANx);
-void ZGyro_GetAngle(float* angle, uint8_t* data);
 
 #endif

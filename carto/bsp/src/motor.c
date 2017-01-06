@@ -16,53 +16,10 @@
  
 #include "motor.h"
 
-#define PI 3.1415926f
-#define GAP 7500
-void Ecd_Proc(Ecd_t* ecd, uint8_t* data)
-{
-	ecd->angle_fdb[0] = ecd->angle_fdb[1];
-	ecd->angle_fdb[1] = (data[0] << 8) | data[1];
-	if (!ecd->ini_flag) {
-		ecd->bias = ecd->angle_fdb[1];
-		ecd->angle_coeff = MOTOR_ECD_ANGLE_COEFF;
-		ecd->speed_coeff = MOTOR_ECD_SPEED_COEFF;
-		ecd->ini_flag = 1;
-	}
-	ecd->dif = ecd->angle_fdb[1] - ecd->angle_fdb[0];
-	if (ecd->dif > GAP) {
-		ecd->rnd--;
-		ecd->speed_fdb = ecd->dif - MOTOR_ECD_ANGLE_FDB_MOD;
-	} else if (ecd->dif < -GAP) {
-		ecd->rnd++;
-		ecd->speed_fdb = ecd->dif + MOTOR_ECD_ANGLE_FDB_MOD;
-	} else {
-		ecd->speed_fdb = ecd->dif;
-	}
-	ecd->angle = (ecd->angle_fdb[1] - ecd->bias) * ecd->angle_coeff + ecd->rnd * 2 * PI;
-	ecd->speed = ecd->speed_fdb * ecd->speed_coeff;
-}
-
-void Ecd_Reset(Ecd_t* ecd)
-{
-	memset(ecd, 0, sizeof(Ecd_t));
-}
-
-void Esc_Proc(Esc_t* esc, uint8_t* data)
-{
-	esc->current_fdb = (data[0] << 8) | data[1];
-	esc->current_ref = (data[2] << 8) | data[3];
-}
-
-void Motor_Proc(Motor_t* motor, uint8_t* data)
-{
-	Ecd_Proc(&motor->ecd, data);
-	Esc_Proc(&motor->esc, data + 2);
-}
-
 void EC60_Cmd(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16_t c204)
 {
 	CanTxMsg canTxMsg;
-    canTxMsg.StdId = CHASSIS_MOTOR_CMD_CAN_MSG_ID;
+    canTxMsg.StdId = EC60_CMD_CAN_MSG_ID;
     canTxMsg.IDE = CAN_Id_Standard;
     canTxMsg.RTR = CAN_RTR_Data;
     canTxMsg.DLC = 0x08;
@@ -81,7 +38,7 @@ void EC60_Cmd(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16
 void RM6025_Cmd(CAN_TypeDef *CANx, int16_t c205, int16_t c206)
 {
 	CanTxMsg canTxMsg;
-    canTxMsg.StdId = PANTILT_MOTOR_CMD_CAN_MSG_ID;
+    canTxMsg.StdId = RM6025_CMD_CAN_MSG_ID;
     canTxMsg.IDE = CAN_Id_Standard;
     canTxMsg.RTR = CAN_RTR_Data;
     canTxMsg.DLC = 0x08;

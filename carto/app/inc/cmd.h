@@ -63,6 +63,7 @@ void              CS_Set(float x, float y, float z);
 void              GS_Set(float y, float p);
 
 void DBUS_Cmd(DBUS_t* dbus);
+void CBUS_Cmd(CBUS_t* cbus);
 
 extern InputMode_t inputMode;
 extern FunctionalState_t functionalState;

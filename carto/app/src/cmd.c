@@ -73,3 +73,7 @@ void DBUS_Cmd(DBUS_t* dbus)
 	}
 }
 
+void CBUS_Cmd(CBUS_t* cbus)
+{
+
+}

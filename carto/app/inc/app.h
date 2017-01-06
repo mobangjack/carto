@@ -51,7 +51,7 @@ extern "C" {
 // commonly used macros
 #define PI 3.1415926f
 #define MAP(val,min1,max1,min2,max2) ((val-min1)*(max2-min2)/(max1-min1)+min2)
-#define SQUARE(x) ((x)*(x))
+#define SQR(x) ((x)*(x))
 
 void App_Init(void);
 uint8_t App_Cfg(void);

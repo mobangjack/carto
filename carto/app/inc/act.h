@@ -13,31 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#include "odo.h"
 
-void Odo_Calc(Odo_t* odo)
+#ifndef __ACT_H__
+#define __ACT_H__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "ctl.h"
+#include "motor.h"
+
+typedef struct
 {
-	mecanum.w1 = motor[0].angle;
-	mecanum.w1 = motor[1].angle;
-	mecanum.w1 = motor[2].angle;
-	mecanum.w1 = motor[3].angle;
+	float m1;
+	float m2;
+	float m3;
+	float m4;
+}ChassisCurrent_t;
 
-	Mecanum_Synthesis(&mecanum);
+typedef struct
+{
+	float y;
+	float p;
+}PantiltCurrent_t;
 
-	odo->px = mecanum.x;
-	odo->py = mecanum.y;
-	odo->pz = mecanum.z;
+#define RAMP_DEFAULT RAMP(5000)
 
-	mecanum.w1 = motor[0].rate;
-	mecanum.w1 = motor[1].rate;
-	mecanum.w1 = motor[2].rate;
-	mecanum.w1 = motor[3].rate;
+void Act_Proc();
 
-	Mecanum_Synthesis(&mecanum);
+extern ChassisCurrent_t chassisCurrent;
+extern PantiltCurrent_t pantiltCurrent;
 
-	odo->vx = mecanum.x;
-	odo->vy = mecanum.y;
-	odo->vz = mecanum.z;
+#ifdef __cplusplus
 }
-
+#endif

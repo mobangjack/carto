@@ -23,7 +23,10 @@ extern "C" {
 
 #include <stdint.h>
 
-#include "app.h"
+#include "can.h"
+#include "cmd.h"
+#include "pid.h"
+#include "wdg.h"
 
 typedef uint8_t WorkingState_t;
 
@@ -31,29 +34,11 @@ typedef uint8_t WorkingState_t;
 #define WORKING_STATE_NORMAL  0x01
 #define WORKING_STATE_STOP    0x02
 
-typedef struct
-{
-	float m1;
-	float m2;
-	float m3;
-	float m4;
-}ChassisCurrent_t;
-
-typedef struct
-{
-	float y;
-	float p;
-}PantiltCurrent_t;
-
-#define CM_RAMP_DEFAULT RAMP(5000)
-#define GM_RAMP_DEFAULT RAMP(5000)
-
-//void Control(void);
+void Ctl_Proc(void);
 
 extern WorkingState_t workingState;
-extern ChassisCurrent_t chassisCurrent;
-extern PantiltCurrent_t pantiltCurrent;
 
+extern PID_t pid[2][6];
 
 #ifdef __cplusplus
 }

@@ -35,9 +35,7 @@ typedef struct
 	float vz;
 }Odo_t;
 
-void Odo_Calc(void);
-
-extern Odo_t odo;
+void Odo_Calc(Odo_t* odo);
 
 #ifdef __cplusplus
 }

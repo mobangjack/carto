@@ -36,9 +36,3 @@ void ZGyro_RST(CAN_TypeDef* CANx)
 	
 	CAN_Transmit(CANx, &canTxMsg);
 }
-
-void ZGyro_GetAngle(float* angle, uint8_t* data)
-{
-	*angle = -0.01f*((int32_t)(data[0]<<24)|(int32_t)(data[1]<<16) | (int32_t)(data[2]<<8) | (int32_t)(data[3]));
-}
-
