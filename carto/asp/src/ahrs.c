@@ -18,7 +18,7 @@
 
 #define PI 3.1415926f
 
-float invSqrt(float x) {
+static float invSqrt(float x) {
 	float halfx = 0.5f * x;
 	float y = x;
 	long i = *(long*)&y;
@@ -42,7 +42,7 @@ void AHRS_Update(AHRS_t* ahrs, float* imu, float halfT) {
     float hx, hy, hz, bx, bz;
     float vx, vy, vz, wx, wy, wz;
     float ex, ey, ez;
-    float tempq0, tempq1, tempq2, tempq3;
+    float q[4];
 
     float q0q0 = ahrs->q[0]*ahrs->q[0];
     float q0q1 = ahrs->q[0]*ahrs->q[1];
@@ -105,16 +105,16 @@ void AHRS_Update(AHRS_t* ahrs, float* imu, float halfT) {
         gz = gz + ahrs->kp*ez + ahrs->ezInt;
     }
 
-    tempq0 = ahrs->q[0] + (-ahrs->q[1]*gx - ahrs->q[2]*gy - ahrs->q[3]*gz)*halfT;
-    tempq1 = ahrs->q[1] + ( ahrs->q[0]*gx + ahrs->q[2]*gz - ahrs->q[3]*gy)*halfT;
-    tempq2 = ahrs->q[2] + ( ahrs->q[0]*gy - ahrs->q[1]*gz + ahrs->q[3]*gx)*halfT;
-    tempq3 = ahrs->q[3] + ( ahrs->q[0]*gz + ahrs->q[1]*gy - ahrs->q[2]*gx)*halfT;
+    q[0] = ahrs->q[0] + (-ahrs->q[1]*gx - ahrs->q[2]*gy - ahrs->q[3]*gz)*halfT;
+    q[1] = ahrs->q[1] + ( ahrs->q[0]*gx + ahrs->q[2]*gz - ahrs->q[3]*gy)*halfT;
+    q[2] = ahrs->q[2] + ( ahrs->q[0]*gy - ahrs->q[1]*gz + ahrs->q[3]*gx)*halfT;
+    q[3] = ahrs->q[3] + ( ahrs->q[0]*gz + ahrs->q[1]*gy - ahrs->q[2]*gx)*halfT;
 
-    norm = invSqrt(tempq0*tempq0 + tempq1*tempq1 + tempq2*tempq2 + tempq3*tempq3);
-    ahrs->q[0] = tempq0 * norm;
-    ahrs->q[1] = tempq1 * norm;
-    ahrs->q[2] = tempq2 * norm;
-    ahrs->q[3] = tempq3 * norm;
+    norm = invSqrt(q[0]*q[0] + q[1]*q[1] + q[2]*q[2] + q[3]*q[3]);
+    ahrs->q[0] = q[0] * norm;
+    ahrs->q[1] = q[1] * norm;
+    ahrs->q[2] = q[2] * norm;
+    ahrs->q[3] = q[3] * norm;
 }
 
 void AHRS_Q2YPR(float* q, float* ypr)

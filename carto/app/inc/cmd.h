@@ -28,8 +28,8 @@ extern "C" {
 
 typedef uint8_t InputMode_t;
 
-#define INPUT_MODE_RC      SW_UP
-#define INPUT_MODE_HC      SW_MID
+#define INPUT_MODE_RC      SW_MID
+#define INPUT_MODE_HC      SW_UP
 #define INPUT_MODE_NO      SW_DOWN
 
 #define CHASSIS_SPEED_MAX 4.0f     // 4m/s

@@ -21,7 +21,6 @@
 extern "C" {
 #endif
 
-#include "app.h"
 #include "can.h"
 #include "mecanum.h"
 

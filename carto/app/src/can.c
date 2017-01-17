@@ -16,17 +16,16 @@
 
 #include "can.h"
 
-ZGyro_t ZGyro;
+ZGyro_t zgyro;
 Motor_t motor[MOTOR_NUM];
 
 #define EST_GAUSS_N   100u
 #define EST_KALMAN_Q  0.1f
 
-//static Est_t* est[MOTOR_NUM];    // Estimator Group
+static Est_t* est[MOTOR_NUM];    // Estimator Group
 
 uint8_t Can_Init()
 {
-	/*
 	static uint8_t ini_flag = 0;
 	if (ini_flag == 1) {
 		return 1;
@@ -47,7 +46,6 @@ uint8_t Can_Init()
 		ini_flag = 1;
 		return 1;
 	}
-	*/
 	return 1;
 }
 
@@ -57,17 +55,18 @@ static void ZGyro_GetAngle(uint8_t* data)
 {
 	volatile float angle = 0;
 	uint32_t us = Clk_GetUsTick();
-	int32_t dt = us - ZGyro.timestamp;
+	int32_t dt = us - zgyro.timestamp;
 	CHECK_OVERFLOW(dt);
-	ZGyro.timestamp = us;
-	ZGyro.period = dt;
-	ZGyro.angle_fdb = ((int32_t)(data[0]<<24) | (int32_t)(data[1]<<16) | (int32_t)(data[2]<<8) | (int32_t)(data[3]));
-	angle = -PI/180*0.01f*ZGyro.angle_fdb;
-	if (ZGyro.reset) {
-		ZGyro.bias = angle;
+	zgyro.timestamp = us;
+	zgyro.period = dt;
+	zgyro.angle_fdb = ((int32_t)(data[0]<<24) | (int32_t)(data[1]<<16) | (int32_t)(data[2]<<8) | (int32_t)(data[3]));
+	angle = -PI/180*0.01f*zgyro.angle_fdb;
+	if (zgyro.reset) {
+		zgyro.bias = angle;
+		zgyro.reset = 0;
 	}
-	ZGyro.rate = (angle - ZGyro.angle) * 1e6 / dt;
-	ZGyro.angle = angle - ZGyro.bias;
+	zgyro.rate = (angle - zgyro.angle) * 1e6 / dt;
+	zgyro.angle = angle - zgyro.bias;
 }
 
 #define GAP 7500
@@ -150,12 +149,12 @@ void Can_Proc(uint32_t id, uint8_t* data)
 
 void ZGyro_Reset()
 {
-	ZGyro.reset = 1;
+	zgyro.reset = 1;
 }
 
 void Motor_Reset(uint8_t i)
 {
-	//Est_Reset(est[i]);
+	Est_Reset(est[i]);
 	motor[i].reset = 1;
 }
 

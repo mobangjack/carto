@@ -16,16 +16,19 @@
 
 #include "can_srv.h"
 
-void Can1RxCallback(CanRxMsg* canRxMsg)
+static void CanRxCallback(CanRxMsg* canRxMsg)
 {
 	uint32_t id = canRxMsg->StdId;
 	uint8_t* data = canRxMsg->Data;
 	Can_Proc(id, data);
 }
 
+void Can1RxCallback(CanRxMsg* canRxMsg)
+{
+	CanRxCallback(canRxMsg);
+}
+
 void Can2RxCallback(CanRxMsg* canRxMsg)
 {
-	uint32_t id = canRxMsg->StdId;
-	uint8_t* data = canRxMsg->Data;
-	Can_Proc(id, data);
+	CanRxCallback(canRxMsg);
 }

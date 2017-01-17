@@ -16,9 +16,9 @@
  
 #include "hci.h"
 
-/**********************************************/
-/*              Host Control Input            */
-/**********************************************/
+/*******************************************/
+/*           Host Control Input            */
+/*******************************************/
 
 MouseButtonState_t mouseButtonStates[MOUSE_BTN_CNT];
 MouseButtonEvent_t mouseButtonEvents[MOUSE_BTN_CNT];

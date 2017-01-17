@@ -31,6 +31,9 @@ typedef struct
 	float exInt;
 	float eyInt;
 	float ezInt;
+	float yaw;
+	float pitch;
+	float roll;
 }AHRS_t;
 
 void AHRS_Config(AHRS_t* ahrs, float kp, float ki);

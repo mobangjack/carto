@@ -16,9 +16,9 @@
  
 #include "rci.h"
 
-/**********************************************/
-/*            Remote Control Input            */
-/**********************************************/
+/*********************************************/
+/*           Remote Control Input            */
+/*********************************************/
 
 SwitchState_t switchStates[SW_CNT];
 SwitchEvent_t switchEvents[SW_CNT];

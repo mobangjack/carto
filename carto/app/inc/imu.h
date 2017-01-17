@@ -23,7 +23,32 @@ extern "C" {
 
 #include "app.h"
 
+typedef struct
+{
+	float ax;
+	float ay;
+	float az;
+	float gx;
+	float gy;
+	float gz;
+	float mx;
+	float my;
+	float mz;
+
+	float ax_offset;
+	float ay_offset;
+	float az_offset;
+	float gx_offset;
+	float gy_offset;
+	float gz_offset;
+	float mx_offset;
+	float my_offset;
+	float mz_offset;
+}IMU_t;
+
 void IMU_Proc(float* buf);
+
+extern IMU_t imu;
 
 #ifdef __cplusplus
 }

@@ -38,7 +38,7 @@ extern "C" {
 #define MOTOR_ECD_ANGLE_FDB_MAX   8191
 #define MOTOR_ECD_ANGLE_FDB_MOD   (MOTOR_ECD_ANGLE_FDB_MAX + 1)
 #define MOTOR_ANGLE_RECIP (2 * PI / MOTOR_ECD_ANGLE_FDB_MOD)
-#define MOTOR_SPEED_RECIP (MOTOR_ANGLE_RECIP * 1000) // Deprecated
+#define MOTOR_SPEED_RECIP (MOTOR_ANGLE_RECIP * 1000) // 1khz, Deprecated
 #define MOTOR_ESC_CURRENT_FDB_MAX 13000
 #define MOTOR_ESC_CURRENT_REF_MAX 5000
 
@@ -78,7 +78,7 @@ void Can_Proc(uint32_t id, uint8_t* data);
 void ZGyro_Reset();
 void Motor_Reset(uint8_t i);
 
-extern ZGyro_t ZGyro;
+extern ZGyro_t zgyro;
 extern Motor_t motor[MOTOR_NUM]; // Motor group
 
 #ifdef __cplusplus
