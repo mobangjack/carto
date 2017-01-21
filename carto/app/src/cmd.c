@@ -16,64 +16,38 @@
  
 #include "cmd.h"
 
-InputMode_t inputMode;
-FunctionalState_t functionalState;
-ChassisSpeedRef_t chassisSpeedRef;
-PantiltSpeedRef_t pantiltSpeedRef;
+/**********************************************/
+/*               System Command               */
+/**********************************************/
 
-FunctionalState_t FS_Get(FunctionalState_t mask)
-{
-	return functionalState & mask;
-}
-
-void FS_Set(FunctionalState_t mask)
-{
-	functionalState |= mask;
-}
-
-void FS_Clr(FunctionalState_t mask)
-{
-	functionalState &= ~mask;
-}
-
-void FS_Tog(FunctionalState_t mask)
-{
-	FS_Get(mask) ? FS_Clr(mask) : FS_Set(mask);
-}
-
-void CS_Set(float x, float y, float z)
-{
-	chassisSpeedRef.x = x;
-	chassisSpeedRef.y = y;
-	chassisSpeedRef.z = z;
-}
-
-void GS_Set(float y, float p)
-{
-	pantiltSpeedRef.y = y;
-	pantiltSpeedRef.p = p;
-}
-
-void GetInputMode(DBUS_t* dbus)
+static void GetInputMode(DBUS_t* dbus)
 {
 	inputMode = dbus->rc.sw[SW_IDX_R];
 }
 
-void DBUS_Cmd(DBUS_t* dbus)
+static void DBUS_Cmd(DBUS_t* dbus)
 {
-	WDG_Feed(WDG_IDX_RC);
 	GetInputMode(dbus);
-	if(inputMode == INPUT_MODE_RC)
+	if (inputMode == INPUT_MODE_RC)
 	{
 		RCI_Cmd(&dbus->rc);
 	}
-	else if(inputMode == INPUT_MODE_HC)
+	else if (inputMode == INPUT_MODE_HC)
 	{
 		HCI_Cmd(&dbus->hc);
 	}
+	else if (inputMode == INPUT_MODE_AD)
+	{
+
+	}
 }
 
-void CBUS_Cmd(CBUS_t* cbus)
+void DT7_Cmd(uint8_t* dbuf)
 {
-
+	DBUS_t dbus;
+	WDG_Feed(WDG_IDX_RC);
+	DBUS_Dec(&dbus, dbuf);
+	DBUS_Cmd(&dbus);
 }
+
+

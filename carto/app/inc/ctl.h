@@ -17,16 +17,17 @@
 #ifndef __CTL_H__
 #define __CTL_H__
 
+/**************************************/
+/*          Logic Controller          */
+/**************************************/
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdint.h>
 
-#include "can.h"
-#include "cmd.h"
-#include "pid.h"
-#include "wdg.h"
+#include "app.h"
 
 typedef uint8_t WorkingState_t;
 
@@ -34,11 +35,9 @@ typedef uint8_t WorkingState_t;
 #define WORKING_STATE_NORMAL  0x01
 #define WORKING_STATE_STOP    0x02
 
-void Ctl_Proc(void);
+void Ctl_Proc();
 
 extern WorkingState_t workingState;
-
-extern PID_t pid[2][6];
 
 #ifdef __cplusplus
 }

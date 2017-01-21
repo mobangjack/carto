@@ -16,7 +16,7 @@
  
 #include "can2.h"
 
-void CAN2_Config(void)
+void CAN2_Config()
 {
     GPIO_AF(CAN2_RX_PIN, GPIO_AF_CAN2);
     GPIO_AF(CAN2_TX_PIN, GPIO_AF_CAN2);
@@ -33,7 +33,7 @@ void CAN2_Config(void)
     CAN_ITConfig(CAN2, CAN_IT_TME, ENABLE);
 }
 
-void CAN2_RX_IRQ_HANDLER(void)
+void CAN2_RX_IRQ_HANDLER()
 {
     if (CAN_GetITStatus(CAN2, CAN_IT_FMP0)!= RESET)
     {
@@ -42,11 +42,11 @@ void CAN2_RX_IRQ_HANDLER(void)
         CAN_ClearFlag(CAN2, CAN_FLAG_FF0);
         CAN_Receive(CAN2, CAN_FIFO0, &canRxMsg);
 
-        Can2RxCallback(&canRxMsg);
+        Can2RxCallback(canRxMsg.StdId, canRxMsg.Data);
     }
 }
 
-void CAN2_TX_IRQ_HANDLER(void)
+void CAN2_TX_IRQ_HANDLER()
 {
 	if (CAN_GetITStatus(CAN2, CAN_IT_TME)!= RESET)
 	{

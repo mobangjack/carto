@@ -18,7 +18,7 @@
 
 uint8_t buf[2][RCV_DMA_BUF_SIZE];
 
-void Rcv_Config(void)
+void Rcv_Config()
 {
 	USART_Bind(RCV_SIG_PIN,  0,
 			   RCV_USART,
@@ -56,9 +56,8 @@ void RCV_IRQ_HANDLER()
 
 		uint16_t rx_len = 0;
 
-		//clear the idle pending flag 
-		(void)RCV_USART->SR;
-		(void)RCV_USART->DR;
+		//clear the idle pending flag
+		USART_ClearITPendingBit(RCV_USART, USART_IT_IDLE);
 
 		DMA_Cmd(RCV_DMA_STREAM, DISABLE);
 		rx_len = RCV_DMA_BUF_SIZE - DMA_GetCurrDataCounter(RCV_DMA_STREAM);

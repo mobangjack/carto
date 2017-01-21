@@ -27,6 +27,6 @@
 #define LASER_OFF() GPIO_RST(LASER_PIN)
 #define LASER_TOG() GPIO_TOG(LASER_PIN)
 
-void Laser_Config(void);
+void Laser_Config();
 
 #endif /* __LASER_H__ */

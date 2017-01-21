@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#include "com.h"
 
-/***********************************/
-/*          Communication          */
-/***********************************/
+#include "pwr.h"
 
-void Com_Proc(uint8_t data)
+/**************************************/
+/*          Power Management          */
+/**************************************/
+
+void PWR_Proc()
 {
-	WDG_Feed(WDG_IDX_COM);
+
 }

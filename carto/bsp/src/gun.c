@@ -16,7 +16,7 @@
  
 #include "gun.h"
 
-void Gun_Config(void)
+void Gun_Config()
 {
     PWM_Bind(GUN_PWM_PIN_1, GUN_PWM_PIN_2, 0, 0,
     		 GUN_PWM_TIM,

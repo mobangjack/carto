@@ -16,7 +16,7 @@
  
 #include "ramp.h"
 
-void Ramp_Init(Ramp_t* ramp, uint32_t scale)
+void Ramp_Config(Ramp_t* ramp, uint32_t scale)
 {
 	ramp->scale = scale;
 }
@@ -26,28 +26,17 @@ float Ramp_Calc(Ramp_t* ramp)
 	if(ramp->count < ramp->scale)
 	{
 		ramp->count++;
+		return ramp->count / (float)ramp->scale;
 	}
-	ramp->output = ramp->count / (float)ramp->scale;
-	return ramp->output;
-}
-
-void Ramp_SetCount(Ramp_t* ramp, uint32_t count)
-{
-	ramp->count = count;
+	return 1;
 }
 
 void Ramp_Reset(Ramp_t* ramp)
 {
 	ramp->count = 0;
-	ramp->output = 0;
 }
 
-void Ramp_SetScale(Ramp_t* ramp, uint32_t scale)
-{
-	ramp->scale = scale;
-}
-
-uint8_t Ramp_IsOverflow(Ramp_t* ramp)
+uint8_t Ramp_IsOverflow(const Ramp_t* ramp)
 {
 	return ramp->count >= ramp->scale;
 }

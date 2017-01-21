@@ -16,72 +16,52 @@
 
 #include "act.h"
 
-ChassisCurrent_t chassisCurrent;
-PantiltCurrent_t pantiltCurrent;
+/**********************************/
+/*             Action             */
+/**********************************/
 
-Ramp_t CM1Ramp = RAMP_DEFAULT;
-Ramp_t CM2Ramp = RAMP_DEFAULT;
-Ramp_t CM3Ramp = RAMP_DEFAULT;
-Ramp_t CM4Ramp = RAMP_DEFAULT;
-Ramp_t GMYRamp = RAMP_DEFAULT;
-Ramp_t GMPRamp = RAMP_DEFAULT;
-
-static void ChassisCurrentControl(void)
+static void PeriphsStateCmd()
 {
-	Ramp_Calc(&CM1Ramp);
-	Ramp_Calc(&CM2Ramp);
-	Ramp_Calc(&CM3Ramp);
-	Ramp_Calc(&CM4Ramp);
-
-	chassisCurrent.m1 = CM1SpeedPID.out * CM1Ramp.output;
-	chassisCurrent.m2 = CM2SpeedPID.out * CM2Ramp.output;
-	chassisCurrent.m3 = CM3SpeedPID.out * CM3Ramp.output;
-	chassisCurrent.m4 = CM4SpeedPID.out * CM4Ramp.output;
-}
-
-static void ChassisMotorCommand(void)
-{
-	EC60_CMD(chassisCurrent.m1, chassisCurrent.m2, chassisCurrent.m3, chassisCurrent.m4);
-}
-
-static void PantiltCurrentControl(void)
-{
-	Ramp_Calc(&GMYRamp);
-	Ramp_Calc(&GMPRamp);
-
-	pantiltCurrent.y = GMYSpeedPID.out * GMYRamp.output;
-	pantiltCurrent.p = GMPSpeedPID.out * GMPRamp.output;
-}
-
-static void PantiltMotorCommand(void)
-{
-	RM6025_CMD(pantiltCurrent.y, pantiltCurrent.p);
-}
-
-static void FunctionControl(void)
-{
-	if (FS_Get(FUNCTIONAL_STATE_GUN)) {
+	if (FS_Get(&functionalStateCmd, FS_LED_GREEN)) {
+		LED_GREEN_ON();
+	} else {
+		LED_GREEN_OFF();
+	}
+	if (FS_Get(&functionalStateCmd, FS_LED_RED)) {
+		LED_RED_ON();
+	} else {
+		LED_RED_OFF();
+	}
+	if (FS_Get(&functionalStateCmd, FS_GUN)) {
 		GUN_ON();
 	} else {
 		GUN_OFF();
 	}
-	if (FS_Get(FUNCTIONAL_STATE_LASER)) {
+	if (FS_Get(&functionalStateCmd, FS_LASER)) {
 		LASER_ON();
 	} else {
 		LASER_OFF();
 	}
-	if (FS_Get(FUNCTIONAL_STATE_SPINNER)) {
+	if (FS_Get(&functionalStateCmd, FS_SPINNER)) {
 		SPINNER_ON();
 	} else {
 		SPINNER_OFF();
 	}
 }
 
+static void ChassisMotorCmd()
+{
+	CM_CMD(0, 0, 0, 0);
+}
+
+static void PantiltMotorCmd()
+{
+	GM_CMD(0, 0);
+}
+
 void Act_Proc()
 {
-	ChassisCurrentControl();
-	ChassisMotorCommand();
-	PantiltCurrentControl();
-	PantiltMotorCommand();
-	FunctionControl();
+	PeriphsStateCmd();
+	ChassisMotorCmd();
+	PantiltMotorCmd();
 }

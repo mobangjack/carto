@@ -16,9 +16,9 @@
  
 #include "hci.h"
 
-/*******************************************/
-/*           Host Control Input            */
-/*******************************************/
+/********************************************/
+/*          Host Control Interface          */
+/********************************************/
 
 MouseButtonState_t mouseButtonStates[MOUSE_BTN_CNT];
 MouseButtonEvent_t mouseButtonEvents[MOUSE_BTN_CNT];
@@ -53,17 +53,19 @@ static void GetMouseButtonEvents(HC_t* hc)
 	}
 }
 
-static void GetFunctionalState(HC_t* hc)
+static void GetFunctionalStateRef(HC_t* hc)
 {
 	GetMouseButtonStates(hc);
 	GetMouseButtonEvents(hc);
 	if (mouseButtonStates[MOUSE_BTN_IDX_R]) {
-		FS_Set(FUNCTIONAL_STATE_GUN | FUNCTIONAL_STATE_LASER);
+		FS_Set(&functionalStateRef, FS_GUN | FS_LASER);
 		if (mouseButtonStates[MOUSE_BTN_IDX_L]) {
-			FS_Set(FUNCTIONAL_STATE_SPINNER);
+			FS_Set(&functionalStateRef, FS_SPINNER);
+		} else {
+			FS_Clr(&functionalStateRef, FS_SPINNER);
 		}
 	} else {
-		FS_Clr(FUNCTIONAL_STATE_GUN | FUNCTIONAL_STATE_LASER | FUNCTIONAL_STATE_SPINNER);
+		FS_Clr(&functionalStateRef, FS_GUN | FS_LASER | FS_SPINNER);
 	}
 }
 
@@ -72,7 +74,7 @@ static void GetFunctionalState(HC_t* hc)
 MAFilter_t* fx = (void *)0;
 MAFilter_t* fy = (void *)0;
 MAFilter_t* fz = (void *)0;
-static void GetChassisSpeedRef(HC_t* hc)
+static void GetChassisVelocityRef(HC_t* hc)
 {
 	float speed = (hc->key.val & KEY_SHIFT) ? CHASSIS_SPEED_MAX : CHASSIS_SPEED_MAX / 2.f;
 	float vx = (hc->key.val & KEY_A) ? -speed : ((hc->key.val & KEY_D) ? speed : 0);
@@ -87,20 +89,20 @@ static void GetChassisSpeedRef(HC_t* hc)
 	if (fz == NULL) {
 		fz = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
 	}
-	chassisSpeedRef.x = MAFilter_Calc(fx, vx);
-	chassisSpeedRef.y = MAFilter_Calc(fy, vy);
-	chassisSpeedRef.z = MAFilter_Calc(fz, vz);
+	chassisVelocityRef.x = MAFilter_Calc(fx, vx);
+	chassisVelocityRef.y = MAFilter_Calc(fy, vy);
+	chassisVelocityRef.z = MAFilter_Calc(fz, vz);
 }
 
-static void GetPantiltSpeedRef(HC_t* hc)
+static void GetPantiltVelocityRef(HC_t* hc)
 {
-	pantiltSpeedRef.y = MAP(hc->mouse.x, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -PANTILT_SPEED_MAX, PANTILT_SPEED_MAX);
-	pantiltSpeedRef.p = MAP(hc->mouse.y, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -PANTILT_SPEED_MAX, PANTILT_SPEED_MAX);
+	pantiltVelocityRef.y = MAP(hc->mouse.x, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -PANTILT_SPEED_MAX, PANTILT_SPEED_MAX);
+	pantiltVelocityRef.p = MAP(hc->mouse.y, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -PANTILT_SPEED_MAX, PANTILT_SPEED_MAX);
 }
 
 void HCI_Cmd(HC_t* hc)
 {
-	GetFunctionalState(hc);
-	GetChassisSpeedRef(hc);
-	GetPantiltSpeedRef(hc);
+	GetFunctionalStateRef(hc);
+	GetChassisVelocityRef(hc);
+	GetPantiltVelocityRef(hc);
 }

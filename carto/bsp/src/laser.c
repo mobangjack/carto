@@ -16,7 +16,7 @@
 
 #include "laser.h"
 
-void Laser_Config(void)
+void Laser_Config()
 {
 	GPIO_Out(LASER_PIN);
 

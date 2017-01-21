@@ -16,6 +16,10 @@
 
 #include "can.h"
 
+/*********************************************/
+/*          Controller Area Network          */
+/*********************************************/
+
 ZGyro_t zgyro;
 Motor_t motor[MOTOR_NUM];
 
@@ -49,38 +53,26 @@ uint8_t Can_Init()
 	return 1;
 }
 
-#define CHECK_OVERFLOW(dt) do { if (dt < 0) dt += 0xFFFFFFFF; } while(0)
 #define PI 3.1415926f
 static void ZGyro_GetAngle(uint8_t* data)
 {
 	volatile float angle = 0;
-	uint32_t us = Clk_GetUsTick();
-	int32_t dt = us - zgyro.timestamp;
-	CHECK_OVERFLOW(dt);
-	zgyro.timestamp = us;
-	zgyro.period = dt;
 	zgyro.angle_fdb = ((int32_t)(data[0]<<24) | (int32_t)(data[1]<<16) | (int32_t)(data[2]<<8) | (int32_t)(data[3]));
-	angle = -PI/180*0.01f*zgyro.angle_fdb;
+	angle = -ZGYRO_ANGLE_RECIP * zgyro.angle_fdb;
 	if (zgyro.reset) {
 		zgyro.bias = angle;
 		zgyro.reset = 0;
 	}
-	zgyro.rate = (angle - zgyro.angle) * 1e6 / dt;
+	zgyro.rate = (angle - zgyro.angle) * ZGYRO_SPEED_RECIP;
 	zgyro.angle = angle - zgyro.bias;
 }
 
 #define GAP 7500
+#define PIx2 6.2831855f
 static void Motor_Proc(uint8_t i, uint8_t* data)
 {
 	volatile float angle = 0;
 	int16_t angle_fdb_dif = 0;
-
-	uint32_t us = Clk_GetUsTick();
-	int32_t dt = us - motor[i].timestamp;
-	CHECK_OVERFLOW(dt);
-
-	motor[i].timestamp = us;
-	motor[i].period = dt;
 
 	motor[i].angle_fdb[0] = motor[i].angle_fdb[1];
 	motor[i].angle_fdb[1] = (data[0] << 8) | data[1];
@@ -106,8 +98,8 @@ static void Motor_Proc(uint8_t i, uint8_t* data)
 	} else {
 		motor[i].rate = angle_fdb_dif;
 	}
-	angle = (angle - motor[i].bias) + motor[i].rnd * 2 * PI;
-	motor[i].rate = (angle - motor[i].angle) * 1e6 / dt;
+	angle = (angle - motor[i].bias) + motor[i].rnd * PIx2;
+	motor[i].rate = (angle - motor[i].angle) * MOTOR_SPEED_RECIP;
 	motor[i].angle = angle;
 }
 

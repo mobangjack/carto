@@ -21,6 +21,8 @@
 #include "mpu6050_drv.h"
 #include "mpu6050_int.h"
 
-void MPU6050_Config(void);
+void MPU6050_Config();
+
+extern void MPU6050Callback(float* buf);
 
 #endif /* __MPU6050_H__ */

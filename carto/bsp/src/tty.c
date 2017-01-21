@@ -18,7 +18,7 @@
 
 FIFO_t* fifo = NULL;
 
-void Tty_Config(void)
+void Tty_Config()
 {
     USART_Bind(TTY_RX_PIN, TTY_TX_PIN,
     		   TTY_USART,
@@ -42,13 +42,13 @@ void Tty_Config(void)
     USART_Cmd(TTY_USART, ENABLE);
 }
 
-void Tty_WriteByte(u8 byte)
+void Tty_WriteByte(uint8_t byte)
 {    
     FIFO_Push(fifo, byte);
     USART_ITConfig(TTY_USART, USART_IT_TXE, ENABLE);
 }
 
-void Tty_Write(u8* pdata, u8 len)
+void Tty_Write(const uint8_t* pdata, uint8_t len)
 {
 	uint8_t i = 0;
 	for (; i < len; i++) {

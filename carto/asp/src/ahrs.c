@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 
-#include "ahrs.h"
+#include <ahrs.h>
+
+/************************************/
+/*    Attitude Heading Reference    */
+/************************************/
 
 #define PI 3.1415926f
 
@@ -34,7 +38,7 @@ void AHRS_Config(AHRS_t* ahrs, float kp, float ki)
 	ahrs->ki = ki;
 }
 
-void AHRS_Update(AHRS_t* ahrs, float* imu, float halfT) {
+void AHRS_Update(AHRS_t* ahrs, float* buf, float halfT) {
     float norm;
     float ax, ay, az;
     float gx, gy, gz;
@@ -55,15 +59,15 @@ void AHRS_Update(AHRS_t* ahrs, float* imu, float halfT) {
     float q2q3 = ahrs->q[2]*ahrs->q[3];
     float q3q3 = ahrs->q[3]*ahrs->q[3];
 
-    ax = imu[0];
-    ay = imu[1];
-    az = imu[2];
-    gx = imu[3]; // rad/s
-    gy = imu[4]; // rad/s
-    gz = imu[5]; // rad/s
-    mx = imu[6];
-    my = imu[7];
-    mz = imu[8];
+    ax = buf[0];
+    ay = buf[1];
+    az = buf[2];
+    gx = buf[3]; // rad/s
+    gy = buf[4]; // rad/s
+    gz = buf[5]; // rad/s
+    mx = buf[6];
+    my = buf[7];
+    mz = buf[8];
 
     norm = invSqrt(ax*ax + ay*ay + az*az);
     ax = ax * norm;
@@ -117,9 +121,9 @@ void AHRS_Update(AHRS_t* ahrs, float* imu, float halfT) {
     ahrs->q[3] = q[3] * norm;
 }
 
-void AHRS_Q2YPR(float* q, float* ypr)
+void AHRS_Q2Euler(float* q, Euler_t* euler)
 {
-    ypr[0] = -atan2(2*q[1]*q[2] + 2*q[0]*q[3], -2*q[2]*q[2] - 2*q[3]*q[3] + 1)*180/PI; // yaw    -pi----pi
-    ypr[1] = -asin(-2*q[1]*q[3] + 2*q[0]*q[2])*180/PI; // pitch    -pi/2    --- pi/2
-    ypr[2] = atan2(2*q[2]*q[3] + 2*q[0]*q[1], -2*q[1]*q[1] - 2*q[2]*q[2] + 1)*180/PI; // roll  -pi-----pi
+	euler->yaw = -atan2(2*q[1]*q[2] + 2*q[0]*q[3], -2*q[2]*q[2] - 2*q[3]*q[3] + 1)*180/PI; // yaw    -pi----pi
+	euler->pitch = -asin(-2*q[1]*q[3] + 2*q[0]*q[2])*180/PI; // pitch    -pi/2    --- pi/2
+	euler->roll = atan2(2*q[2]*q[3] + 2*q[0]*q[1], -2*q[1]*q[1] - 2*q[2]*q[2] + 1)*180/PI; // roll  -pi-----pi
 }

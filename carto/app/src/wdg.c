@@ -16,6 +16,10 @@
 
 #include "wdg.h"
 
+/***********************************/
+/*            Watch Dog            */
+/***********************************/
+
 const uint32_t WDG[WDG_NUM] = {
 		WDG_OVERFLOW_CNT_RC,
 		WDG_OVERFLOW_CNT_COM,
@@ -44,7 +48,7 @@ uint32_t wdg[WDG_NUM] = {
 
 uint32_t err = 0xFFFFFFFF;
 
-void WDG_Proc(void)
+void WDG_Proc()
 {
 	int i = 0;
 	for(i = 0; i < WDG_NUM; i++)
@@ -67,7 +71,7 @@ void WDG_Feed(uint8_t i)
 	wdg[i] = 0;
 }
 
-uint32_t WDG_GetErr(void)
+uint32_t WDG_GetErr()
 {
 	return err;
 }

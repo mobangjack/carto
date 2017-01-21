@@ -37,7 +37,7 @@
 #define RCV_FRAME_LEN 18u
 #define RCV_DMA_BUF_SIZE 36u
 
-void Rcv_Config(void);
+void Rcv_Config();
 
 void RcvCallback(uint8_t* dbuf);
 

@@ -30,8 +30,8 @@
 #define CAN2_TX_NVIC_PRE_PRIORITY 0
 #define CAN2_TX_NVIC_SUB_PRIORITY 1
 
-void Can2_Config(void);
+void Can2_Config();
 
-void Can2RxCallback(CanRxMsg* canRxMsg);
+void Can2RxCallback(uint32_t id, uint8_t* data);
 
 #endif 

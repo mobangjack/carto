@@ -17,34 +17,21 @@
 #ifndef __ACT_H__
 #define __ACT_H__
 
+/**********************************/
+/*             Action             */
+/**********************************/
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include "ctl.h"
-#include "motor.h"
-
-typedef struct
-{
-	float m1;
-	float m2;
-	float m3;
-	float m4;
-}ChassisCurrent_t;
-
-typedef struct
-{
-	float y;
-	float p;
-}PantiltCurrent_t;
-
-#define RAMP_DEFAULT RAMP(5000)
+#include "app.h"
+#include "bsp.h"
 
 void Act_Proc();
 
-extern ChassisCurrent_t chassisCurrent;
-extern PantiltCurrent_t pantiltCurrent;
-
 #ifdef __cplusplus
 }
+#endif
+
 #endif

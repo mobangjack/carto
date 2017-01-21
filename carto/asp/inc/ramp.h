@@ -25,23 +25,19 @@ extern "C" {
 
 typedef struct Ramp
 {
-	uint32_t count;
 	uint32_t scale;
-	float output;
+	uint32_t count;
 }Ramp_t;
 
-void Ramp_Init(Ramp_t* ramp, uint32_t scale);
+void Ramp_Config(Ramp_t* ramp, uint32_t scale);
 float Ramp_Calc(Ramp_t* ramp);
-void Ramp_SetCount(Ramp_t* ramp, uint32_t count);
 void Ramp_Reset(Ramp_t* ramp);
-void Ramp_SetScale(Ramp_t* ramp, uint32_t scale);
-uint8_t Ramp_IsOverflow(Ramp_t* ramp);
+uint8_t Ramp_IsOverflow(const Ramp_t* ramp);
 
 #define RAMP(SCALE) { \
-	.count = 0, \
 	.scale = SCALE, \
-	.output = 0, \
-} \
+	.count = 0, \
+}
 	
 #ifdef __cpluplus
 }

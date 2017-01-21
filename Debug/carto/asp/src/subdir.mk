@@ -11,8 +11,10 @@ C_SRCS += \
 ../carto/asp/src/est.c \
 ../carto/asp/src/fifo.c \
 ../carto/asp/src/gauss.c \
+../carto/asp/src/imu.c \
 ../carto/asp/src/kalman.c \
 ../carto/asp/src/mafilter.c \
+../carto/asp/src/mag.c \
 ../carto/asp/src/mecanum.c \
 ../carto/asp/src/pid.c \
 ../carto/asp/src/ramp.c \
@@ -26,8 +28,10 @@ OBJS += \
 ./carto/asp/src/est.o \
 ./carto/asp/src/fifo.o \
 ./carto/asp/src/gauss.o \
+./carto/asp/src/imu.o \
 ./carto/asp/src/kalman.o \
 ./carto/asp/src/mafilter.o \
+./carto/asp/src/mag.o \
 ./carto/asp/src/mecanum.o \
 ./carto/asp/src/pid.o \
 ./carto/asp/src/ramp.o \
@@ -41,8 +45,10 @@ C_DEPS += \
 ./carto/asp/src/est.d \
 ./carto/asp/src/fifo.d \
 ./carto/asp/src/gauss.d \
+./carto/asp/src/imu.d \
 ./carto/asp/src/kalman.d \
 ./carto/asp/src/mafilter.d \
+./carto/asp/src/mag.d \
 ./carto/asp/src/mecanum.d \
 ./carto/asp/src/pid.d \
 ./carto/asp/src/ramp.d \

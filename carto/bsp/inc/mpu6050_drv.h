@@ -21,33 +21,33 @@
 #include "delay.h"
 #include "mpu6050_i2c.h"
 
-#define	SMPLRT_DIV		          0x19	// 0X07 125Hz
-#define	CONFIG			          0x1A	// 0x00
-#define	GYRO_CONFIG		          0x1B	// 0x18  2000deg/s
-#define	ACCEL_CONFIG	          0x1C	//2G 5Hz
-#define INT_PIN_CFG               0x37
-#define INT_ENABLE                0x38
-#define INT_STATUS                0x3A
-#define	ACCEL_XOUT_H	          0x3B
-#define	ACCEL_XOUT_L	          0x3C
-#define	ACCEL_YOUT_H	          0x3D
-#define	ACCEL_YOUT_L	          0x3E
-#define	ACCEL_ZOUT_H	          0x3F
-#define	ACCEL_ZOUT_L	          0x40
-#define	TEMP_OUT_H		          0x41
-#define	TEMP_OUT_L		          0x42
-#define	GYRO_XOUT_H		          0x43
-#define	GYRO_XOUT_L		          0x44	
-#define	GYRO_YOUT_H		          0x45
-#define	GYRO_YOUT_L		          0x46
-#define	GYRO_ZOUT_H		          0x47
-#define	GYRO_ZOUT_L		          0x48
-#define	PWR_MGMT_1		          0x6B
-#define	WHO_AM_I		          0x75
-#define MPU6050_ID                0x68
-#define MPU6050_DEVICE_ADDRESS    0xD0
+#define	MPU6050_SMPLRT_DIV		          		0x19	// 0X07 125Hz
+#define	MPU6050_CONFIG			          		0x1A	// 0x00
+#define	MPU6050_GYRO_CONFIG		          		0x1B	// 0x18  2000deg/s
+#define	MPU6050_ACCEL_CONFIG	          		0x1C	//2G 5Hz
+#define MPU6050_INT_PIN_CFG               		0x37
+#define MPU6050_INT_ENABLE                		0x38
+#define MPU6050_INT_STATUS                		0x3A
+#define	MPU6050_ACCEL_XOUT_H	          		0x3B
+#define	MPU6050_ACCEL_XOUT_L	          		0x3C
+#define	MPU6050_ACCEL_YOUT_H	          		0x3D
+#define	MPU6050_ACCEL_YOUT_L	          		0x3E
+#define	MPU6050_ACCEL_ZOUT_H	          		0x3F
+#define	MPU6050_ACCEL_ZOUT_L	          		0x40
+#define	MPU6050_TEMP_OUT_H		          		0x41
+#define	MPU6050_TEMP_OUT_L		          		0x42
+#define	MPU6050_GYRO_XOUT_H		          		0x43
+#define	MPU6050_GYRO_XOUT_L		          		0x44
+#define	MPU6050_GYRO_YOUT_H		          		0x45
+#define	MPU6050_GYRO_YOUT_L		          		0x46
+#define	MPU6050_GYRO_ZOUT_H		          		0x47
+#define	MPU6050_GYRO_ZOUT_L		          		0x48
+#define	MPU6050_PWR_MGMT_1		          		0x6B
+#define	MPU6050_WHO_AM_I		          		0x75
+#define MPU6050_ID                		  		0x68
+#define MPU6050_DEVICE_ADDRESS            		0xD0
 
-#define MPU6050_DATA_START        				ACCEL_XOUT_H
+#define MPU6050_DATA_START        				MPU6050_ACCEL_XOUT_H
 #define MPU6050_RA_SELF_TEST_X                  0x0D
 #define MPU6050_RA_SLEF_TEST_Y                  0x0E
 #define MPU6050_RA_SELF_TEST_Z                  0x0F
@@ -103,7 +103,7 @@
 #define MPU6050_RA_ES_DATA06                    0x4F
 #define MPU6050_RA_ES_DATA07                    0x50
 
-/*Magnetometer HMC5883 register address */
+/* Magnetometer HMC5883 register address */
 
 #define HMC5883_ADDRESS                         0x3C
 
@@ -125,27 +125,31 @@
 #define HMC58X3_R_IDC    12
 
 
-/*Sensitivities */
+/* Sensitivities */
   
-#define GYRO_SENSITIVITY                        32.8f       //LSB/(degree/s)    +-2000    16-bit ADC   16.4
-                                                            //LSB/(degree/s)    +-1000    16-bit ADC   32.8
-#define GYRO_SENSITIVITY_RECIP                  0.0305f     //65.5           +-500
-                                                             
-#define ACC_SENSITIVITY                         8192.0f     //LSB/g          +-4g      16-bit ADC
+#define MPU6050_GYRO_DEG_RECIP_INV              32.8f          //LSB/(deg/s)    +-2000    16-bit ADC   16.4
+                                                               //LSB/(deg/s)    +-1000    16-bit ADC   32.8
+#define MPU6050_GYRO_DEG_RECIP                  0.0304878f     //65.5           +-500
+
+#define MPU6050_GYRO_RAD_RECIP_INV              1.8793015ef
+
+#define MPU6050_GYRO_RAD_RECIP                  5.3211255e-04f
+
+#define MPU6050_ACC_G_RECIP_INV                 8192.0f     //LSB/g          +-4g      16-bit ADC
                                                             //4096           +-8g
-#define ACC_SENSITIVITY_RECIP                   1.22e-4f
+#define MPU6050_ACC_G_RECIP                     1.22e-4f
 
-#define MAG_SENSITIVITY                         0.3f        //uT/LSB         +-1200    13-bit ADC
+#define MPU6050_MAG_UT_RECIP                        0.3f        //uT/LSB         +-1200    13-bit ADC
 
 
-/*MPU6050 ID value*/
+/* MPU6050 ID value */
 
 #define MPU6050_DEVICE_ID                       0x68
 #define HMC5883_DEVICE_ID_A                     0x48
 
-uint8_t MPU6050_Init(void);
-uint8_t HMC5883_Init(void);
-uint8_t MPU6050_INT_Enable(void);
+uint8_t MPU6050_Init();
+uint8_t HMC5883_Init();
+uint8_t MPU6050_INT_Enable();
 uint8_t MPU6050_Read(int16_t* data);
 uint8_t HMC5883_Read(int16_t* data);
 

@@ -16,10 +16,8 @@
 
 #include "rcv_srv.h"
 
-DBUS_t dbus;
 void RcvCallback(uint8_t* dbuf)
 {
-	DBUS_Dec(&dbus, dbuf);
-	DBUS_Cmd(&dbus);
+	DT7_Cmd(&dbuf);
 }
 

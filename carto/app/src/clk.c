@@ -16,12 +16,27 @@
 
 #include "clk.h"
 
+/*******************************/
+/*     System Clock Source     */
+/*******************************/
+
+static uint32_t us_tick;
+static uint32_t ms_tick;
+
+void Clk_Spin()
+{
+	us_tick++;
+	if (us_tick % 1000 == 0) {
+		ms_tick++;
+	}
+}
+
 uint32_t Clk_GetUsTick()
 {
-	return 0;
+	return us_tick;
 }
 
 uint32_t Clk_GetMsTick()
 {
-	return 0;
+	return ms_tick;
 }

@@ -16,134 +16,79 @@
  
 #include "ctl.h"
 
+/**************************************/
+/*          Logic Controller          */
+/**************************************/
+
 WorkingState_t workingState = WORKING_STATE_PREPARE;
 
-PID_t pid[2][6];
-
-static void WorkingStateSM(void)
+static void WorkingStateSM()
 {
-	if(inputMode == INPUT_MODE_NO)
-	{
+	if (WDG_IsErrSet(WDG_ERR_FATAL)) {
 		workingState = WORKING_STATE_STOP;
-		return;
-	}
-	switch(workingState)
-	{
-		case WORKING_STATE_PREPARE:
-		{
-			if(10)
-			{
-				workingState = WORKING_STATE_NORMAL;
-			}
-		}break;
-		case WORKING_STATE_NORMAL:
-		{
-			if(0)
-			{
-				workingState = WORKING_STATE_PREPARE;
-			}
-		}break;
-		case WORKING_STATE_STOP:
-		{
-			if(inputMode != INPUT_MODE_NO)
-			{
-				workingState = WORKING_STATE_PREPARE;
-			}
-		}break;
-		default:
-		{
-			workingState = WORKING_STATE_STOP;
-		}break;
+	} else {
+		workingState = WORKING_STATE_NORMAL;
 	}
 }
 
-#define LIMIT(X,M) (X=X>M?M:(X<-M>?-M:X))
-static void ChassisPositionControl(void)
+static void FunctionalStateControl()
 {
-	mecanum.x = chassisSpeedRef.x;
-	mecanum.y = chassisSpeedRef.y;
-	mecanum.z = chassisSpeedRef.z;
-
-	Mecanum_Decompose(&mecanum);
-
-	CM1AnglePID.ref = mecanum.w1;
-	CM2AnglePID.ref = mecanum.w2;
-	CM3AnglePID.ref = mecanum.w3;
-	CM4AnglePID.ref = mecanum.w4;
-
-	CM1AnglePID.fdb = motor[0].angle;
-	CM2AnglePID.fdb = motor[1].angle;
-	CM3AnglePID.fdb = motor[2].angle;
-	CM4AnglePID.fdb = motor[3].angle;
-
-	PID_Calc(&CM1AnglePID);
-	PID_Calc(&CM2AnglePID);
-	PID_Calc(&CM3AnglePID);
-	PID_Calc(&CM4AnglePID);
+	if (!FS_Get(&functionalStateRef, FS_GUN)) {
+		FS_Clr(&functionalStateCmd, FS_LASER | FS_SPINNER);
+	}
 }
 
-static void ChassisVelocityControl(void)
+static void PantiltPositionControl()
 {
-	CM1SpeedPID.ref = CM1AnglePID.out;
-	CM2SpeedPID.ref = CM2AnglePID.out;
-	CM3SpeedPID.ref = CM3AnglePID.out;
-	CM4SpeedPID.ref = CM4AnglePID.out;
-	
-	CM1SpeedPID.fdb = motor[0].rate;
-	CM2SpeedPID.fdb = motor[1].rate;
-	CM3SpeedPID.fdb = motor[2].rate;
-	CM4SpeedPID.fdb = motor[3].rate;
-	
-	PID_Calc(&CM1SpeedPID);
-	PID_Calc(&CM2SpeedPID);
-	PID_Calc(&CM3SpeedPID);
-	PID_Calc(&CM4SpeedPID);
+	pantiltPositionCmd.y = PID_Calc(&GMYAnglePID, pantiltPositionRef.y, pantiltPositionFdb.y);
+	pantiltPositionCmd.p = PID_Calc(&GMPAnglePID, pantiltPositionRef.p, pantiltPositionFdb.p);
 }
 
-static void PantiltPositionControl(void)
+static void PantiltVelocityControl()
 {
-	GMYAnglePID.ref += pantiltSpeedRef.y;
-	GMPAnglePID.ref += pantiltSpeedRef.p;
-
-	GMYAnglePID.fdb = motor[4].angle;
-	GMPAnglePID.fdb = motor[5].angle;
-
-	PID_Calc(&GMYAnglePID);
-	PID_Calc(&GMPAnglePID);
+	pantiltVelocityCmd.y = PID_Calc(&GMYSpeedPID, pantiltVelocityRef.y, pantiltVelocityFdb.y);
+	pantiltVelocityCmd.p = PID_Calc(&GMPSpeedPID, pantiltVelocityRef.p, pantiltVelocityFdb.p);
 }
 
-static void PantiltVelocityControl(void)
+static void ChassisPositionControl()
 {
-	GMYSpeedPID.ref = GMYAnglePID.out;
-	GMPSpeedPID.ref = GMPAnglePID.out;
-	
-	GMYSpeedPID.fdb = motor[4].rate;
-	GMPSpeedPID.fdb = motor[5].rate;
-	
-	PID_Calc(&GMYSpeedPID);
-	PID_Calc(&GMPSpeedPID);
+	mecanumPositionCmd.w1 = PID_Calc(&CM1AnglePID, mecanumPositionRef.w1, mecanumPositionFdb.w1);
+	mecanumPositionCmd.w2 = PID_Calc(&CM2AnglePID, mecanumPositionRef.w2, mecanumPositionFdb.w2);
+	mecanumPositionCmd.w3 = PID_Calc(&CM3AnglePID, mecanumPositionRef.w3, mecanumPositionFdb.w3);
+	mecanumPositionCmd.w4 = PID_Calc(&CM4AnglePID, mecanumPositionRef.w4, mecanumPositionFdb.w4);
 }
 
-void Ctl_Proc(void)
+static void ChassisVelocityControl()
+{
+	mecanumVelocityCmd.w1 = PID_Calc(&CM1SpeedPID, mecanumVelocityRef.w1, mecanumVelocityFdb.w1);
+	mecanumVelocityCmd.w2 = PID_Calc(&CM2SpeedPID, mecanumVelocityRef.w2, mecanumVelocityFdb.w2);
+	mecanumVelocityCmd.w3 = PID_Calc(&CM3SpeedPID, mecanumVelocityRef.w3, mecanumVelocityFdb.w3);
+	mecanumVelocityCmd.w4 = PID_Calc(&CM4SpeedPID, mecanumVelocityRef.w4, mecanumVelocityFdb.w4);
+}
+
+static void EmergencyBreak()
+{
+	FS_Clr(&functionalStateCmd, FS_ALL);
+	//CS_Set(0, 0, 0);
+	//GS_Set(0, 0);
+}
+
+void Ctl_Proc()
 {
 	WorkingStateSM();
-	if(workingState == WORKING_STATE_STOP)
+	if(workingState == WORKING_STATE_PREPARE || workingState == WORKING_STATE_STOP)
 	{
-		GUN_OFF();
-		LASER_OFF();
-		SPINNER_OFF();
-		CM_CMD(0, 0, 0, 0);
-		GM_CMD(0, 0);
+		EmergencyBreak();
 	}
 	else if(workingState == WORKING_STATE_NORMAL)
 	{
-		FunctionControl();
+		FunctionalStateControl();
+
 		ChassisPositionControl();
 		ChassisVelocityControl();
 
 		PantiltPositionControl();
 		PantiltVelocityControl();
-		PantiltCurrentControl();
 	}
 	
 }

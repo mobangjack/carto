@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,41 +14,22 @@
  * limitations under the License.
  */
 
-#ifndef __IMU_H__
-#define __IMU_H__
+#ifndef __PWR_H__
+#define __PWR_H__
+
+/**************************************/
+/*          Power Management          */
+/**************************************/
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include "app.h"
+#include <stdint.h>
+#include "can.h"
 
-typedef struct
-{
-	float ax;
-	float ay;
-	float az;
-	float gx;
-	float gy;
-	float gz;
-	float mx;
-	float my;
-	float mz;
-
-	float ax_offset;
-	float ay_offset;
-	float az_offset;
-	float gx_offset;
-	float gy_offset;
-	float gz_offset;
-	float mx_offset;
-	float my_offset;
-	float mz_offset;
-}IMU_t;
-
-void IMU_Proc(float* buf);
-
-extern IMU_t imu;
+//#define
+void PWR_Proc();
 
 #ifdef __cplusplus
 }

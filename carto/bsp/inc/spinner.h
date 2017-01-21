@@ -28,6 +28,9 @@
 #define SPINNER_PWM_L 0
 #define SPINNER_ON() SPINNER_SET_PWM(SPINNER_PWM_H)
 #define SPINNER_OFF() SPINNER_SET_PWM(SPINNER_PWM_L)
+#define SPINNER_IS_ON() (SPINNER_PWM==SPINNER_PWM_H)
+#define SPINNER_IS_OFF() (SPINNER_PWM!=SPINNER_PWM_H)
+#define SPINNER_TOG() (SPINNER_IS_ON() ? SPINNER_OFF() : SPINNER_ON())
 
 #define SPINNER_ENCODER_PIN_A PB4
 #define SPINNER_ENCODER_PIN_B PB5
@@ -38,8 +41,8 @@
 #define SPINNER_ENCODER_CNT() (SPINNER_DIR?(SPINNER_TIM->CNT-SPINNER_OFFSET):(SPINNER_OFFSET-SPINNER_TIM->CNT))
 #define SPINNER_ENCODER_START() (SPINNER_ENCODER_TIM->CNT = SPINNER_ENCODER_OFFSET)
 
-void Spinner_EncoderConfig(void);
-void Spinner_PWMConfig(void);
-void Spinner_Config(void);
+void Spinner_EncoderConfig();
+void Spinner_PWMConfig();
+void Spinner_Config();
 
 #endif

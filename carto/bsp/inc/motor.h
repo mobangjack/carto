@@ -20,8 +20,8 @@
 #include "platform.h"
 
 #define MOTOR_CAN CAN2
-#define EC60_CMD(c201,c202,c203,c204) EC60_Cmd(MOTOR_CAN,c201,c202,c203,c204)
-#define RM6025_CMD(c205,c206) RM6025_Cmd(MOTOR_CAN,c205,c206)
+#define CM_CMD(c201,c202,c203,c204) EC60_Cmd(MOTOR_CAN,c201,c202,c203,c204)
+#define GM_CMD(c205,c206) RM6025_Cmd(MOTOR_CAN,c205,c206)
 
 #define EC60_CMD_CAN_MSG_ID   0x200
 #define RM6025_CMD_CAN_MSG_ID 0x1ff

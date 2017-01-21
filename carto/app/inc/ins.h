@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,14 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#include "com.h"
 
-/***********************************/
-/*          Communication          */
-/***********************************/
+#ifndef __INS_H__
+#define __INS_H__
 
-void Com_Proc(uint8_t data)
-{
-	WDG_Feed(WDG_IDX_COM);
+/**************************************/
+/*     Inertial Navigation System     */
+/**************************************/
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "imu.h"
+#include "mag.h"
+#include "ahrs.h"
+
+#include <stdint.h>
+
+void INS_Proc();
+
+extern IMU_t imu;
+extern Mag_t mag;
+extern AHRS_t ahrs;
+extern Euler_t euler;
+
+#ifdef __cplusplus
 }
+#endif
+
+#endif

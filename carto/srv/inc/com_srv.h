@@ -17,7 +17,6 @@
 #ifndef __COM_SRV_H__
 #define __COM_SRV_H__
 
-#include "com.h"
-#include "tty.h"
+#include "app.h"
 
 #endif

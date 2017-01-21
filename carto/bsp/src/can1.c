@@ -16,7 +16,7 @@
  
 #include "can1.h"
 
-void Can1_Config(void)
+void Can1_Config()
 {
 	GPIO_AF(CAN1_RX_PIN, GPIO_AF_CAN1);
 	GPIO_AF(CAN1_TX_PIN, GPIO_AF_CAN1);
@@ -33,7 +33,7 @@ void Can1_Config(void)
 	CAN_ITConfig(CAN1, CAN_IT_TME, ENABLE);
 }
 
-void CAN1_RX_IRQ_HANDLER(void)
+void CAN1_RX_IRQ_HANDLER()
 {
     if (CAN_GetITStatus(CAN1, CAN_IT_FMP0)!= RESET)
 	{
@@ -42,11 +42,11 @@ void CAN1_RX_IRQ_HANDLER(void)
 		CAN_ClearFlag(CAN1, CAN_FLAG_FF0);
 		CAN_Receive(CAN1, CAN_FIFO0, &canRxMsg);
 
-		Can1RxCallback(&canRxMsg);
+		Can1RxCallback(canRxMsg.StdId, canRxMsg.Data);
     }
 }
 
-void CAN1_TX_IRQ_HANDLER(void)
+void CAN1_TX_IRQ_HANDLER()
 {
     if (CAN_GetITStatus(CAN1, CAN_IT_TME)!= RESET)
 	{

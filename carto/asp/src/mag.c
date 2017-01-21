@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,14 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#include "com.h"
 
-/***********************************/
-/*          Communication          */
-/***********************************/
+#include "mag.h"
 
-void Com_Proc(uint8_t data)
+void Mag_Config(Mag_t* mag, float mx_offset, float my_offset, float mz_offset)
 {
-	WDG_Feed(WDG_IDX_COM);
+	mag->mx_offset = mx_offset;
+	mag->my_offset = my_offset;
+	mag->mz_offset = mz_offset;
 }
+
+void Mag_Proc(Mag_t* mag, float* buf)
+{
+	mag->mx = buf[0];
+	mag->my = buf[1];
+	mag->mz = buf[2];
+}
+

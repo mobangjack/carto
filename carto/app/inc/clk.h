@@ -17,15 +17,23 @@
 #ifndef __CLK_H__
 #define __CLK_H__
 
+/*******************************/
+/*     System Clock Source     */
+/*******************************/
+
 #ifdef __cpluplus
 extern "C" {
 #endif
 
 #include <stdint.h>
 
+void Clk_Spin();
+
 uint32_t Clk_GetUsTick();
 uint32_t Clk_GetMsTick();
 
 #ifdef __cpluplus
 }
+#endif
+
 #endif

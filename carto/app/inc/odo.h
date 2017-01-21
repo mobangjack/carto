@@ -17,24 +17,17 @@
 #ifndef __ODO_H__
 #define __ODO_H__
 
+/************************************/
+/*             Odometer             */
+/************************************/
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include "can.h"
-#include "mecanum.h"
+#include "app.h"
 
-typedef struct
-{
-	float px;
-	float py;
-	float pz;
-	float vx;
-	float vy;
-	float vz;
-}Odo_t;
-
-void Odo_Calc(Odo_t* odo);
+void Odo_Proc();
 
 #ifdef __cplusplus
 }

@@ -14,9 +14,40 @@
  * limitations under the License.
  */
 
-#include "imu.h"
+#ifndef __IMU_H__
+#define __IMU_H__
 
-void IMU_Proc(float* buf)
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <stdint.h>
+#include "est.h"
+
+typedef struct
 {
-	AHRS_Update(&ahrs, buf, 0.05);
+	float ax;
+	float ay;
+	float az;
+	float gx;
+	float gy;
+	float gz;
+
+	float ax_offset;
+	float ay_offset;
+	float az_offset;
+	float gx_offset;
+	float gy_offset;
+	float gz_offset;
+}IMU_t;
+
+void IMU_Config(IMU_t* imu,
+		        float ax_offset, float ay_offset, float az_offset,
+		        float gx_offset, float gy_offset, float gz_offset);
+void IMU_Proc(IMU_t* imu, float* buf);
+
+#ifdef __cplusplus
 }
+#endif
+
+#endif

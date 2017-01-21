@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,14 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#include "com.h"
 
-/***********************************/
-/*          Communication          */
-/***********************************/
+#ifndef __MAG_H__
+#define __MAG_H__
 
-void Com_Proc(uint8_t data)
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef struct
 {
-	WDG_Feed(WDG_IDX_COM);
+	float mx;
+	float my;
+	float mz;
+
+	float mx_offset;
+	float my_offset;
+	float mz_offset;
+}Mag_t;
+
+void Mag_Config(Mag_t* mag, float mx_offset, float my_offset, float mz_offset);
+void Mag_Proc(Mag_t* mag, float* buf);
+
+#ifdef __cplusplus
 }
+#endif
+
+#endif

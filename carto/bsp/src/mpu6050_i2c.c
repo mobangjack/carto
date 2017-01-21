@@ -26,7 +26,7 @@ void MPU6050_IIC_Delay(uint32_t t)
 	}
 }
 
-void MPU6050_IIC_Start(void)								  
+void MPU6050_IIC_Start()
 {
 	MPU6050_IIC_SDA_OUT();
 	MPU6050_IIC_SDA_H();
@@ -37,7 +37,7 @@ void MPU6050_IIC_Start(void)
 	MPU6050_IIC_SCL_L();
 }
 
-void MPU6050_IIC_Stop(void)
+void MPU6050_IIC_Stop()
 {
 	MPU6050_IIC_SDA_OUT();
 	MPU6050_IIC_SCL_L();
@@ -62,7 +62,7 @@ void MPU6050_IIC_Ack(uint8_t re)
 	MPU6050_IIC_Delay(1);
 }
 
-uint8_t MPU6050_IIC_WaitAck(void)
+uint8_t MPU6050_IIC_WaitAck()
 {
 	uint16_t time = 1000;
 	MPU6050_IIC_SDA_H();
@@ -102,7 +102,7 @@ void MPU6050_IIC_WriteByte(uint8_t byte)
 	}
 }
 
-uint8_t MPU6050_IIC_ReadByte(void)
+uint8_t MPU6050_IIC_ReadByte()
 {
 	uint8_t i, byte = 0;
 	MPU6050_IIC_SDA_IN();

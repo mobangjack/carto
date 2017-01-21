@@ -16,7 +16,7 @@
 
 #include "com_srv.h"
 
-void TtyRxCallback(u8 data)
+void TtyRxCallback(uint8_t data)
 {
 	Com_Proc(data);
 }

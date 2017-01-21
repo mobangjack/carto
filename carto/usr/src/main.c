@@ -16,10 +16,11 @@
  
 #include "main.h"
 
-int main(void)
+int main()
 {
-	//BSP_Config();
+	App_Init();
 	while(1)
 	{
+
     }
 }

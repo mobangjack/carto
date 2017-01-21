@@ -17,6 +17,10 @@
 #ifndef __WDG_H__
 #define __WDG_H__
 
+/***********************************/
+/*            Watch Dog            */
+/***********************************/
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -61,15 +65,26 @@ extern "C" {
 		WDG_ERR_MOTOR6 \
 		)
 
+#define WDG_ERR_FATAL ( \
+		WDG_ERR_RC | \
+		WDG_ERR_IMU | \
+		WDG_ERR_ZGYRO | \
+		WDG_ERR_MOTOR1 | \
+		WDG_ERR_MOTOR2 | \
+		WDG_ERR_MOTOR3 | \
+		WDG_ERR_MOTOR4 | \
+		WDG_ERR_MOTOR6 \
+		)
+
 #define WDG_OVERFLOW_CNT_RC   	    100
 #define WDG_OVERFLOW_CNT_COM  		100
 #define WDG_OVERFLOW_CNT_IMU  		100
 #define WDG_OVERFLOW_CNT_ZGYRO 		100
 #define WDG_OVERFLOW_CNT_MOTOR 		100
 
-void WDG_Proc(void);
+void WDG_Proc();
 void WDG_Feed(uint8_t i);
-uint32_t WDG_GetErr(void);
+uint32_t WDG_GetErr();
 uint8_t WDG_IsErrSet(uint32_t mask);
 
 #ifdef __cplusplus

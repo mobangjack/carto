@@ -16,7 +16,7 @@
 
 #include "mpu6050_int.h"
 
-void MPU6050_INT_Config(void)
+void MPU6050_INT_Config()
 {
     EXTI_Bind(MPU6050_INT_PIN, EXTI_Trigger_Falling);
     NVIC_Config(MPU6050_NVIC, MPU6050_NVIC_PRE_PRIORITY, MPU6050_NVIC_SUB_PRIORITY);

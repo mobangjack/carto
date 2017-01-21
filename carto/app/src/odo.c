@@ -16,28 +16,87 @@
  
 #include "odo.h"
 
-void Odo_Calc(Odo_t* odo)
+/************************************/
+/*             Odometer             */
+/************************************/
+
+static void GetFunctionalStateFdb()
 {
-	mecanum.w1 = motor[0].angle;
-	mecanum.w1 = motor[1].angle;
-	mecanum.w1 = motor[2].angle;
-	mecanum.w1 = motor[3].angle;
+	FunctionalState_t fs = FS_NO;
+	if (LED_GREEN_IS_ON()) {
+		fs |= FS_LED_GREEN;
+	} else {
+		fs &= ~FS_LED_GREEN;
+	}
+	if (LED_RED_IS_ON()) {
+		fs |= FS_LED_RED;
+	} else {
+		fs &= ~FS_LED_RED;
+	}
+	if (GUN_IS_ON()) {
+		fs |= FS_GUN;
+	} else {
+		fs &= ~FS_GUN;
+	}
+	if (LASER_IS_ON()) {
+		fs |= FS_GUN;
+	} else {
+		fs &= ~FS_GUN;
+	}
+	if (SPINNER_IS_ON()) {
+		fs |= FS_GUN;
+	} else {
+		fs &= ~FS_GUN;
+	}
+	functionalStateFdb = fs;
+}
 
-	Mecanum_Synthesis(&mecanum);
+static void GetPantiltPositionFdb()
+{
+	pantiltPositionFdb.y = motor[4].angle;
+	pantiltPositionFdb.p = motor[5].angle;
+}
 
-	odo->px = mecanum.x;
-	odo->py = mecanum.y;
-	odo->pz = mecanum.z;
+static void GetPantiltVelocityFdb()
+{
+	pantiltVelocityFdb.y = motor[4].rate;
+	pantiltVelocityFdb.p = motor[5].rate;
+}
 
-	mecanum.w1 = motor[0].rate;
-	mecanum.w1 = motor[1].rate;
-	mecanum.w1 = motor[2].rate;
-	mecanum.w1 = motor[3].rate;
+static void GetMecanumPositionFdb()
+{
+	mecanumPositionFdb.w1 = motor[0].angle;
+	mecanumPositionFdb.w2 = motor[1].angle;
+	mecanumPositionFdb.w3 = motor[2].angle;
+	mecanumPositionFdb.w4 = motor[3].angle;
+}
 
-	Mecanum_Synthesis(&mecanum);
+static void GetMecanumVelocityFdb()
+{
+	mecanumVelocityFdb.w1 = motor[0].rate;
+	mecanumVelocityFdb.w2 = motor[1].rate;
+	mecanumVelocityFdb.w3 = motor[2].rate;
+	mecanumVelocityFdb.w4 = motor[3].rate;
+}
 
-	odo->vx = mecanum.x;
-	odo->vy = mecanum.y;
-	odo->vz = mecanum.z;
+static void GetChassisPositionFdb()
+{
+	Mecanum_Synthesis(&mecanum, (float*)&mecanumPositionFdb, (float*)&chassisPositionFdb);
+}
+
+static void GetChassisVelocityFdb()
+{
+	Mecanum_Synthesis(&mecanum, (float*)&mecanumVelocityFdb, (float*)&chassisVelocityFdb);
+}
+
+void Odo_Proc()
+{
+	GetFunctionalStateFdb();
+	GetPantiltPositionFdb();
+	GetPantiltVelocityFdb();
+	GetMecanumPositionFdb();
+	GetMecanumVelocityFdb();
+	GetChassisPositionFdb();
+	GetChassisVelocityFdb();
 }
 

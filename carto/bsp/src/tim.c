@@ -16,28 +16,28 @@
 
 #include "tim.h"
 
-void TickTim_Config(void)
+void TickTim_Config()
 {
 	TIM_Config(TICK_TIM, TICK_TIM_PS, TIM_CounterMode_Up, TICK_TIM_PD, TIM_CKD_DIV1, 0);
 	TIM_ARRPreloadConfig(TICK_TIM, ENABLE);
 	NVIC_Config(TICK_TIM_NVIC, TICK_TIM_NVIC_PRE_PRIORITY, TICK_TIM_NVIC_SUB_PRIORITY);
 }
 
-void TickTim_Start(void)
+void TickTim_Start()
 {
 	TIM_Cmd(TICK_TIM, ENABLE);
 	TIM_ITConfig(TICK_TIM, TIM_IT_Update, ENABLE);
 	TIM_ClearFlag(TICK_TIM, TIM_FLAG_Update);
 }
 
-void TickTim_Stop(void)
+void TickTim_Stop()
 {
 	TIM_Cmd(TICK_TIM, DISABLE);
 	TIM_ITConfig(TICK_TIM, TIM_IT_Update, DISABLE);
 	TIM_ClearFlag(TICK_TIM, TIM_FLAG_Update);
 }
 
-void TICK_TIM_IRQ_HANDLER(void)
+void TICK_TIM_IRQ_HANDLER()
 {
 	if (TIM_GetITStatus(TICK_TIM, TIM_IT_Update)!= RESET)
 	{
@@ -48,45 +48,45 @@ void TICK_TIM_IRQ_HANDLER(void)
 	}
 }
 
-void SyncTim_Config(void)
+void SyncTim_Config()
 {
 	TIM_Config(SYNC_TIM, SYNC_TIM_PS, TIM_CounterMode_Up, SYNC_TIM_PD, TIM_CKD_DIV1, 0);
 	NVIC_Config(SYNC_TIM_NVIC, SYNC_TIM_NVIC_PRE_PRIORITY, SYNC_TIM_NVIC_SUB_PRIORITY);
 }
 
-void SyncTim_Start(void)
+void SyncTim_Start()
 {
 	TIM_Cmd(TIM6, ENABLE);
 	TIM_ITConfig(TIM6, TIM_IT_Update,ENABLE);
 	TIM_ClearFlag(TIM6, TIM_FLAG_Update);
 }
 
-void SyncTim_Stop(void)
+void SyncTim_Stop()
 {
 	TIM_Cmd(SYNC_TIM, DISABLE);
 	TIM_ITConfig(SYNC_TIM, TIM_IT_Update, DISABLE);
 	TIM_ClearFlag(SYNC_TIM, TIM_FLAG_Update);
 }
 
-void Tim_Config(void)
+void Tim_Config()
 {
 	TickTim_Config();
 	SyncTim_Config();
 }
 
-void Tim_Start(void)
+void Tim_Start()
 {
 	TickTim_Start();
 	SyncTim_Start();
 }
 
-void Tim_Stop(void)
+void Tim_Stop()
 {
 	TickTim_Stop();
 	SyncTim_Stop();
 }
 
-void SYNC_TIM_IRQ_HANDLER(void)
+void SYNC_TIM_IRQ_HANDLER()
 {
 	if (TIM_GetITStatus(SYNC_TIM, TIM_IT_Update)!= RESET)
 	{

@@ -25,42 +25,34 @@ extern "C" {
 	
 typedef struct
 {
-	float ref;
-	float fdb;
-	float err[2];
 	float kp;
 	float ki;
 	float kd;
-	float P;
-	float I;
-	float D;
-	float out;
+	float it;  // Integral threshold
 	float Pmax;
 	float Imax;
 	float Dmax;
-	float outmax;
+	float Omax;
+	float error;
+	float integral;
 }PID_t;
 
-void PID_Config(PID_t* pid, float kp, float ki, float kd, float Pmax, float Imax, float Dmax, float outmax);
-void PID_Reset(PID_t *pid);
-void PID_Calc(PID_t *pid);
+void PID_Config(PID_t* pid, float kp, float ki, float kd, float it, float Pmax, float Imax, float Dmax, float Omax);
+float PID_Calc(PID_t* pid, float ref, float fdb);
+void PID_Reset(PID_t* pid);
 
-#define PID(KP,KI,KD,PM,IM,DM,OM) \
+#define PID(KP,KI,KD,IT,PM,IM,DM,OM) \
 {\
-	.ref = 0,\
-	.fdb = 0,\
-	.err = {0,0},\
-	.kp = KP,\
-	.ki = KI,\
-	.kd = KD,\
-	.P = 0,\
-	.I = 0,\
-	.D = 0,\
-	.out = 0,\
-	.Pmax = PM,\
-	.Imax = IM,\
-	.Dmax = DM,\
-	.outmax = OM,\
+	.kp = KP, \
+	.ki = KI, \
+	.kd = KD, \
+	.it = IT, \
+	.Pmax = PM, \
+	.Imax = IM, \
+	.Dmax = DM, \
+	.Omax = OM, \
+	.error = 0, \
+	.integral = 0, \
 }\
 
 #ifdef __cplusplus

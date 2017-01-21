@@ -17,7 +17,6 @@
 #ifndef __IMU_SRV_H__
 #define __IMU_SRV_H__
 
-#include "mpu6050.h"
-#include "imu.h"
+#include "app.h"
 
 #endif

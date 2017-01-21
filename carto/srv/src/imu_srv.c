@@ -16,24 +16,8 @@
 
 #include "imu_srv.h"
 
-float buf[9];
-int16_t raw[17];
-void MPU6050INTCallback()
+void MPU6050Callback(float* buf)
 {
-	MPU6050_Read(raw);
-	HMC5883_Read(raw + 14);
-
-	buf[0] = raw[0] / ACC_SENSITIVITY;
-	buf[1] = raw[1] / ACC_SENSITIVITY;
-	buf[2] = raw[2] / ACC_SENSITIVITY;
-	// buf[3] = raw[3] / 340.0f + 36.53f;
-	buf[3] = raw[4] / GYRO_SENSITIVITY;
-	buf[4] = raw[5] / GYRO_SENSITIVITY;
-	buf[5] = raw[6] / GYRO_SENSITIVITY;
-	buf[6] = raw[7] / MAG_SENSITIVITY;
-	buf[7] = raw[8] / MAG_SENSITIVITY;
-	buf[8] = raw[9] / MAG_SENSITIVITY;
-
-	IMU_Proc(buf);
+	IMU_Proc(&imu, buf);
 }
 

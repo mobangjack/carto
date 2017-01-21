@@ -17,7 +17,6 @@
 #ifndef __TIM_SRV_H__
 #define __TIM_SRV_H__
 
-#include "asp.h"
-#include "bsp.h"
+#include "app.h"
 
-#endif /* __TIM_SRV_H__ */
+#endif

@@ -18,8 +18,5 @@
 #define __MAIN_H__
 
 #include "app.h"
-#include "asp.h"
-#include "srv.h"
-#include "bsp.h"
 
 #endif 

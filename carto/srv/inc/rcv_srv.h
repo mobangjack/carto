@@ -17,7 +17,6 @@
 #ifndef __RCV_SRV_H__
 #define __RCV_SRV_H__
 
-#include "cmd.h"
-#include "rcv.h"
+#include "app.h"
 
 #endif

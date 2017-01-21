@@ -36,8 +36,11 @@
 #define GUN_SET_PWM(pwm) (GUN_PWM1=GUN_PWM2=pwm)
 #define GUN_ON()     GUN_SET_PWM(GUN_PWM_H)
 #define GUN_OFF()    GUN_SET_PWM(GUN_PWM_L)
+#define GUN_IS_ON()  (GUN_PWM1==GUN_PWM_H && GUN_PWM2==GUN_PWM_H)
+#define GUN_IS_OFF() (GUN_PWM1==GUN_PWM_L && GUN_PWM2==GUN_PWM_L)
+#define GUN_TOG()    (GUN_IS_ON() ? GUN_OFF() : GUN_ON())
 
-void Gun_Config(void);
+void Gun_Config();
 
 #endif
 

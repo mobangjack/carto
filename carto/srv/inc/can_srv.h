@@ -17,6 +17,6 @@
 #ifndef __CAN_SRV_H__
 #define __CAN_SRV_H__
 
-#include "can.h"
+#include "app.h"
 
 #endif

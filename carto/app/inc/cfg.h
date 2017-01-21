@@ -17,6 +17,10 @@
 #ifndef __CFG_H__
 #define __CFG_H__
 
+/********************************/
+/*     System Configuration     */
+/********************************/
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -74,10 +78,11 @@ typedef struct
 	float kp;
 	float ki;
 	float kd;
+	float it;
 	float Pmax;
 	float Imax;
 	float Dmax;
-	float outmax;
+	float Omax;
 }PIDCfg_t; // PID Configuration
 
 typedef struct
@@ -104,6 +109,12 @@ typedef struct
 
 typedef struct
 {
+	uint32_t div; // Clock Division
+	uint32_t rmp; // Action Ramp
+}CtlCfg_t; // Logic Controller Configuration
+
+typedef struct
+{
 	Version_t version;
 	CfgFlag_t flag;
 	ImuCfg_t imu;
@@ -111,7 +122,8 @@ typedef struct
 	GimCfg_t yaw;
 	GimCfg_t pit;
 	ChaCfg_t cha;
-}Cfg_t;
+	CtlCfg_t ctl;
+}Cfg_t; // System Configuration
 
 #define CFG_SIZE() sizeof(Cfg_t)
 
@@ -151,10 +163,11 @@ typedef struct
 	.kp = 220, \
 	.ki = 0, \
 	.kd = 0, \
+	.it = 0, \
 	.Pmax = 4950, \
 	.Imax = 2000, \
 	.Dmax = 2000, \
-	.outmax = 4950, \
+	.Omax = 4950, \
 }
 
 #define YAW_SPD_PID_CFG_DEFAULT \
@@ -162,10 +175,11 @@ typedef struct
 	.kp = 220, \
 	.ki = 0, \
 	.kd = 0, \
+	.it = 0, \
 	.Pmax = 4950, \
 	.Imax = 2000, \
 	.Dmax = 2000, \
-	.outmax = 4950, \
+	.Omax = 4950, \
 }
 
 #define PIT_POS_PID_CFG_DEFAULT \
@@ -173,10 +187,11 @@ typedef struct
 	.kp = 220, \
 	.ki = 0, \
 	.kd = 0, \
+	.it = 0, \
 	.Pmax = 4950, \
 	.Imax = 2000, \
 	.Dmax = 2000, \
-	.outmax = 4950, \
+	.Omax = 4950, \
 }
 
 #define PIT_SPD_PID_CFG_DEFAULT \
@@ -184,10 +199,11 @@ typedef struct
 	.kp = 220, \
 	.ki = 0, \
 	.kd = 0, \
+	.it = 0, \
 	.Pmax = 4950, \
 	.Imax = 2000, \
 	.Dmax = 2000, \
-	.outmax = 4950, \
+	.Omax = 4950, \
 }
 
 #define YAW_CFG_DEFAULT \
@@ -217,10 +233,11 @@ typedef struct
 	.kp = 220, \
 	.ki = 0, \
 	.kd = 0, \
+	.it = 0, \
 	.Pmax = 4950, \
 	.Imax = 2000, \
 	.Dmax = 2000, \
-	.outmax = 4950, \
+	.Omax = 4950, \
 }
 
 #define CHA_SPD_PID_CFG_DEFAULT \
@@ -228,10 +245,11 @@ typedef struct
 	.kp = 220, \
 	.ki = 0, \
 	.kd = 0, \
+	.it = 0, \
 	.Pmax = 4950, \
 	.Imax = 2000, \
 	.Dmax = 2000, \
-	.outmax = 4950, \
+	.Omax = 4950, \
 }
 
 #define CHA_CFG_DEFAULT \
@@ -239,6 +257,15 @@ typedef struct
 	CHA_MEC_CFG_DEFAULT, \
 	CHA_POS_PID_CFG_DEFAULT, \
 	CHA_SPD_PID_CFG_DEFAULT, \
+}
+
+#define CTL_DIV_DEFAULT 4
+#define CTL_RMP_DEFAULT 5000
+
+#define CTL_CFG_DEFAULT \
+{ \
+	.div = CTL_DIV_DEFAULT, \
+	.rmp = CTL_RMP_DEFAULT, \
 }
 
 #define CFG_DEFAULT \
@@ -250,11 +277,12 @@ typedef struct
 	YAW_CFG_DEFAULT, \
 	PIT_CFG_DEFAULT, \
 	CHA_CFG_DEFAULT, \
+	CTL_CFG_DEFAULT, \
 }
 
 void Cfg_Load(Cfg_t* cfg);
 uint8_t Cfg_Save(Cfg_t* cfg);
-void Cfg_Reset(Cfg_t* cfg);
+uint8_t Cfg_Reset();
 
 #ifdef __cplusplus
 }

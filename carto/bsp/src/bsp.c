@@ -16,7 +16,7 @@
  
 #include "bsp.h"
 
-void Bsp_Config(void)
+void Bsp_Config()
 {
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	

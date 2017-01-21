@@ -17,6 +17,10 @@
 #ifndef __AHRS_H__
 #define __AHRS_H__
 
+/*******************************************/
+/*    Attitude Heading Reference System    */
+/*******************************************/
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -31,14 +35,18 @@ typedef struct
 	float exInt;
 	float eyInt;
 	float ezInt;
+}AHRS_t;
+
+typedef struct
+{
 	float yaw;
 	float pitch;
 	float roll;
-}AHRS_t;
+}Euler_t;
 
 void AHRS_Config(AHRS_t* ahrs, float kp, float ki);
-void AHRS_Update(AHRS_t* ahrs, float* imu, float halfT);
-void AHRS_Q2YPR(float* q, float* ypr);
+void AHRS_Update(AHRS_t* ahrs, float* buf, float halfT);
+void AHRS_Q2Euler(float* q, Euler_t* euler);
 
 #ifdef __cplusplus
 }

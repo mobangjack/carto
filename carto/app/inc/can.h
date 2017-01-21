@@ -17,11 +17,14 @@
 #ifndef __CAN_H__
 #define __CAN_H__
 
+/*********************************************/
+/*          Controller Area Network          */
+/*********************************************/
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include "clk.h"
 #include "est.h"
 #include "wdg.h"
 
@@ -35,10 +38,12 @@ extern "C" {
 #define MOTOR5_FDB_CAN_MSG_ID  0x205
 #define MOTOR6_FDB_CAN_MSG_ID  0x206
 
+#define ZGYRO_ANGLE_RECIP         1.7453292e-04f
+#define ZGYRO_SPEED_RECIP         1000 // 1khz
 #define MOTOR_ECD_ANGLE_FDB_MAX   8191
-#define MOTOR_ECD_ANGLE_FDB_MOD   (MOTOR_ECD_ANGLE_FDB_MAX + 1)
-#define MOTOR_ANGLE_RECIP (2 * PI / MOTOR_ECD_ANGLE_FDB_MOD)
-#define MOTOR_SPEED_RECIP (MOTOR_ANGLE_RECIP * 1000) // 1khz, Deprecated
+#define MOTOR_ECD_ANGLE_FDB_MOD   8192
+#define MOTOR_ANGLE_RECIP         7.6699042e-04f
+#define MOTOR_SPEED_RECIP         1000 // 1khz
 #define MOTOR_ESC_CURRENT_FDB_MAX 13000
 #define MOTOR_ESC_CURRENT_REF_MAX 5000
 
@@ -48,8 +53,6 @@ typedef struct
 	int32_t angle_fdb;    // ZGyro raw angle feedback
 	/* ZGyro original data feedback */
 
-	uint32_t timestamp;   // Timestamp in us
-	int32_t period;       // Period in us
 	uint8_t reset;        // ZGyro reset control flag
 	float bias;           // ZGyro bias in radian
 	float angle;          // ZGyro angle in radian
@@ -64,8 +67,6 @@ typedef struct
 	int32_t current_ref;    // Motor electronic speed controller current reference
 	/* Motor original data feedback */
 
-	uint32_t timestamp;   // Timestamp in us
-	int32_t period;       // Period in us
 	uint8_t reset;        // Motor encoder reset control flag
 	int32_t rnd;          // Motor spinning rounds
 	float bias;           // Motor encoder bias

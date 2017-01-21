@@ -16,7 +16,7 @@
  
 #include "spinner.h"
 
-void Spinner_EncoderConfig(void)
+void Spinner_EncoderConfig()
 {
 	Encoder_Bind(
 			SPINNER_ENCODER_PIN_A,
@@ -30,13 +30,13 @@ void Spinner_EncoderConfig(void)
 	SPINNER_ENCODER_START();
 }
 
-void Spinner_PWMConfig(void)
+void Spinner_PWMConfig()
 {
 	PWM_Bind(SPINNER_PWM_PIN, 0, 0, 0, SPINNER_PWM_TIM, 167, 1000, 0);
 	TIM_Cmd(SPINNER_PWM_TIM, ENABLE);
 }
 
-void Spinner_Config(void)
+void Spinner_Config()
 {
 	Spinner_EncoderConfig();
 	Spinner_PWMConfig();
