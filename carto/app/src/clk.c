@@ -23,6 +23,12 @@
 static uint32_t us_tick;
 static uint32_t ms_tick;
 
+void Clk_Init()
+{
+	us_tick = 0;
+	ms_tick = 0;
+}
+
 void Clk_Spin()
 {
 	us_tick++;

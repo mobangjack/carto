@@ -25,19 +25,10 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
-
 #include "app.h"
 
-typedef uint8_t WorkingState_t;
-
-#define WORKING_STATE_PREPARE 0x00
-#define WORKING_STATE_NORMAL  0x01
-#define WORKING_STATE_STOP    0x02
-
+void Ctl_Init();
 void Ctl_Proc();
-
-extern WorkingState_t workingState;
 
 #ifdef __cplusplus
 }

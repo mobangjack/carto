@@ -20,7 +20,12 @@
 /*     Inertial Navigation System     */
 /**************************************/
 
-void INS_Proc()
+void Ins_Init()
+{
+
+}
+
+void Ins_Proc()
 {
 
 }

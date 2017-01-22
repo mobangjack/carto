@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include <ahrs.h>
+#include "ahrs.h"
 
 /************************************/
 /*    Attitude Heading Reference    */
@@ -32,13 +32,13 @@ static float invSqrt(float x) {
 	return y;
 }
 
-void AHRS_Config(AHRS_t* ahrs, float kp, float ki)
+void Ahrs_Config(Ahrs_t* ahrs, float kp, float ki)
 {
 	ahrs->kp = kp;
 	ahrs->ki = ki;
 }
 
-void AHRS_Update(AHRS_t* ahrs, float* buf, float halfT) {
+void Ahrs_Update(Ahrs_t* ahrs, float* buf, float halfT) {
     float norm;
     float ax, ay, az;
     float gx, gy, gz;
@@ -121,7 +121,7 @@ void AHRS_Update(AHRS_t* ahrs, float* buf, float halfT) {
     ahrs->q[3] = q[3] * norm;
 }
 
-void AHRS_Q2Euler(float* q, Euler_t* euler)
+void Ahrs_Q2Euler(float* q, Euler_t* euler)
 {
 	euler->yaw = -atan2(2*q[1]*q[2] + 2*q[0]*q[3], -2*q[2]*q[2] - 2*q[3]*q[3] + 1)*180/PI; // yaw    -pi----pi
 	euler->pitch = -asin(-2*q[1]*q[3] + 2*q[0]*q[2])*180/PI; // pitch    -pi/2    --- pi/2

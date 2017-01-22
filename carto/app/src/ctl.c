@@ -20,8 +20,6 @@
 /*          Logic Controller          */
 /**************************************/
 
-WorkingState_t workingState = WORKING_STATE_PREPARE;
-
 static void WorkingStateSM()
 {
 	if (WDG_IsErrSet(WDG_ERR_FATAL)) {
@@ -34,43 +32,69 @@ static void WorkingStateSM()
 static void FunctionalStateControl()
 {
 	if (!FS_Get(&functionalStateRef, FS_GUN)) {
-		FS_Clr(&functionalStateCmd, FS_LASER | FS_SPINNER);
+		FS_Clr(&functionalStateCtl, FS_LASER | FS_SPINNER);
 	}
 }
 
 static void PantiltPositionControl()
 {
-	pantiltPositionCmd.y = PID_Calc(&GMYAnglePID, pantiltPositionRef.y, pantiltPositionFdb.y);
-	pantiltPositionCmd.p = PID_Calc(&GMPAnglePID, pantiltPositionRef.p, pantiltPositionFdb.p);
+	pantiltPositionCtl.y = PID_Calc(&GMYAnglePID, pantiltPositionRef.y, pantiltPositionFdb.y);
+	pantiltPositionCtl.p = PID_Calc(&GMPAnglePID, pantiltPositionRef.p, pantiltPositionFdb.p);
 }
 
 static void PantiltVelocityControl()
 {
-	pantiltVelocityCmd.y = PID_Calc(&GMYSpeedPID, pantiltVelocityRef.y, pantiltVelocityFdb.y);
-	pantiltVelocityCmd.p = PID_Calc(&GMPSpeedPID, pantiltVelocityRef.p, pantiltVelocityFdb.p);
+	pantiltVelocityCtl.y = PID_Calc(&GMYSpeedPID, pantiltVelocityRef.y, pantiltVelocityFdb.y);
+	pantiltVelocityCtl.p = PID_Calc(&GMPSpeedPID, pantiltVelocityRef.p, pantiltVelocityFdb.p);
 }
 
 static void ChassisPositionControl()
 {
-	mecanumPositionCmd.w1 = PID_Calc(&CM1AnglePID, mecanumPositionRef.w1, mecanumPositionFdb.w1);
-	mecanumPositionCmd.w2 = PID_Calc(&CM2AnglePID, mecanumPositionRef.w2, mecanumPositionFdb.w2);
-	mecanumPositionCmd.w3 = PID_Calc(&CM3AnglePID, mecanumPositionRef.w3, mecanumPositionFdb.w3);
-	mecanumPositionCmd.w4 = PID_Calc(&CM4AnglePID, mecanumPositionRef.w4, mecanumPositionFdb.w4);
+	mecanumPositionCtl.w1 = PID_Calc(&CM1AnglePID, mecanumPositionRef.w1, mecanumPositionFdb.w1);
+	mecanumPositionCtl.w2 = PID_Calc(&CM2AnglePID, mecanumPositionRef.w2, mecanumPositionFdb.w2);
+	mecanumPositionCtl.w3 = PID_Calc(&CM3AnglePID, mecanumPositionRef.w3, mecanumPositionFdb.w3);
+	mecanumPositionCtl.w4 = PID_Calc(&CM4AnglePID, mecanumPositionRef.w4, mecanumPositionFdb.w4);
 }
 
 static void ChassisVelocityControl()
 {
-	mecanumVelocityCmd.w1 = PID_Calc(&CM1SpeedPID, mecanumVelocityRef.w1, mecanumVelocityFdb.w1);
-	mecanumVelocityCmd.w2 = PID_Calc(&CM2SpeedPID, mecanumVelocityRef.w2, mecanumVelocityFdb.w2);
-	mecanumVelocityCmd.w3 = PID_Calc(&CM3SpeedPID, mecanumVelocityRef.w3, mecanumVelocityFdb.w3);
-	mecanumVelocityCmd.w4 = PID_Calc(&CM4SpeedPID, mecanumVelocityRef.w4, mecanumVelocityFdb.w4);
+	mecanumVelocityCtl.w1 = PID_Calc(&CM1SpeedPID, mecanumVelocityRef.w1, mecanumVelocityFdb.w1);
+	mecanumVelocityCtl.w2 = PID_Calc(&CM2SpeedPID, mecanumVelocityRef.w2, mecanumVelocityFdb.w2);
+	mecanumVelocityCtl.w3 = PID_Calc(&CM3SpeedPID, mecanumVelocityRef.w3, mecanumVelocityFdb.w3);
+	mecanumVelocityCtl.w4 = PID_Calc(&CM4SpeedPID, mecanumVelocityRef.w4, mecanumVelocityFdb.w4);
 }
 
 static void EmergencyBreak()
 {
-	FS_Clr(&functionalStateCmd, FS_ALL);
+	FS_Clr(&functionalStateCtl, FS_ALL);
 	//CS_Set(0, 0, 0);
 	//GS_Set(0, 0);
+}
+
+void Ctl_Init()
+{
+	FS_Clr(&functionalStateCtl, FS_ALL);
+	GS_Set(&pantiltPositionCtl, 0, 0);
+	GS_Set(&pantiltVelocityCtl, 0, 0);
+	CS_Set(&chassisPositionCtl, 0, 0, 0);
+	CS_Set(&chassisVelocityCtl, 0, 0, 0);
+	MS_Set(&mecanumPositionCtl, 0, 0, 0, 0);
+	MS_Set(&mecanumVelocityCtl, 0, 0, 0, 0);
+
+	PID_Reset(&CM1AnglePID);
+	PID_Reset(&CM1SpeedPID);
+	PID_Reset(&CM2AnglePID);
+	PID_Reset(&CM2SpeedPID);
+	PID_Reset(&CM3AnglePID);
+	PID_Reset(&CM3SpeedPID);
+	PID_Reset(&CM4AnglePID);
+	PID_Reset(&CM4SpeedPID);
+	PID_Reset(&GMYAnglePID);
+	PID_Reset(&GMYSpeedPID);
+	PID_Reset(&GMPAnglePID);
+	PID_Reset(&GMPSpeedPID);
+
+	Ramp_Reset(&ramp);
 }
 
 void Ctl_Proc()

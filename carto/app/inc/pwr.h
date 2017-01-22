@@ -29,7 +29,7 @@ extern "C" {
 #include "can.h"
 
 //#define
-void PWR_Proc();
+void Pwr_Proc();
 
 #ifdef __cplusplus
 }

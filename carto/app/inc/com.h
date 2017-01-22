@@ -28,10 +28,15 @@ extern "C" {
 #include "tty.h"
 #include "wdg.h"
 
+#define COM_RX_FIFO_SIZE 256u
+
 #define COM_MOD_CFG 0x01
 #define COM_MOD_API 0x01
 
-void Com_Proc(uint8_t data);
+void Com_Init();
+void Com_Proc();
+
+void Tty_Proc(uint8_t data);
 
 #ifdef __cplusplus
 }

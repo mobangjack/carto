@@ -16,12 +16,12 @@
 
 #include "tim_srv.h"
 
-void TickTimCallback(void)
+void TickTimCallback()
 {
 	Clk_Spin();
 }
 
-void SyncTimCallback(void)
+void SyncTimCallback()
 {
 	App_Sync();
 }

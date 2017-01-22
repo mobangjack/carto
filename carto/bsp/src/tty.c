@@ -16,7 +16,8 @@
  
 #include "tty.h"
 
-FIFO_t* fifo = NULL;
+uint8_t buf[TTY_TX_FIFO_SIZE];
+FIFO_t fifo;
 
 void Tty_Config()
 {
@@ -33,18 +34,16 @@ void Tty_Config()
 
     NVIC_Config(TTY_NVIC, TTY_NVIC_PRE_PRIORITY, TTY_NVIC_SUB_PRIORITY);
 
-    if (fifo == NULL) {
-    	fifo = FIFO_Create(TTY_TX_FIFO_SIZE);
-    } else {
-    	FIFO_Flush(fifo);
-    }
+    FIFO_Init(&fifo, buf, TTY_TX_FIFO_SIZE);
 
     USART_Cmd(TTY_USART, ENABLE);
 }
 
 void Tty_WriteByte(uint8_t byte)
-{    
-    FIFO_Push(fifo, byte);
+{
+	if (FIFO_NotFull(&fifo)) {
+		FIFO_Push(&fifo, byte);
+	}
     USART_ITConfig(TTY_USART, USART_IT_TXE, ENABLE);
 }
 
@@ -52,18 +51,26 @@ void Tty_Write(const uint8_t* pdata, uint8_t len)
 {
 	uint8_t i = 0;
 	for (; i < len; i++) {
-		FIFO_Push(fifo, pdata[i]);
+		if (FIFO_NotFull(&fifo)) {
+			FIFO_Push(&fifo, pdata[i]);
+		} else {
+			break;
+		}
 	}
     USART_ITConfig(TTY_USART, USART_IT_TXE, ENABLE);
 }
 
-char* tx_buf[TTY_TX_FIFO_SIZE];
+char tx_buf[TTY_TX_FIFO_SIZE];
 void Tty_Print(const char* fmt,...)
 {
 	uint32_t i = 0;
 	uint32_t len = sprintf(tx_buf, fmt);
 	for (; i < len; i++) {
-		FIFO_Push(fifo, tx_buf[i]);
+		if (FIFO_NotFull(&fifo)) {
+			FIFO_Push(&fifo, tx_buf[i]);
+		} else {
+			break;
+		}
 	}
 	USART_ITConfig(TTY_USART, USART_IT_TXE, ENABLE);
 }
@@ -78,9 +85,9 @@ void TTY_IRQ_HANDLER()
 {  
     if (USART_GetITStatus(TTY_USART, USART_IT_TXE) != RESET)
     {   
-		while (!FIFO_IsEmpty(fifo))
+		while (FIFO_NotEmpty(&fifo))
 		{
-			uint8_t tx_data = FIFO_Pop(fifo);
+			uint8_t tx_data = FIFO_Pop(&fifo);
 			while (USART_GetFlagStatus(TTY_USART,USART_FLAG_TC) == RESET);
 			USART_SendData(TTY_USART, tx_data);
 		}

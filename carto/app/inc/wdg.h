@@ -82,10 +82,11 @@ extern "C" {
 #define WDG_OVERFLOW_CNT_ZGYRO 		100
 #define WDG_OVERFLOW_CNT_MOTOR 		100
 
-void WDG_Proc();
-void WDG_Feed(uint8_t i);
-uint32_t WDG_GetErr();
-uint8_t WDG_IsErrSet(uint32_t mask);
+void Wdg_Init();
+void Wdg_Proc();
+void Wdg_Feed(uint8_t i);
+uint32_t Wdg_GetErr();
+uint8_t Wdg_IsErrSet(uint32_t mask);
 
 #ifdef __cplusplus
 }

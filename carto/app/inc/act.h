@@ -28,6 +28,7 @@ extern "C" {
 #include "app.h"
 #include "bsp.h"
 
+void Act_Init();
 void Act_Proc();
 
 #ifdef __cplusplus

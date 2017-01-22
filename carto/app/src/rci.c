@@ -80,15 +80,15 @@ static void GetFunctionalStateRef(RC_t* rc)
 
 static void GetChassisVelocityRef(RC_t* rc)
 {
-	chassisVelocityRef.x = MAP(rc->ch0, CH_MIN, CH_MAX, -CHASSIS_SPEED_MAX, CHASSIS_SPEED_MAX);
-	chassisVelocityRef.y = MAP(rc->ch1, CH_MIN, CH_MAX, -CHASSIS_SPEED_MAX, CHASSIS_SPEED_MAX);
-	chassisVelocityRef.z = MAP(rc->ch2, CH_MIN, CH_MAX, -CHASSIS_SPEED_MAX, CHASSIS_SPEED_MAX);
+	chassisVelocityRef.x = MAP(rc->ch[0], CH_MIN, CH_MAX, -CHASSIS_SPEED_MAX, CHASSIS_SPEED_MAX);
+	chassisVelocityRef.y = MAP(rc->ch[1], CH_MIN, CH_MAX, -CHASSIS_SPEED_MAX, CHASSIS_SPEED_MAX);
+	chassisVelocityRef.z = MAP(rc->ch[2], CH_MIN, CH_MAX, -CHASSIS_SPEED_MAX, CHASSIS_SPEED_MAX);
 }
 
 static void GetPantiltVelocityRef(RC_t* rc)
 {
-	pantiltVelocityRef.y = MAP(rc->ch2, CH_MIN, CH_MAX, -PANTILT_SPEED_MAX, PANTILT_SPEED_MAX);
-	pantiltVelocityRef.p = MAP(rc->ch3, CH_MIN, CH_MAX, -PANTILT_SPEED_MAX, PANTILT_SPEED_MAX);
+	pantiltVelocityRef.y = MAP(rc->ch[2], CH_MIN, CH_MAX, -PANTILT_SPEED_MAX, PANTILT_SPEED_MAX);
+	pantiltVelocityRef.p = MAP(rc->ch[3], CH_MIN, CH_MAX, -PANTILT_SPEED_MAX, PANTILT_SPEED_MAX);
 }
 
 void RCI_Cmd(RC_t* rc)

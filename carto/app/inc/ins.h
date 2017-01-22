@@ -31,11 +31,12 @@ extern "C" {
 
 #include <stdint.h>
 
-void INS_Proc();
+void Ins_Init();
+void Ins_Proc();
 
-extern IMU_t imu;
+extern Imu_t imu;
 extern Mag_t mag;
-extern AHRS_t ahrs;
+extern Ahrs_t ahrs;
 extern Euler_t euler;
 
 #ifdef __cplusplus

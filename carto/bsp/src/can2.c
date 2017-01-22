@@ -16,7 +16,7 @@
  
 #include "can2.h"
 
-void CAN2_Config()
+void Can2_Config()
 {
     GPIO_AF(CAN2_RX_PIN, GPIO_AF_CAN2);
     GPIO_AF(CAN2_TX_PIN, GPIO_AF_CAN2);

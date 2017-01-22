@@ -20,7 +20,7 @@
 /*          Power Management          */
 /**************************************/
 
-void PWR_Proc()
+void Pwr_Proc()
 {
 
 }

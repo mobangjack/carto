@@ -107,31 +107,31 @@ void Can_Proc(uint32_t id, uint8_t* data)
 {
 	switch (id) {
 	case ZGYRO_FDB_CAN_MSG_ID:
-		WDG_Feed(WDG_IDX_ZGYRO);
+		Wdg_Feed(WDG_IDX_ZGYRO);
 		ZGyro_GetAngle(data);
 		break;
 	case MOTOR1_FDB_CAN_MSG_ID:
-		WDG_Feed(WDG_IDX_MOTOR1);
+		Wdg_Feed(WDG_IDX_MOTOR1);
 		Motor_Proc(0, data);
 		break;
 	case MOTOR2_FDB_CAN_MSG_ID:
-		WDG_Feed(WDG_IDX_MOTOR2);
+		Wdg_Feed(WDG_IDX_MOTOR2);
 		Motor_Proc(1, data);
 		break;
 	case MOTOR3_FDB_CAN_MSG_ID:
-		WDG_Feed(WDG_IDX_MOTOR3);
+		Wdg_Feed(WDG_IDX_MOTOR3);
 		Motor_Proc(2, data);
 		break;
 	case MOTOR4_FDB_CAN_MSG_ID:
-		WDG_Feed(WDG_IDX_MOTOR4);
+		Wdg_Feed(WDG_IDX_MOTOR4);
 		Motor_Proc(3, data);
 		break;
 	case MOTOR5_FDB_CAN_MSG_ID:
-		WDG_Feed(WDG_IDX_MOTOR5);
+		Wdg_Feed(WDG_IDX_MOTOR5);
 		Motor_Proc(4, data);
 		break;
 	case MOTOR6_FDB_CAN_MSG_ID:
-		WDG_Feed(WDG_IDX_MOTOR6);
+		Wdg_Feed(WDG_IDX_MOTOR6);
 		Motor_Proc(5, data);
 		break;
 	default:
@@ -150,3 +150,13 @@ void Motor_Reset(uint8_t i)
 	motor[i].reset = 1;
 }
 
+void Can_Reset()
+{
+	ZGyro_Reset();
+	Motor_Reset(0);
+	Motor_Reset(1);
+	Motor_Reset(2);
+	Motor_Reset(3);
+	Motor_Reset(4);
+	Motor_Reset(5);
+}

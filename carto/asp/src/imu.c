@@ -16,7 +16,7 @@
 
 #include "imu.h"
 
-void IMU_Config(IMU_t* imu,
+void Imu_Config(Imu_t* imu,
 		        float ax_offset, float ay_offset, float az_offset,
 		        float gx_offset, float gy_offset, float gz_offset)
 {
@@ -28,7 +28,7 @@ void IMU_Config(IMU_t* imu,
 	imu->gz_offset = gz_offset;
 }
 
-void IMU_Proc(IMU_t* imu, float* buf)
+void Imu_Proc(Imu_t* imu, float* buf)
 {
 	float ax = buf[0];
 	float ay = buf[1];

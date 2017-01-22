@@ -89,6 +89,11 @@ static void GetChassisVelocityFdb()
 	Mecanum_Synthesis(&mecanum, (float*)&mecanumVelocityFdb, (float*)&chassisVelocityFdb);
 }
 
+void Odo_Init()
+{
+
+}
+
 void Odo_Proc()
 {
 	GetFunctionalStateFdb();

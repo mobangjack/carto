@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-#include "rcv_srv.h"
+#include "aci.h"
 
-void RcvCallback(uint8_t* dbuf)
-{
-	Rcv_Cmd(&dbuf);
-}
-
+/********************************************/
+/*          Auto Control Interface          */
+/********************************************/

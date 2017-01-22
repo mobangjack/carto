@@ -20,13 +20,12 @@
 /*            Application             */
 /**************************************/
 
-Cfg_t cfg = CFG_DEFAULT;
-
-IMU_t imu;
+Cfg_t cfg;
+Imu_t imu;
 Mag_t mag;
-AHRS_t ahrs;
-uint8_t div = 4;
+Ahrs_t ahrs;
 Ramp_t ramp;
+DBUS_t dbus;
 Mecanum_t mecanum;
 PID_t GMYAnglePID;
 PID_t GMYSpeedPID;
@@ -42,220 +41,69 @@ PID_t CM4AnglePID;
 PID_t CM4SpeedPID;
 
 InputMode_t inputMode;
+WorkingState_t workingState;
 
 FunctionalState_t functionalStateRef;
 FunctionalState_t functionalStateFdb;
-FunctionalState_t functionalStateCmd;
+FunctionalState_t functionalStateCtl;
 
 PantiltState_t pantiltPositionRef;
 PantiltState_t pantiltPositionFdb;
-PantiltState_t pantiltPositionCmd;
+PantiltState_t pantiltPositionCtl;
 
 PantiltState_t pantiltVelocityRef;
 PantiltState_t pantiltVelocityFdb;
-PantiltState_t pantiltVelocityCmd;
+PantiltState_t pantiltVelocityCtl;
 
 ChassisState_t chassisPositionRef;
 ChassisState_t chassisPositionFdb;
-ChassisState_t chassisPositionCmd;
+ChassisState_t chassisPositionCtl;
 
 ChassisState_t chassisVelocityRef;
 ChassisState_t chassisVelocityFdb;
-ChassisState_t chassisVelocityCmd;
+ChassisState_t chassisVelocityCtl;
 
 MecanumState_t mecanumPositionRef;
 MecanumState_t mecanumPositionFdb;
-MecanumState_t mecanumPositionCmd;
+MecanumState_t mecanumPositionCtl;
 
 MecanumState_t mecanumVelocityRef;
 MecanumState_t mecanumVelocityFdb;
-MecanumState_t mecanumVelocityCmd;
+MecanumState_t mecanumVelocityCtl;
 
 void App_Init()
 {
 	Bsp_Config();
 
-	Cfg_Load(&cfg);
-
-	// IMU Configuration
-	IMU_Config(&imu,
-		cfg.imu.ax_offset,
-		cfg.imu.ay_offset,
-		cfg.imu.az_offset,
-		cfg.imu.gx_offset,
-		cfg.imu.gy_offset,
-		cfg.imu.gz_offset);
-	// Mag Configuration
-	Mag_Config(&mag,
-		cfg.mag.mx_offset,
-		cfg.mag.my_offset,
-		cfg.mag.mz_offset);
-	// Attitude Heading Reference System Configuration
-	AHRS_Config(&ahrs, 2.0f, 0.02f);
-	// Ramp Configuration
-	Ramp_Config(&ramp, cfg.ctl.rmp);
-	/*******************************************/
-	/* Mecanum Wheel Power Transmission System */
-	/*              Configuration              */
-	/*******************************************/
-	/*              2        1                 */
-	/*                  |y                     */
-	/*                 b|___x                  */
-	/*               z    a                    */
-	/*              3        4                 */
-	/*                                         */
-	/*******************************************/
-	Mecanum_Config(&mecanum,
-		cfg.cha.mecCfg.lx,
-		cfg.cha.mecCfg.ly,
-		cfg.cha.mecCfg.r1,
-		cfg.cha.mecCfg.r2);
-	// Gimbal Yaw Angle PID Configuration
-	PID_Config(&GMYAnglePID,
-		cfg.yaw.posPID.kp,
-		cfg.yaw.posPID.ki,
-		cfg.yaw.posPID.kd,
-		cfg.yaw.posPID.it,
-		cfg.yaw.posPID.Pmax,
-		cfg.yaw.posPID.Imax,
-		cfg.yaw.posPID.Dmax,
-		cfg.yaw.posPID.Omax);
-	// Gimbal Yaw Speed PID Configuration
-	PID_Config(&GMYSpeedPID,
-		cfg.yaw.spdPID.kp,
-		cfg.yaw.spdPID.ki,
-		cfg.yaw.spdPID.kd,
-		cfg.yaw.spdPID.it,
-		cfg.yaw.spdPID.Pmax,
-		cfg.yaw.spdPID.Imax,
-		cfg.yaw.spdPID.Dmax,
-		cfg.yaw.spdPID.Omax);
-	// Gimbal Pitch Angle PID Configuration
-	PID_Config(&GMPAnglePID,
-		cfg.pit.posPID.kp,
-		cfg.pit.posPID.ki,
-		cfg.pit.posPID.kd,
-		cfg.pit.posPID.it,
-		cfg.pit.posPID.Pmax,
-		cfg.pit.posPID.Imax,
-		cfg.pit.posPID.Dmax,
-		cfg.pit.posPID.Omax);
-	// Gimbal Pitch Speed PID Configuration
-	PID_Config(&GMPSpeedPID,
-		cfg.pit.spdPID.kp,
-		cfg.pit.spdPID.ki,
-		cfg.pit.spdPID.kd,
-		cfg.pit.spdPID.it,
-		cfg.pit.spdPID.Pmax,
-		cfg.pit.spdPID.Imax,
-		cfg.pit.spdPID.Dmax,
-		cfg.pit.spdPID.Omax);
-	// Chassis Motor Number 1 Angle PID Configuration
-	PID_Config(&CM1AnglePID,
-		cfg.cha.posPID.kp,
-		cfg.cha.posPID.ki,
-		cfg.cha.posPID.kd,
-		cfg.cha.posPID.it,
-		cfg.cha.posPID.Pmax,
-		cfg.cha.posPID.Imax,
-		cfg.cha.posPID.Dmax,
-		cfg.cha.posPID.Omax);
-	// Chassis Motor Number 1 Speed PID Configuration
-	PID_Config(&CM1SpeedPID,
-		cfg.cha.spdPID.kp,
-		cfg.cha.spdPID.ki,
-		cfg.cha.spdPID.kd,
-		cfg.cha.spdPID.it,
-		cfg.cha.spdPID.Pmax,
-		cfg.cha.spdPID.Imax,
-		cfg.cha.spdPID.Dmax,
-		cfg.cha.spdPID.Omax);
-	// Chassis Motor Number 2 Angle PID Configuration
-	PID_Config(&CM2AnglePID,
-		cfg.cha.posPID.kp,
-		cfg.cha.posPID.ki,
-		cfg.cha.posPID.kd,
-		cfg.cha.posPID.it,
-		cfg.cha.posPID.Pmax,
-		cfg.cha.posPID.Imax,
-		cfg.cha.posPID.Dmax,
-		cfg.cha.posPID.Omax);
-	// Chassis Motor Number 2 Speed PID Configuration
-	PID_Config(&CM2SpeedPID,
-		cfg.cha.spdPID.kp,
-		cfg.cha.spdPID.ki,
-		cfg.cha.spdPID.kd,
-		cfg.cha.spdPID.it,
-		cfg.cha.spdPID.Pmax,
-		cfg.cha.spdPID.Imax,
-		cfg.cha.spdPID.Dmax,
-		cfg.cha.spdPID.Omax);
-	// Chassis Motor Number 3 Angle PID Configuration
-	PID_Config(&CM3AnglePID,
-		cfg.cha.posPID.kp,
-		cfg.cha.posPID.ki,
-		cfg.cha.posPID.kd,
-		cfg.cha.posPID.it,
-		cfg.cha.posPID.Pmax,
-		cfg.cha.posPID.Imax,
-		cfg.cha.posPID.Dmax,
-		cfg.cha.posPID.Omax);
-	// Chassis Motor Number 3 Speed PID Configuration
-	PID_Config(&CM3SpeedPID,
-		cfg.cha.spdPID.kp,
-		cfg.cha.spdPID.ki,
-		cfg.cha.spdPID.kd,
-		cfg.cha.spdPID.it,
-		cfg.cha.spdPID.Pmax,
-		cfg.cha.spdPID.Imax,
-		cfg.cha.spdPID.Dmax,
-		cfg.cha.spdPID.Omax);
-	// Chassis Motor Number 4 Angle PID Configuration
-	PID_Config(&CM4AnglePID,
-		cfg.cha.posPID.kp,
-		cfg.cha.posPID.ki,
-		cfg.cha.posPID.kd,
-		cfg.cha.posPID.it,
-		cfg.cha.posPID.Pmax,
-		cfg.cha.posPID.Imax,
-		cfg.cha.posPID.Dmax,
-		cfg.cha.posPID.Omax);
-	// Chassis Motor Number 4 Speed PID Configuration
-	PID_Config(&CM4SpeedPID,
-		cfg.cha.spdPID.kp,
-		cfg.cha.spdPID.ki,
-		cfg.cha.spdPID.kd,
-		cfg.cha.spdPID.it,
-		cfg.cha.spdPID.Pmax,
-		cfg.cha.spdPID.Imax,
-		cfg.cha.spdPID.Dmax,
-		cfg.cha.spdPID.Omax);
-
-}
-
-void App_Reset()
-{
-	PID_Reset(&CM1AnglePID);
-	PID_Reset(&CM1SpeedPID);
-	PID_Reset(&CM2AnglePID);
-	PID_Reset(&CM2SpeedPID);
-	PID_Reset(&CM3AnglePID);
-	PID_Reset(&CM3SpeedPID);
-	PID_Reset(&CM4AnglePID);
-	PID_Reset(&CM4SpeedPID);
-	PID_Reset(&GMYAnglePID);
-	PID_Reset(&GMYSpeedPID);
-	PID_Reset(&GMPAnglePID);
-	PID_Reset(&GMPSpeedPID);
+	Act_Init();
+	Can_Init();
+	Cfg_Init();
+	Clk_Init();
+	Cmd_Init();
+	Com_Init();
+	Ctl_Init();
+	Ins_Init();
+	Odo_Init();
+	Wdg_Init();
 }
 
 void App_Sync()
 {
-	if (Clk_GetUsTick() % div == 0) {
+	if (Clk_GetUsTick() % cfg.ctl.div == 0) {
+		Wdg_Proc();
+		Cmd_Proc();
+		Com_Proc();
+		Ins_Proc();
 		Odo_Proc();
 		Ctl_Proc();
 		Act_Proc();
+		Pwr_Proc();
 	}
+}
+
+void GetInputMode(const RC_t* rc)
+{
+	inputMode = rc->sw[SW_IDX_R];
 }
 
 FunctionalState_t FS_Get(const FunctionalState_t* fs, FunctionalState_t msk)
@@ -276,5 +124,26 @@ void FS_Clr(FunctionalState_t* fs, FunctionalState_t msk)
 void FS_Tog(FunctionalState_t* fs, FunctionalState_t msk)
 {
 	FS_Get(fs, msk) ? FS_Clr(fs, msk) : FS_Set(fs, msk);
+}
+
+void CS_Set(ChassisState_t* cs, float x, float y, float z)
+{
+	cs->x = x;
+	cs->y = y;
+	cs->z = z;
+}
+
+void GS_Set(PantiltState_t* gs, float y, float p)
+{
+	gs->y = y;
+	gs->p = p;
+}
+
+void MS_Set(MecanumState_t* ms, float w1, float w2, float w3, float w4)
+{
+	ms->w1 = w1;
+	ms->w2 = w2;
+	ms->w3 = w3;
+	ms->w4 = w4;
 }
 

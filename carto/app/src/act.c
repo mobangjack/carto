@@ -22,27 +22,27 @@
 
 static void PeriphsStateCmd()
 {
-	if (FS_Get(&functionalStateCmd, FS_LED_GREEN)) {
+	if (FS_Get(&functionalStateCtl, FS_LED_GREEN)) {
 		LED_GREEN_ON();
 	} else {
 		LED_GREEN_OFF();
 	}
-	if (FS_Get(&functionalStateCmd, FS_LED_RED)) {
+	if (FS_Get(&functionalStateCtl, FS_LED_RED)) {
 		LED_RED_ON();
 	} else {
 		LED_RED_OFF();
 	}
-	if (FS_Get(&functionalStateCmd, FS_GUN)) {
+	if (FS_Get(&functionalStateCtl, FS_GUN)) {
 		GUN_ON();
 	} else {
 		GUN_OFF();
 	}
-	if (FS_Get(&functionalStateCmd, FS_LASER)) {
+	if (FS_Get(&functionalStateCtl, FS_LASER)) {
 		LASER_ON();
 	} else {
 		LASER_OFF();
 	}
-	if (FS_Get(&functionalStateCmd, FS_SPINNER)) {
+	if (FS_Get(&functionalStateCtl, FS_SPINNER)) {
 		SPINNER_ON();
 	} else {
 		SPINNER_OFF();
@@ -51,11 +51,20 @@ static void PeriphsStateCmd()
 
 static void ChassisMotorCmd()
 {
-	CM_CMD(0, 0, 0, 0);
+	CM_CMD(mecanumVelocityCtl.w1, mecanumVelocityCtl.w2, mecanumVelocityCtl.w3, mecanumVelocityCtl.w4);
 }
 
 static void PantiltMotorCmd()
 {
+	GM_CMD(pantiltVelocityCtl.y, pantiltVelocityCtl.p);
+}
+
+void Act_Init()
+{
+	GUN_OFF();
+	LASER_OFF();
+	SPINNER_OFF();
+	CM_CMD(0, 0, 0, 0);
 	GM_CMD(0, 0);
 }
 

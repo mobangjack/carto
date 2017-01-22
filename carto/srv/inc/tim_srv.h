@@ -17,6 +17,14 @@
 #ifndef __TIM_SRV_H__
 #define __TIM_SRV_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "app.h"
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

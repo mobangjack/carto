@@ -27,6 +27,7 @@ extern "C" {
 
 #include "app.h"
 
+void Odo_Init();
 void Odo_Proc();
 
 #ifdef __cplusplus

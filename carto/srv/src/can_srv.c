@@ -16,6 +16,10 @@
 
 #include "can_srv.h"
 
+/*********************************************/
+/*      Controller Area Network Service      */
+/*********************************************/
+
 void Can1RxCallback(uint32_t id, uint8_t* data)
 {
 	Can_Proc(id, data);

@@ -18,6 +18,6 @@
 
 void MPU6050Callback(float* buf)
 {
-	IMU_Proc(&imu, buf);
+	Imu_Proc(&imu, buf);
 }
 

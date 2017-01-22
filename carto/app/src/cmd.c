@@ -16,38 +16,36 @@
  
 #include "cmd.h"
 
-/**********************************************/
-/*               System Command               */
-/**********************************************/
+/***************************************/
+/*               Command               */
+/***************************************/
 
-static void GetInputMode(DBUS_t* dbus)
+void Cmd_Init()
 {
-	inputMode = dbus->rc.sw[SW_IDX_R];
+	DBUS_Reset(&dbus);
 }
 
-static void DBUS_Cmd(DBUS_t* dbus)
+void Cmd_Proc()
 {
-	GetInputMode(dbus);
+	GetInputMode(&dbus.rc);
 	if (inputMode == INPUT_MODE_RC)
 	{
-		RCI_Cmd(&dbus->rc);
+		RCI_Cmd(&dbus.rc);
 	}
 	else if (inputMode == INPUT_MODE_HC)
 	{
-		HCI_Cmd(&dbus->hc);
+		HCI_Cmd(&dbus.hc);
 	}
-	else if (inputMode == INPUT_MODE_AD)
+	else if (inputMode == INPUT_MODE_AC)
 	{
-
+		//ACI_Cmd();
 	}
 }
 
-void DT7_Cmd(uint8_t* dbuf)
+void Rcv_Cmd(uint8_t* dbuf)
 {
-	DBUS_t dbus;
-	WDG_Feed(WDG_IDX_RC);
-	DBUS_Dec(&dbus, dbuf);
-	DBUS_Cmd(&dbus);
+	Wdg_Feed(WDG_IDX_RC);
+	DBUS_Dec(dbuf, &dbus);
 }
 
 

@@ -17,9 +17,9 @@
 #ifndef __CMD_H__
 #define __CMD_H__
 
-/**********************************************/
-/*               System Command               */
-/**********************************************/
+/***************************************/
+/*               Command               */
+/***************************************/
 
 #ifdef __cplusplus
 extern "C" {
@@ -27,7 +27,10 @@ extern "C" {
 
 #include "app.h"
 
-void DT7_Cmd(uint8_t* dbuf);
+void Cmd_Init();
+void Cmd_Proc();
+
+void Rcv_Cmd(uint8_t* dbuf);
 
 #ifdef __cplusplus
 }

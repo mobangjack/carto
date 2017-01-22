@@ -27,6 +27,7 @@ extern "C" {
 
 #include <stdint.h>
 
+void Clk_Init();
 void Clk_Spin();
 
 uint32_t Clk_GetUsTick();

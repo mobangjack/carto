@@ -39,12 +39,12 @@ typedef struct
 	float gx_offset;
 	float gy_offset;
 	float gz_offset;
-}IMU_t;
+}Imu_t;
 
-void IMU_Config(IMU_t* imu,
+void Imu_Config(Imu_t* imu,
 		        float ax_offset, float ay_offset, float az_offset,
 		        float gx_offset, float gy_offset, float gz_offset);
-void IMU_Proc(IMU_t* imu, float* buf);
+void Imu_Proc(Imu_t* imu, float* buf);
 
 #ifdef __cplusplus
 }

@@ -48,7 +48,12 @@ uint32_t wdg[WDG_NUM] = {
 
 uint32_t err = 0xFFFFFFFF;
 
-void WDG_Proc()
+void Wdg_Init()
+{
+
+}
+
+void Wdg_Proc()
 {
 	int i = 0;
 	for(i = 0; i < WDG_NUM; i++)
@@ -66,17 +71,17 @@ void WDG_Proc()
 	}
 }
 
-void WDG_Feed(uint8_t i)
+void Wdg_Feed(uint8_t i)
 {
 	wdg[i] = 0;
 }
 
-uint32_t WDG_GetErr()
+uint32_t Wdg_GetErr()
 {
 	return err;
 }
 
-uint8_t WDG_IsErrSet(uint32_t mask)
+uint8_t Wdg_IsErrSet(uint32_t mask)
 {
 	return (err & mask) == mask;
 }

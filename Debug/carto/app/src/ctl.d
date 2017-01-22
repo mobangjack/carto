@@ -77,7 +77,6 @@ carto/app/src/ctl.o: ../carto/app/src/ctl.c \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/asp/inc/est.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/wdg.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/cfg.h \
- /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/flash.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/clk.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/cmd.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/com.h \
@@ -249,8 +248,6 @@ carto/app/src/ctl.o: ../carto/app/src/ctl.c \
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/wdg.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/cfg.h:
-
-/home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/flash.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/clk.h:
 

@@ -16,6 +16,15 @@
  
 #include "fifo.h"
 
+void FIFO_Init(FIFO_t* fifo, uint8_t* buf, uint32_t len)
+{
+	fifo->buf = buf;
+	fifo->len = len;
+	fifo->r = 0;
+	fifo->w = 0;
+	fifo->n = 0;
+}
+
 FIFO_t* FIFO_Create(uint32_t len)
 {
 	FIFO_t* fifo = (FIFO_t*)malloc(sizeof(FIFO_t));
@@ -28,69 +37,67 @@ FIFO_t* FIFO_Create(uint32_t len)
 		return NULL;
 	}
 	fifo->len = len;
-	fifo->r = fifo->buf;
-	fifo->w = fifo->buf;
-	fifo->cnt = 0;
+	fifo->r = 0;
+	fifo->w = 0;
+	fifo->n = 0;
 	return fifo;
 }
 
 void FIFO_Flush(FIFO_t* fifo)
 {
-	fifo->r = fifo->buf;
-	fifo->w = fifo->buf;
-	fifo->cnt = 0;
+	fifo->r = 0;
+	fifo->w = 0;
+	fifo->n = 0;
 }
 
-uint8_t FIFO_Push(FIFO_t* fifo, uint8_t element)
+void FIFO_Push(FIFO_t* fifo, uint8_t element)
 {
-	if (fifo->cnt == fifo->len) {
-		return 0;
-	}
-	*fifo->w = element;
-	fifo->w = (fifo->w == (fifo->buf+fifo->len-1)) ? fifo->buf :  fifo->w + 1;
-	fifo->cnt++;
-	return 1;
+	fifo->buf[fifo->w] = element;
+	fifo->w = (fifo->w == fifo->len) ? 0 :  fifo->w + 1;
+	fifo->n++;
 }
 
 uint8_t FIFO_Pop(FIFO_t* fifo)
 {
-	if (fifo->cnt == 0) {
-		return 0;
-	} else {
-		uint8_t data = *fifo->r;
-		fifo->r = (fifo->r == (fifo->buf+fifo->len-1)) ? fifo->buf :  fifo->r + 1;
-		fifo->cnt--;
-		return data;
-	}
-
+	uint8_t data = fifo->buf[fifo->r];
+	fifo->r = (fifo->r == fifo->len-1) ? 0 :  fifo->r + 1;
+	fifo->n--;
+	return data;
 }
 
-uint8_t FIFO_Peek(FIFO_t* fifo)
+uint8_t FIFO_Peek(const FIFO_t* fifo)
 {
-	if (fifo->cnt == 0) {
-		return 0;
-	}
-	return *fifo->r;
+	return fifo->buf[fifo->r];
 }
 
-uint8_t FIFO_IsFull(FIFO_t* fifo)
+uint8_t FIFO_IsFull(const FIFO_t* fifo)
 {
-	return fifo->cnt == fifo->len;
+	return fifo->n == fifo->len;
 }
 
-uint8_t FIFO_IsEmpty(FIFO_t* fifo)
+uint8_t FIFO_NotFull(const FIFO_t* fifo)
 {
-	return fifo->cnt == 0;
+	return fifo->n != fifo->len;
 }
 
-uint32_t FIFO_GetUsed(FIFO_t* fifo)
+uint8_t FIFO_IsEmpty(const FIFO_t* fifo)
 {
-	return fifo->cnt;
+	return fifo->n == 0;
 }
 
-uint32_t FIFO_GetFree(FIFO_t* fifo)
+uint8_t FIFO_NotEmpty(const FIFO_t* fifo)
 {
-	return fifo->len - fifo->cnt;
+	return fifo->n != 0;
+}
+
+uint32_t FIFO_GetUsed(const FIFO_t* fifo)
+{
+	return fifo->n;
+}
+
+uint32_t FIFO_GetFree(const FIFO_t* fifo)
+{
+	return fifo->len - fifo->n;
 }
 
 void FIFO_Destroy(FIFO_t* fifo)
