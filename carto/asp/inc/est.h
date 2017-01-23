@@ -38,10 +38,10 @@ typedef struct
 	float delta;        // delta value
 }Est_t; // Estimator
 
-Est_t* Est_Create(uint32_t gaussN, float kalmanQ);
-void Est_Proc(Est_t* est, float v);
-void Est_Reset(Est_t* est);
-void Est_Destroy(Est_t* est);
+Est_t* EstCreate(uint32_t gaussN, float kalmanQ);
+void EstProc(Est_t* est, float v);
+void EstReset(Est_t* est);
+void EstDestroy(Est_t* est);
 
 #ifdef __cplusplus
 }

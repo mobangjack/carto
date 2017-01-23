@@ -38,6 +38,7 @@ typedef struct
   float p;    // fused variance
 }Kalman_t;
 
+void KalmanInit(Kalman_t* kalman, float q, float r, float e, float d);
 Kalman_t* KalmanCreate();
 void KalmanReset(Kalman_t* kalman);
 void KalmanSetE(Kalman_t* kalman, float e);

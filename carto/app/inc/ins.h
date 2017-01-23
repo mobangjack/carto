@@ -25,18 +25,13 @@
 extern "C" {
 #endif
 
-#include "imu.h"
-#include "mag.h"
-#include "ahrs.h"
-
-#include <stdint.h>
+#include "app.h"
 
 void Ins_Init();
 void Ins_Proc();
 
-extern Imu_t imu;
-extern Mag_t mag;
-extern Ahrs_t ahrs;
+void Mpu_Proc(float* buf);
+
 extern Euler_t euler;
 
 #ifdef __cplusplus

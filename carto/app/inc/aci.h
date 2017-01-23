@@ -25,6 +25,8 @@
 extern "C" {
 #endif
 
+void Aci_Init();
+void Aci_Proc();
 
 #ifdef __cplusplus
 }

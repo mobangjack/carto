@@ -42,6 +42,7 @@ extern "C" {
 #include "srv.h"
 
 // Applications
+#include "aci.h" // Auto Control Interface
 #include "act.h" // Action (Depend on BSP)
 #include "can.h" // Controller Area Network
 #include "cfg.h" // System Configuration
@@ -49,11 +50,11 @@ extern "C" {
 #include "cmd.h" // System Command
 #include "com.h" // Communication
 #include "ctl.h" // Logic Controller
-#include "hci.h" // Host Control Input
+#include "hci.h" // Host Control Interface
 #include "ins.h" // Inertial Navigation System
 #include "odo.h" // Odometer
 #include "pwr.h" // Power Management
-#include "rci.h" // Remote Control Input
+#include "rci.h" // Remote Control Interface
 #include "wdg.h" // Watch Dog
 
 // VERSION: (20)17/1/7

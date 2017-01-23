@@ -30,25 +30,17 @@ static Est_t* est[MOTOR_NUM];    // Estimator Group
 
 uint8_t Can_Init()
 {
-	static uint8_t ini_flag = 0;
-	if (ini_flag == 1) {
-		return 1;
-	} else {
-		uint8_t i = 0;
-		for (; i < MOTOR_NUM; i++) {
-			if(est[i] == NULL) {
-				est[i] = Est_Create(EST_GAUSS_N, EST_KALMAN_Q);
-				if (est[i] == NULL) {
-					uint8_t j = 0;
-					for (; j < i; j++) {
-						Est_Destroy(est[i]);
-					}
-					return 0;
-				}
+	static uint8_t ini_flag[MOTOR_NUM];
+	uint8_t i = 0;
+	for (; i < MOTOR_NUM; i++) {
+		if(est[i] == NULL) {
+			est[i] = EstCreate(EST_GAUSS_N, EST_KALMAN_Q);
+			if (est[i] != NULL) {
+				ini_flag[i] = 1;
+			} else {
+				return 0;
 			}
 		}
-		ini_flag = 1;
-		return 1;
 	}
 	return 1;
 }
@@ -99,8 +91,11 @@ static void Motor_Proc(uint8_t i, uint8_t* data)
 		motor[i].rate = angle_fdb_dif;
 	}
 	angle = (angle - motor[i].bias) + motor[i].rnd * PIx2;
-	motor[i].rate = (angle - motor[i].angle) * MOTOR_SPEED_RECIP;
-	motor[i].angle = angle;
+	//motor[i].rate = (angle - motor[i].angle) * MOTOR_SPEED_RECIP;
+	//motor[i].angle = angle;
+	EstProc(est[i], angle);
+	motor[i].angle = est[i]->value;
+	motor[i].rate = est[i]->delta * MOTOR_SPEED_RECIP;;
 }
 
 void Can_Proc(uint32_t id, uint8_t* data)
@@ -146,7 +141,7 @@ void ZGyro_Reset()
 
 void Motor_Reset(uint8_t i)
 {
-	Est_Reset(est[i]);
+	EstReset(est[i]);
 	motor[i].reset = 1;
 }
 

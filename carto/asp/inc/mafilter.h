@@ -32,7 +32,6 @@ typedef struct
 	uint32_t i;
 	float delta_sum;
 	float sum;
-	float out;
 }MAFilter_t;
 
 void MAFilter_Init(MAFilter_t* mafilter, float* buf, uint32_t len);

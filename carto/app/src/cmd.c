@@ -40,12 +40,13 @@ void Cmd_Proc()
 	{
 		//ACI_Cmd();
 	}
+	Mecanum_Decompose(&mecanum, (float*)&chassisVelocityRef, (float*)&mecanumVelocityRef);
 }
 
-void Rcv_Cmd(uint8_t* dbuf)
+void Rcv_Cmd(uint8_t* buf)
 {
 	Wdg_Feed(WDG_IDX_RC);
-	DBUS_Dec(dbuf, &dbus);
+	DBUS_Dec(buf, &dbus);
 }
 
 

@@ -22,7 +22,7 @@
 
 static void WorkingStateSM()
 {
-	if (WDG_IsErrSet(WDG_ERR_FATAL)) {
+	if (Wdg_IsErrSet(WDG_ERR_FATAL)) {
 		workingState = WORKING_STATE_STOP;
 	} else {
 		workingState = WORKING_STATE_NORMAL;
@@ -31,8 +31,10 @@ static void WorkingStateSM()
 
 static void FunctionalStateControl()
 {
-	if (!FS_Get(&functionalStateRef, FS_GUN)) {
-		FS_Clr(&functionalStateCtl, FS_LASER | FS_SPINNER);
+	if (FS_Get(&functionalStateRef, FS_GUN)) {
+		FS_Set(&functionalStateCtl, FS_GUN | FS_LASER);
+	} else {
+		FS_Clr(&functionalStateCtl, FS_GUN | FS_LASER | FS_SPINNER);
 	}
 }
 

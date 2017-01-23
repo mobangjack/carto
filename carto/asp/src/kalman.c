@@ -18,6 +18,14 @@
 
 #define SQR(x) (x*x)
 
+void KalmanInit(Kalman_t* kalman, float q, float r, float e, float d)
+{
+	kalman->q = q;
+	kalman->r = r;
+	kalman->e = e;
+	kalman->d = d;
+}
+
 Kalman_t* KalmanCreate()
 {
 	Kalman_t* kalman = (Kalman_t*)malloc(sizeof(Kalman_t));

@@ -23,11 +23,14 @@
 #include "dbus.h"
 #include "fifo.h"
 #include "gauss.h"
+#include "imu.h"
 #include "kalman.h"
 #include "mafilter.h"
+#include "mag.h"
 #include "mecanum.h"
 #include "pid.h"
 #include "ramp.h"
+#include "stack.h"
 
 #endif
 

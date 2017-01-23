@@ -31,7 +31,6 @@ extern "C" {
 
 //void Cfg_Load(Cfg_t* cfg);
 //uint8_t Cfg_Save(Cfg_t* cfg);
-//uint8_t Cfg_Reset();
 
 void Cfg_Init();
 void Cfg_Proc();

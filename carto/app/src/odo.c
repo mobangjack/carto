@@ -91,7 +91,13 @@ static void GetChassisVelocityFdb()
 
 void Odo_Init()
 {
-
+	FS_Clr(&functionalStateFdb, FS_ALL);
+	GS_Set(&pantiltPositionFdb, 0, 0);
+	GS_Set(&pantiltVelocityFdb, 0, 0);
+	CS_Set(&chassisPositionFdb, 0, 0, 0);
+	CS_Set(&chassisVelocityFdb, 0, 0, 0);
+	MS_Set(&mecanumPositionFdb, 0, 0, 0, 0);
+	MS_Set(&mecanumVelocityFdb, 0, 0, 0, 0);
 }
 
 void Odo_Proc()

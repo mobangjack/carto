@@ -16,6 +16,13 @@
 
 #include "stack.h"
 
+void Stack_Init(Stack_t* stack, uint8_t* buf, uint32_t size)
+{
+	stack->buf = buf;
+	stack->size = size;
+	stack->p = 0;
+}
+
 Stack_t* Stack_Create(uint32_t size)
 {
 	Stack_t* stack = (Stack_t*)malloc(sizeof(Stack_t));
@@ -33,53 +40,64 @@ Stack_t* Stack_Create(uint32_t size)
 	return stack;
 }
 
-uint8_t Stack_Push(Stack_t* stack, uint8_t element)
+void Stack_Push(Stack_t* stack, uint8_t element)
 {
-	if (stack->p == stack->size) {
-		return 0;
-	}
 	stack->buf[stack->p++] = element;
-	return 1;
 }
 
 uint8_t Stack_Pop(Stack_t* stack)
 {
-	if (stack->p == 0) {
-		return 0;
-	}
 	return stack->buf[stack->p--];
 }
 
-uint8_t Stack_Peek(Stack_t* stack)
+uint8_t Stack_Peek(const Stack_t* stack)
 {
-	if (stack->p == 0) {
-		return 0;
-	}
 	return stack->buf[stack->p];
 }
 
-uint32_t Stack_GetUsed(Stack_t* stack)
+uint32_t Stack_GetUsed(const Stack_t* stack)
 {
 	return stack->p;
 }
 
-uint32_t Stack_GetFree(Stack_t* stack)
+uint32_t Stack_GetFree(const Stack_t* stack)
 {
 	return stack->size - stack->p;
 }
 
-uint8_t Stack_GetSize(Stack_t* stack)
+uint8_t Stack_GetSize(const Stack_t* stack)
 {
 	return stack->size;
 }
 
-uint8_t Stack_IsFull(Stack_t* stack)
+uint8_t Stack_IsFull(const Stack_t* stack)
 {
 	return stack->p == stack->size;
 }
 
-uint8_t Stack_IsEmpty(Stack_t* stack)
+uint8_t Stack_NotFull(const Stack_t* stack)
+{
+	return stack->p < stack->size;
+}
+
+uint8_t Stack_IsEmpty(const Stack_t* stack)
 {
 	return stack->p == 0;
 }
 
+uint8_t Stack_NotEmpty(const Stack_t* stack)
+{
+	return stack->p != 0;
+}
+
+void Stack_Destroy(Stack_t* stack)
+{
+	if (stack != NULL) {
+		if (stack->buf != NULL) {
+			free(stack->buf);
+			stack->buf = NULL;
+		}
+		free(stack);
+		stack = NULL;
+	}
+}

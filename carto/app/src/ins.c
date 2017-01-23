@@ -22,10 +22,16 @@
 
 void Ins_Init()
 {
-
+	//Imu_Reset();
 }
 
 void Ins_Proc()
 {
 
+}
+
+void Mpu_Proc(float* buf)
+{
+	Imu_Proc(&imu, buf);
+	Mag_Proc(&mag, buf + 6);
 }

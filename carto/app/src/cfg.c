@@ -20,20 +20,14 @@
 /*     Application Configuration     */
 /*************************************/
 
-void Cfg_Load(Cfg_t* cfg)
+static void Cfg_Load(Cfg_t* cfg)
 {
 	Flash_Read(CFG_DATA_START_ADDR, (u8*)cfg, sizeof(Cfg_t));
 }
 
-uint8_t Cfg_Save(Cfg_t* cfg)
+static uint8_t Cfg_Save(Cfg_t* cfg)
 {
 	return Flash_Write(CFG_DATA_START_ADDR, (u8*)cfg, sizeof(Cfg_t));
-}
-
-uint8_t Cfg_Reset()
-{
-	Cfg_t def = CFG_DEFAULT;
-	return Cfg_Save(&def);
 }
 
 void Cfg_Init()

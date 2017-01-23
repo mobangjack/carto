@@ -85,6 +85,11 @@ static void GetChassisVelocityRef(RC_t* rc)
 	chassisVelocityRef.z = MAP(rc->ch[2], CH_MIN, CH_MAX, -CHASSIS_SPEED_MAX, CHASSIS_SPEED_MAX);
 }
 
+static void GetMecanumVelocityRef(RC_t* rc)
+{
+	Mecanum_Decompose(&mecanum, (float*)&chassisVelocityRef, (float*)&mecanumVelocityRef);
+}
+
 static void GetPantiltVelocityRef(RC_t* rc)
 {
 	pantiltVelocityRef.y = MAP(rc->ch[2], CH_MIN, CH_MAX, -PANTILT_SPEED_MAX, PANTILT_SPEED_MAX);
@@ -95,6 +100,7 @@ void RCI_Cmd(RC_t* rc)
 {
 	GetFunctionalStateRef(rc);
 	GetChassisVelocityRef(rc);
+	GetMecanumVelocityRef(rc);
 	GetPantiltVelocityRef(rc);
 }
 

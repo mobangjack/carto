@@ -47,9 +47,10 @@ typedef struct
   float mse; // mean square error
   float last_mse; // last mse
   float delta_mse; // delta mse
-  float err; // gauss err
+  float error; // gauss error
 }Gauss_t;
 
+void GaussInit(Gauss_t* gauss, uint8_t* buf, uint32_t N);
 Gauss_t* GaussCreate(uint16_t N);
 void GaussReset(Gauss_t* gauss);
 void GaussProc(Gauss_t* gauss, float x);

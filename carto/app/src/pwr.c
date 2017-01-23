@@ -20,7 +20,21 @@
 /*          Power Management          */
 /**************************************/
 
+float buf[PWR_MAFILTER_LEN];
+MAFilter_t mafilter;
+float current[MOTOR_NUM];
+float voltage[MOTOR_NUM];
+
+void Pwr_Init()
+{
+	MAFilter_Init(&mafilter, buf, PWR_MAFILTER_LEN);
+}
+
 void Pwr_Proc()
 {
+}
 
+uint8_t Pwr_IsOverload()
+{
+	return 0;
 }

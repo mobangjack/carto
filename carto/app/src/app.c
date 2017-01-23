@@ -75,6 +75,7 @@ void App_Init()
 {
 	Bsp_Config();
 
+	Aci_Init();
 	Act_Init();
 	Can_Init();
 	Cfg_Init();
@@ -84,6 +85,7 @@ void App_Init()
 	Ctl_Init();
 	Ins_Init();
 	Odo_Init();
+	Pwr_Init();
 	Wdg_Init();
 }
 

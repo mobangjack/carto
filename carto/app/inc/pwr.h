@@ -25,11 +25,14 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
-#include "can.h"
+#include "app.h"
 
-//#define
+#define PWR_OVERLOAD_VAL 5000
+#define PWR_MAFILTER_LEN 100
+
+void Pwr_Init();
 void Pwr_Proc();
+uint8_t Pwr_IsOverload();
 
 #ifdef __cplusplus
 }

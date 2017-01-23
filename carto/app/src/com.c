@@ -30,7 +30,7 @@ void Com_Init()
 
 void Com_Proc()
 {
-
+	uint32_t len = FIFO_GetUsed(&fifo);
 }
 
 void Tty_Proc(uint8_t data)

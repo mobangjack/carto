@@ -18,6 +18,13 @@
 
 #define SQR(x) (x*x)
 
+void GaussInit(Gauss_t* gauss, uint8_t* buf, uint32_t N)
+{
+	gauss->buf = buf;
+	gauss->N = N;
+	GaussReset(gauss);
+}
+
 Gauss_t* GaussCreate(uint16_t N)
 {
 	Gauss_t* gauss = (Gauss_t*)malloc(sizeof(Gauss_t));
@@ -50,7 +57,7 @@ void GaussReset(Gauss_t* gauss)
 	gauss->mse = 0;
 	gauss->last_mse = 0;
 	gauss->delta_mse = 0;
-	gauss->err = FLT_MAX;
+	gauss->error = FLT_MAX;
 }
 
 void GaussProc(Gauss_t* gauss, float x) {
@@ -66,7 +73,7 @@ void GaussProc(Gauss_t* gauss, float x) {
 		gauss->sse += SQR(gauss->resn);
 		gauss->mse = gauss->sse / gauss->n;
 		gauss->delta_mse = gauss->mse - gauss->last_mse;
-		gauss->err = SQR(gauss->delta_mean) + SQR(gauss->delta_mse);
+		gauss->error = SQR(gauss->delta_mean) + SQR(gauss->delta_mse);
 	} else {
 		if (gauss->i == gauss->N) gauss->i = 0;
 		gauss->delta_sum = x - gauss->buf[gauss->i];
@@ -79,7 +86,7 @@ void GaussProc(Gauss_t* gauss, float x) {
 		gauss->sse += gauss->delta_sse;
 		gauss->mse = gauss->sse / gauss->n;
 		gauss->delta_mse = gauss->mse - gauss->last_mse;
-		gauss->err = SQR(gauss->delta_mean) + SQR(gauss->delta_mse);
+		gauss->error = SQR(gauss->delta_mean) + SQR(gauss->delta_mse);
 		gauss->buf[gauss->i++] = x;
 	}
 }
