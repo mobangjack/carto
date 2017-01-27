@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,34 @@
  * limitations under the License.
  */
 
-#include "com_srv.h"
+#ifndef __GDF_H__
+#define __GDF_H__
 
-void TtyRxCallback(uint8_t data)
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <stdint.h>
+
+typedef struct
 {
-	Tty_Proc(data);
+	float mean;
+	float var; // variance
+
+	float* dat; // data buffer
+	uint32_t n; // data buffer length
+	uint32_t i; // data index
+
+	float avg; // average
+	float var; // variance
+}Gdf_t;
+
+void GdfInit(Gdf_t* gdf, float* dat, uint32_t n);
+void GdfUpdate(Gdf_t* gdf, float val);
+void GdfReset(Gdf_t* gdf);
+
+#ifdef __cplusplus
 }
+#endif
+
+#endif

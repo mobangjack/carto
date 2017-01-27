@@ -34,18 +34,19 @@ typedef struct
   
   float e;    // estimation
   float d;    // difference
-  float k;    // inverse of kalman gain
+  float k;    // kalman gain
   float p;    // fused variance
 }Kalman_t;
 
 void KalmanInit(Kalman_t* kalman, float q, float r, float e, float d);
-Kalman_t* KalmanCreate();
 void KalmanReset(Kalman_t* kalman);
 void KalmanSetE(Kalman_t* kalman, float e);
 void KalmanSetD(Kalman_t* kalman, float d);
 void KalmanSetQ(Kalman_t* kalman, float q);
 void KalmanSetR(Kalman_t* kalman, float r);
 float KalmanFilter(Kalman_t* kalman, float x);
+
+Kalman_t* KalmanCreate();
 void KalmanDestroy(Kalman_t* kalman);
 
 #ifdef __cplusplus

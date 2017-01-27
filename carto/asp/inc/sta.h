@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-#ifndef __MAFILTER_H__
-#define __MAFILTER_H__
+#ifndef __STA_H__
+#define __STA_H__
 
-/*******************************************/
-/*          Moving Average Filter          */
-/*******************************************/
+/******************************************/
+/*   Statistic Helper Type and Function   */
+/******************************************/
 
-#ifdef __cpluplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -32,20 +32,22 @@ extern "C" {
 typedef struct
 {
 	float* buf; // data buffer
-	uint32_t len; // buffer length
-	uint32_t i; // ring buffer index
-	float avg; // average value of data buffer
-}MAFilter_t;
+	uint32_t len; // data buffer length
+	uint32_t i; // data index
 
-void MAFilterInit(MAFilter_t* mafilter, float* buf, uint32_t len);
-float MAFilterCalc(MAFilter_t* mafilter, float v);
-void MAFilterReset(MAFilter_t* mafilter);
+	float avg; // average
+	float var; // variance
+}Sta_t;
 
-MAFilter_t* MAFilterCreate(uint32_t len);
-void MAFilterDestroy(MAFilter_t* mafilter);
+void StaInit(Sta_t* sta, float* buf, uint32_t len);
+void StaUpdate(Sta_t* sta, float v);
+void StaReset(Sta_t* sta);
 
-#ifdef __cpluplus
+Sta_t* StaCreate(uint32_t n);
+void StaDestroy(Sta_t* sta);
+
+#ifdef __cplusplus
 }
 #endif
 
-#endif /* __MAFILTER_H__ */
+#endif

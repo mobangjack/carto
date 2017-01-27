@@ -14,60 +14,50 @@
  * limitations under the License.
  */
 
-/****************************************/
-/*        Moving Average Filter         */
-/****************************************/
+/*******************************************/
+/*          Moving Average Filter          */
+/*******************************************/
 
 #include "mafilter.h"
 
-void MAFilter_Init(MAFilter_t* mafilter, float* buf, uint32_t len)
+void MAFilterInit(MAFilter_t* mafilter, float* buf, uint32_t len)
 {
 	mafilter->buf = buf;
 	mafilter->len = len;
-	mafilter->i = 0;
-	mafilter->delta_sum = 0;
-	mafilter->sum = 0;
+	MAFilterReset(mafilter);
 }
 
-MAFilter_t* MAFilter_Create(uint32_t len)
+MAFilter_t* MAFilterCreate(uint32_t len)
 {
 	MAFilter_t* mafilter = (MAFilter_t*)malloc(sizeof(MAFilter_t));
 	if(mafilter == NULL) return NULL;
-	mafilter->buf = (float*)malloc(sizeof(float)*len);
+	mafilter->buf = (float*)malloc(len * sizeof(float));
 	if(mafilter->buf == NULL) {
 		free(mafilter);
 		mafilter = NULL;
 		return NULL;
 	}
-	memset(mafilter->buf, 0, len * sizeof(float));
 	mafilter->len = len;
-	mafilter->i = 0;
-	mafilter->delta_sum = 0;
-	mafilter->sum = 0;
+	MAFilterReset(mafilter);
 	return mafilter;
 }
 
-float MAFilter_Calc(MAFilter_t* mafilter, float v)
+float MAFilterCalc(MAFilter_t* mafilter, float v)
 {
-	float output = 0;
-	mafilter->delta_sum = v - mafilter->buf[mafilter->i];
-	mafilter->sum += mafilter->delta_sum;
-	output = mafilter->sum / mafilter->len;
-	mafilter->buf[mafilter->i++] = v;
-	if(mafilter->i == mafilter->len) {
-		mafilter->i = 0;
-	}
-	return output;
+	mafilter->avg += (v - mafilter->buf[mafilter->i]) / mafilter->len;
+	mafilter->buf[mafilter->i] = v;
+	mafilter->i = (mafilter->i == mafilter->len) ? 0 : mafilter->i + 1;
+	return mafilter->avg;
 }
 
-void MAFilter_Reset(MAFilter_t* mafilter)
+void MAFilterReset(MAFilter_t* mafilter)
 {
 	memset(mafilter->buf, 0, mafilter->len * sizeof(float));
 	mafilter->i = 0;
-	mafilter->sum = 0;
+	mafilter->avg = 0;
 }
 
-void MAFilter_Destroy(MAFilter_t* mafilter)
+void MAFilterDestroy(MAFilter_t* mafilter)
 {
 	if (mafilter != NULL) {
 		if (mafilter->buf != NULL) {

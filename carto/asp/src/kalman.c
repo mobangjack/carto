@@ -26,14 +26,6 @@ void KalmanInit(Kalman_t* kalman, float q, float r, float e, float d)
 	kalman->d = d;
 }
 
-Kalman_t* KalmanCreate()
-{
-	Kalman_t* kalman = (Kalman_t*)malloc(sizeof(Kalman_t));
-	if (kalman == NULL) return NULL;
-	KalmanReset(kalman);
-	return kalman;
-}
-
 void KalmanReset(Kalman_t* kalman)
 {
 	kalman->e = 0;
@@ -67,11 +59,19 @@ float KalmanFilter(Kalman_t* kalman, float x) {
 	kalman->e += kalman->d;
 	kalman->p += kalman->q;
 	// fusion
-	kalman->k = (1 + kalman->r / kalman->p); // inverse of kalman gain
-	kalman->d = (x - kalman->e) / kalman->k; // delta mean
+	kalman->k = 1 / (1 + kalman->r / kalman->p); // kalman gain
+	kalman->d = (x - kalman->e) * kalman->k; // delta mean
 	kalman->e += kalman->d;                  // fused mean
-	kalman->p -= SQR(kalman->p) / kalman->k; // fused variance
+	kalman->p -= SQR(kalman->p) * kalman->k; // fused variance
 	return kalman->e;
+}
+
+Kalman_t* KalmanCreate()
+{
+	Kalman_t* kalman = (Kalman_t*)malloc(sizeof(Kalman_t));
+	if (kalman == NULL) return NULL;
+	KalmanReset(kalman);
+	return kalman;
 }
 
 void KalmanDestroy(Kalman_t* kalman)

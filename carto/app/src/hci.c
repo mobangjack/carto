@@ -81,17 +81,17 @@ static void GetChassisVelocityRef(HC_t* hc)
 	float vy = (hc->key.val & KEY_S) ? -speed : ((hc->key.val & KEY_W) ? speed : 0);
 	float vz = MAP(hc->mouse.x, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -PANTILT_SPEED_MAX, PANTILT_SPEED_MAX);
 	if (fx == NULL) {
-		fx = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
+		fx = MAFilterCreate(KEY_CONTROL_MAFILTER_LEN);
 	}
 	if (fy == NULL) {
-		fy = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
+		fy = MAFilterCreate(KEY_CONTROL_MAFILTER_LEN);
 	}
 	if (fz == NULL) {
-		fz = MAFilter_Create(KEY_CONTROL_MAFILTER_LEN);
+		fz = MAFilterCreate(KEY_CONTROL_MAFILTER_LEN);
 	}
-	chassisVelocityRef.x = MAFilter_Calc(fx, vx);
-	chassisVelocityRef.y = MAFilter_Calc(fy, vy);
-	chassisVelocityRef.z = MAFilter_Calc(fz, vz);
+	chassisVelocityRef.x = MAFilterCalc(fx, vx);
+	chassisVelocityRef.y = MAFilterCalc(fy, vy);
+	chassisVelocityRef.z = MAFilterCalc(fz, vz);
 }
 
 static void GetPantiltVelocityRef(HC_t* hc)

@@ -83,10 +83,10 @@ static void Motor_Proc(uint8_t i, uint8_t* data)
 
 	if (angle_fdb_dif > GAP) {
 		motor[i].rnd--;
-		motor[i].rate = angle_fdb_dif - MOTOR_ECD_ANGLE_FDB_MOD;
+		motor[i].rate = angle_fdb_dif - MOTOR_ANGLE_FDB_MOD;
 	} else if (angle_fdb_dif < -GAP) {
 		motor[i].rnd++;
-		motor[i].rate = angle_fdb_dif + MOTOR_ECD_ANGLE_FDB_MOD;
+		motor[i].rate = angle_fdb_dif + MOTOR_ANGLE_FDB_MOD;
 	} else {
 		motor[i].rate = angle_fdb_dif;
 	}
@@ -95,7 +95,7 @@ static void Motor_Proc(uint8_t i, uint8_t* data)
 	//motor[i].angle = angle;
 	EstProc(est[i], angle);
 	motor[i].angle = est[i]->value;
-	motor[i].rate = est[i]->delta * MOTOR_SPEED_RECIP;;
+	motor[i].rate = est[i]->delta * MOTOR_SPEED_RECIP;
 }
 
 void Can_Proc(uint32_t id, uint8_t* data)

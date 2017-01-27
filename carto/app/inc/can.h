@@ -38,14 +38,14 @@ extern "C" {
 #define MOTOR5_FDB_CAN_MSG_ID  0x205
 #define MOTOR6_FDB_CAN_MSG_ID  0x206
 
-#define ZGYRO_ANGLE_RECIP         1.7453292e-04f
-#define ZGYRO_SPEED_RECIP         1000 // 1khz
-#define MOTOR_ECD_ANGLE_FDB_MAX   8191
-#define MOTOR_ECD_ANGLE_FDB_MOD   8192
-#define MOTOR_ANGLE_RECIP         7.6699042e-04f
-#define MOTOR_SPEED_RECIP         1000 // 1khz
-#define MOTOR_ESC_CURRENT_FDB_MAX 13000
-#define MOTOR_ESC_CURRENT_REF_MAX 5000
+#define ZGYRO_ANGLE_RECIP      1.7453292e-04f
+#define ZGYRO_SPEED_RECIP      1000 // 1khz
+#define MOTOR_ANGLE_FDB_MAX    8191
+#define MOTOR_ANGLE_FDB_MOD    8192
+#define MOTOR_ANGLE_RECIP      7.6699042e-04f
+#define MOTOR_SPEED_RECIP      1000 // 1khz
+#define MOTOR_CURRENT_FDB_MAX  13000
+#define MOTOR_CURRENT_REF_MAX  5000
 
 typedef struct
 {
@@ -78,6 +78,7 @@ uint8_t Can_Init();
 void Can_Proc(uint32_t id, uint8_t* data);
 void ZGyro_Reset();
 void Motor_Reset(uint8_t i);
+void Can_Reset();
 
 extern ZGyro_t zgyro;
 extern Motor_t motor[MOTOR_NUM]; // Motor group

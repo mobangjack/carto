@@ -14,13 +14,9 @@
  * limitations under the License.
  */
 
-#ifndef __SRV_H__
-#define __SRV_H__
-
-#include "can_srv.h"
-#include "imu_srv.h"
-#include "rcv_srv.h"
 #include "tty_srv.h"
 
-#endif
-
+void TtyRxCallback(uint8_t data)
+{
+	Tty_Proc(data);
+}

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,28 @@
  * limitations under the License.
  */
 
-#ifndef __SRV_H__
-#define __SRV_H__
+#include "gdf.h"
 
-#include "can_srv.h"
-#include "imu_srv.h"
-#include "rcv_srv.h"
-#include "tty_srv.h"
+void GdfInit(Gdf_t* gdf, float* dat, uint32_t n)
+{
+	gdf->dat = dat;
+	gdf->n = n;
+	GdfReset(gdf);
+}
 
-#endif
+void GdfUpdate(Gdf_t* gdf, float dat)
+{
+	float avg = gdf->avg;
+	float del = dat - gdf->dat[gdf->i];
+	gdf->avg += del / gdf->n;
+	gdf->var += del * (gdf->dat[gdf->i] - avg + dat - gdf->avg) / gdf->n;
+	gdf->dat[gdf->i] = dat;
+	gdf->i = (gdf->i == gdf->n) ? 0 : gdf->i + 1;
+}
 
+void GdfReset(Gdf_t* gdf)
+{
+	gdf->i = 0;
+	gdf->avg = 0;
+	gdf->var = 0;
+}

@@ -64,6 +64,8 @@ void EstReset(Est_t* est)
 	GaussReset(est->gauss);
 	KalmanReset(est->kalman);
 	est->error = FLT_MAX;
+	est->value = 0;
+	est->delta = 0;
 }
 
 void EstDestroy(Est_t* est)
