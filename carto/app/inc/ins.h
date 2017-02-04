@@ -32,6 +32,9 @@ void Ins_Proc();
 
 void Mpu_Proc(float* buf);
 
+extern Imu_t imu;
+extern Mag_t mag;
+extern Ahrs_t ahrs;
 extern Euler_t euler;
 
 #ifdef __cplusplus

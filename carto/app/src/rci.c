@@ -20,40 +20,40 @@
 /*          Remote Control Interface          */
 /**********************************************/
 
-SwitchState_t switchStates[SW_CNT];
-SwitchEvent_t switchEvents[SW_CNT];
+static SwitchState_t switchStates[SW_CNT];
+static SwitchEvent_t switchEvents[SW_CNT];
 
-static void GetSwitchStates(RC_t* rc)
+static uint8_t lastRawSwitchStates[SW_CNT];
+static uint32_t switchConfirmCounts[SW_CNT];
+static void GetSwitchStates(const RC_t* rc)
 {
-	static uint8_t last_state[SW_CNT];
-	static uint32_t cnt[SW_CNT];
-	uint8_t* this_state = rc->sw;
+	uint8_t* thisRawSwitchStates = rc->sw;
 	uint32_t i = 0;
 	for (; i < SW_CNT; i++) {
-		if (this_state[i] == last_state[i]) {
-			if (cnt[i] < SWITCH_STATE_CHANGE_DELAY) {
-				cnt[i]++;
+		if (thisRawSwitchStates[i] == lastRawSwitchStates[i]) {
+			if (switchConfirmCounts[i] < SWITCH_CONFIRM_CNT) {
+				switchConfirmCounts[i]++;
 			} else {
-				switchStates[i] = this_state[i];
+				switchStates[i] = thisRawSwitchStates[i];
 			}
 		} else {
-			cnt[i] = 0;
+			switchConfirmCounts[i] = 0;
 		}
-		last_state[i] = this_state[i];
+		lastRawSwitchStates[i] = thisRawSwitchStates[i];
 	}
 }
 
-static void GetSwitchEvents(RC_t* rc)
+static SwitchState_t lastSwitchStates[SW_CNT];
+static void GetSwitchEvents(const RC_t* rc)
 {
-	static SwitchState_t last_state[SW_CNT];
 	uint32_t i = 0;
 	for (; i < SW_CNT; i++) {
-		switchEvents[i] = GET_SWITCH_EVENT(last_state[i], switchStates[i]);
-		last_state[i] = switchStates[i];
+		switchEvents[i] = GET_SWITCH_EVENT(lastSwitchStates[i], switchStates[i]);
+		lastSwitchStates[i] = switchStates[i];
 	}
 }
 
-static void GetFunctionalStateRef(RC_t* rc)
+static void GetFunctionalStateRef(const RC_t* rc)
 {
 	GetSwitchStates(rc);
 	GetSwitchEvents(rc);
@@ -78,29 +78,35 @@ static void GetFunctionalStateRef(RC_t* rc)
 
 #define MAP(val,min1,max1,min2,max2) ((val-min1)*(max2-min2)/(max1-min1)+min2)
 
-static void GetChassisVelocityRef(RC_t* rc)
+static void GetChassisVelocityRef(const RC_t* rc)
 {
-	chassisVelocityRef.x = MAP(rc->ch[0], CH_MIN, CH_MAX, -CHASSIS_SPEED_MAX, CHASSIS_SPEED_MAX);
-	chassisVelocityRef.y = MAP(rc->ch[1], CH_MIN, CH_MAX, -CHASSIS_SPEED_MAX, CHASSIS_SPEED_MAX);
-	chassisVelocityRef.z = MAP(rc->ch[2], CH_MIN, CH_MAX, -CHASSIS_SPEED_MAX, CHASSIS_SPEED_MAX);
+	chassisVelocityRef.x = MAP(rc->ch[0], CH_MIN, CH_MAX, -cfg.cha.spdCfg.max, cfg.cha.spdCfg.max);
+	chassisVelocityRef.y = MAP(rc->ch[1], CH_MIN, CH_MAX, -cfg.cha.spdCfg.max, cfg.cha.spdCfg.max);
+	chassisVelocityRef.z = MAP(rc->ch[2], CH_MIN, CH_MAX, -cfg.cha.spdCfg.max, cfg.cha.spdCfg.max);
 }
 
-static void GetMecanumVelocityRef(RC_t* rc)
+static void GetPantiltVelocityRef(const RC_t* rc)
 {
-	Mecanum_Decompose(&mecanum, (float*)&chassisVelocityRef, (float*)&mecanumVelocityRef);
+	pantiltVelocityRef.y = MAP(rc->ch[2], CH_MIN, CH_MAX, -cfg.yaw.spdCfg.max, cfg.yaw.spdCfg.max);
+	pantiltVelocityRef.p = MAP(rc->ch[3], CH_MIN, CH_MAX, -cfg.pit.spdCfg.max, cfg.pit.spdCfg.max);
 }
 
-static void GetPantiltVelocityRef(RC_t* rc)
+void RCI_Init()
 {
-	pantiltVelocityRef.y = MAP(rc->ch[2], CH_MIN, CH_MAX, -PANTILT_SPEED_MAX, PANTILT_SPEED_MAX);
-	pantiltVelocityRef.p = MAP(rc->ch[3], CH_MIN, CH_MAX, -PANTILT_SPEED_MAX, PANTILT_SPEED_MAX);
+	uint32_t i = 0;
+	for (; i < SW_CNT; i++) {
+		lastRawSwitchStates[i] = 0;
+		switchConfirmCounts[i] = 0;
+		lastSwitchStates[i] = 0;
+		switchStates[i] = 0;
+		switchEvents[i] = 0;
+	}
 }
 
-void RCI_Cmd(RC_t* rc)
+void RCI_Proc(const RC_t* rc)
 {
 	GetFunctionalStateRef(rc);
 	GetChassisVelocityRef(rc);
-	GetMecanumVelocityRef(rc);
 	GetPantiltVelocityRef(rc);
 }
 

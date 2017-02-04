@@ -25,8 +25,8 @@
 extern "C" {
 #endif
 
-void Aci_Init();
-void Aci_Proc();
+void ACI_Init();
+void ACI_Proc(const CBUS_t* cbus);
 
 #ifdef __cplusplus
 }

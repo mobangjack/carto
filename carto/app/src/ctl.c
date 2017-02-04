@@ -20,12 +20,84 @@
 /*          Logic Controller          */
 /**************************************/
 
-static void WorkingStateSM()
+WorkingState_e workingState;
+WorkingStateSwitch_e workingStateSwitch;
+
+PID_t CM1SpeedPID;
+PID_t CM2SpeedPID;
+PID_t CM3SpeedPID;
+PID_t CM4SpeedPID;
+PID_t GMYAnglePID;
+PID_t GMYSpeedPID;
+PID_t GMPAnglePID;
+PID_t GMPSpeedPID;
+
+Ramp_t CM1SpeedRamp;
+Ramp_t CM2SpeedRamp;
+Ramp_t CM3SpeedRamp;
+Ramp_t CM4SpeedRamp;
+Ramp_t GMYSpeedRamp;
+Ramp_t GMPSpeedRamp;
+
+PeriphsState_t functionalStateCtl;
+PantiltState_t pantiltVelocityCtl;
+PantiltState_t pantiltCurrentsCtl;
+MecanumState_t mecanumCurrentsCtl;
+
+/************************************/
+/*   Working State Switch Machine   */
+/************************************/
+static void WorkingStateSwitchMach()
 {
-	if (Wdg_IsErrSet(WDG_ERR_FATAL)) {
-		workingState = WORKING_STATE_STOP;
-	} else {
-		workingState = WORKING_STATE_NORMAL;
+	switch (workingState) {
+	case WORKING_STATE_STOP:
+		if (!Wdg_IsErrSet(WDG_ERR_FATAL)) {
+			workingState = WORKING_STATE_PREPARE;
+			workingStateSwitch = WORKING_STATE_SWITCH_S2P;
+		}
+		break;
+	case WORKING_STATE_PREPARE:
+		if (Wdg_IsErrSet(WDG_ERR_FATAL)) {
+			workingState = WORKING_STATE_STOP;
+			workingStateSwitch = WORKING_STATE_SWITCH_P2S;
+		} else if (Dev_Ok()){
+			workingState = WORKING_STATE_NORMAL;
+			workingStateSwitch = WORKING_STATE_SWITCH_P2N;
+		}
+		break;
+	case WORKING_STATE_NORMAL:
+		if (Wdg_IsErrSet(WDG_ERR_FATAL)) {
+			workingState = WORKING_STATE_STOP;
+			workingStateSwitch = WORKING_STATE_SWITCH_N2S;
+		} else if (!Dev_Ok()) {
+			workingState = WORKING_STATE_PREPARE;
+			workingStateSwitch = WORKING_STATE_SWITCH_N2P;
+		}
+		break;
+	default:
+		break;
+	}
+}
+
+/************************************/
+/*   Working State Switch Process   */
+/************************************/
+static void WorkingStateSwitchProc()
+{
+	switch (workingStateSwitch) {
+	case WORKING_STATE_SWITCH_S2P: // Stop -> Prepare
+		Ctl_Init();
+		break;
+	case WORKING_STATE_SWITCH_P2N: // Prepare -> Normal
+		break;
+	case WORKING_STATE_SWITCH_N2P: // Normal -> Prepare
+		break;
+	case WORKING_STATE_SWITCH_P2S: // Prepare -> Stop
+		break;
+	case WORKING_STATE_SWITCH_N2S: // Normal -> Stop
+		break;
+	default:
+		break;
 	}
 }
 
@@ -38,84 +110,57 @@ static void FunctionalStateControl()
 	}
 }
 
-static void PantiltPositionControl()
-{
-	pantiltPositionCtl.y = PID_Calc(&GMYAnglePID, pantiltPositionRef.y, pantiltPositionFdb.y);
-	pantiltPositionCtl.p = PID_Calc(&GMPAnglePID, pantiltPositionRef.p, pantiltPositionFdb.p);
-}
-
-static void PantiltVelocityControl()
-{
-	pantiltVelocityCtl.y = PID_Calc(&GMYSpeedPID, pantiltVelocityRef.y, pantiltVelocityFdb.y);
-	pantiltVelocityCtl.p = PID_Calc(&GMPSpeedPID, pantiltVelocityRef.p, pantiltVelocityFdb.p);
-}
-
-static void ChassisPositionControl()
-{
-	mecanumPositionCtl.w1 = PID_Calc(&CM1AnglePID, mecanumPositionRef.w1, mecanumPositionFdb.w1);
-	mecanumPositionCtl.w2 = PID_Calc(&CM2AnglePID, mecanumPositionRef.w2, mecanumPositionFdb.w2);
-	mecanumPositionCtl.w3 = PID_Calc(&CM3AnglePID, mecanumPositionRef.w3, mecanumPositionFdb.w3);
-	mecanumPositionCtl.w4 = PID_Calc(&CM4AnglePID, mecanumPositionRef.w4, mecanumPositionFdb.w4);
-}
-
 static void ChassisVelocityControl()
 {
-	mecanumVelocityCtl.w1 = PID_Calc(&CM1SpeedPID, mecanumVelocityRef.w1, mecanumVelocityFdb.w1);
-	mecanumVelocityCtl.w2 = PID_Calc(&CM2SpeedPID, mecanumVelocityRef.w2, mecanumVelocityFdb.w2);
-	mecanumVelocityCtl.w3 = PID_Calc(&CM3SpeedPID, mecanumVelocityRef.w3, mecanumVelocityFdb.w3);
-	mecanumVelocityCtl.w4 = PID_Calc(&CM4SpeedPID, mecanumVelocityRef.w4, mecanumVelocityFdb.w4);
+	mecanumCurrentsCtl.w1 = PID_Calc(&CM1SpeedPID, mecanumVelocityRef.w1, mecanumVelocityFdb.w1) * Ramp_Calc(&CM1SpeedRamp);
+	mecanumCurrentsCtl.w2 = PID_Calc(&CM2SpeedPID, mecanumVelocityRef.w2, mecanumVelocityFdb.w2) * Ramp_Calc(&CM2SpeedRamp);
+	mecanumCurrentsCtl.w3 = PID_Calc(&CM3SpeedPID, mecanumVelocityRef.w3, mecanumVelocityFdb.w3) * Ramp_Calc(&CM3SpeedRamp);
+	mecanumCurrentsCtl.w4 = PID_Calc(&CM4SpeedPID, mecanumVelocityRef.w4, mecanumVelocityFdb.w4) * Ramp_Calc(&CM4SpeedRamp);
 }
 
-static void EmergencyBreak()
+static void PantiltPositionControl()
 {
-	FS_Clr(&functionalStateCtl, FS_ALL);
-	//CS_Set(0, 0, 0);
-	//GS_Set(0, 0);
+	pantiltVelocityCtl.y = PID_Calc(&GMYAnglePID, pantiltPositionRef.y, pantiltPositionFdb.y);
+	pantiltVelocityCtl.p = PID_Calc(&GMPAnglePID, pantiltPositionRef.p, pantiltPositionFdb.p);
+	pantiltCurrentsCtl.y = PID_Calc(&GMYSpeedPID, pantiltVelocityRef.y, pantiltVelocityFdb.y) * Ramp_Calc(&GMYSpeedRamp);
+	pantiltCurrentsCtl.p = PID_Calc(&GMPSpeedPID, pantiltVelocityRef.p, pantiltVelocityFdb.p) * Ramp_Calc(&GMPSpeedRamp);
 }
 
 void Ctl_Init()
 {
-	FS_Clr(&functionalStateCtl, FS_ALL);
-	GS_Set(&pantiltPositionCtl, 0, 0);
-	GS_Set(&pantiltVelocityCtl, 0, 0);
-	CS_Set(&chassisPositionCtl, 0, 0, 0);
-	CS_Set(&chassisVelocityCtl, 0, 0, 0);
-	MS_Set(&mecanumPositionCtl, 0, 0, 0, 0);
-	MS_Set(&mecanumVelocityCtl, 0, 0, 0, 0);
+	workingState = WORKING_STATE_STOP;
+	workingStateSwitch = WORKING_STATE_SWITCH_NOP;
 
-	PID_Reset(&CM1AnglePID);
+	FS_Clr(&functionalStateCtl, FS_ALL);
+	GS_Set(&pantiltCurrentsCtl, 0, 0);
+	MS_Set(&mecanumCurrentsCtl, 0, 0, 0, 0);
+
 	PID_Reset(&CM1SpeedPID);
-	PID_Reset(&CM2AnglePID);
 	PID_Reset(&CM2SpeedPID);
-	PID_Reset(&CM3AnglePID);
 	PID_Reset(&CM3SpeedPID);
-	PID_Reset(&CM4AnglePID);
 	PID_Reset(&CM4SpeedPID);
 	PID_Reset(&GMYAnglePID);
 	PID_Reset(&GMYSpeedPID);
 	PID_Reset(&GMPAnglePID);
 	PID_Reset(&GMPSpeedPID);
 
-	Ramp_Reset(&ramp);
+	Ramp_Reset(&CM1SpeedRamp);
+	Ramp_Reset(&CM2SpeedRamp);
+	Ramp_Reset(&CM3SpeedRamp);
+	Ramp_Reset(&CM4SpeedRamp);
+	Ramp_Reset(&GMYSpeedRamp);
+	Ramp_Reset(&GMPSpeedRamp);
 }
 
 void Ctl_Proc()
 {
-	WorkingStateSM();
-	if(workingState == WORKING_STATE_PREPARE || workingState == WORKING_STATE_STOP)
-	{
-		EmergencyBreak();
-	}
-	else if(workingState == WORKING_STATE_NORMAL)
+	WorkingStateSwitchMach();
+	WorkingStateSwitchProc();
+	if(workingState == WORKING_STATE_NORMAL)
 	{
 		FunctionalStateControl();
-
-		ChassisPositionControl();
 		ChassisVelocityControl();
-
 		PantiltPositionControl();
-		PantiltVelocityControl();
 	}
-	
 }
 

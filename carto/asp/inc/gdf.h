@@ -17,28 +17,36 @@
 #ifndef __GDF_H__
 #define __GDF_H__
 
+/*******************************************/
+/*       Gauss Distribution Function       */
+/*******************************************/
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
 
 typedef struct
 {
-	float mean;
-	float var; // variance
+	float* buf;   // data buffer
+	uint32_t len; // buffer length
+	uint32_t i;   // ring buffer index
 
-	float* dat; // data buffer
-	uint32_t n; // data buffer length
-	uint32_t i; // data index
-
-	float avg; // average
-	float var; // variance
+	float avg;  // average
+	float avgd; // average difference
+	float var;  // variance
+	float vard; // variance difference
 }Gdf_t;
 
-void GdfInit(Gdf_t* gdf, float* dat, uint32_t n);
-void GdfUpdate(Gdf_t* gdf, float val);
-void GdfReset(Gdf_t* gdf);
+void Gdf_Init(Gdf_t* gdf, float* buf, uint32_t len);
+void Gdf_Calc(Gdf_t* gdf, float v);
+void Gdf_Reset(Gdf_t* gdf);
+
+Gdf_t* Gdf_Create(uint32_t len);
+void Gdf_Destroy(Gdf_t* gdf);
 
 #ifdef __cplusplus
 }

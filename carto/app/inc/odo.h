@@ -30,6 +30,16 @@ extern "C" {
 void Odo_Init();
 void Odo_Proc();
 
+extern PeriphsState_t functionalStateFdb;
+extern PantiltState_t pantiltPositionFdb;
+extern PantiltState_t pantiltVelocityFdb;
+extern PantiltState_t pantiltCurrentsFdb;
+extern MecanumState_t mecanumPositionFdb;
+extern MecanumState_t mecanumVelocityFdb;
+extern MecanumState_t mecanumCurrentsFdb;
+extern ChassisState_t chassisPositionFdb;
+extern ChassisState_t chassisVelocityFdb;
+
 #ifdef __cplusplus
 }
 #endif

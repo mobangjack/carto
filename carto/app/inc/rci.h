@@ -30,21 +30,22 @@ extern "C" {
 typedef uint8_t SwitchState_t;
 typedef uint8_t SwitchEvent_t;
 
-#define SWITCH_STATE_CHANGE_DELAY 10
+#define SWITCH_CONFIRM_CNT 10
 
 #define SWITCH_STATE_0 ((uint8_t)0)
 #define SWITCH_STATE_1 ((uint8_t)1)
 #define SWITCH_STATE_3 ((uint8_t)3)
 #define SWITCH_STATE_2 ((uint8_t)2)
 
-#define GET_SWITCH_EVENT(last,this) (((last)<<2)|(this))
+#define GET_SWITCH_EVENT(lastState,thisState) (((lastState)<<2)|(thisState))
 #define SWITCH_EVENT_3TO1 GET_SWITCH_EVENT(3, 1)
 #define SWITCH_EVENT_1TO3 GET_SWITCH_EVENT(1, 3)
 #define SWITCH_EVENT_3TO2 GET_SWITCH_EVENT(3, 2)
 #define SWITCH_EVENT_2TO3 GET_SWITCH_EVENT(2, 3)
 #define SWITCH_EVENT_NONE 0
 
-void RCI_Cmd(RC_t* rc);
+void RCI_Init();
+void RCI_Proc(const RC_t* rc);
 
 #ifdef __cplusplus
 }

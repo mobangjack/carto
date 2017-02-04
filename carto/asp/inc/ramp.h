@@ -23,7 +23,7 @@ extern "C" {
 
 #include <stdint.h>
 
-typedef struct Ramp
+typedef struct
 {
 	uint32_t scale;
 	uint32_t count;

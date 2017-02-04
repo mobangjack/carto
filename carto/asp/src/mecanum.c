@@ -20,9 +20,9 @@
 /* Mecanum Wheel Power Transmission System */
 /*******************************************/
 /*              2        1                 */
-/*                  |v[1]                     */
+/*                  |y                     */
 /*                 b|___x                  */
-/*               v[2]    a                    */
+/*               z    a                    */
 /*              3        4                 */
 /*                                         */
 /*******************************************/
@@ -35,11 +35,6 @@ void Mecanum_Config(Mecanum_t* mecanum, float lx, float ly, float r1, float r2)
 	mecanum->cx = r1 / 4.0f;
 	mecanum->cy = r2 / 4.0f;
 	mecanum->cz = mecanum->r / 4.0f / mecanum->l;
-}
-
-uint8_t Mecanum_Ok(const Mecanum_t* mecanum)
-{
-	return mecanum->cx > 0 && mecanum->cy > 0 && mecanum->cz > 0;
 }
 
 void Mecanum_Synthesis(const Mecanum_t* mecanum, const float* w, float* v)

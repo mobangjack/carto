@@ -31,20 +31,22 @@ extern "C" {
 
 typedef struct
 {
-	float* buf; // data buffer
-	uint32_t len; // data buffer length
-	uint32_t i; // data index
+	float* buf;   // data buffer
+	uint32_t len; // buffer length
+	uint32_t i;   // ring buffer index
 
-	float avg; // average
-	float var; // variance
+	float avg;  // average
+	float avgd; // average difference
+	float var;  // variance
+	float vard; // variance difference
 }Sta_t;
 
-void StaInit(Sta_t* sta, float* buf, uint32_t len);
-void StaUpdate(Sta_t* sta, float v);
-void StaReset(Sta_t* sta);
+void Sta_Init(Sta_t* gdf, float* buf, uint32_t len);
+void Sta_Calc(Sta_t* gdf, float v);
+void Sta_Reset(Sta_t* gdf);
 
-Sta_t* StaCreate(uint32_t n);
-void StaDestroy(Sta_t* sta);
+Sta_t* Sta_Create(uint32_t len);
+void Sta_Destroy(Sta_t* gdf);
 
 #ifdef __cplusplus
 }

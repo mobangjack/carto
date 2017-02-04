@@ -101,13 +101,13 @@ typedef struct
 }DBUS_t; // Robomasters DT7 receiver DBUS frame structure
 
 void RC_Enc(const RC_t* rc, uint8_t* buf);
-void RC_Dec(const uint8_t* buf, RC_t* rc);
+void RC_Dec(RC_t* rc, const uint8_t* buf);
 void RC_Reset(RC_t* rc);
 void HC_Enc(const HC_t* hc, uint8_t* buf);
-void HC_Dec(const uint8_t* buf, HC_t* hc);
+void HC_Dec(HC_t* hc, const uint8_t* buf);
 void HC_Reset(HC_t* hc);
 void DBUS_Enc(const DBUS_t* dbus, uint8_t* buf);
-void DBUS_Dec(const uint8_t* buf, DBUS_t* dbus);
+void DBUS_Dec(DBUS_t* dbus, const uint8_t* buf);
 void DBUS_Reset(DBUS_t* dbus);
 
 #ifdef __cplusplus

@@ -59,7 +59,7 @@ float KalmanFilter(Kalman_t* kalman, float x) {
 	kalman->e += kalman->d;
 	kalman->p += kalman->q;
 	// fusion
-	kalman->k = 1 / (1 + kalman->r / kalman->p); // kalman gain
+	kalman->k = kalman->p / (kalman->p + kalman->r ); // kalman gain
 	kalman->d = (x - kalman->e) * kalman->k; // delta mean
 	kalman->e += kalman->d;                  // fused mean
 	kalman->p -= SQR(kalman->p) * kalman->k; // fused variance

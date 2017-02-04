@@ -32,14 +32,15 @@ typedef uint8_t MouseButtonState_t;
 typedef uint8_t MouseButtonEvent_t;
 
 #define KEY_CONTROL_MAFILTER_LEN 10
-#define MOUSE_BUTTON_STATE_CHANGE_DELAY 10
+#define MOUSE_BUTTON_PRESSED_CNT 10
 
 #define GET_MOUSE_BUTTON_EVENT(last,this) ((last<<2)|this)
 #define MOUSE_BUTTON_EVENT_UP GET_MOUSE_BUTTON_EVENT(MOUSE_BUTTON_DOWM, MOUSE_BUTTON_UP)
 #define MOUSE_BUTTON_EVENT_DOWN GET_MOUSE_BUTTON_EVENT(MOUSE_BUTTON_UP, MOUSE_BUTTON_DOWM)
 #define MOUSE_BUTTON_EVENT_NONE 0
 
-void HCI_Cmd(HC_t* hc);
+void HCI_Init();
+void HCI_Proc(HC_t* hc);
 
 #ifdef __cplusplus
 }

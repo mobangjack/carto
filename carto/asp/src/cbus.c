@@ -29,7 +29,7 @@
 #define SECND_BYTE(x) L8B(x)
 #endif
 
-void CBUS_ENC(CBUS_t* cbus, uint8_t* cbuf)
+void CBUS_Enc(CBUS_t* cbus, uint8_t* cbuf)
 {
 	cbuf[0] = FIRST_BYTE(CBUS_HEADER);
 	cbuf[1] = SECND_BYTE(CBUS_HEADER);
@@ -51,7 +51,7 @@ void CBUS_ENC(CBUS_t* cbus, uint8_t* cbuf)
 	CRC16Append(cbuf, CBUS_FRAME_LEN, CBUS_CRC);
 }
 
-uint8_t CBUS_DEC(CBUS_t* cbus, uint8_t* cbuf)
+uint8_t CBUS_Dec(CBUS_t* cbus, uint8_t* cbuf)
 {
 	uint16_t header = *((uint16_t*)(cbuf));
 	if (header != CBUS_HEADER) {

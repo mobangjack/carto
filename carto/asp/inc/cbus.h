@@ -23,6 +23,8 @@ extern "C" {
 
 #include "crc16.h"
 #include <string.h>
+#include <stdint.h>
+#include <stdlib.h>
 
 #define CBUS_HEADER ((uint16_t)0x1234)
 #define CBUS_CRC ((uint16_t)0x1234)
@@ -38,8 +40,8 @@ typedef struct
 	int16_t f;
 }CBUS_t;
 
-void CBUS_ENC(CBUS_t* cbus, uint8_t* cbuf);
-uint8_t CBUS_DEC(CBUS_t* cbus, uint8_t* cbuf);
+void CBUS_Enc(const CBUS_t* cbus, uint8_t* cbuf);
+uint8_t CBUS_Dec(const uint8_t* cbuf, CBUS_t* cbus);
 
 #ifdef __cplusplus
 }

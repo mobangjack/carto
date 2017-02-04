@@ -20,17 +20,18 @@
 
 #include "mafilter.h"
 
-void MAFilterInit(MAFilter_t* mafilter, float* buf, uint32_t len)
+void MAFilter_Init(MAFilter_t* mafilter, float* buf, uint32_t len)
 {
 	mafilter->buf = buf;
 	mafilter->len = len;
-	MAFilterReset(mafilter);
+	MAFilter_Reset(mafilter);
 }
 
-MAFilter_t* MAFilterCreate(uint32_t len)
+MAFilter_t* MAFilter_Create(uint32_t len)
 {
 	MAFilter_t* mafilter = (MAFilter_t*)malloc(sizeof(MAFilter_t));
 	if(mafilter == NULL) return NULL;
+	memset(mafilter, 0, sizeof(MAFilter_t));
 	mafilter->buf = (float*)malloc(len * sizeof(float));
 	if(mafilter->buf == NULL) {
 		free(mafilter);
@@ -38,11 +39,11 @@ MAFilter_t* MAFilterCreate(uint32_t len)
 		return NULL;
 	}
 	mafilter->len = len;
-	MAFilterReset(mafilter);
+	MAFilter_Reset(mafilter);
 	return mafilter;
 }
 
-float MAFilterCalc(MAFilter_t* mafilter, float v)
+float MAFilter_Calc(MAFilter_t* mafilter, float v)
 {
 	mafilter->avg += (v - mafilter->buf[mafilter->i]) / mafilter->len;
 	mafilter->buf[mafilter->i] = v;
@@ -50,14 +51,14 @@ float MAFilterCalc(MAFilter_t* mafilter, float v)
 	return mafilter->avg;
 }
 
-void MAFilterReset(MAFilter_t* mafilter)
+void MAFilter_Reset(MAFilter_t* mafilter)
 {
 	memset(mafilter->buf, 0, mafilter->len * sizeof(float));
 	mafilter->i = 0;
 	mafilter->avg = 0;
 }
 
-void MAFilterDestroy(MAFilter_t* mafilter)
+void MAFilter_Destroy(MAFilter_t* mafilter)
 {
 	if (mafilter != NULL) {
 		if (mafilter->buf != NULL) {

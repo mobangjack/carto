@@ -28,7 +28,7 @@ void RC_Enc(const RC_t* rc, uint8_t* buf)
 			 (rc->ch[3] >> 7);
 }
 
-void RC_Dec(const uint8_t* buf, RC_t* rc)
+void RC_Dec(RC_t* rc, const uint8_t* buf)
 {
 	rc->ch[0] = (buf[0] | (buf[1] << 8)) & 0x07ff;         //!< Channel 0
 	rc->ch[1] = ((buf[1] >> 3) | (buf[2] << 5)) & 0x07ff;  //!< Channel 1
@@ -66,7 +66,7 @@ void HC_Enc(const HC_t* hc, uint8_t* buf)
 	buf[11] = hc->res.val >> 8;
 }
 
-void HC_Dec(const uint8_t* buf, HC_t* hc)
+void HC_Dec(HC_t* hc, const uint8_t* buf)
 {
 	hc->mouse.x = buf[0] | (buf[1] << 8);   //!< Mouse X axis
 	hc->mouse.y = buf[2] | (buf[3] << 8);   //!< Mouse Y axis
@@ -94,7 +94,7 @@ void DBUS_Enc(const DBUS_t* dbus, uint8_t* buf)
 	HC_Enc(&dbus->hc, buf + HC_OFFSET);
 }
 
-void DBUS_Dec(const uint8_t* buf, DBUS_t* dbus)
+void DBUS_Dec(DBUS_t* dbus, const uint8_t* buf)
 {
 	RC_Dec(buf, &dbus->rc);
 	HC_Dec(buf + HC_OFFSET, &dbus->hc);

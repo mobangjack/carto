@@ -22,33 +22,31 @@
 
 static void GetFunctionalStateFdb()
 {
-	FunctionalState_t fs = FS_NO;
 	if (LED_GREEN_IS_ON()) {
-		fs |= FS_LED_GREEN;
+		functionalStateFdb |= FS_LED_GREEN;
 	} else {
-		fs &= ~FS_LED_GREEN;
+		functionalStateFdb &= ~FS_LED_GREEN;
 	}
 	if (LED_RED_IS_ON()) {
-		fs |= FS_LED_RED;
+		functionalStateFdb |= FS_LED_RED;
 	} else {
-		fs &= ~FS_LED_RED;
+		functionalStateFdb &= ~FS_LED_RED;
 	}
 	if (GUN_IS_ON()) {
-		fs |= FS_GUN;
+		functionalStateFdb |= FS_GUN;
 	} else {
-		fs &= ~FS_GUN;
+		functionalStateFdb &= ~FS_GUN;
 	}
 	if (LASER_IS_ON()) {
-		fs |= FS_GUN;
+		functionalStateFdb |= FS_GUN;
 	} else {
-		fs &= ~FS_GUN;
+		functionalStateFdb &= ~FS_GUN;
 	}
 	if (SPINNER_IS_ON()) {
-		fs |= FS_GUN;
+		functionalStateFdb |= FS_GUN;
 	} else {
-		fs &= ~FS_GUN;
+		functionalStateFdb &= ~FS_GUN;
 	}
-	functionalStateFdb = fs;
 }
 
 static void GetPantiltPositionFdb()
@@ -61,6 +59,12 @@ static void GetPantiltVelocityFdb()
 {
 	pantiltVelocityFdb.y = motor[4].rate;
 	pantiltVelocityFdb.p = motor[5].rate;
+}
+
+static void GetPantiltCurrentsFdb()
+{
+	pantiltCurrentsFdb.y = motor[4].current_fdb;
+	pantiltCurrentsFdb.p = motor[5].current_fdb;
 }
 
 static void GetMecanumPositionFdb()
@@ -79,6 +83,14 @@ static void GetMecanumVelocityFdb()
 	mecanumVelocityFdb.w4 = motor[3].rate;
 }
 
+static void GetMecanumCurrentsFdb()
+{
+	mecanumCurrentsFdb.w1 = motor[0].current_fdb;
+	mecanumCurrentsFdb.w2 = motor[1].current_fdb;
+	mecanumCurrentsFdb.w3 = motor[2].current_fdb;
+	mecanumCurrentsFdb.w4 = motor[3].current_fdb;
+}
+
 static void GetChassisPositionFdb()
 {
 	Mecanum_Synthesis(&mecanum, (float*)&mecanumPositionFdb, (float*)&chassisPositionFdb);
@@ -94,10 +106,12 @@ void Odo_Init()
 	FS_Clr(&functionalStateFdb, FS_ALL);
 	GS_Set(&pantiltPositionFdb, 0, 0);
 	GS_Set(&pantiltVelocityFdb, 0, 0);
+	GS_Set(&pantiltCurrentsFdb, 0, 0);
 	CS_Set(&chassisPositionFdb, 0, 0, 0);
 	CS_Set(&chassisVelocityFdb, 0, 0, 0);
 	MS_Set(&mecanumPositionFdb, 0, 0, 0, 0);
 	MS_Set(&mecanumVelocityFdb, 0, 0, 0, 0);
+	MS_Set(&mecanumCurrentsFdb, 0, 0, 0, 0);
 }
 
 void Odo_Proc()
@@ -105,8 +119,10 @@ void Odo_Proc()
 	GetFunctionalStateFdb();
 	GetPantiltPositionFdb();
 	GetPantiltVelocityFdb();
+	GetPantiltCurrentsFdb();
 	GetMecanumPositionFdb();
 	GetMecanumVelocityFdb();
+	GetMecanumCurrentsFdb();
 	GetChassisPositionFdb();
 	GetChassisVelocityFdb();
 }

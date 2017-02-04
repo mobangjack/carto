@@ -20,12 +20,12 @@
 /*          Auto Control Interface          */
 /********************************************/
 
-void Aci_Init()
+void ACI_Init()
 {
 
 }
 
-void Aci_Proc()
+void ACI_Proc(const CBUS_t* cbus)
 {
 
 }

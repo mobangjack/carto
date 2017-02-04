@@ -20,9 +20,37 @@
 /*               Command               */
 /***************************************/
 
+InputMode_e inputMode;
+
+PeriphsState_t functionalStateRef;
+ChassisState_t chassisVelocityRef;
+PantiltState_t pantiltVelocityRef;
+
+static DBUS_t dbus;
+static CBUS_t cbus;
+
+static void GetInputMode(const RC_t* rc)
+{
+	switch (rc->sw[SW_IDX_R]) {
+	case SW_UP:
+		inputMode = INPUT_MODE_RC;
+		break;
+	case SW_MID:
+		inputMode = INPUT_MODE_HC;
+		break;
+	case SW_MID:
+		inputMode = INPUT_MODE_AC;
+		break;
+	default:
+		inputMode = INPUT_MODE_NO;
+	}
+}
+
 void Cmd_Init()
 {
-	DBUS_Reset(&dbus);
+	RCI_Init();
+	HCI_Init();
+	ACI_Init();
 }
 
 void Cmd_Proc()
@@ -30,23 +58,25 @@ void Cmd_Proc()
 	GetInputMode(&dbus.rc);
 	if (inputMode == INPUT_MODE_RC)
 	{
-		RCI_Cmd(&dbus.rc);
+		RCI_Proc(&dbus.rc);
 	}
 	else if (inputMode == INPUT_MODE_HC)
 	{
-		HCI_Cmd(&dbus.hc);
+		HCI_Proc(&dbus.hc);
 	}
 	else if (inputMode == INPUT_MODE_AC)
 	{
-		//ACI_Cmd();
+		ACI_Proc(&cbus);
+	}
+	else {
+		// Should not reach here
 	}
 	Mecanum_Decompose(&mecanum, (float*)&chassisVelocityRef, (float*)&mecanumVelocityRef);
 }
 
-void Rcv_Cmd(uint8_t* buf)
+void Rcv_Proc(uint8_t* buf)
 {
 	Wdg_Feed(WDG_IDX_RC);
-	DBUS_Dec(buf, &dbus);
+	DBUS_Dec(&dbus, buf);
 }
-
 

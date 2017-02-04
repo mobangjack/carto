@@ -31,18 +31,18 @@ extern "C" {
 
 typedef struct
 {
-	float* buf; // data buffer
-	uint32_t len; // buffer length
-	uint32_t i; // ring buffer index
-	float avg; // average value of data buffer
+	float* buf;    // buffer
+	uint32_t len;  // length
+	uint32_t i;    // index
+	float avg;     // average
 }MAFilter_t;
 
-void MAFilterInit(MAFilter_t* mafilter, float* buf, uint32_t len);
-float MAFilterCalc(MAFilter_t* mafilter, float v);
-void MAFilterReset(MAFilter_t* mafilter);
+void MAFilter_Init(MAFilter_t* mafilter, float* buf, uint32_t len);
+float MAFilter_Calc(MAFilter_t* mafilter, float v);
+void MAFilter_Reset(MAFilter_t* mafilter);
 
-MAFilter_t* MAFilterCreate(uint32_t len);
-void MAFilterDestroy(MAFilter_t* mafilter);
+MAFilter_t* MAFilter_Create(uint32_t len);
+void MAFilter_Destroy(MAFilter_t* mafilter);
 
 #ifdef __cpluplus
 }

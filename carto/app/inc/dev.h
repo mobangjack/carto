@@ -14,10 +14,22 @@
  * limitations under the License.
  */
 
-#include "rcv_srv.h"
+#ifndef __DEV_H__
+#define __DEV_H__
 
-void RcvCallback(uint8_t* dbuf)
-{
-	Rcv_Proc(dbuf);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "can.h"
+#include "ins.h"
+
+uint8_t Dev_Ok();
+void Dev_Init();
+void Dev_Proc();
+
+#ifdef __cplusplus
 }
+#endif
 
+#endif

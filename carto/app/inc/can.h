@@ -44,6 +44,7 @@ extern "C" {
 #define MOTOR_ANGLE_FDB_MOD    8192
 #define MOTOR_ANGLE_RECIP      7.6699042e-04f
 #define MOTOR_SPEED_RECIP      1000 // 1khz
+#define MOTOR_CURRENT_RECIP    0.001f // Ampere
 #define MOTOR_CURRENT_FDB_MAX  13000
 #define MOTOR_CURRENT_REF_MAX  5000
 
@@ -72,6 +73,7 @@ typedef struct
 	float bias;           // Motor encoder bias
 	float angle;          // Motor encoder angle (continuous) in radian
 	float rate;           // Motor encoder angle rate in rad/s
+	float current;        // Motor electronic speed controller current in ampere
 }Motor_t; // For EC60 & RM6025 Motor Encoder & ESC
 
 uint8_t Can_Init();

@@ -20,36 +20,36 @@
 /*          Host Control Interface          */
 /********************************************/
 
-MouseButtonState_t mouseButtonStates[MOUSE_BTN_CNT];
-MouseButtonEvent_t mouseButtonEvents[MOUSE_BTN_CNT];
+static MouseButtonState_t mouseButtonStates[MOUSE_BTN_CNT];
+static MouseButtonEvent_t mouseButtonEvents[MOUSE_BTN_CNT];
 
+static MouseButtonState_t lastRawMouseButtonStates[MOUSE_BTN_CNT];
+static uint32_t mouseButtonPressedCounts[MOUSE_BTN_CNT];
 static void GetMouseButtonStates(HC_t* hc)
 {
-	static MouseButtonState_t last_state[MOUSE_BTN_CNT];
-	static uint32_t cnt[MOUSE_BTN_CNT];
-	uint8_t* this_state = hc->mouse.b;
+	uint8_t* thisRawMouseButtonStates = hc->mouse.b;
 	uint32_t i = 0;
 	for (; i < MOUSE_BTN_CNT; i++) {
-		if (this_state[i] == last_state[i]) {
-			if (cnt[i] < MOUSE_BUTTON_STATE_CHANGE_DELAY) {
-				cnt[i]++;
+		if (thisRawMouseButtonStates[i] == lastRawMouseButtonStates[i]) {
+			if (mouseButtonPressedCounts[i] < MOUSE_BUTTON_PRESSED_CNT) {
+				mouseButtonPressedCounts[i]++;
 			} else {
-				mouseButtonStates[i] = this_state[i];
+				mouseButtonStates[i] = thisRawMouseButtonStates[i];
 			}
 		} else {
-			cnt[i] = 0;
+			mouseButtonPressedCounts[i] = 0;
 		}
-		last_state[i] = this_state[i];
+		lastRawMouseButtonStates[i] = thisRawMouseButtonStates[i];
 	}
 }
 
+static MouseButtonState_t lastMouseButtonStates[MOUSE_BTN_CNT];
 static void GetMouseButtonEvents(HC_t* hc)
 {
-	static MouseButtonState_t last_state[MOUSE_BTN_CNT];
 	uint32_t i = 0;
 	for (; i < MOUSE_BTN_CNT; i++) {
-		mouseButtonEvents[i] = GET_MOUSE_BUTTON_EVENT(last_state[i],mouseButtonStates[i]);
-		last_state[i] = mouseButtonStates[i];
+		mouseButtonEvents[i] = GET_MOUSE_BUTTON_EVENT(lastMouseButtonStates[i],mouseButtonStates[i]);
+		lastMouseButtonStates[i] = mouseButtonStates[i];
 	}
 }
 
@@ -71,27 +71,17 @@ static void GetFunctionalStateRef(HC_t* hc)
 
 #define MAP(val,min1,max1,min2,max2) ((val-min1)*(max2-min2)/(max1-min1)+min2)
 
-MAFilter_t* fx = (void *)0;
-MAFilter_t* fy = (void *)0;
-MAFilter_t* fz = (void *)0;
+static MAFilter_t fx, fy, fz;
+static float buf[3][KEY_CONTROL_MAFILTER_LEN];
 static void GetChassisVelocityRef(HC_t* hc)
 {
 	float speed = (hc->key.val & KEY_SHIFT) ? CHASSIS_SPEED_MAX : CHASSIS_SPEED_MAX / 2.f;
 	float vx = (hc->key.val & KEY_A) ? -speed : ((hc->key.val & KEY_D) ? speed : 0);
 	float vy = (hc->key.val & KEY_S) ? -speed : ((hc->key.val & KEY_W) ? speed : 0);
 	float vz = MAP(hc->mouse.x, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -PANTILT_SPEED_MAX, PANTILT_SPEED_MAX);
-	if (fx == NULL) {
-		fx = MAFilterCreate(KEY_CONTROL_MAFILTER_LEN);
-	}
-	if (fy == NULL) {
-		fy = MAFilterCreate(KEY_CONTROL_MAFILTER_LEN);
-	}
-	if (fz == NULL) {
-		fz = MAFilterCreate(KEY_CONTROL_MAFILTER_LEN);
-	}
-	chassisVelocityRef.x = MAFilterCalc(fx, vx);
-	chassisVelocityRef.y = MAFilterCalc(fy, vy);
-	chassisVelocityRef.z = MAFilterCalc(fz, vz);
+	chassisVelocityRef.x = MAFilter_Calc(fx, vx);
+	chassisVelocityRef.y = MAFilter_Calc(fy, vy);
+	chassisVelocityRef.z = MAFilter_Calc(fz, vz);
 }
 
 static void GetPantiltVelocityRef(HC_t* hc)
@@ -100,7 +90,22 @@ static void GetPantiltVelocityRef(HC_t* hc)
 	pantiltVelocityRef.p = MAP(hc->mouse.y, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -PANTILT_SPEED_MAX, PANTILT_SPEED_MAX);
 }
 
-void HCI_Cmd(HC_t* hc)
+void HCI_Init()
+{
+	uint32_t i = 0;
+	for (; i < MOUSE_BTN_CNT; i++) {
+		lastRawMouseButtonStates[i] = 0;
+		mouseButtonPressedCounts[i] = 0;
+		mouseButtonStates[i] = 0;
+		mouseButtonEvents[i] = 0;
+		lastMouseButtonStates[i] = 0;
+	}
+	MAFilter_Init(&fx, buf[0], KEY_CONTROL_MAFILTER_LEN);
+	MAFilter_Init(&fy, buf[1], KEY_CONTROL_MAFILTER_LEN);
+	MAFilter_Init(&fz, buf[2], KEY_CONTROL_MAFILTER_LEN);
+}
+
+void HCI_Proc(HC_t* hc)
 {
 	GetFunctionalStateRef(hc);
 	GetChassisVelocityRef(hc);

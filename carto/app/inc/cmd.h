@@ -27,10 +27,26 @@ extern "C" {
 
 #include "app.h"
 
+enum {
+	INPUT_MODE_NO,
+	INPUT_MODE_RC,
+	INPUT_MODE_HC,
+	INPUT_MODE_AC,
+}InputMode_e;
+
 void Cmd_Init();
 void Cmd_Proc();
 
-void Rcv_Cmd(uint8_t* dbuf);
+void Rcv_Proc(uint8_t* dbuf);
+
+extern InputMode_e inputMode;
+
+extern PeriphsState_t functionalStateRef;
+extern PantiltState_t pantiltPositionRef;
+extern ChassisState_t chassisVelocityRef;
+
+extern PantiltState_t pantiltVelocityRef;
+extern MecanumState_t mecanumVelocityRef;
 
 #ifdef __cplusplus
 }

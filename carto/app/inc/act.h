@@ -26,7 +26,6 @@ extern "C" {
 #endif
 
 #include "app.h"
-#include "bsp.h"
 
 void Act_Init();
 void Act_Proc();

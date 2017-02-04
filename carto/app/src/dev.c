@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-#include "rcv_srv.h"
+#include "dev.h"
 
-void RcvCallback(uint8_t* dbuf)
+uint8_t Dev_Ok()
 {
-	Rcv_Proc(dbuf);
+	return 1;
 }
-

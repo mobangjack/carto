@@ -20,61 +20,8 @@
 /*            Application             */
 /**************************************/
 
-Cfg_t cfg;
-Imu_t imu;
-Mag_t mag;
-Ahrs_t ahrs;
-Ramp_t ramp;
-DBUS_t dbus;
-Mecanum_t mecanum;
-PID_t GMYAnglePID;
-PID_t GMYSpeedPID;
-PID_t GMPAnglePID;
-PID_t GMPSpeedPID;
-PID_t CM1AnglePID;
-PID_t CM1SpeedPID;
-PID_t CM2AnglePID;
-PID_t CM2SpeedPID;
-PID_t CM3AnglePID;
-PID_t CM3SpeedPID;
-PID_t CM4AnglePID;
-PID_t CM4SpeedPID;
-
-InputMode_t inputMode;
-WorkingState_t workingState;
-
-FunctionalState_t functionalStateRef;
-FunctionalState_t functionalStateFdb;
-FunctionalState_t functionalStateCtl;
-
-PantiltState_t pantiltPositionRef;
-PantiltState_t pantiltPositionFdb;
-PantiltState_t pantiltPositionCtl;
-
-PantiltState_t pantiltVelocityRef;
-PantiltState_t pantiltVelocityFdb;
-PantiltState_t pantiltVelocityCtl;
-
-ChassisState_t chassisPositionRef;
-ChassisState_t chassisPositionFdb;
-ChassisState_t chassisPositionCtl;
-
-ChassisState_t chassisVelocityRef;
-ChassisState_t chassisVelocityFdb;
-ChassisState_t chassisVelocityCtl;
-
-MecanumState_t mecanumPositionRef;
-MecanumState_t mecanumPositionFdb;
-MecanumState_t mecanumPositionCtl;
-
-MecanumState_t mecanumVelocityRef;
-MecanumState_t mecanumVelocityFdb;
-MecanumState_t mecanumVelocityCtl;
-
 void App_Init()
 {
-	Bsp_Config();
-
 	Aci_Init();
 	Act_Init();
 	Can_Init();
@@ -83,6 +30,7 @@ void App_Init()
 	Cmd_Init();
 	Com_Init();
 	Ctl_Init();
+	Fos_Init();
 	Ins_Init();
 	Odo_Init();
 	Pwr_Init();
@@ -91,39 +39,32 @@ void App_Init()
 
 void App_Sync()
 {
-	if (Clk_GetUsTick() % cfg.ctl.div == 0) {
-		Wdg_Proc();
-		Cmd_Proc();
-		Com_Proc();
-		Ins_Proc();
-		Odo_Proc();
-		Ctl_Proc();
-		Act_Proc();
-		Pwr_Proc();
-	}
+	Wdg_Proc();
+	Cmd_Proc();
+	Com_Proc();
+	Ins_Proc();
+	Odo_Proc();
+	Ctl_Proc();
+	Act_Proc();
+	Pwr_Proc();
 }
 
-void GetInputMode(const RC_t* rc)
-{
-	inputMode = rc->sw[SW_IDX_R];
-}
-
-FunctionalState_t FS_Get(const FunctionalState_t* fs, FunctionalState_t msk)
+PeriphsState_t FS_Get(const PeriphsState_t* fs, PeriphsState_t msk)
 {
 	return (*fs) & msk;
 }
 
-void FS_Set(FunctionalState_t* fs, FunctionalState_t msk)
+void FS_Set(PeriphsState_t* fs, PeriphsState_t msk)
 {
 	(*fs) |= msk;
 }
 
-void FS_Clr(FunctionalState_t* fs, FunctionalState_t msk)
+void FS_Clr(PeriphsState_t* fs, PeriphsState_t msk)
 {
 	(*fs) &= ~msk;
 }
 
-void FS_Tog(FunctionalState_t* fs, FunctionalState_t msk)
+void FS_Tog(PeriphsState_t* fs, PeriphsState_t msk)
 {
 	FS_Get(fs, msk) ? FS_Clr(fs, msk) : FS_Set(fs, msk);
 }
@@ -147,5 +88,10 @@ void MS_Set(MecanumState_t* ms, float w1, float w2, float w3, float w4)
 	ms->w2 = w2;
 	ms->w3 = w3;
 	ms->w4 = w4;
+}
+
+float map(float val, float min1, float max1, float min2, float max2)
+{
+	return ((val-min1)*(max2-min2)/(max1-min1)+min2);
 }
 

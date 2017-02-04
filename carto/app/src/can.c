@@ -71,6 +71,8 @@ static void Motor_Proc(uint8_t i, uint8_t* data)
 	motor[i].current_fdb = (data[2] << 8) | data[3];
 	motor[i].current_ref = (data[4] << 8) | data[5];
 
+	motor[i].current = motor[i].current_fdb * MOTOR_CURRENT_RECIP;
+
 	angle = motor[i].angle_fdb[1] * MOTOR_ANGLE_RECIP;
 
 	if (motor[i].reset) {

@@ -16,26 +16,60 @@
 
 #include "gdf.h"
 
-void GdfInit(Gdf_t* gdf, float* dat, uint32_t n)
+void Gdf_Init(Gdf_t* gdf, float* buf, uint32_t len)
 {
-	gdf->dat = dat;
-	gdf->n = n;
-	GdfReset(gdf);
+	gdf->buf = buf;
+	gdf->len = len;
+	Gdf_Reset(gdf);
 }
 
-void GdfUpdate(Gdf_t* gdf, float dat)
+void Gdf_Calc(Gdf_t* gdf, float v)
 {
 	float avg = gdf->avg;
-	float del = dat - gdf->dat[gdf->i];
-	gdf->avg += del / gdf->n;
-	gdf->var += del * (gdf->dat[gdf->i] - avg + dat - gdf->avg) / gdf->n;
-	gdf->dat[gdf->i] = dat;
-	gdf->i = (gdf->i == gdf->n) ? 0 : gdf->i + 1;
+	float del = v - gdf->buf[gdf->i];
+	gdf->avgd = del / gdf->len;
+	gdf->avg += gdf->avgd;
+	gdf->vard = del * (gdf->buf[gdf->i] - avg + v - gdf->avg) / gdf->len;
+	gdf->var += gdf->vard;
+	gdf->buf[gdf->i] = buf;
+	gdf->i = (gdf->i == gdf->len) ? 0 : gdf->i + 1;
 }
 
-void GdfReset(Gdf_t* gdf)
+void Gdf_Reset(Gdf_t* gdf)
 {
+	memset(gdf->buf, 0, gdf->len * sizeof(float));
 	gdf->i = 0;
 	gdf->avg = 0;
 	gdf->var = 0;
+	gdf->avgd = 0;
+	gdf->vard = 0;
+}
+
+Gdf_t* Gdf_Create(uint32_t len)
+{
+	Gdf_t* gdf = (Gdf_t*)malloc(sizeof(Gdf_t));
+	if (gdf == NULL) {
+		return NULL;
+	}
+	memset(gdf, 0, sizeof(Gdf_t));
+	gdf->buf = (float*)malloc(len * sizeof(float));
+	if (gdf->buf == NULL) {
+		free(gdf);
+		gdf = NULL;
+		return NULL;
+	}
+	Gdf_Init(gdf);
+	return gdf;
+}
+
+void Gdf_Destroy(Gdf_t* gdf)
+{
+	if (gdf != NULL) {
+		if (gdf->buf != NULL) {
+			free(gdf->buf);
+			gdf->buf = NULL;
+		}
+		free(gdf);
+		gdf = NULL;
+	}
 }

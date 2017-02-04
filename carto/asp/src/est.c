@@ -16,7 +16,7 @@
 
 #include "est.h"
 
-Est_t* EstCreate(uint32_t gaussN, float kalmanQ)
+Est_t* Est_Create(uint32_t gaussN, float kalmanQ)
 {
 	Est_t* est = (Est_t*)malloc(sizeof(Est_t));
 	if (est == NULL) {
@@ -40,7 +40,7 @@ Est_t* EstCreate(uint32_t gaussN, float kalmanQ)
 	return est;
 }
 
-void EstProc(Est_t* est, float v)
+void Est_Proc(Est_t* est, float v)
 {
 	if (est->error > 0) {
 		GaussProc(est->gauss, v);
@@ -59,7 +59,7 @@ void EstProc(Est_t* est, float v)
 	}
 }
 
-void EstReset(Est_t* est)
+void Est_Reset(Est_t* est)
 {
 	GaussReset(est->gauss);
 	KalmanReset(est->kalman);
@@ -68,7 +68,7 @@ void EstReset(Est_t* est)
 	est->delta = 0;
 }
 
-void EstDestroy(Est_t* est)
+void Est_Destroy(Est_t* est)
 {
 	if (est != NULL) {
 		GaussDestroy(est->gauss);

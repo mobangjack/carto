@@ -16,49 +16,53 @@
 
 #include "sta.h"
 
-void StaInit(Sta_t* sta, float* buf, uint32_t len)
+void Sta_Init(Sta_t* sta, float* buf, uint32_t len)
 {
 	sta->buf = buf;
 	sta->len = len;
-	StaReset(sta);
+	Sta_Reset(sta);
 }
 
-void StaUpdate(Sta_t* sta, float v)
+void Sta_Calc(Sta_t* sta, float v)
 {
 	float avg = sta->avg;
 	float del = v - sta->buf[sta->i];
-	sta->avg += del / sta->len;
-	sta->var += del * (sta->buf[sta->i] - avg + v - sta->avg) / sta->len;
-	sta->buf[sta->i] = v;
+	sta->avgd = del / sta->len;
+	sta->avg += sta->avgd;
+	sta->vard = del * (sta->buf[sta->i] - avg + v - sta->avg) / sta->len;
+	sta->var += sta->vard;
+	sta->buf[sta->i] = buf;
 	sta->i = (sta->i == sta->len) ? 0 : sta->i + 1;
 }
 
-void StaReset(Sta_t* sta)
+void Sta_Reset(Sta_t* sta)
 {
 	memset(sta->buf, 0, sta->len * sizeof(float));
 	sta->i = 0;
 	sta->avg = 0;
 	sta->var = 0;
+	sta->avgd = 0;
+	sta->vard = 0;
 }
 
-Sta_t* StaCreate(uint32_t n)
+Sta_t* Sta_Create(uint32_t len)
 {
 	Sta_t* sta = (Sta_t*)malloc(sizeof(Sta_t));
 	if (sta == NULL) {
 		return NULL;
 	}
-	sta->buf = (float*)malloc(n * sizeof(float));
+	memset(sta, 0, sizeof(Sta_t));
+	sta->buf = (float*)malloc(len * sizeof(float));
 	if (sta->buf == NULL) {
 		free(sta);
 		sta = NULL;
 		return NULL;
 	}
-	sta->len = n;
-	StaReset(sta);
+	Sta_Init(sta);
 	return sta;
 }
 
-void StaDestroy(Sta_t* sta)
+void Sta_Destroy(Sta_t* sta)
 {
 	if (sta != NULL) {
 		if (sta->buf != NULL) {
