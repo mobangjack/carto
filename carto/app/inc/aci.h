@@ -25,6 +25,8 @@
 extern "C" {
 #endif
 
+#include "cmd.h"
+
 void ACI_Init();
 void ACI_Proc(const CBUS_t* cbus);
 

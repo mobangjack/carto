@@ -31,7 +31,7 @@ void Sta_Calc(Sta_t* sta, float v)
 	sta->avg += sta->avgd;
 	sta->vard = del * (sta->buf[sta->i] - avg + v - sta->avg) / sta->len;
 	sta->var += sta->vard;
-	sta->buf[sta->i] = buf;
+	sta->buf[sta->i] = v;
 	sta->i = (sta->i == sta->len) ? 0 : sta->i + 1;
 }
 
@@ -58,7 +58,7 @@ Sta_t* Sta_Create(uint32_t len)
 		sta = NULL;
 		return NULL;
 	}
-	Sta_Init(sta);
+	Sta_Reset(sta);
 	return sta;
 }
 

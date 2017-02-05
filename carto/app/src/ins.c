@@ -20,6 +20,11 @@
 /*     Inertial Navigation System     */
 /**************************************/
 
+Imu_t imu;
+Mag_t mag;
+Ahrs_t ahrs;
+Euler_t euler;
+
 void Ins_Init()
 {
 	//Imu_Reset();

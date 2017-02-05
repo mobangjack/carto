@@ -17,9 +17,9 @@
 #ifndef __CMD_H__
 #define __CMD_H__
 
-/***************************************/
-/*               Command               */
-/***************************************/
+/**********************************************/
+/*             Command Interface              */
+/**********************************************/
 
 #ifdef __cplusplus
 extern "C" {
@@ -27,11 +27,11 @@ extern "C" {
 
 #include "app.h"
 
-enum {
+typedef enum {
 	INPUT_MODE_NO,
 	INPUT_MODE_RC,
 	INPUT_MODE_HC,
-	INPUT_MODE_AC,
+	INPUT_MODE_AC
 }InputMode_e;
 
 void Cmd_Init();
@@ -39,13 +39,16 @@ void Cmd_Proc();
 
 void Rcv_Proc(uint8_t* dbuf);
 
+/**********************************************/
+/*             Exported Variables             */
+/**********************************************/
+extern DBUS_t dbus;
+
 extern InputMode_e inputMode;
 
 extern PeriphsState_t functionalStateRef;
 extern PantiltState_t pantiltPositionRef;
 extern ChassisState_t chassisVelocityRef;
-
-extern PantiltState_t pantiltVelocityRef;
 extern MecanumState_t mecanumVelocityRef;
 
 #ifdef __cplusplus

@@ -20,9 +20,12 @@
 /*            Application             */
 /**************************************/
 
+static uint32_t sync_tick = 0;
+
 void App_Init()
 {
-	Aci_Init();
+	sync_tick = 0;
+
 	Act_Init();
 	Can_Init();
 	Cfg_Init();
@@ -30,7 +33,6 @@ void App_Init()
 	Cmd_Init();
 	Com_Init();
 	Ctl_Init();
-	Fos_Init();
 	Ins_Init();
 	Odo_Init();
 	Pwr_Init();
@@ -49,49 +51,10 @@ void App_Sync()
 	Pwr_Proc();
 }
 
-PeriphsState_t FS_Get(const PeriphsState_t* fs, PeriphsState_t msk)
+void App_Proc()
 {
-	return (*fs) & msk;
-}
+	sync_tick++;
+	if (sync_tick % cfg.ctl.div == 0) {
 
-void FS_Set(PeriphsState_t* fs, PeriphsState_t msk)
-{
-	(*fs) |= msk;
+	}
 }
-
-void FS_Clr(PeriphsState_t* fs, PeriphsState_t msk)
-{
-	(*fs) &= ~msk;
-}
-
-void FS_Tog(PeriphsState_t* fs, PeriphsState_t msk)
-{
-	FS_Get(fs, msk) ? FS_Clr(fs, msk) : FS_Set(fs, msk);
-}
-
-void CS_Set(ChassisState_t* cs, float x, float y, float z)
-{
-	cs->x = x;
-	cs->y = y;
-	cs->z = z;
-}
-
-void GS_Set(PantiltState_t* gs, float y, float p)
-{
-	gs->y = y;
-	gs->p = p;
-}
-
-void MS_Set(MecanumState_t* ms, float w1, float w2, float w3, float w4)
-{
-	ms->w1 = w1;
-	ms->w2 = w2;
-	ms->w3 = w3;
-	ms->w4 = w4;
-}
-
-float map(float val, float min1, float max1, float min2, float max2)
-{
-	return ((val-min1)*(max2-min2)/(max1-min1)+min2);
-}
-

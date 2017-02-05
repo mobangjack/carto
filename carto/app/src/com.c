@@ -35,7 +35,7 @@ void Com_Proc()
 
 void Tty_Proc(uint8_t data)
 {
-	WDG_Feed(WDG_IDX_COM);
+	Wdg_Feed(WDG_IDX_COM);
 	if (FIFO_NotFull(&fifo)) {
 		FIFO_Push(&fifo, data);
 	}

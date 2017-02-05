@@ -16,6 +16,16 @@
 
 #include "dev.h"
 
+void Dev_Init()
+{
+
+}
+
+void Dev_Proc()
+{
+
+}
+
 uint8_t Dev_Ok()
 {
 	return 1;

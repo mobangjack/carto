@@ -85,10 +85,10 @@ static void GetChassisVelocityRef(const RC_t* rc)
 	chassisVelocityRef.z = MAP(rc->ch[2], CH_MIN, CH_MAX, -cfg.cha.spdCfg.max, cfg.cha.spdCfg.max);
 }
 
-static void GetPantiltVelocityRef(const RC_t* rc)
+static void GetPantiltPositionRef(const RC_t* rc)
 {
-	pantiltVelocityRef.y = MAP(rc->ch[2], CH_MIN, CH_MAX, -cfg.yaw.spdCfg.max, cfg.yaw.spdCfg.max);
-	pantiltVelocityRef.p = MAP(rc->ch[3], CH_MIN, CH_MAX, -cfg.pit.spdCfg.max, cfg.pit.spdCfg.max);
+	pantiltPositionRef.y += MAP(rc->ch[2], CH_MIN, CH_MAX, -cfg.yaw.spdCfg.max, cfg.yaw.spdCfg.max);
+	pantiltPositionRef.p += MAP(rc->ch[3], CH_MIN, CH_MAX, -cfg.pit.spdCfg.max, cfg.pit.spdCfg.max);
 }
 
 void RCI_Init()
@@ -107,6 +107,6 @@ void RCI_Proc(const RC_t* rc)
 {
 	GetFunctionalStateRef(rc);
 	GetChassisVelocityRef(rc);
-	GetPantiltVelocityRef(rc);
+	GetPantiltPositionRef(rc);
 }
 

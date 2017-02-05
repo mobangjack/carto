@@ -5,24 +5,24 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../carto/srv/src/can_srv.c \
-../carto/srv/src/com_srv.c \
 ../carto/srv/src/imu_srv.c \
 ../carto/srv/src/rcv_srv.c \
-../carto/srv/src/tim_srv.c 
+../carto/srv/src/tim_srv.c \
+../carto/srv/src/tty_srv.c 
 
 OBJS += \
 ./carto/srv/src/can_srv.o \
-./carto/srv/src/com_srv.o \
 ./carto/srv/src/imu_srv.o \
 ./carto/srv/src/rcv_srv.o \
-./carto/srv/src/tim_srv.o 
+./carto/srv/src/tim_srv.o \
+./carto/srv/src/tty_srv.o 
 
 C_DEPS += \
 ./carto/srv/src/can_srv.d \
-./carto/srv/src/com_srv.d \
 ./carto/srv/src/imu_srv.d \
 ./carto/srv/src/rcv_srv.d \
-./carto/srv/src/tim_srv.d 
+./carto/srv/src/tim_srv.d \
+./carto/srv/src/tty_srv.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

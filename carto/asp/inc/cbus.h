@@ -41,7 +41,7 @@ typedef struct
 }CBUS_t;
 
 void CBUS_Enc(const CBUS_t* cbus, uint8_t* cbuf);
-uint8_t CBUS_Dec(const uint8_t* cbuf, CBUS_t* cbus);
+uint8_t CBUS_Dec(CBUS_t* cbus, const uint8_t* cbuf);
 
 #ifdef __cplusplus
 }

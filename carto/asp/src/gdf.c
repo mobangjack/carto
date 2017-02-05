@@ -31,7 +31,7 @@ void Gdf_Calc(Gdf_t* gdf, float v)
 	gdf->avg += gdf->avgd;
 	gdf->vard = del * (gdf->buf[gdf->i] - avg + v - gdf->avg) / gdf->len;
 	gdf->var += gdf->vard;
-	gdf->buf[gdf->i] = buf;
+	gdf->buf[gdf->i] = v;
 	gdf->i = (gdf->i == gdf->len) ? 0 : gdf->i + 1;
 }
 
@@ -58,7 +58,7 @@ Gdf_t* Gdf_Create(uint32_t len)
 		gdf = NULL;
 		return NULL;
 	}
-	Gdf_Init(gdf);
+	Gdf_Reset(gdf);
 	return gdf;
 }
 

@@ -17,9 +17,9 @@
 #ifndef __CTL_H__
 #define __CTL_H__
 
-/**************************************/
-/*          Logic Controller          */
-/**************************************/
+/**********************************************/
+/*              Logic Controller              */
+/**********************************************/
 
 #ifdef __cplusplus
 extern "C" {
@@ -27,13 +27,13 @@ extern "C" {
 
 #include "app.h"
 
-enum {
+typedef enum {
 	WORKING_STATE_STOP,
 	WORKING_STATE_PREPARE,
 	WORKING_STATE_NORMAL
 }WorkingState_e;
 
-enum {
+typedef enum {
 	WORKING_STATE_SWITCH_NOP, // Working State Switch: No Operation
 	WORKING_STATE_SWITCH_S2P, // Working State Switch: Stop -> Prepare
 	WORKING_STATE_SWITCH_P2N, // Working State Switch: Prepare -> Normal
@@ -42,9 +42,43 @@ enum {
 	WORKING_STATE_SWITCH_N2S  // Working State Switch: Normal -> Stop
 }WorkingStateSwitch_e;
 
+typedef uint32_t PeriphsState_t; // Peripherals Functional State
+
+#define FS_LED_GREEN      	(((uint32_t)0x00000001)<<0)
+#define FS_LED_RED        	(((uint32_t)0x00000001)<<1)
+#define FS_GUN      		(((uint32_t)0x00000001)<<2)
+#define FS_LASER    		(((uint32_t)0x00000001)<<3)
+#define FS_SPINNER  		(((uint32_t)0x00000001)<<4)
+#define FS_ALL      		((uint32_t)0xFFFFFFFF)
+#define FS_NON       		((uint32_t)0x00000000)
+
+typedef struct
+{
+	float y;
+	float p;
+}PantiltState_t;
+
+typedef struct
+{
+	float x;
+	float y;
+	float z;
+}ChassisState_t;
+
+typedef struct
+{
+	float w1;
+	float w2;
+	float w3;
+	float w4;
+}MecanumState_t;
+
 void Ctl_Init();
 void Ctl_Proc();
 
+/**********************************************/
+/*             Exported Variables             */
+/**********************************************/
 extern WorkingState_e workingState;
 extern WorkingStateSwitch_e workingStateSwitch;
 

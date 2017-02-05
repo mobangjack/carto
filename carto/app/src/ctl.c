@@ -16,12 +16,17 @@
  
 #include "ctl.h"
 
-/**************************************/
-/*          Logic Controller          */
-/**************************************/
+/**********************************************/
+/*              Logic Controller              */
+/**********************************************/
 
+/**********************************************/
+/*             Exported Variables             */
+/**********************************************/
 WorkingState_e workingState;
 WorkingStateSwitch_e workingStateSwitch;
+
+Mecanum_t mecanum;
 
 PID_t CM1SpeedPID;
 PID_t CM2SpeedPID;
@@ -44,19 +49,26 @@ PantiltState_t pantiltVelocityCtl;
 PantiltState_t pantiltCurrentsCtl;
 MecanumState_t mecanumCurrentsCtl;
 
-/************************************/
-/*   Working State Switch Machine   */
-/************************************/
+/**********************************************/
+/*        Working State Switch Machine        */
+/**********************************************/
 static void WorkingStateSwitchMach()
 {
 	switch (workingState) {
 	case WORKING_STATE_STOP:
+		// Current working state is STOP.
+		// If NO fatal error occurs, step into PREPARE stage.
+		// Otherwise stay the same.
 		if (!Wdg_IsErrSet(WDG_ERR_FATAL)) {
 			workingState = WORKING_STATE_PREPARE;
 			workingStateSwitch = WORKING_STATE_SWITCH_S2P;
 		}
 		break;
 	case WORKING_STATE_PREPARE:
+		// Current working state is PREPARE.
+		// If any fatal error occurs, force STOP,
+		// else if devices are all ready, step into NORMAL stage.
+		// Otherwise stay the same.
 		if (Wdg_IsErrSet(WDG_ERR_FATAL)) {
 			workingState = WORKING_STATE_STOP;
 			workingStateSwitch = WORKING_STATE_SWITCH_P2S;
@@ -66,6 +78,10 @@ static void WorkingStateSwitchMach()
 		}
 		break;
 	case WORKING_STATE_NORMAL:
+		// Current working state is NORMAL.
+		// If any fatal error occurs, force STOP,
+		// else if devices are NOT ready, return to PREPARE state.
+		// Otherwise stay the same.
 		if (Wdg_IsErrSet(WDG_ERR_FATAL)) {
 			workingState = WORKING_STATE_STOP;
 			workingStateSwitch = WORKING_STATE_SWITCH_N2S;
@@ -79,14 +95,13 @@ static void WorkingStateSwitchMach()
 	}
 }
 
-/************************************/
-/*   Working State Switch Process   */
-/************************************/
+/**********************************************/
+/*        Working State Switch Process        */
+/**********************************************/
 static void WorkingStateSwitchProc()
 {
 	switch (workingStateSwitch) {
 	case WORKING_STATE_SWITCH_S2P: // Stop -> Prepare
-		Ctl_Init();
 		break;
 	case WORKING_STATE_SWITCH_P2N: // Prepare -> Normal
 		break;
@@ -101,6 +116,9 @@ static void WorkingStateSwitchProc()
 	}
 }
 
+/**********************************************/
+/*    Peripherals Functional State Control    */
+/**********************************************/
 static void FunctionalStateControl()
 {
 	if (FS_Get(&functionalStateRef, FS_GUN)) {
@@ -110,6 +128,9 @@ static void FunctionalStateControl()
 	}
 }
 
+/**********************************************/
+/*          Chassis Velocity Control          */
+/**********************************************/
 static void ChassisVelocityControl()
 {
 	mecanumCurrentsCtl.w1 = PID_Calc(&CM1SpeedPID, mecanumVelocityRef.w1, mecanumVelocityFdb.w1) * Ramp_Calc(&CM1SpeedRamp);
@@ -118,20 +139,27 @@ static void ChassisVelocityControl()
 	mecanumCurrentsCtl.w4 = PID_Calc(&CM4SpeedPID, mecanumVelocityRef.w4, mecanumVelocityFdb.w4) * Ramp_Calc(&CM4SpeedRamp);
 }
 
+/**********************************************/
+/*          Pantilt Position Control          */
+/**********************************************/
 static void PantiltPositionControl()
 {
 	pantiltVelocityCtl.y = PID_Calc(&GMYAnglePID, pantiltPositionRef.y, pantiltPositionFdb.y);
 	pantiltVelocityCtl.p = PID_Calc(&GMPAnglePID, pantiltPositionRef.p, pantiltPositionFdb.p);
-	pantiltCurrentsCtl.y = PID_Calc(&GMYSpeedPID, pantiltVelocityRef.y, pantiltVelocityFdb.y) * Ramp_Calc(&GMYSpeedRamp);
-	pantiltCurrentsCtl.p = PID_Calc(&GMPSpeedPID, pantiltVelocityRef.p, pantiltVelocityFdb.p) * Ramp_Calc(&GMPSpeedRamp);
+	pantiltCurrentsCtl.y = PID_Calc(&GMYSpeedPID, pantiltVelocityCtl.y, pantiltVelocityFdb.y) * Ramp_Calc(&GMYSpeedRamp);
+	pantiltCurrentsCtl.p = PID_Calc(&GMPSpeedPID, pantiltVelocityCtl.p, pantiltVelocityFdb.p) * Ramp_Calc(&GMPSpeedRamp);
 }
 
+/**********************************************/
+/*       Logic Controller Initialization      */
+/**********************************************/
 void Ctl_Init()
 {
 	workingState = WORKING_STATE_STOP;
 	workingStateSwitch = WORKING_STATE_SWITCH_NOP;
 
 	FS_Clr(&functionalStateCtl, FS_ALL);
+	GS_Set(&pantiltVelocityCtl, 0, 0);
 	GS_Set(&pantiltCurrentsCtl, 0, 0);
 	MS_Set(&mecanumCurrentsCtl, 0, 0, 0, 0);
 
@@ -152,6 +180,9 @@ void Ctl_Init()
 	Ramp_Reset(&GMPSpeedRamp);
 }
 
+/**********************************************/
+/*          Logic Controller Process          */
+/**********************************************/
 void Ctl_Proc()
 {
 	WorkingStateSwitchMach();

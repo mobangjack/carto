@@ -26,7 +26,6 @@ extern "C" {
 #endif
 
 #include "cmd.h"
-#include "mafilter.h"
 
 typedef uint8_t MouseButtonState_t;
 typedef uint8_t MouseButtonEvent_t;
@@ -40,7 +39,7 @@ typedef uint8_t MouseButtonEvent_t;
 #define MOUSE_BUTTON_EVENT_NONE 0
 
 void HCI_Init();
-void HCI_Proc(HC_t* hc);
+void HCI_Proc(const HC_t* hc);
 
 #ifdef __cplusplus
 }

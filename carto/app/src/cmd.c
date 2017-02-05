@@ -16,19 +16,25 @@
  
 #include "cmd.h"
 
-/***************************************/
-/*               Command               */
-/***************************************/
+/**********************************************/
+/*             Command Interface              */
+/**********************************************/
+
+/**********************************************/
+/*             Exported Variables             */
+/**********************************************/
+DBUS_t dbus;
 
 InputMode_e inputMode;
 
 PeriphsState_t functionalStateRef;
+PantiltState_t pantiltPositionRef;
 ChassisState_t chassisVelocityRef;
-PantiltState_t pantiltVelocityRef;
+MecanumState_t mecanumVelocityRef;
 
-static DBUS_t dbus;
-static CBUS_t cbus;
-
+/**********************************************/
+/*              Get Input Mode                */
+/**********************************************/
 static void GetInputMode(const RC_t* rc)
 {
 	switch (rc->sw[SW_IDX_R]) {
@@ -38,7 +44,7 @@ static void GetInputMode(const RC_t* rc)
 	case SW_MID:
 		inputMode = INPUT_MODE_HC;
 		break;
-	case SW_MID:
+	case SW_DOWN:
 		inputMode = INPUT_MODE_AC;
 		break;
 	default:
@@ -46,6 +52,9 @@ static void GetInputMode(const RC_t* rc)
 	}
 }
 
+/**********************************************/
+/*     Command Interface Initialization       */
+/**********************************************/
 void Cmd_Init()
 {
 	RCI_Init();
@@ -53,6 +62,9 @@ void Cmd_Init()
 	ACI_Init();
 }
 
+/**********************************************/
+/*         Command Interface Process          */
+/**********************************************/
 void Cmd_Proc()
 {
 	GetInputMode(&dbus.rc);
@@ -66,7 +78,7 @@ void Cmd_Proc()
 	}
 	else if (inputMode == INPUT_MODE_AC)
 	{
-		ACI_Proc(&cbus);
+		// ACI_Proc(&cbus);
 	}
 	else {
 		// Should not reach here
@@ -74,6 +86,9 @@ void Cmd_Proc()
 	Mecanum_Decompose(&mecanum, (float*)&chassisVelocityRef, (float*)&mecanumVelocityRef);
 }
 
+/**********************************************/
+/*       Wireless Receiver Data Process       */
+/**********************************************/
 void Rcv_Proc(uint8_t* buf)
 {
 	Wdg_Feed(WDG_IDX_RC);
