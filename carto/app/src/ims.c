@@ -25,14 +25,14 @@ InputModeSwitch_e inputModeSwitch;
 
 static void InputModeSwitchMach()
 {
-	switch (dbus.rc.sw[SW_IDX_R]) {
-	case SW_UP:
+	switch (switchStates[SW_IDX_R]) {
+	case SWITCH_STATE_1:
 		inputMode = INPUT_MODE_RC;
 		break;
-	case SW_MID:
+	case SWITCH_STATE_3:
 		inputMode = INPUT_MODE_HC;
 		break;
-	case SW_DOWN:
+	case SWITCH_STATE_2:
 		inputMode = INPUT_MODE_AC;
 		break;
 	default:
@@ -75,21 +75,19 @@ void Ims_Proc()
 	InputModeSwitchProc();
 	if (inputMode == INPUT_MODE_RC)
 	{
-		RCI_Proc(&dbus.rc);
+		Rci_Proc(&dbus.rc);
 	}
 	else if (inputMode == INPUT_MODE_HC)
 	{
-		HCI_Proc(&dbus.hc);
+		Hci_Proc(&dbus.hc);
 	}
 	else if (inputMode == INPUT_MODE_AC)
 	{
-		// ACI_Proc(&cbus);
+		// Aci_Proc(&cbus);
 	}
 	else {
 		// Should not reach here
-		//SCI_Init();
 	}
-
 }
 
 /**********************************************/

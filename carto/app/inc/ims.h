@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-#include "sci.h"
+#include "cmd.h"
 #include "rci.h"
 #include "hci.h"
 #include "wdg.h"

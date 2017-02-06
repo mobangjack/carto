@@ -20,8 +20,8 @@
 /*          Host Control Interface          */
 /********************************************/
 
-static MouseButtonState_t mouseButtonStates[MOUSE_BTN_CNT];
-static MouseButtonEvent_t mouseButtonEvents[MOUSE_BTN_CNT];
+MouseButtonState_t mouseButtonStates[MOUSE_BTN_CNT];
+MouseButtonEvent_t mouseButtonEvents[MOUSE_BTN_CNT];
 
 static MouseButtonState_t lastRawMouseButtonStates[MOUSE_BTN_CNT];
 static uint32_t mouseButtonPressedCounts[MOUSE_BTN_CNT];
@@ -88,7 +88,7 @@ static void GetPantiltPositionRef(HC_t* hc)
 	pantiltPositionRef.p += map(hc->mouse.y, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -cfg.pit.spdCfg.max, cfg.pit.spdCfg.max);
 }
 
-void HCI_Init()
+void Hci_Init()
 {
 	uint32_t i = 0;
 	for (; i < MOUSE_BTN_CNT; i++) {
@@ -103,7 +103,7 @@ void HCI_Init()
 	MAFilter_Init(&fz, buf[2], KEY_CONTROL_MAFILTER_LEN);
 }
 
-void HCI_Proc(HC_t* hc)
+void Hci_Proc(HC_t* hc)
 {
 	GetFunctionalStateRef(hc);
 	GetChassisVelocityRef(hc);

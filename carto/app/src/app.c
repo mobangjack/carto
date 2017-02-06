@@ -31,7 +31,7 @@ void App_Init()
 	Cfg_Init();
 	Ini_Init();
 	Clk_Init();
-	Sci_Init();
+	Cmd_Init();
 	Com_Init();
 	Ctl_Init();
 	Ins_Init();
@@ -43,7 +43,7 @@ void App_Init()
 void App_Sync()
 {
 	Wdg_Proc();
-	Sci_Proc();
+	Cmd_Proc();
 	Com_Proc();
 	Ins_Proc();
 	Odo_Proc();

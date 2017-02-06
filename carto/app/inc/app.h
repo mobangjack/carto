@@ -47,6 +47,7 @@ extern "C" {
 #include "can.h" // Controller Area Network
 #include "cfg.h" // System Configuration
 #include "clk.h" // System Clock Source
+#include "cmd.h" // System Command Interface
 #include "com.h" // Communication
 #include "ctl.h" // Logic Controller
 #include "fos.h" // File Operating System
@@ -59,7 +60,6 @@ extern "C" {
 #include "odo.h" // Odometer (Sensor Message Feedback)
 #include "pwr.h" // Power Management
 #include "rci.h" // Remote Control Interface
-#include "sci.h" // System Control Interface
 #include "sys.h" // System-wide Variable Type and Functions
 #include "wdg.h" // Watch Dog
 

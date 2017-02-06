@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,30 +14,10 @@
  * limitations under the License.
  */
 
-#ifndef __SCI_H__
-#define __SCI_H__
+#include "mpu_srv.h"
 
-/**********************************************/
-/*          System Control Interface          */
-/**********************************************/
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include "sys.h"
-#include "mec.h"
-
-void Sci_Init();
-void Sci_Proc();
-
-extern PeriphsState_t functionalStateRef;
-extern PantiltState_t pantiltPositionRef;
-extern ChassisState_t chassisVelocityRef;
-extern MecanumState_t mecanumVelocityRef; // Auto-Wired
-
-#ifdef __cplusplus
+void MPU6050Callback(float* buf)
+{
+	Mpu_Proc(buf);
 }
-#endif
 
-#endif

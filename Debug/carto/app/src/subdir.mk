@@ -10,6 +10,7 @@ C_SRCS += \
 ../carto/app/src/can.c \
 ../carto/app/src/cfg.c \
 ../carto/app/src/clk.c \
+../carto/app/src/cmd.c \
 ../carto/app/src/com.c \
 ../carto/app/src/ctl.c \
 ../carto/app/src/fos.c \
@@ -22,7 +23,6 @@ C_SRCS += \
 ../carto/app/src/odo.c \
 ../carto/app/src/pwr.c \
 ../carto/app/src/rci.c \
-../carto/app/src/sci.c \
 ../carto/app/src/sys.c \
 ../carto/app/src/wdg.c 
 
@@ -33,6 +33,7 @@ OBJS += \
 ./carto/app/src/can.o \
 ./carto/app/src/cfg.o \
 ./carto/app/src/clk.o \
+./carto/app/src/cmd.o \
 ./carto/app/src/com.o \
 ./carto/app/src/ctl.o \
 ./carto/app/src/fos.o \
@@ -45,7 +46,6 @@ OBJS += \
 ./carto/app/src/odo.o \
 ./carto/app/src/pwr.o \
 ./carto/app/src/rci.o \
-./carto/app/src/sci.o \
 ./carto/app/src/sys.o \
 ./carto/app/src/wdg.o 
 
@@ -56,6 +56,7 @@ C_DEPS += \
 ./carto/app/src/can.d \
 ./carto/app/src/cfg.d \
 ./carto/app/src/clk.d \
+./carto/app/src/cmd.d \
 ./carto/app/src/com.d \
 ./carto/app/src/ctl.d \
 ./carto/app/src/fos.d \
@@ -68,7 +69,6 @@ C_DEPS += \
 ./carto/app/src/odo.d \
 ./carto/app/src/pwr.d \
 ./carto/app/src/rci.d \
-./carto/app/src/sci.d \
 ./carto/app/src/sys.d \
 ./carto/app/src/wdg.d 
 

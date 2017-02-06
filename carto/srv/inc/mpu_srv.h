@@ -14,10 +14,17 @@
  * limitations under the License.
  */
 
-#include "imu_srv.h"
+#ifndef __IMU_SRV_H__
+#define __IMU_SRV_H__
 
-void MPU6050Callback(float* buf)
-{
-	Mpu_Proc(buf);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "ins.h"
+
+#ifdef __cplusplus
 }
+#endif
 
+#endif

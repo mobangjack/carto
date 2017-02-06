@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-#include "app.h"
+#include "can.h"
 
 #ifdef __cplusplus
 }

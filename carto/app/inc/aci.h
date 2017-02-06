@@ -25,11 +25,11 @@
 extern "C" {
 #endif
 
-#include "sci.h"
+#include "cmd.h"
 #include "cbus.h"
 
-void ACI_Init();
-void ACI_Proc(CBUS_t* cbus);
+void Aci_Init();
+void Aci_Proc(CBUS_t* cbus);
 
 #ifdef __cplusplus
 }

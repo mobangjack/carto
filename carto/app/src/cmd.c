@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-#include "sci.h"
+#include "cmd.h"
 
 /**********************************************/
-/*          System Control Interface          */
+/*          System Command Interface          */
 /**********************************************/
 
 PeriphsState_t functionalStateRef;
@@ -25,7 +25,7 @@ PantiltState_t pantiltPositionRef;
 ChassisState_t chassisVelocityRef;
 MecanumState_t mecanumVelocityRef; // Auto-Wired
 
-void Sci_Init()
+void Cmd_Init()
 {
 	FS_Clr(&functionalStateRef, FS_ALL);
 	GS_Set(&pantiltPositionRef, 0, 0);
@@ -33,8 +33,13 @@ void Sci_Init()
 	MS_Set(&mecanumVelocityRef, 0, 0, 0, 0);
 }
 
-void Sci_Proc()
+void Cmd_Proc()
 {
+	LIMIT(pantiltPositionRef.y,  cfg.yaw.posCfg.min, cfg.yaw.posCfg.max);
+	LIMIT(pantiltPositionRef.p,  cfg.pit.posCfg.min, cfg.pit.posCfg.max);
+	LIMIT(chassisVelocityRef.x, -cfg.cha.spdCfg.max, cfg.cha.spdCfg.max);
+	LIMIT(chassisVelocityRef.y, -cfg.cha.spdCfg.max, cfg.cha.spdCfg.max);
+	LIMIT(chassisVelocityRef.z, -cfg.cha.spdCfg.max, cfg.cha.spdCfg.max);
 	Mec_Decomp((float*)&chassisVelocityRef, (float*)&mecanumVelocityRef);
 }
 

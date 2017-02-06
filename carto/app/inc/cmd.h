@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,29 @@
  * limitations under the License.
  */
 
-#ifndef __IMU_SRV_H__
-#define __IMU_SRV_H__
+#ifndef __CMD_H__
+#define __CMD_H__
+
+/**********************************************/
+/*          System Command Interface          */
+/**********************************************/
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include "app.h"
+#include "sys.h"
+#include "mec.h"
+#include "cfg.h"
+#include "fun.h"
+
+void Cmd_Init();
+void Cmd_Proc();
+
+extern PeriphsState_t functionalStateRef;
+extern PantiltState_t pantiltPositionRef;
+extern ChassisState_t chassisVelocityRef;
+extern MecanumState_t mecanumVelocityRef; // Auto-Wired
 
 #ifdef __cplusplus
 }

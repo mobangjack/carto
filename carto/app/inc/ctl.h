@@ -27,7 +27,7 @@ extern "C" {
 
 #include "pid.h"
 #include "ramp.h"
-#include "sci.h"
+#include "cmd.h"
 #include "odo.h"
 #include "sys.h"
 #include "ini.h"

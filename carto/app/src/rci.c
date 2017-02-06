@@ -20,8 +20,8 @@
 /*          Remote Control Interface          */
 /**********************************************/
 
-static SwitchState_t switchStates[SW_CNT];
-static SwitchEvent_t switchEvents[SW_CNT];
+SwitchState_t switchStates[SW_CNT];
+SwitchEvent_t switchEvents[SW_CNT];
 
 static uint8_t lastRawSwitchStates[SW_CNT];
 static uint32_t switchConfirmCounts[SW_CNT];
@@ -89,7 +89,7 @@ static void GetPantiltPositionRef(RC_t* rc)
 	pantiltPositionRef.p += map(rc->ch[3], CH_MIN, CH_MAX, -cfg.pit.spdCfg.max, cfg.pit.spdCfg.max);
 }
 
-void RCI_Init()
+void Rci_Init()
 {
 	uint32_t i = 0;
 	for (; i < SW_CNT; i++) {
@@ -101,7 +101,7 @@ void RCI_Init()
 	}
 }
 
-void RCI_Proc(RC_t* rc)
+void Rci_Proc(RC_t* rc)
 {
 	GetFunctionalStateRef(rc);
 	GetChassisVelocityRef(rc);

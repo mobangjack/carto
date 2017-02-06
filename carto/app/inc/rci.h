@@ -25,10 +25,8 @@
 extern "C" {
 #endif
 
-#include "sci.h"
 #include "dbus.h"
-#include "fun.h"
-#include "ini.h"
+#include "cmd.h"
 
 typedef uint8_t SwitchState_t;
 typedef uint8_t SwitchEvent_t;
@@ -40,15 +38,18 @@ typedef uint8_t SwitchEvent_t;
 #define SWITCH_STATE_3 ((uint8_t)3)
 #define SWITCH_STATE_2 ((uint8_t)2)
 
-#define GET_SWITCH_EVENT(LAST,THIS) (((LAST)<<2)|(THIS))
+#define GET_SWITCH_EVENT(LAST,THIS) (((LAST)<<3)|(THIS))
 #define SWITCH_EVENT_3TO1 GET_SWITCH_EVENT(3, 1)
 #define SWITCH_EVENT_1TO3 GET_SWITCH_EVENT(1, 3)
 #define SWITCH_EVENT_3TO2 GET_SWITCH_EVENT(3, 2)
 #define SWITCH_EVENT_2TO3 GET_SWITCH_EVENT(2, 3)
 #define SWITCH_EVENT_NONE 0
 
-void RCI_Init();
-void RCI_Proc(RC_t* rc);
+void Rci_Init();
+void Rci_Proc(RC_t* rc);
+
+extern SwitchState_t switchStates[SW_CNT];
+extern SwitchEvent_t switchEvents[SW_CNT];
 
 #ifdef __cplusplus
 }

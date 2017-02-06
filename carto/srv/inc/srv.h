@@ -18,7 +18,7 @@
 #define __SRV_H__
 
 #include "can_srv.h"
-#include "imu_srv.h"
+#include "mpu_srv.h"
 #include "rcv_srv.h"
 #include "tty_srv.h"
 
