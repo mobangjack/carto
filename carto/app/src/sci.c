@@ -13,39 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#ifndef __ODO_H__
-#define __ODO_H__
+
+#include "sci.h"
 
 /**********************************************/
-/*                  Odometer                  */
+/*          System Control Interface          */
 /**********************************************/
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+PeriphsState_t functionalStateRef;
+PantiltState_t pantiltPositionRef;
+ChassisState_t chassisVelocityRef;
+MecanumState_t mecanumVelocityRef; // Auto-Wired
 
-#include "bsp.h"
-#include "can.h"
-#include "sys.h"
-#include "ins.h"
-#include "mec.h"
-
-void Odo_Init();
-void Odo_Proc();
-
-extern PeriphsState_t functionalStateFdb;
-extern PantiltState_t pantiltPositionFdb;
-extern PantiltState_t pantiltVelocityFdb;
-extern PantiltState_t pantiltCurrentsFdb;
-extern MecanumState_t mecanumPositionFdb;
-extern MecanumState_t mecanumVelocityFdb;
-extern MecanumState_t mecanumCurrentsFdb;
-extern ChassisState_t chassisPositionFdb;
-extern ChassisState_t chassisVelocityFdb;
-
-#ifdef __cplusplus
+void Sci_Init()
+{
+	FS_Clr(&functionalStateRef, FS_ALL);
+	GS_Set(&pantiltPositionRef, 0, 0);
+	CS_Set(&chassisVelocityRef, 0, 0, 0);
+	MS_Set(&mecanumVelocityRef, 0, 0, 0, 0);
 }
-#endif
 
-#endif
+void Sci_Proc()
+{
+	Mec_Decomp((float*)&chassisVelocityRef, (float*)&mecanumVelocityRef);
+}
+
+

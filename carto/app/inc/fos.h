@@ -14,30 +14,26 @@
  * limitations under the License.
  */
 
-#include "cfg.h"
+#ifndef __FOS_H__
+#define __FOS_H__
 
-/*************************************/
-/*     Application Configuration     */
-/*************************************/
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-Cfg_t cfg = CFG_DEFAULT;
+/**********************************************/
+/*           File Operating System            */
+/**********************************************/
 
-void Cfg_Load(Cfg_t* cfg)
-{
-	Fos_Read((uint8_t*)cfg, sizeof(Cfg_t));
+#include "flash.h"
+
+#define CFG_DATA_START_ADDR 	FLASH_SECTOR_11_ADDR
+
+void Fos_Read(uint8_t* buf, uint32_t size);
+uint8_t Fos_Write(uint8_t* buf, uint32_t size);
+
+#ifdef __cplusplus
 }
+#endif
 
-uint8_t Cfg_Save(Cfg_t* cfg)
-{
-	return Fos_Write((uint8_t*)cfg, sizeof(Cfg_t));
-}
-
-void Cfg_Init()
-{
-	Cfg_Load(&cfg);
-}
-
-void Cfg_Proc()
-{
-	Cfg_Save(&cfg);
-}
+#endif

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,21 @@
  * limitations under the License.
  */
 
-#include "dev.h"
+#include "mec.h"
 
-void Dev_Init()
+Mecanum_t mecanum;
+
+void Mec_Config(float lx, float ly, float r1, float r2)
 {
-
+	Mecanum_Config(&mecanum, lx, ly, r1, r2);
 }
 
-void Dev_Proc()
+void Mec_Synthe(const float* w, float* v)
 {
-
+	Mecanum_Synthe(&mecanum, w, v);
 }
 
-uint8_t Dev_Ok()
+void Mec_Decomp(const float* v, float* w)
 {
-	return 1;
+	Mecanum_Decomp(&mecanum, v, w);
 }

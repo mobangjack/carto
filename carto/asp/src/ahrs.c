@@ -32,13 +32,13 @@ static float invSqrt(float x) {
 	return y;
 }
 
-void Ahrs_Config(Ahrs_t* ahrs, float kp, float ki)
+void AHRS_Config(AHRS_t* ahrs, float kp, float ki)
 {
 	ahrs->kp = kp;
 	ahrs->ki = ki;
 }
 
-void Ahrs_Update(Ahrs_t* ahrs, float* buf, float halfT) {
+void AHRS_Update(AHRS_t* ahrs, float* buf, float halfT) {
     float norm;
     float ax, ay, az;
     float gx, gy, gz;
@@ -62,9 +62,9 @@ void Ahrs_Update(Ahrs_t* ahrs, float* buf, float halfT) {
     ax = buf[0];
     ay = buf[1];
     az = buf[2];
-    gx = buf[3]; // rad/s
-    gy = buf[4]; // rad/s
-    gz = buf[5]; // rad/s
+    gx = buf[3] * PI / 180.0f; // rad/s
+    gy = buf[4] * PI / 180.0f; // rad/s
+    gz = buf[5] * PI / 180.0f; // rad/s
     mx = buf[6];
     my = buf[7];
     mz = buf[8];
@@ -121,7 +121,7 @@ void Ahrs_Update(Ahrs_t* ahrs, float* buf, float halfT) {
     ahrs->q[3] = q[3] * norm;
 }
 
-void Ahrs_Q2Euler(float* q, Euler_t* euler)
+void AHRS_Q2Euler(float* q, Euler_t* euler)
 {
 	euler->yaw = -atan2(2*q[1]*q[2] + 2*q[0]*q[3], -2*q[2]*q[2] - 2*q[3]*q[3] + 1)*180/PI; // yaw    -pi----pi
 	euler->pitch = -asin(-2*q[1]*q[3] + 2*q[0]*q[2])*180/PI; // pitch    -pi/2    --- pi/2

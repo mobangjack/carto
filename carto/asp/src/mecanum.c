@@ -37,14 +37,14 @@ void Mecanum_Config(Mecanum_t* mecanum, float lx, float ly, float r1, float r2)
 	mecanum->cz = mecanum->r / 4.0f / mecanum->l;
 }
 
-void Mecanum_Synthesis(const Mecanum_t* mecanum, const float* w, float* v)
+void Mecanum_Synthe(const Mecanum_t* mecanum, const float* w, float* v)
 {
 	v[0] = ( w[0] + w[1] - w[2] - w[3]) * mecanum->cx;
 	v[1] = (-w[0] + w[1] + w[2] - w[3]) * mecanum->cy;
 	v[2] = ( w[0] + w[1] + w[2] + w[3]) * mecanum->cz;
 }
 
-void Mecanum_Decompose(const Mecanum_t* mecanum, const float* v, float* w)
+void Mecanum_Decomp(const Mecanum_t* mecanum, const float* v, float* w)
 {
 	w[0] = ( v[0] - v[1] + v[2] * mecanum->l) / mecanum->r;
 	w[1] = ( v[0] + v[1] + v[2] * mecanum->l) / mecanum->r;

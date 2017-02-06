@@ -65,37 +65,37 @@ uint8_t FIFO_Pop(FIFO_t* fifo)
 	return data;
 }
 
-uint8_t FIFO_Peek(const FIFO_t* fifo)
+uint8_t FIFO_Peek(FIFO_t* fifo)
 {
 	return fifo->buf[fifo->r];
 }
 
-uint8_t FIFO_IsFull(const FIFO_t* fifo)
+uint8_t FIFO_IsFull(FIFO_t* fifo)
 {
 	return fifo->n == fifo->len;
 }
 
-uint8_t FIFO_NotFull(const FIFO_t* fifo)
+uint8_t FIFO_NotFull(FIFO_t* fifo)
 {
 	return fifo->n != fifo->len;
 }
 
-uint8_t FIFO_IsEmpty(const FIFO_t* fifo)
+uint8_t FIFO_IsEmpty(FIFO_t* fifo)
 {
 	return fifo->n == 0;
 }
 
-uint8_t FIFO_NotEmpty(const FIFO_t* fifo)
+uint8_t FIFO_NotEmpty(FIFO_t* fifo)
 {
 	return fifo->n != 0;
 }
 
-uint32_t FIFO_GetUsed(const FIFO_t* fifo)
+uint32_t FIFO_GetUsed(FIFO_t* fifo)
 {
 	return fifo->n;
 }
 
-uint32_t FIFO_GetFree(const FIFO_t* fifo)
+uint32_t FIFO_GetFree(FIFO_t* fifo)
 {
 	return fifo->len - fifo->n;
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2016, Jack Mo (mobangjack@foxmail.com).
+ * Copyright (c) 2011-2016, Jack Mo (mobangjack@foxmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,27 @@
  * limitations under the License.
  */
 
-#ifndef __DEV_H__
-#define __DEV_H__
+#ifndef __SCI_H__
+#define __SCI_H__
+
+/**********************************************/
+/*          System Control Interface          */
+/**********************************************/
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include "can.h"
-#include "ins.h"
+#include "sys.h"
+#include "mec.h"
 
-uint8_t Dev_Ok();
-void Dev_Init();
-void Dev_Proc();
+void Sci_Init();
+void Sci_Proc();
+
+extern PeriphsState_t functionalStateRef;
+extern PantiltState_t pantiltPositionRef;
+extern ChassisState_t chassisVelocityRef;
+extern MecanumState_t mecanumVelocityRef; // Auto-Wired
 
 #ifdef __cplusplus
 }

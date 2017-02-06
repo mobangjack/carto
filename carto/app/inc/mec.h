@@ -13,36 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-#ifndef __ODO_H__
-#define __ODO_H__
 
-/**********************************************/
-/*                  Odometer                  */
-/**********************************************/
+#ifndef __MEC_H__
+#define __MEC_H__
+
+/*******************************************/
+/* Mecanum Wheel Power Transmission System */
+/*******************************************/
+/*              2        1                 */
+/*                  |y                     */
+/*                 b|___x                  */
+/*               z    a                    */
+/*              3        4                 */
+/*                                         */
+/*******************************************/
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include "bsp.h"
-#include "can.h"
-#include "sys.h"
-#include "ins.h"
-#include "mec.h"
+#include "mecanum.h"
 
-void Odo_Init();
-void Odo_Proc();
+void Mec_Config(float lx, float ly, float r1, float r2);
+void Mec_Synthe(const float* w, float* v);
+void Mec_Decomp(const float* v, float* w);
 
-extern PeriphsState_t functionalStateFdb;
-extern PantiltState_t pantiltPositionFdb;
-extern PantiltState_t pantiltVelocityFdb;
-extern PantiltState_t pantiltCurrentsFdb;
-extern MecanumState_t mecanumPositionFdb;
-extern MecanumState_t mecanumVelocityFdb;
-extern MecanumState_t mecanumCurrentsFdb;
-extern ChassisState_t chassisPositionFdb;
-extern ChassisState_t chassisVelocityFdb;
+extern Mecanum_t mecanum;
 
 #ifdef __cplusplus
 }

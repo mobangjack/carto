@@ -47,16 +47,20 @@ extern "C" {
 #include "can.h" // Controller Area Network
 #include "cfg.h" // System Configuration
 #include "clk.h" // System Clock Source
-#include "cmd.h" // System Command
 #include "com.h" // Communication
 #include "ctl.h" // Logic Controller
-#include "dev.h" // Device Manager
+#include "fos.h" // File Operating System
 #include "fun.h" // Helper functions
 #include "hci.h" // Host Control Interface
+#include "ims.h" // Input Mode Switcher
+#include "ini.h" // System Initializer
 #include "ins.h" // Inertial Navigation System
+#include "mec.h" // Mecanum Power Transmission System
 #include "odo.h" // Odometer (Sensor Message Feedback)
 #include "pwr.h" // Power Management
 #include "rci.h" // Remote Control Interface
+#include "sci.h" // System Control Interface
+#include "sys.h" // System-wide Variable Type and Functions
 #include "wdg.h" // Watch Dog
 
 void App_Init();

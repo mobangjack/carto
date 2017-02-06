@@ -25,9 +25,7 @@
 extern "C" {
 #endif
 
-#include "app.h"
-
-#define CFG_DATA_START_ADDR 	FLASH_SECTOR_11_ADDR
+#include "fos.h"
 
 // VERSION: (20)17/1/7
 #define VERSION_A		1u
@@ -304,6 +302,9 @@ typedef struct
 	CHA_CFG_DEFAULT, \
 	CTL_CFG_DEFAULT, \
 }
+
+void Cfg_Load(Cfg_t* cfg);
+uint8_t Cfg_Save(Cfg_t* cfg);
 
 void Cfg_Init();
 void Cfg_Proc();

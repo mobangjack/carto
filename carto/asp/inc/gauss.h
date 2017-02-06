@@ -50,7 +50,7 @@ typedef struct
   float error; // gauss error
 }Gauss_t;
 
-void GaussInit(Gauss_t* gauss, uint8_t* buf, uint32_t N);
+void GaussInit(Gauss_t* gauss, float* buf, uint32_t N);
 Gauss_t* GaussCreate(uint16_t N);
 void GaussReset(Gauss_t* gauss);
 void GaussProc(Gauss_t* gauss, float x);

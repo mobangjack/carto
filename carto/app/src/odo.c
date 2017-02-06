@@ -16,9 +16,19 @@
  
 #include "odo.h"
 
-/************************************/
-/*             Odometer             */
-/************************************/
+/**********************************************/
+/*                  Odometer                  */
+/**********************************************/
+
+PeriphsState_t functionalStateFdb;
+PantiltState_t pantiltPositionFdb;
+PantiltState_t pantiltVelocityFdb;
+PantiltState_t pantiltCurrentsFdb;
+MecanumState_t mecanumPositionFdb;
+MecanumState_t mecanumVelocityFdb;
+MecanumState_t mecanumCurrentsFdb;
+ChassisState_t chassisPositionFdb;
+ChassisState_t chassisVelocityFdb;
 
 static void GetFunctionalStateFdb()
 {
@@ -93,12 +103,12 @@ static void GetMecanumCurrentsFdb()
 
 static void GetChassisPositionFdb()
 {
-	Mecanum_Synthesis(&mecanum, (float*)&mecanumPositionFdb, (float*)&chassisPositionFdb);
+	Mec_Synthe((float*)&mecanumPositionFdb, (float*)&chassisPositionFdb);
 }
 
 static void GetChassisVelocityFdb()
 {
-	Mecanum_Synthesis(&mecanum, (float*)&mecanumVelocityFdb, (float*)&chassisVelocityFdb);
+	Mec_Synthe((float*)&mecanumVelocityFdb, (float*)&chassisVelocityFdb);
 }
 
 void Odo_Init()

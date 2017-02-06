@@ -76,6 +76,11 @@ void Wdg_Feed(uint8_t i)
 	wdg[i] = 0;
 }
 
+void Wdg_Hang(uint8_t i)
+{
+	wdg[i] = WDG[i];
+}
+
 uint32_t Wdg_GetErr()
 {
 	return err;

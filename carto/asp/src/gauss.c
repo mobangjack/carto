@@ -18,7 +18,7 @@
 
 #define SQR(x) (x*x)
 
-void GaussInit(Gauss_t* gauss, uint8_t* buf, uint32_t N)
+void GaussInit(Gauss_t* gauss, float* buf, uint32_t N)
 {
 	gauss->buf = buf;
 	gauss->N = N;

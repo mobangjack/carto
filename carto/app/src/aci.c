@@ -25,7 +25,7 @@ void ACI_Init()
 
 }
 
-void ACI_Proc(const CBUS_t* cbus)
+void ACI_Proc(CBUS_t* cbus)
 {
 
 }

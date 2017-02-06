@@ -56,8 +56,8 @@ typedef struct
 }Mecanum_t;
 
 void Mecanum_Config(Mecanum_t* mecanum, float lx, float ly, float r1, float r2);
-void Mecanum_Synthesis(const Mecanum_t* mecanum, const float* w, float* v);
-void Mecanum_Decompose(const Mecanum_t* mecanum, const float* v, float* w);
+void Mecanum_Synthe(const Mecanum_t* mecanum, const float* w, float* v);
+void Mecanum_Decomp(const Mecanum_t* mecanum, const float* v, float* w);
 
 #ifdef __cplusplus
 }

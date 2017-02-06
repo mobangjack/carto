@@ -35,7 +35,7 @@ typedef struct
 	float exInt;
 	float eyInt;
 	float ezInt;
-}Ahrs_t;
+}AHRS_t;
 
 typedef struct
 {
@@ -44,9 +44,9 @@ typedef struct
 	float roll;
 }Euler_t;
 
-void Ahrs_Config(Ahrs_t* ahrs, float kp, float ki);
-void Ahrs_Update(Ahrs_t* ahrs, float* buf, float halfT);
-void Ahrs_Q2Euler(float* q, Euler_t* euler);
+void AHRS_Config(AHRS_t* ahrs, float kp, float ki);
+void AHRS_Update(AHRS_t* ahrs, float* buf, float halfT);
+void AHRS_Q2Euler(float* q, Euler_t* euler);
 
 #ifdef __cplusplus
 }

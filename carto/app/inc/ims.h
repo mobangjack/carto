@@ -14,28 +14,41 @@
  * limitations under the License.
  */
  
-#ifndef __CMD_H__
-#define __CMD_H__
+#ifndef __IMS_H__
+#define __IMS_H__
 
 /**********************************************/
-/*             Command Interface              */
+/*            Input Mode Switcher             */
 /**********************************************/
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include "app.h"
+#include "sci.h"
+#include "rci.h"
+#include "hci.h"
+#include "wdg.h"
 
 typedef enum {
 	INPUT_MODE_NO,
 	INPUT_MODE_RC,
 	INPUT_MODE_HC,
-	INPUT_MODE_AC
+	INPUT_MODE_AC,
 }InputMode_e;
 
-void Cmd_Init();
-void Cmd_Proc();
+typedef enum {
+	INPUT_MODE_SWITCH_NOP, // Input Mode Switch: No Operation
+	INPUT_MODE_SWITCH_R2H, // Input Mode Switch: RC -> HC
+	INPUT_MODE_SWITCH_H2R, // Input Mode Switch: HC -> RC
+	INPUT_MODE_SWITCH_R2A, // Input Mode Switch: RC -> AC
+	INPUT_MODE_SWITCH_A2R, // Input Mode Switch: AC -> RC
+	INPUT_MODE_SWITCH_H2A, // Input Mode Switch: HC -> AC
+	INPUT_MODE_SWITCH_A2H, // Input Mode Switch: AC -> HC
+}InputModeSwitch_e;
+
+void Ims_Init();
+void Ims_Proc();
 
 void Rcv_Proc(uint8_t* dbuf);
 
@@ -43,13 +56,8 @@ void Rcv_Proc(uint8_t* dbuf);
 /*             Exported Variables             */
 /**********************************************/
 extern DBUS_t dbus;
-
 extern InputMode_e inputMode;
-
-extern PeriphsState_t functionalStateRef;
-extern PantiltState_t pantiltPositionRef;
-extern ChassisState_t chassisVelocityRef;
-extern MecanumState_t mecanumVelocityRef;
+extern InputModeSwitch_e inputModeSwitch;
 
 #ifdef __cplusplus
 }

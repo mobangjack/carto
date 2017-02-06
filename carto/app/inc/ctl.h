@@ -25,12 +25,18 @@
 extern "C" {
 #endif
 
-#include "app.h"
+#include "pid.h"
+#include "ramp.h"
+#include "sci.h"
+#include "odo.h"
+#include "sys.h"
+#include "ini.h"
+#include "wdg.h"
 
 typedef enum {
 	WORKING_STATE_STOP,
 	WORKING_STATE_PREPARE,
-	WORKING_STATE_NORMAL
+	WORKING_STATE_NORMAL,
 }WorkingState_e;
 
 typedef enum {
@@ -39,39 +45,8 @@ typedef enum {
 	WORKING_STATE_SWITCH_P2N, // Working State Switch: Prepare -> Normal
 	WORKING_STATE_SWITCH_N2P, // Working State Switch: Normal -> Prepare
 	WORKING_STATE_SWITCH_P2S, // Working State Switch: Prepare -> Stop
-	WORKING_STATE_SWITCH_N2S  // Working State Switch: Normal -> Stop
+	WORKING_STATE_SWITCH_N2S, // Working State Switch: Normal -> Stop
 }WorkingStateSwitch_e;
-
-typedef uint32_t PeriphsState_t; // Peripherals Functional State
-
-#define FS_LED_GREEN      	(((uint32_t)0x00000001)<<0)
-#define FS_LED_RED        	(((uint32_t)0x00000001)<<1)
-#define FS_GUN      		(((uint32_t)0x00000001)<<2)
-#define FS_LASER    		(((uint32_t)0x00000001)<<3)
-#define FS_SPINNER  		(((uint32_t)0x00000001)<<4)
-#define FS_ALL      		((uint32_t)0xFFFFFFFF)
-#define FS_NON       		((uint32_t)0x00000000)
-
-typedef struct
-{
-	float y;
-	float p;
-}PantiltState_t;
-
-typedef struct
-{
-	float x;
-	float y;
-	float z;
-}ChassisState_t;
-
-typedef struct
-{
-	float w1;
-	float w2;
-	float w3;
-	float w4;
-}MecanumState_t;
 
 void Ctl_Init();
 void Ctl_Proc();
@@ -79,10 +54,8 @@ void Ctl_Proc();
 /**********************************************/
 /*             Exported Variables             */
 /**********************************************/
-extern WorkingState_e workingState;
-extern WorkingStateSwitch_e workingStateSwitch;
-
-extern Mecanum_t mecanum;
+extern WorkingState_e workingState; // Auto-Controlled
+extern WorkingStateSwitch_e workingStateSwitch; // Auto-Controlled
 
 extern PID_t CM1SpeedPID;
 extern PID_t CM2SpeedPID;

@@ -25,7 +25,7 @@ static MouseButtonEvent_t mouseButtonEvents[MOUSE_BTN_CNT];
 
 static MouseButtonState_t lastRawMouseButtonStates[MOUSE_BTN_CNT];
 static uint32_t mouseButtonPressedCounts[MOUSE_BTN_CNT];
-static void GetMouseButtonStates(const HC_t* hc)
+static void GetMouseButtonStates(HC_t* hc)
 {
 	uint8_t* thisRawMouseButtonStates = hc->mouse.b;
 	uint32_t i = 0;
@@ -44,7 +44,7 @@ static void GetMouseButtonStates(const HC_t* hc)
 }
 
 static MouseButtonState_t lastMouseButtonStates[MOUSE_BTN_CNT];
-static void GetMouseButtonEvents(const HC_t* hc)
+static void GetMouseButtonEvents(HC_t* hc)
 {
 	uint32_t i = 0;
 	for (; i < MOUSE_BTN_CNT; i++) {
@@ -53,7 +53,7 @@ static void GetMouseButtonEvents(const HC_t* hc)
 	}
 }
 
-static void GetFunctionalStateRef(const HC_t* hc)
+static void GetFunctionalStateRef(HC_t* hc)
 {
 	GetMouseButtonStates(hc);
 	GetMouseButtonEvents(hc);
@@ -71,21 +71,21 @@ static void GetFunctionalStateRef(const HC_t* hc)
 
 static MAFilter_t fx, fy, fz;
 static float buf[3][KEY_CONTROL_MAFILTER_LEN];
-static void GetChassisVelocityRef(const HC_t* hc)
+static void GetChassisVelocityRef(HC_t* hc)
 {
 	float speed = (hc->key.val & KEY_SHIFT) ? cfg.cha.spdCfg.max : cfg.cha.spdCfg.max / 2.f;
 	float vx = (hc->key.val & KEY_A) ? -speed : ((hc->key.val & KEY_D) ? speed : 0);
 	float vy = (hc->key.val & KEY_S) ? -speed : ((hc->key.val & KEY_W) ? speed : 0);
-	float vz = MAP(hc->mouse.x, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -cfg.yaw.spdCfg.max, cfg.yaw.spdCfg.max);
-	chassisVelocityRef.x = MAFilter_Calc(fx, vx);
-	chassisVelocityRef.y = MAFilter_Calc(fy, vy);
-	chassisVelocityRef.z = MAFilter_Calc(fz, vz);
+	float vz = map(hc->mouse.x, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -cfg.yaw.spdCfg.max, cfg.yaw.spdCfg.max);
+	chassisVelocityRef.x = MAFilter_Calc(&fx, vx);
+	chassisVelocityRef.y = MAFilter_Calc(&fy, vy);
+	chassisVelocityRef.z = MAFilter_Calc(&fz, vz);
 }
 
-static void GetPantiltPositionRef(const HC_t* hc)
+static void GetPantiltPositionRef(HC_t* hc)
 {
-	pantiltPositionRef.y += MAP(hc->mouse.x, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -cfg.yaw.spdCfg.max, cfg.yaw.spdCfg.max);
-	pantiltPositionRef.p += MAP(hc->mouse.y, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -cfg.pit.spdCfg.max, cfg.pit.spdCfg.max);
+	pantiltPositionRef.y += map(hc->mouse.x, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -cfg.yaw.spdCfg.max, cfg.yaw.spdCfg.max);
+	pantiltPositionRef.p += map(hc->mouse.y, MOUSE_SPEED_MIN, MOUSE_SPEED_MAX, -cfg.pit.spdCfg.max, cfg.pit.spdCfg.max);
 }
 
 void HCI_Init()
@@ -103,7 +103,7 @@ void HCI_Init()
 	MAFilter_Init(&fz, buf[2], KEY_CONTROL_MAFILTER_LEN);
 }
 
-void HCI_Proc(const HC_t* hc)
+void HCI_Proc(HC_t* hc)
 {
 	GetFunctionalStateRef(hc);
 	GetChassisVelocityRef(hc);

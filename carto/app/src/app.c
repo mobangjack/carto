@@ -29,8 +29,9 @@ void App_Init()
 	Act_Init();
 	Can_Init();
 	Cfg_Init();
+	Ini_Init();
 	Clk_Init();
-	Cmd_Init();
+	Sci_Init();
 	Com_Init();
 	Ctl_Init();
 	Ins_Init();
@@ -42,7 +43,7 @@ void App_Init()
 void App_Sync()
 {
 	Wdg_Proc();
-	Cmd_Proc();
+	Sci_Proc();
 	Com_Proc();
 	Ins_Proc();
 	Odo_Proc();
@@ -54,7 +55,4 @@ void App_Sync()
 void App_Proc()
 {
 	sync_tick++;
-	if (sync_tick % cfg.ctl.div == 0) {
-
-	}
 }

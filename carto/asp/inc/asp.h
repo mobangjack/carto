@@ -17,6 +17,10 @@
 #ifndef __ASP_H__
 #define __ASP_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "ahrs.h"
 #include "cbus.h"
 #include "crc16.h"
@@ -31,6 +35,10 @@
 #include "pid.h"
 #include "ramp.h"
 #include "stack.h"
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

@@ -14,30 +14,18 @@
  * limitations under the License.
  */
  
-#include "cmd.h"
+#include "ims.h"
 
 /**********************************************/
-/*             Command Interface              */
-/**********************************************/
-
-/**********************************************/
-/*             Exported Variables             */
+/*            Input Mode Switcher             */
 /**********************************************/
 DBUS_t dbus;
-
 InputMode_e inputMode;
+InputModeSwitch_e inputModeSwitch;
 
-PeriphsState_t functionalStateRef;
-PantiltState_t pantiltPositionRef;
-ChassisState_t chassisVelocityRef;
-MecanumState_t mecanumVelocityRef;
-
-/**********************************************/
-/*              Get Input Mode                */
-/**********************************************/
-static void GetInputMode(const RC_t* rc)
+static void InputModeSwitchMach()
 {
-	switch (rc->sw[SW_IDX_R]) {
+	switch (dbus.rc.sw[SW_IDX_R]) {
 	case SW_UP:
 		inputMode = INPUT_MODE_RC;
 		break;
@@ -52,22 +40,39 @@ static void GetInputMode(const RC_t* rc)
 	}
 }
 
-/**********************************************/
-/*     Command Interface Initialization       */
-/**********************************************/
-void Cmd_Init()
+static void InputModeSwitchProc()
 {
-	RCI_Init();
-	HCI_Init();
-	ACI_Init();
+	switch (inputModeSwitch) {
+	case INPUT_MODE_SWITCH_R2H:
+		break;
+	case INPUT_MODE_SWITCH_H2R:
+		break;
+	case INPUT_MODE_SWITCH_R2A:
+		break;
+	case INPUT_MODE_SWITCH_A2R:
+		break;
+	case INPUT_MODE_SWITCH_H2A:
+		break;
+	case INPUT_MODE_SWITCH_A2H:
+		break;
+	default:
+		break;
+	}
+}
+
+void Ims_Init()
+{
+	inputMode = INPUT_MODE_NO;
+	inputModeSwitch = INPUT_MODE_SWITCH_NOP;
 }
 
 /**********************************************/
 /*         Command Interface Process          */
 /**********************************************/
-void Cmd_Proc()
+void Ims_Proc()
 {
-	GetInputMode(&dbus.rc);
+	InputModeSwitchMach();
+	InputModeSwitchProc();
 	if (inputMode == INPUT_MODE_RC)
 	{
 		RCI_Proc(&dbus.rc);
@@ -82,8 +87,9 @@ void Cmd_Proc()
 	}
 	else {
 		// Should not reach here
+		//SCI_Init();
 	}
-	Mecanum_Decompose(&mecanum, (float*)&chassisVelocityRef, (float*)&mecanumVelocityRef);
+
 }
 
 /**********************************************/

@@ -25,7 +25,7 @@ static SwitchEvent_t switchEvents[SW_CNT];
 
 static uint8_t lastRawSwitchStates[SW_CNT];
 static uint32_t switchConfirmCounts[SW_CNT];
-static void GetSwitchStates(const RC_t* rc)
+static void GetSwitchStates(RC_t* rc)
 {
 	uint8_t* thisRawSwitchStates = rc->sw;
 	uint32_t i = 0;
@@ -44,7 +44,7 @@ static void GetSwitchStates(const RC_t* rc)
 }
 
 static SwitchState_t lastSwitchStates[SW_CNT];
-static void GetSwitchEvents(const RC_t* rc)
+static void GetSwitchEvents(RC_t* rc)
 {
 	uint32_t i = 0;
 	for (; i < SW_CNT; i++) {
@@ -53,7 +53,7 @@ static void GetSwitchEvents(const RC_t* rc)
 	}
 }
 
-static void GetFunctionalStateRef(const RC_t* rc)
+static void GetFunctionalStateRef(RC_t* rc)
 {
 	GetSwitchStates(rc);
 	GetSwitchEvents(rc);
@@ -76,19 +76,17 @@ static void GetFunctionalStateRef(const RC_t* rc)
 	}
 }
 
-#define MAP(val,min1,max1,min2,max2) ((val-min1)*(max2-min2)/(max1-min1)+min2)
-
-static void GetChassisVelocityRef(const RC_t* rc)
+static void GetChassisVelocityRef(RC_t* rc)
 {
-	chassisVelocityRef.x = MAP(rc->ch[0], CH_MIN, CH_MAX, -cfg.cha.spdCfg.max, cfg.cha.spdCfg.max);
-	chassisVelocityRef.y = MAP(rc->ch[1], CH_MIN, CH_MAX, -cfg.cha.spdCfg.max, cfg.cha.spdCfg.max);
-	chassisVelocityRef.z = MAP(rc->ch[2], CH_MIN, CH_MAX, -cfg.cha.spdCfg.max, cfg.cha.spdCfg.max);
+	chassisVelocityRef.x = map(rc->ch[0], CH_MIN, CH_MAX, -cfg.cha.spdCfg.max, cfg.cha.spdCfg.max);
+	chassisVelocityRef.y = map(rc->ch[1], CH_MIN, CH_MAX, -cfg.cha.spdCfg.max, cfg.cha.spdCfg.max);
+	chassisVelocityRef.z = map(rc->ch[2], CH_MIN, CH_MAX, -cfg.cha.spdCfg.max, cfg.cha.spdCfg.max);
 }
 
-static void GetPantiltPositionRef(const RC_t* rc)
+static void GetPantiltPositionRef(RC_t* rc)
 {
-	pantiltPositionRef.y += MAP(rc->ch[2], CH_MIN, CH_MAX, -cfg.yaw.spdCfg.max, cfg.yaw.spdCfg.max);
-	pantiltPositionRef.p += MAP(rc->ch[3], CH_MIN, CH_MAX, -cfg.pit.spdCfg.max, cfg.pit.spdCfg.max);
+	pantiltPositionRef.y += map(rc->ch[2], CH_MIN, CH_MAX, -cfg.yaw.spdCfg.max, cfg.yaw.spdCfg.max);
+	pantiltPositionRef.p += map(rc->ch[3], CH_MIN, CH_MAX, -cfg.pit.spdCfg.max, cfg.pit.spdCfg.max);
 }
 
 void RCI_Init()
@@ -103,7 +101,7 @@ void RCI_Init()
 	}
 }
 
-void RCI_Proc(const RC_t* rc)
+void RCI_Proc(RC_t* rc)
 {
 	GetFunctionalStateRef(rc);
 	GetChassisVelocityRef(rc);

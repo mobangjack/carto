@@ -36,14 +36,14 @@ void Stack_Init(Stack_t* stack, uint8_t* buf, uint32_t size);
 Stack_t* Stack_Create(uint32_t size);
 void Stack_Push(Stack_t* stack, uint8_t element);
 uint8_t Stack_Pop(Stack_t* stack);
-uint8_t Stack_Peek(const Stack_t* stack);
-uint32_t Stack_GetUsed(const Stack_t* stack);
-uint32_t Stack_GetFree(const Stack_t* stack);
-uint8_t Stack_GetSize(const Stack_t* stack);
-uint8_t Stack_IsFull(const Stack_t* stack);
-uint8_t Stack_NotFull(const Stack_t* stack);
-uint8_t Stack_IsEmpty(const Stack_t* stack);
-uint8_t Stack_NotEmpty(const Stack_t* stack);
+uint8_t Stack_Peek(Stack_t* stack);
+uint32_t Stack_GetUsed(Stack_t* stack);
+uint32_t Stack_GetFree(Stack_t* stack);
+uint8_t Stack_GetSize(Stack_t* stack);
+uint8_t Stack_IsFull(Stack_t* stack);
+uint8_t Stack_NotFull(Stack_t* stack);
+uint8_t Stack_IsEmpty(Stack_t* stack);
+uint8_t Stack_NotEmpty(Stack_t* stack);
 void Stack_Destroy(Stack_t* stack);
 
 #ifdef __cplusplus

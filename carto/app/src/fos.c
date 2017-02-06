@@ -14,30 +14,14 @@
  * limitations under the License.
  */
 
-#include "cfg.h"
+#include "fos.h"
 
-/*************************************/
-/*     Application Configuration     */
-/*************************************/
-
-Cfg_t cfg = CFG_DEFAULT;
-
-void Cfg_Load(Cfg_t* cfg)
+void Fos_Read(uint8_t* buf, uint32_t size)
 {
-	Fos_Read((uint8_t*)cfg, sizeof(Cfg_t));
+	Flash_Read(CFG_DATA_START_ADDR, buf, size);
 }
 
-uint8_t Cfg_Save(Cfg_t* cfg)
+uint8_t Fos_Write(uint8_t* buf, uint32_t size)
 {
-	return Fos_Write((uint8_t*)cfg, sizeof(Cfg_t));
-}
-
-void Cfg_Init()
-{
-	Cfg_Load(&cfg);
-}
-
-void Cfg_Proc()
-{
-	Cfg_Save(&cfg);
+	return Flash_Write(CFG_DATA_START_ADDR, buf, size);
 }

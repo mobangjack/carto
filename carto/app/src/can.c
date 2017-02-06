@@ -30,13 +30,11 @@ static Est_t* est[MOTOR_NUM];    // Estimator Group
 
 uint8_t Can_Init()
 {
-	static uint8_t ini_flag[MOTOR_NUM];
 	uint8_t i = 0;
 	for (; i < MOTOR_NUM; i++) {
 		if(est[i] == NULL) {
-			est[i] = EstCreate(EST_GAUSS_N, EST_KALMAN_Q);
+			est[i] = Est_Create(EST_GAUSS_N, EST_KALMAN_Q);
 			if (est[i] != NULL) {
-				ini_flag[i] = 1;
 			} else {
 				return 0;
 			}

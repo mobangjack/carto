@@ -22,7 +22,7 @@
 
 Imu_t imu;
 Mag_t mag;
-Ahrs_t ahrs;
+AHRS_t ahrs;
 Euler_t euler;
 
 void Ins_Init()

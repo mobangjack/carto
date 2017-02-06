@@ -25,7 +25,11 @@
 extern "C" {
 #endif
 
-#include "cmd.h"
+#include "sci.h"
+#include "dbus.h"
+#include "mafilter.h"
+#include "fun.h"
+#include "ini.h"
 
 typedef uint8_t MouseButtonState_t;
 typedef uint8_t MouseButtonEvent_t;
@@ -33,13 +37,13 @@ typedef uint8_t MouseButtonEvent_t;
 #define KEY_CONTROL_MAFILTER_LEN 10
 #define MOUSE_BUTTON_PRESSED_CNT 10
 
-#define GET_MOUSE_BUTTON_EVENT(last,this) ((last<<2)|this)
+#define GET_MOUSE_BUTTON_EVENT(LAST,THIS) ((LAST<<2)|THIS)
 #define MOUSE_BUTTON_EVENT_UP GET_MOUSE_BUTTON_EVENT(MOUSE_BUTTON_DOWM, MOUSE_BUTTON_UP)
 #define MOUSE_BUTTON_EVENT_DOWN GET_MOUSE_BUTTON_EVENT(MOUSE_BUTTON_UP, MOUSE_BUTTON_DOWM)
 #define MOUSE_BUTTON_EVENT_NONE 0
 
 void HCI_Init();
-void HCI_Proc(const HC_t* hc);
+void HCI_Proc(HC_t* hc);
 
 #ifdef __cplusplus
 }

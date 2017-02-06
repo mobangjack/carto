@@ -14,30 +14,28 @@
  * limitations under the License.
  */
 
+#ifndef __INI_H__
+#define __INI_H__
+
+/******************************************************/
+/*                 System Initializer                 */
+/******************************************************/
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "cfg.h"
+#include "ctl.h"
+#include "ins.h"
+#include "can.h"
 
-/*************************************/
-/*     Application Configuration     */
-/*************************************/
+uint8_t Ini_Ok();
+void Ini_Init();
+void Ini_Proc();
 
-Cfg_t cfg = CFG_DEFAULT;
-
-void Cfg_Load(Cfg_t* cfg)
-{
-	Fos_Read((uint8_t*)cfg, sizeof(Cfg_t));
+#ifdef __cplusplus
 }
+#endif
 
-uint8_t Cfg_Save(Cfg_t* cfg)
-{
-	return Fos_Write((uint8_t*)cfg, sizeof(Cfg_t));
-}
-
-void Cfg_Init()
-{
-	Cfg_Load(&cfg);
-}
-
-void Cfg_Proc()
-{
-	Cfg_Save(&cfg);
-}
+#endif

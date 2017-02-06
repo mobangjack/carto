@@ -26,8 +26,6 @@
 WorkingState_e workingState;
 WorkingStateSwitch_e workingStateSwitch;
 
-Mecanum_t mecanum;
-
 PID_t CM1SpeedPID;
 PID_t CM2SpeedPID;
 PID_t CM3SpeedPID;
@@ -67,12 +65,12 @@ static void WorkingStateSwitchMach()
 	case WORKING_STATE_PREPARE:
 		// Current working state is PREPARE.
 		// If any fatal error occurs, force STOP,
-		// else if devices are all ready, step into NORMAL stage.
+		// else if system initialization done, step into NORMAL stage.
 		// Otherwise stay the same.
 		if (Wdg_IsErrSet(WDG_ERR_FATAL)) {
 			workingState = WORKING_STATE_STOP;
 			workingStateSwitch = WORKING_STATE_SWITCH_P2S;
-		} else if (Dev_Ok()){
+		} else if (Ini_Ok()){
 			workingState = WORKING_STATE_NORMAL;
 			workingStateSwitch = WORKING_STATE_SWITCH_P2N;
 		}
@@ -80,12 +78,12 @@ static void WorkingStateSwitchMach()
 	case WORKING_STATE_NORMAL:
 		// Current working state is NORMAL.
 		// If any fatal error occurs, force STOP,
-		// else if devices are NOT ready, return to PREPARE state.
+		// else if system initialization is NOT done, return to PREPARE state.
 		// Otherwise stay the same.
 		if (Wdg_IsErrSet(WDG_ERR_FATAL)) {
 			workingState = WORKING_STATE_STOP;
 			workingStateSwitch = WORKING_STATE_SWITCH_N2S;
-		} else if (!Dev_Ok()) {
+		} else if (!Ini_Ok()) {
 			workingState = WORKING_STATE_PREPARE;
 			workingStateSwitch = WORKING_STATE_SWITCH_N2P;
 		}

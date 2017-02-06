@@ -41,9 +41,9 @@ typedef struct
 	float vard; // variance difference
 }Sta_t;
 
-void Sta_Init(Sta_t* gdf, float* buf, uint32_t len);
-void Sta_Calc(Sta_t* gdf, float v);
-void Sta_Reset(Sta_t* gdf);
+void Sta_Init(Sta_t* sta, float* buf, uint32_t len);
+void Sta_Calc(Sta_t* sta, float v);
+void Sta_Reset(Sta_t* sta);
 
 Sta_t* Sta_Create(uint32_t len);
 void Sta_Destroy(Sta_t* gdf);
