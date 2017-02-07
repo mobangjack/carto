@@ -27,7 +27,7 @@ extern "C" {
 
 #include "flash.h"
 
-#define CFG_DATA_START_ADDR 	FLASH_SECTOR_11_ADDR
+#define FOS_DATA_START_ADDR 	FLASH_SECTOR_11_ADDR
 
 void Fos_Read(uint8_t* buf, uint32_t size);
 uint8_t Fos_Write(uint8_t* buf, uint32_t size);

@@ -37,7 +37,7 @@ typedef struct
 	int16_t z;
 	int16_t p;
 	int16_t t;
-	int16_t f;
+	uint16_t f;
 }CBUS_t;
 
 void CBUS_Enc(CBUS_t* cbus, uint8_t* cbuf);

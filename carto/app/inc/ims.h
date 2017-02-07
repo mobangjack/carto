@@ -28,6 +28,7 @@ extern "C" {
 #include "cmd.h"
 #include "rci.h"
 #include "hci.h"
+#include "aci.h"
 #include "wdg.h"
 
 typedef enum {
@@ -39,6 +40,12 @@ typedef enum {
 
 typedef enum {
 	INPUT_MODE_SWITCH_NOP, // Input Mode Switch: No Operation
+	INPUT_MODE_SWITCH_N2R, // Input Mode Switch: NO -> RC
+	INPUT_MODE_SWITCH_R2N, // Input Mode Switch: RC -> NO
+	INPUT_MODE_SWITCH_N2H, // Input Mode Switch: NO -> HC
+	INPUT_MODE_SWITCH_H2N, // Input Mode Switch: HC -> NO
+	INPUT_MODE_SWITCH_N2A, // Input Mode Switch: NO -> AC
+	INPUT_MODE_SWITCH_A2N, // Input Mode Switch: AC -> NO
 	INPUT_MODE_SWITCH_R2H, // Input Mode Switch: RC -> HC
 	INPUT_MODE_SWITCH_H2R, // Input Mode Switch: HC -> RC
 	INPUT_MODE_SWITCH_R2A, // Input Mode Switch: RC -> AC
@@ -56,6 +63,7 @@ void Rcv_Proc(uint8_t* dbuf);
 /*             Exported Variables             */
 /**********************************************/
 extern DBUS_t dbus;
+extern CBUS_t cbus;
 extern InputMode_e inputMode;
 extern InputModeSwitch_e inputModeSwitch;
 

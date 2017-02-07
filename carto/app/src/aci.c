@@ -27,5 +27,10 @@ void Aci_Init()
 
 void Aci_Proc(CBUS_t* cbus)
 {
-
+	functionalStateRef   = cbus->f;
+	pantiltPositionRef.y = cbus->p * ACI_GIM_POS_RECIP;
+	pantiltPositionRef.p = cbus->t * ACI_GIM_POS_RECIP;
+	chassisVelocityRef.x = cbus->x * ACI_CHA_SPD_RECIP;
+	chassisVelocityRef.y = cbus->y * ACI_CHA_SPD_RECIP;
+	chassisVelocityRef.z = cbus->z * ACI_CHA_SPD_RECIP;
 }

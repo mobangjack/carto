@@ -28,7 +28,7 @@ extern "C" {
 // commonly used macros
 #define PI 3.1415926f
 #define MAP(val,min1,max1,min2,max2) ((val-min1)*(max2-min2)/(max1-min1)+min2)
-#define LIMIT(X,MIN,MAX) ((X)=(X)>(MAX)?(MAX):((X)<(MIN)?MIN:(MIN)))
+#define LIMIT(X,MIN,MAX) do { X=X>(MAX)?(MAX):X<(MIN)?(MIN):X; } while(0)
 
 float map(float val, float min1, float max1, float min2, float max2);
 

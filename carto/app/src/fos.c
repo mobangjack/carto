@@ -18,10 +18,10 @@
 
 void Fos_Read(uint8_t* buf, uint32_t size)
 {
-	Flash_Read(CFG_DATA_START_ADDR, buf, size);
+	Flash_Read(FOS_DATA_START_ADDR, buf, size);
 }
 
 uint8_t Fos_Write(uint8_t* buf, uint32_t size)
 {
-	return Flash_Write(CFG_DATA_START_ADDR, buf, size);
+	return Flash_Write(FOS_DATA_START_ADDR, buf, size);
 }

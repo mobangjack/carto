@@ -74,7 +74,7 @@ typedef struct
 {
 	float max;
 	float min;
-	float def;
+	float ofs;
 }PosCfg_t; // Position Configuration
 
 typedef struct
@@ -165,7 +165,7 @@ typedef struct
 { \
 	.max = 0, \
 	.min = 0, \
-	.def = 0, \
+	.ofs = 0, \
 }
 
 #define YAW_SPD_CFG_DEFAULT \
@@ -209,7 +209,7 @@ typedef struct
 { \
 	.max = 0, \
 	.min = 0, \
-	.def = 0, \
+	.ofs = 0, \
 }
 
 #define PIT_SPD_CFG_DEFAULT \

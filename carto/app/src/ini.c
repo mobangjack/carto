@@ -138,7 +138,6 @@ void Ini_Init()
 		cfg.pit.spdPID.Omax);
 }
 
-
 void Ini_Proc()
 {
 

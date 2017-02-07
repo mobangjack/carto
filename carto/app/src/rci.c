@@ -25,7 +25,7 @@ SwitchEvent_t switchEvents[SW_CNT];
 
 static uint8_t lastRawSwitchStates[SW_CNT];
 static uint32_t switchConfirmCounts[SW_CNT];
-static void GetSwitchStates(RC_t* rc)
+void GetSwitchStates(RC_t* rc)
 {
 	uint8_t* thisRawSwitchStates = rc->sw;
 	uint32_t i = 0;
@@ -44,7 +44,7 @@ static void GetSwitchStates(RC_t* rc)
 }
 
 static SwitchState_t lastSwitchStates[SW_CNT];
-static void GetSwitchEvents(RC_t* rc)
+void GetSwitchEvents(RC_t* rc)
 {
 	uint32_t i = 0;
 	for (; i < SW_CNT; i++) {
@@ -55,8 +55,6 @@ static void GetSwitchEvents(RC_t* rc)
 
 static void GetFunctionalStateRef(RC_t* rc)
 {
-	GetSwitchStates(rc);
-	GetSwitchEvents(rc);
 	switch (switchEvents[SW_IDX_L]) {
 		case SWITCH_EVENT_3TO1:
 			FS_Tog(&functionalStateRef, FS_GUN);

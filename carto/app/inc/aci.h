@@ -28,6 +28,9 @@ extern "C" {
 #include "cmd.h"
 #include "cbus.h"
 
+#define ACI_CHA_SPD_RECIP 0.001f
+#define ACI_GIM_POS_RECIP 0.001f
+
 void Aci_Init();
 void Aci_Proc(CBUS_t* cbus);
 

@@ -20,8 +20,8 @@
 /*          Communication          */
 /***********************************/
 
-uint8_t buf[COM_RX_FIFO_SIZE];
-FIFO_t fifo;
+static uint8_t buf[COM_RX_FIFO_SIZE];
+static FIFO_t fifo;
 
 void Com_Init()
 {
@@ -30,7 +30,7 @@ void Com_Init()
 
 void Com_Proc()
 {
-	uint32_t len = FIFO_GetUsed(&fifo);
+	//uint32_t len = FIFO_GetUsed(&fifo);
 }
 
 void Tty_Proc(uint8_t data)

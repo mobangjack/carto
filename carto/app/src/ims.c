@@ -20,29 +20,100 @@
 /*            Input Mode Switcher             */
 /**********************************************/
 DBUS_t dbus;
+CBUS_t cbus;
 InputMode_e inputMode;
 InputModeSwitch_e inputModeSwitch;
 
 static void InputModeSwitchMach()
 {
 	switch (switchStates[SW_IDX_R]) {
+	case SWITCH_STATE_0:
+		switch (switchEvents[SW_IDX_R]) {
+		case SWITCH_EVENT_1TO0:
+			inputModeSwitch = INPUT_MODE_SWITCH_R2N;
+			break;
+		case SWITCH_EVENT_2TO0:
+			inputModeSwitch = INPUT_MODE_SWITCH_A2N;
+			break;
+		case SWITCH_EVENT_3TO0:
+			inputModeSwitch = INPUT_MODE_SWITCH_H2N;
+			break;
+		default:
+			inputModeSwitch = INPUT_MODE_SWITCH_NOP;
+		}
+		inputMode = INPUT_MODE_NO;
+		break;
 	case SWITCH_STATE_1:
+		switch (switchEvents[SW_IDX_R]) {
+		case SWITCH_EVENT_0TO1:
+			inputModeSwitch = INPUT_MODE_SWITCH_N2R;
+			break;
+		case SWITCH_EVENT_2TO1:
+			inputModeSwitch = INPUT_MODE_SWITCH_A2R;
+			break;
+		case SWITCH_EVENT_3TO1:
+			inputModeSwitch = INPUT_MODE_SWITCH_H2R;
+			break;
+		default:
+			inputModeSwitch = INPUT_MODE_SWITCH_NOP;
+		}
 		inputMode = INPUT_MODE_RC;
 		break;
-	case SWITCH_STATE_3:
-		inputMode = INPUT_MODE_HC;
-		break;
 	case SWITCH_STATE_2:
+		switch (switchEvents[SW_IDX_R]) {
+		case SWITCH_EVENT_0TO2:
+			inputModeSwitch = INPUT_MODE_SWITCH_N2A;
+			break;
+		case SWITCH_EVENT_1TO2:
+			inputModeSwitch = INPUT_MODE_SWITCH_R2A;
+			break;
+		case SWITCH_EVENT_3TO2:
+			inputModeSwitch = INPUT_MODE_SWITCH_H2A;
+			break;
+		default:
+			inputModeSwitch = INPUT_MODE_SWITCH_NOP;
+		}
 		inputMode = INPUT_MODE_AC;
+		break;
+	case SWITCH_STATE_3:
+		switch (switchEvents[SW_IDX_R]) {
+		case SWITCH_EVENT_0TO3:
+			inputModeSwitch = INPUT_MODE_SWITCH_N2H;
+			break;
+		case SWITCH_EVENT_1TO3:
+			inputModeSwitch = INPUT_MODE_SWITCH_R2H;
+			break;
+		case SWITCH_EVENT_2TO3:
+			inputModeSwitch = INPUT_MODE_SWITCH_A2H;
+			break;
+		default:
+			inputModeSwitch = INPUT_MODE_SWITCH_NOP;
+		}
+		inputMode = INPUT_MODE_HC;
 		break;
 	default:
 		inputMode = INPUT_MODE_NO;
+		inputModeSwitch = INPUT_MODE_SWITCH_NOP;
 	}
 }
 
 static void InputModeSwitchProc()
 {
 	switch (inputModeSwitch) {
+	case INPUT_MODE_SWITCH_NOP:
+		break;
+	case INPUT_MODE_SWITCH_N2R:
+		break;
+	case INPUT_MODE_SWITCH_R2N:
+		break;
+	case INPUT_MODE_SWITCH_N2H:
+		break;
+	case INPUT_MODE_SWITCH_H2N:
+		break;
+	case INPUT_MODE_SWITCH_N2A:
+		break;
+	case INPUT_MODE_SWITCH_A2N:
+		break;
 	case INPUT_MODE_SWITCH_R2H:
 		break;
 	case INPUT_MODE_SWITCH_H2R:
@@ -67,10 +138,12 @@ void Ims_Init()
 }
 
 /**********************************************/
-/*         Command Interface Process          */
+/*        Input Mode Switcher Process         */
 /**********************************************/
 void Ims_Proc()
 {
+	GetSwitchStates(&dbus.rc);
+	GetSwitchEvents(&dbus.rc);
 	InputModeSwitchMach();
 	InputModeSwitchProc();
 	if (inputMode == INPUT_MODE_RC)
@@ -83,10 +156,7 @@ void Ims_Proc()
 	}
 	else if (inputMode == INPUT_MODE_AC)
 	{
-		// Aci_Proc(&cbus);
-	}
-	else {
-		// Should not reach here
+		Aci_Proc(&cbus);
 	}
 }
 

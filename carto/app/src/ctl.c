@@ -99,6 +99,8 @@ static void WorkingStateSwitchMach()
 static void WorkingStateSwitchProc()
 {
 	switch (workingStateSwitch) {
+	case WORKING_STATE_SWITCH_NOP: // No Operation
+		break;
 	case WORKING_STATE_SWITCH_S2P: // Stop -> Prepare
 		break;
 	case WORKING_STATE_SWITCH_P2N: // Prepare -> Normal
