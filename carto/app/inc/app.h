@@ -60,7 +60,7 @@ extern "C" {
 #include "odo.h" // Odometer (Sensor Message Feedback)
 #include "pwr.h" // Power Management
 #include "rci.h" // Remote Control Interface
-#include "sys.h" // System-wide Variable Type and Functions
+#include "sys.h" // System-wide Variable Types and Functions
 #include "wdg.h" // Watch Dog
 
 void App_Init();

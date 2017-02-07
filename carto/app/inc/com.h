@@ -30,20 +30,6 @@ extern "C" {
 
 #define COM_RX_FIFO_SIZE 256u
 
-typedef struct
-{
-	uint8_t header;
-	uint8_t length;
-	uint16_t crc;
-}ComFmt_t;
-
-#define COM_FMT_ACI \
-{ \
-	.header = 0xab, \
-	.length = 16, \
-	.crc = 0xabcd, \
-}
-
 #define COM_MSG_ACI 0
 #define COM_MOD_CFG 0x01
 #define COM_MOD_API 0x01

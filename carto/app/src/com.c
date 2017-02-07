@@ -30,7 +30,12 @@ void Com_Init()
 
 void Com_Proc()
 {
-	//uint32_t len = FIFO_GetUsed(&fifo);
+	uint32_t len = FIFO_GetUsed(&fifo);
+	if (len > 0) {
+		while (FIFO_NotEmpty(&fifo)) {
+			Tty_WriteByte(FIFO_Pop(&fifo));
+		}
+	}
 }
 
 void Tty_Proc(uint8_t data)

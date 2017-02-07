@@ -18,7 +18,6 @@
 #define __FLASH_H__
 
 #include "platform.h"
-#include <string.h>
 
 #define STM32_FLASH_BASE_ADDR 0x08000000
  

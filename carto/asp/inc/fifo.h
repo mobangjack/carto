@@ -35,17 +35,19 @@ typedef struct FIFO
 }FIFO_t;
 
 void FIFO_Init(FIFO_t* fifo, uint8_t* buf, uint32_t len);
-FIFO_t* FIFO_Create(uint32_t len);
 void FIFO_Flush(FIFO_t* fifo);
 void FIFO_Push(FIFO_t* fifo, uint8_t element);
 uint8_t FIFO_Pop(FIFO_t* fifo);
-uint8_t FIFO_Peek(FIFO_t* fifo);
-uint8_t FIFO_IsFull(FIFO_t* fifo);
-uint8_t FIFO_NotFull(FIFO_t* fifo);
-uint8_t FIFO_IsEmpty(FIFO_t* fifo);
-uint8_t FIFO_NotEmpty(FIFO_t* fifo);
-uint32_t FIFO_GetUsed(FIFO_t* fifo);
-uint32_t FIFO_GetFree(FIFO_t* fifo);
+uint8_t FIFO_Peek(const FIFO_t* fifo);
+uint8_t FIFO_IsFull(const FIFO_t* fifo);
+uint8_t FIFO_NotFull(const FIFO_t* fifo);
+uint8_t FIFO_IsEmpty(const FIFO_t* fifo);
+uint8_t FIFO_NotEmpty(const FIFO_t* fifo);
+uint32_t FIFO_GetSize(const FIFO_t* fifo);
+uint32_t FIFO_GetUsed(const FIFO_t* fifo);
+uint32_t FIFO_GetFree(const FIFO_t* fifo);
+
+FIFO_t* FIFO_Create(uint32_t len);
 void FIFO_Destroy(FIFO_t* fifo);
 
 #ifdef __cpluplus

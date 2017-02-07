@@ -109,8 +109,7 @@ carto/srv/src/tim_srv.o: ../carto/srv/src/tim_srv.c \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/com.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/bsp/inc/tty.h \
  /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/ims.h \
- /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/pwr.h \
- /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/app.h
+ /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/pwr.h
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/srv/inc/tim_srv.h:
 
@@ -333,5 +332,3 @@ carto/srv/src/tim_srv.o: ../carto/srv/src/tim_srv.c \
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/ims.h:
 
 /home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/pwr.h:
-
-/home/bj/workspace/eclipse/stm32/carto_alpha/carto/app/inc/app.h:

@@ -20,11 +20,9 @@
 /*            Application             */
 /**************************************/
 
-static uint32_t sync_tick = 0;
-
 void App_Init()
 {
-	sync_tick = 0;
+	Bsp_Config();
 
 	Act_Init();
 	Can_Init();
@@ -44,15 +42,14 @@ void App_Sync()
 {
 	Wdg_Proc();
 	Cmd_Proc();
-	Com_Proc();
-	Ins_Proc();
+	// Com_Proc();
+	// Ins_Proc();
 	Odo_Proc();
 	Ctl_Proc();
-	Act_Proc();
+	// Act_Proc();
 	Pwr_Proc();
 }
 
 void App_Proc()
 {
-	sync_tick++;
 }

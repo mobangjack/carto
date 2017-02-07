@@ -31,6 +31,7 @@ extern "C" {
 #define LIMIT(X,MIN,MAX) do { X=X>(MAX)?(MAX):X<(MIN)?(MIN):X; } while(0)
 
 float map(float val, float min1, float max1, float min2, float max2);
+float constrain(float val, float min, float max);
 
 #ifdef __cplusplus
 }

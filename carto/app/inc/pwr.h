@@ -25,7 +25,8 @@
 extern "C" {
 #endif
 
-#include "app.h"
+#include "can.h"
+#include "mafilter.h"
 
 #define PWR_OVERLOAD_VAL 5000
 #define PWR_MAFILTER_LEN 100

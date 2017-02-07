@@ -25,3 +25,7 @@ float map(float val, float min1, float max1, float min2, float max2)
 	return ((val-min1)*(max2-min2)/(max1-min1)+min2);
 }
 
+float constrain(float val, float min, float max)
+{
+	return val < min ? min : val > max ? max : val;
+}

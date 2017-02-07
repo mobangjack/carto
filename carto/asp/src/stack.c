@@ -20,24 +20,13 @@ void Stack_Init(Stack_t* stack, uint8_t* buf, uint32_t size)
 {
 	stack->buf = buf;
 	stack->size = size;
-	stack->p = 0;
+	Stack_Dump(stack);
 }
 
-Stack_t* Stack_Create(uint32_t size)
+void Stack_Dump(Stack_t* stack)
 {
-	Stack_t* stack = (Stack_t*)malloc(sizeof(Stack_t));
-	if (stack == NULL) {
-		return NULL;
-	}
-	stack->buf = (uint8_t*)malloc(size);
-	if (stack->buf == NULL) {
-		free(stack);
-		stack = NULL;
-		return NULL;
-	}
-	stack->size = size;
+	memset(stack->buf, 0, stack->size * sizeof(uint8_t));
 	stack->p = 0;
-	return stack;
 }
 
 void Stack_Push(Stack_t* stack, uint8_t element)
@@ -55,39 +44,56 @@ uint8_t Stack_Peek(Stack_t* stack)
 	return stack->buf[stack->p];
 }
 
-uint32_t Stack_GetUsed(Stack_t* stack)
-{
-	return stack->p;
-}
-
-uint32_t Stack_GetFree(Stack_t* stack)
-{
-	return stack->size - stack->p;
-}
-
-uint8_t Stack_GetSize(Stack_t* stack)
+uint8_t Stack_GetSize(const Stack_t* stack)
 {
 	return stack->size;
 }
 
-uint8_t Stack_IsFull(Stack_t* stack)
+uint32_t Stack_GetUsed(const Stack_t* stack)
+{
+	return stack->p;
+}
+
+uint32_t Stack_GetFree(const Stack_t* stack)
+{
+	return stack->size - stack->p;
+}
+
+uint8_t Stack_IsFull(const Stack_t* stack)
 {
 	return stack->p == stack->size;
 }
 
-uint8_t Stack_NotFull(Stack_t* stack)
+uint8_t Stack_NotFull(const Stack_t* stack)
 {
 	return stack->p < stack->size;
 }
 
-uint8_t Stack_IsEmpty(Stack_t* stack)
+uint8_t Stack_IsEmpty(const Stack_t* stack)
 {
 	return stack->p == 0;
 }
 
-uint8_t Stack_NotEmpty(Stack_t* stack)
+uint8_t Stack_NotEmpty(const Stack_t* stack)
 {
 	return stack->p != 0;
+}
+
+Stack_t* Stack_Create(uint32_t size)
+{
+	Stack_t* stack = (Stack_t*)malloc(sizeof(Stack_t));
+	if (stack == NULL) {
+		return NULL;
+	}
+	stack->buf = (uint8_t*)malloc(size);
+	if (stack->buf == NULL) {
+		free(stack);
+		stack = NULL;
+		return NULL;
+	}
+	stack->size = size;
+	stack->p = 0;
+	return stack;
 }
 
 void Stack_Destroy(Stack_t* stack)
