@@ -39,7 +39,7 @@ uint8_t Stack_Pop(Stack_t* stack)
 	return stack->buf[stack->p--];
 }
 
-uint8_t Stack_Peek(Stack_t* stack)
+uint8_t Stack_Peek(const Stack_t* stack)
 {
 	return stack->buf[stack->p];
 }
