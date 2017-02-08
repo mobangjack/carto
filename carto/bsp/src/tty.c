@@ -16,16 +16,18 @@
  
 #include "tty.h"
 
-uint8_t buf[TTY_TX_FIFO_SIZE];
-FIFO_t fifo;
+static FIFO_t rx_fifo;
+static FIFO_t tx_fifo;
+static u8 rx_buf[TTY_RX_FIFO_SIZE];
+static u8 tx_buf[TTY_RX_FIFO_SIZE];
 
-void Tty_Config()
+void Tty_Config(void)
 {
     USART_Bind(TTY_RX_PIN, TTY_TX_PIN,
     		   TTY_USART,
 			   TTY_USART_BR,
 			   TTY_USART_WL,
-			   TTY_USART_PR,
+			   TTY_USART_PA,
 			   TTY_USART_SB,
 			   TTY_USART_FC
 			   );
@@ -34,68 +36,65 @@ void Tty_Config()
 
     NVIC_Config(TTY_NVIC, TTY_NVIC_PRE_PRIORITY, TTY_NVIC_SUB_PRIORITY);
 
-    FIFO_Init(&fifo, buf, TTY_TX_FIFO_SIZE);
+    FIFO_Init(&rx_fifo, rx_buf, TTY_RX_FIFO_SIZE);
+    FIFO_Init(&tx_fifo, tx_buf, TTY_TX_FIFO_SIZE);
 
     USART_Cmd(TTY_USART, ENABLE);
 }
 
-void Tty_WriteByte(uint8_t byte)
+u8 Tty_ReadByte()
 {
-	if (FIFO_NotFull(&fifo)) {
-		FIFO_Push(&fifo, byte);
-	}
+	while (FIFO_IsEmpty(&rx_fifo));
+	return FIFO_Pop(&rx_fifo);
+}
+
+void Tty_WriteByte(u8 byte)
+{
+	while (FIFO_IsFull(&tx_fifo));
+    FIFO_Push(&tx_fifo, byte);
     USART_ITConfig(TTY_USART, USART_IT_TXE, ENABLE);
 }
 
-void Tty_Write(const uint8_t* pdata, uint8_t len)
+void Tty_ReadBlock(u8* pdata, u8 len)
 {
 	uint8_t i = 0;
 	for (; i < len; i++) {
-		if (FIFO_NotFull(&fifo)) {
-			FIFO_Push(&fifo, pdata[i]);
-		} else {
-			break;
-		}
+		pdata[i] = Tty_ReadByte();
 	}
-    USART_ITConfig(TTY_USART, USART_IT_TXE, ENABLE);
 }
 
-char tx_buf[TTY_TX_FIFO_SIZE];
-void Tty_Print(const char* fmt,...)
+void Tty_WriteBlock(const u8* pdata, u8 len)
 {
-	uint32_t i = 0;
-	uint32_t len = sprintf(tx_buf, fmt);
+	uint8_t i = 0;
 	for (; i < len; i++) {
-		if (FIFO_NotFull(&fifo)) {
-			FIFO_Push(&fifo, tx_buf[i]);
-		} else {
-			break;
-		}
+		Tty_WriteByte(pdata[i]);
 	}
-	USART_ITConfig(TTY_USART, USART_IT_TXE, ENABLE);
 }
 
-int fputc(int c, FILE *f)
+void Tty_PrintString(const char* str)
 {
-	Tty_WriteByte((u8)c);
-    return c;
+	Tty_WriteBlock((const u8*)str, strlen(str));
 }
 
 void TTY_IRQ_HANDLER()
 {  
     if (USART_GetITStatus(TTY_USART, USART_IT_TXE) != RESET)
     {   
-		while (FIFO_NotEmpty(&fifo))
+		if (FIFO_NotEmpty(&tx_fifo))
 		{
-			uint8_t tx_data = FIFO_Pop(&fifo);
-			while (USART_GetFlagStatus(TTY_USART,USART_FLAG_TC) == RESET);
+			uint8_t tx_data = FIFO_Pop(&tx_fifo);
 			USART_SendData(TTY_USART, tx_data);
+		} else {
+			USART_ITConfig(TTY_USART, USART_IT_TXE, DISABLE);
 		}
-		USART_ITConfig(TTY_USART, USART_IT_TXE, DISABLE);
     }
 	else if (USART_GetITStatus(TTY_USART, USART_IT_RXNE) != RESET)
     {
         uint8_t rx_data = USART_ReceiveData(TTY_USART);
+        if (FIFO_IsFull(&rx_fifo)) {
+        	FIFO_Pop(&rx_fifo);
+        }
+        FIFO_Push(&rx_fifo, rx_data);
         TtyRxCallback(rx_data);
     }       
 }

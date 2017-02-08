@@ -24,7 +24,7 @@ void Rcv_Config()
 			   RCV_USART,
 			   RCV_USART_BR,
 			   RCV_USART_WL,
-			   RCV_USART_PR,
+			   RCV_USART_PA,
 			   RCV_USART_SB,
 			   RCV_USART_FC);
 

@@ -23,7 +23,7 @@
 #define RCV_USART USART1
 #define RCV_USART_BR 100000
 #define RCV_USART_WL 8
-#define RCV_USART_PR 'E'
+#define RCV_USART_PA 'E'
 #define RCV_USART_SB 1
 #define RCV_USART_FC 'N'
 
