@@ -20,13 +20,13 @@
 #include "platform.h"
 
 #define MOTOR_CAN CAN2
-#define CM_CMD(c201,c202,c203,c204) EC60_Cmd(MOTOR_CAN,c201,c202,c203,c204)
-#define GM_CMD(c205,c206) RM6025_Cmd(MOTOR_CAN,c205,c206)
+#define CM_CMD(c201,c202,c203,c204) CM_Cmd(MOTOR_CAN,c201,c202,c203,c204)
+#define GM_CMD(c205,c206) GM_Cmd(MOTOR_CAN,c205,c206)
 
-#define EC60_CMD_CAN_MSG_ID   0x200
-#define RM6025_CMD_CAN_MSG_ID 0x1ff
+#define CM_CMD_CAN_MSG_ID 0x200
+#define GM_CMD_CAN_MSG_ID 0x1ff
 
-void EC60_Cmd(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16_t c204);
-void RM6025_Cmd(CAN_TypeDef *CANx, int16_t c205, int16_t c206);
+void CM_Cmd(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16_t c204);
+void GM_Cmd(CAN_TypeDef *CANx, int16_t c205, int16_t c206);
 
 #endif

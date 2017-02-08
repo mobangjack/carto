@@ -121,7 +121,7 @@ uint8_t MPU6050_IIC_ReadByte()
 	return byte;
 }
 
-#define ABORT_IF_TIMEOUT() {if(!MPU6050_IIC_WaitAck()) return 0;}
+#define ABORT_IF_TIMEOUT() if(!MPU6050_IIC_WaitAck()) return 0
 uint8_t MPU6050_IIC_Read(uint8_t dev_addr,uint8_t reg_addr,uint8_t *pdata,uint8_t count)
 {
 	uint8_t i;

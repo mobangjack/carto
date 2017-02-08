@@ -38,6 +38,7 @@
 #define RCV_DMA_BUF_SIZE 36u
 
 void Rcv_Config();
+//void Rcv_Stream((void(*)(unsigned char))(func));
 
 void RcvCallback(uint8_t* dbuf);
 

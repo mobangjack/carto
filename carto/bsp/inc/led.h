@@ -27,14 +27,14 @@
 #define LED_GREEN_IS_OFF()  (LED_GREEN_STATE() == 0)
 #define LED_GREEN_ON()      GPIO_RST(LED_GREEN_PIN)
 #define LED_GREEN_OFF()     GPIO_SET(LED_GREEN_PIN)
-#define LED_GREEN_TOGGLE()  GPIO_TOG(LED_GREEN_PIN)
+#define LED_GREEN_TOG()     GPIO_TOG(LED_GREEN_PIN)
 
 #define LED_RED_STATE()     GPIO_READ_OUT(LED_RED_PIN)
 #define LED_RED_IS_ON()     (LED_RED_STATE() != 0)
 #define LED_RED_IS_OFF()    (LED_RED_STATE() == 0)
 #define LED_RED_ON()        GPIO_RST(LED_RED_PIN)
 #define LED_RED_OFF()       GPIO_SET(LED_RED_PIN)
-#define LED_RED_TOGGLE()    GPIO_TOG(LED_RED_PIN)
+#define LED_RED_TOG()       GPIO_TOG(LED_RED_PIN)
 
 void Led_Config();
 

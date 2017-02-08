@@ -38,12 +38,12 @@ typedef uint32_t Version_t;
 typedef uint32_t CfgFlag_t;
 
 #define CFG_FLAG_NONE               0u
-#define CFG_FLAG_DONE               (((uint32_t)1)<<0)
-#define CFG_FLAG_IMU                (((uint32_t)1)<<1)
-#define CFG_FLAG_MAG                (((uint32_t)1)<<2)
-#define CFG_FLAG_YAW                (((uint32_t)1)<<3)
-#define CFG_FLAG_PIT                (((uint32_t)1)<<4)
-#define CFG_FLAG_CHA                (((uint32_t)1)<<5)
+#define CFG_FLAG_DONE               (1u<<0)
+#define CFG_FLAG_IMU                (1u<<1)
+#define CFG_FLAG_MAG                (1u<<2)
+#define CFG_FLAG_YAW                (1u<<3)
+#define CFG_FLAG_PIT                (1u<<4)
+#define CFG_FLAG_CHA                (1u<<5)
 #define CFG_FLAG_ALL   (CFG_FLAG_IMU | CFG_FLAG_MAG | CFG_FLAG_YAW | \
                         CFG_FLAG_PIT | CFG_FLAG_CHA)
 

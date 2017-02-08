@@ -25,7 +25,7 @@ extern "C" {
 #include <stdlib.h>
 #include <string.h>
 	
-typedef struct FIFO
+typedef struct
 {
 	uint8_t* buf;
 	uint32_t len;

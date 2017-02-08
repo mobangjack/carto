@@ -39,10 +39,10 @@
 
 void Tty_Config();
 
-u8 Tty_ReadByte();
-void Tty_WriteByte(u8 byte);
-void Tty_ReadBlock(u8* pdata, u8 len);
-void Tty_WriteBlock(const u8* pdata, u8 len);
+uint8_t Tty_ReadByte();
+void Tty_WriteByte(uint8_t b);
+void Tty_ReadBlock(uint8_t* pdata, uint32_t len);
+void Tty_WriteBlock(const uint8_t* pdata, uint32_t len);
 void Tty_PrintString(const char* str);
 
 void TtyRxCallback(uint8_t data);

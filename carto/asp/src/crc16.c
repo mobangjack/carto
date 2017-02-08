@@ -16,7 +16,7 @@
  
 #include "crc16.h"
 
-const uint16_t CRC16Table[256] =
+static const uint16_t CRC16Table[256] =
 { 
     0x0000, 0x1189, 0x2312, 0x329b, 0x4624, 0x57ad, 0x6536, 0x74bf, 
     0x8c48, 0x9dc1, 0xaf5a, 0xbed3, 0xca6c, 0xdbe5, 0xe97e, 0xf8f7, 
@@ -52,9 +52,7 @@ const uint16_t CRC16Table[256] =
     0x7bc7, 0x6a4e, 0x58d5, 0x495c, 0x3de3, 0x2c6a, 0x1ef1, 0x0f78 
 }; 
 
-const uint16_t INIT_CRC16 = 0x3692;
-
-uint16_t CRC16Calc(uint8_t* msg, uint32_t len, uint16_t crc16)
+uint16_t CRC16Calc(const uint8_t* msg, uint32_t len, uint16_t crc16)
 {
 	if (msg == 0 || len <= 2)
 		return 0xFFFF;
@@ -66,7 +64,7 @@ uint16_t CRC16Calc(uint8_t* msg, uint32_t len, uint16_t crc16)
 	return crc16;
 }
 
-uint16_t CRC16Check(uint8_t* msg, uint32_t len, uint16_t crc16)
+uint16_t CRC16Check(const uint8_t* msg, uint32_t len, uint16_t crc16)
 {
 	
 	if ((msg == 0) || (len <= sizeof(uint16_t)))

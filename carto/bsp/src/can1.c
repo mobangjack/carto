@@ -35,7 +35,7 @@ void Can1_Config()
 
 void CAN1_RX_IRQ_HANDLER()
 {
-    if (CAN_GetITStatus(CAN1, CAN_IT_FMP0)!= RESET)
+    if (CAN_GetITStatus(CAN1, CAN_IT_FMP0) != RESET)
 	{
     	CanRxMsg canRxMsg;
         CAN_ClearITPendingBit(CAN1, CAN_IT_FF0);
@@ -48,7 +48,7 @@ void CAN1_RX_IRQ_HANDLER()
 
 void CAN1_TX_IRQ_HANDLER()
 {
-    if (CAN_GetITStatus(CAN1, CAN_IT_TME)!= RESET)
+    if (CAN_GetITStatus(CAN1, CAN_IT_TME) != RESET)
 	{
 		CAN_ClearITPendingBit(CAN1, CAN_IT_TME);
     }

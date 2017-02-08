@@ -16,10 +16,10 @@
  
 #include "motor.h"
 
-void EC60_Cmd(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16_t c204)
+void CM_Cmd(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16_t c204)
 {
 	CanTxMsg canTxMsg;
-    canTxMsg.StdId = EC60_CMD_CAN_MSG_ID;
+    canTxMsg.StdId = CM_CMD_CAN_MSG_ID;
     canTxMsg.IDE = CAN_Id_Standard;
     canTxMsg.RTR = CAN_RTR_Data;
     canTxMsg.DLC = 0x08;
@@ -35,10 +35,10 @@ void EC60_Cmd(CAN_TypeDef *CANx, int16_t c201, int16_t c202, int16_t c203, int16
     CAN_Transmit(CANx,&canTxMsg);
 }
 
-void RM6025_Cmd(CAN_TypeDef *CANx, int16_t c205, int16_t c206)
+void GM_Cmd(CAN_TypeDef *CANx, int16_t c205, int16_t c206)
 {
 	CanTxMsg canTxMsg;
-    canTxMsg.StdId = RM6025_CMD_CAN_MSG_ID;
+    canTxMsg.StdId = GM_CMD_CAN_MSG_ID;
     canTxMsg.IDE = CAN_Id_Standard;
     canTxMsg.RTR = CAN_RTR_Data;
     canTxMsg.DLC = 0x08;

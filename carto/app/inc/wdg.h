@@ -41,16 +41,16 @@ extern "C" {
 #define WDG_IDX_MOTOR6       9u
 
 
-#define WDG_ERR_RC			 (1<<WDG_IDX_RC)
-#define WDG_ERR_COM			 (1<<WDG_IDX_COM)
-#define WDG_ERR_IMU			 (1<<WDG_IDX_IMU)
-#define WDG_ERR_ZGYRO		 (1<<WDG_IDX_ZGYRO)
-#define WDG_ERR_MOTOR1		 (1<<WDG_IDX_MOTOR1)
-#define WDG_ERR_MOTOR2		 (1<<WDG_IDX_MOTOR2)
-#define WDG_ERR_MOTOR3		 (1<<WDG_IDX_MOTOR3)
-#define WDG_ERR_MOTOR4		 (1<<WDG_IDX_MOTOR4)
-#define WDG_ERR_MOTOR5		 (1<<WDG_IDX_MOTOR5)
-#define WDG_ERR_MOTOR6		 (1<<WDG_IDX_MOTOR6)
+#define WDG_ERR_RC			 (1u<<WDG_IDX_RC)
+#define WDG_ERR_COM			 (1u<<WDG_IDX_COM)
+#define WDG_ERR_IMU			 (1u<<WDG_IDX_IMU)
+#define WDG_ERR_ZGYRO		 (1u<<WDG_IDX_ZGYRO)
+#define WDG_ERR_MOTOR1		 (1u<<WDG_IDX_MOTOR1)
+#define WDG_ERR_MOTOR2		 (1u<<WDG_IDX_MOTOR2)
+#define WDG_ERR_MOTOR3		 (1u<<WDG_IDX_MOTOR3)
+#define WDG_ERR_MOTOR4		 (1u<<WDG_IDX_MOTOR4)
+#define WDG_ERR_MOTOR5		 (1u<<WDG_IDX_MOTOR5)
+#define WDG_ERR_MOTOR6		 (1u<<WDG_IDX_MOTOR6)
 
 #define WDG_ERR_ALL ( \
 		WDG_ERR_RC | \
@@ -73,14 +73,15 @@ extern "C" {
 		WDG_ERR_MOTOR2 | \
 		WDG_ERR_MOTOR3 | \
 		WDG_ERR_MOTOR4 | \
+		WDG_ERR_MOTOR5 | \
 		WDG_ERR_MOTOR6 \
 		)
 
-#define WDG_OVERFLOW_CNT_RC   	    100
-#define WDG_OVERFLOW_CNT_COM  		100
-#define WDG_OVERFLOW_CNT_IMU  		100
-#define WDG_OVERFLOW_CNT_ZGYRO 		100
-#define WDG_OVERFLOW_CNT_MOTOR 		100
+#define WDG_OVERFLOW_CNT_RC   	    100u
+#define WDG_OVERFLOW_CNT_COM  		100u
+#define WDG_OVERFLOW_CNT_IMU  		100u
+#define WDG_OVERFLOW_CNT_ZGYRO 		100u
+#define WDG_OVERFLOW_CNT_MOTOR 		100u
 
 void Wdg_Init();
 void Wdg_Proc();

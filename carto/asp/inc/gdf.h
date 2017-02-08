@@ -42,8 +42,8 @@ typedef struct
 }Gdf_t;
 
 void Gdf_Init(Gdf_t* gdf, float* buf, uint32_t len);
-void Gdf_Calc(Gdf_t* gdf, float v);
 void Gdf_Reset(Gdf_t* gdf);
+void Gdf_Calc(Gdf_t* gdf, float v);
 
 Gdf_t* Gdf_Create(uint32_t len);
 void Gdf_Destroy(Gdf_t* gdf);

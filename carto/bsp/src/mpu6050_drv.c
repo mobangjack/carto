@@ -16,7 +16,7 @@
 
 #include "mpu6050_drv.h"
 
-#define ABORT_IF_ASSERT_FAILED(FLAG) {if(!FLAG) return 0;}
+#define ABORT_IF_ASSERT_FAILED(FLAG) if(!(FLAG)) return 0
 uint8_t MPU6050_Init()
 {
     uint8_t data = 0;

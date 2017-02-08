@@ -44,7 +44,7 @@ uint8_t Can_Init()
 }
 
 #define PI 3.1415926f
-static void ZGyro_GetAngle(uint8_t* data)
+static void ZGyro_Proc(uint8_t* data)
 {
 	volatile float angle = 0;
 	zgyro.angle_fdb = ((int32_t)(data[0]<<24) | (int32_t)(data[1]<<16) | (int32_t)(data[2]<<8) | (int32_t)(data[3]));
@@ -93,7 +93,7 @@ static void Motor_Proc(uint8_t i, uint8_t* data)
 	angle = (angle - motor[i].bias) + motor[i].rnd * PIx2;
 	//motor[i].rate = (angle - motor[i].angle) * MOTOR_SPEED_RECIP;
 	//motor[i].angle = angle;
-	EstProc(est[i], angle);
+	Est_Proc(est[i], angle);
 	motor[i].angle = est[i]->value;
 	motor[i].rate = est[i]->delta * MOTOR_SPEED_RECIP;
 }
@@ -103,7 +103,7 @@ void Can_Proc(uint32_t id, uint8_t* data)
 	switch (id) {
 	case ZGYRO_FDB_CAN_MSG_ID:
 		Wdg_Feed(WDG_IDX_ZGYRO);
-		ZGyro_GetAngle(data);
+		ZGyro_Proc(data);
 		break;
 	case MOTOR1_FDB_CAN_MSG_ID:
 		Wdg_Feed(WDG_IDX_MOTOR1);
@@ -141,7 +141,7 @@ void ZGyro_Reset()
 
 void Motor_Reset(uint8_t i)
 {
-	EstReset(est[i]);
+	Est_Reset(est[i]);
 	motor[i].reset = 1;
 }
 

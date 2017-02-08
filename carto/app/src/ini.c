@@ -16,8 +16,41 @@
 
 #include "ini.h"
 
+/******************************************************/
+/*          System Initialization Information         */
+/******************************************************/
+
+static uint32_t ini_flag = 0;
+
+uint32_t Ini_Get(uint32_t flag)
+{
+	return ini_flag & flag;
+}
+
+void Ini_Set(uint32_t flag)
+{
+	ini_flag |= flag;
+}
+
+void Ini_Clr(uint32_t flag)
+{
+	ini_flag &= ~flag;
+}
+
+void Ini_Check(uint8_t condition, uint32_t flag)
+{
+	if (condition) {
+		Ini_Clr(flag);
+	} else {
+		Ini_Set(flag);
+	}
+}
+
 void Ini_Init()
 {
+	if (cfg.flag & CFG_FLAG_DONE) {
+		ini_flag |= INI_FLAG_CFG;
+	}
 	// IMU Configuration
 	Imu_Config(&imu,
 		cfg.imu.ax_offset,
@@ -140,7 +173,12 @@ void Ini_Init()
 
 void Ini_Proc()
 {
-
+	Ini_Check(motor[0].reset, INI_FLAG_MOTOR1);
+	Ini_Check(motor[1].reset, INI_FLAG_MOTOR2);
+	Ini_Check(motor[2].reset, INI_FLAG_MOTOR3);
+	Ini_Check(motor[3].reset, INI_FLAG_MOTOR4);
+	Ini_Check(motor[4].reset, INI_FLAG_MOTOR5);
+	Ini_Check(motor[5].reset, INI_FLAG_MOTOR6);
 }
 
 uint8_t Ini_Ok()

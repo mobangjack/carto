@@ -23,18 +23,6 @@ void Gdf_Init(Gdf_t* gdf, float* buf, uint32_t len)
 	Gdf_Reset(gdf);
 }
 
-void Gdf_Calc(Gdf_t* gdf, float v)
-{
-	float avg = gdf->avg;
-	float del = v - gdf->buf[gdf->i];
-	gdf->avgd = del / gdf->len;
-	gdf->avg += gdf->avgd;
-	gdf->vard = del * (gdf->buf[gdf->i] - avg + v - gdf->avg) / gdf->len;
-	gdf->var += gdf->vard;
-	gdf->buf[gdf->i] = v;
-	gdf->i = (gdf->i == gdf->len) ? 0 : gdf->i + 1;
-}
-
 void Gdf_Reset(Gdf_t* gdf)
 {
 	memset(gdf->buf, 0, gdf->len * sizeof(float));
@@ -43,6 +31,18 @@ void Gdf_Reset(Gdf_t* gdf)
 	gdf->var = 0;
 	gdf->avgd = 0;
 	gdf->vard = 0;
+}
+
+void Gdf_Calc(Gdf_t* gdf, float v)
+{
+	float avg = gdf->avg;
+	float del = v - gdf->buf[gdf->i];
+	gdf->avgd = del / gdf->len;
+	gdf->avg += gdf->avgd;
+	gdf->vard = del * (gdf->buf[gdf->i] - avg + v - gdf->avg) / gdf->len;
+	gdf->var += gdf->vard;
+	gdf->buf[gdf->i++] = v;
+	if (gdf->i == gdf->len) gdf->i = 0;
 }
 
 Gdf_t* Gdf_Create(uint32_t len)
@@ -58,6 +58,7 @@ Gdf_t* Gdf_Create(uint32_t len)
 		gdf = NULL;
 		return NULL;
 	}
+	gdf->len = len;
 	Gdf_Reset(gdf);
 	return gdf;
 }

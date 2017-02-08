@@ -37,6 +37,7 @@ typedef enum {
 	WORKING_STATE_STOP,
 	WORKING_STATE_PREPARE,
 	WORKING_STATE_NORMAL,
+	WORKING_STATE_CONFIG,
 }WorkingState_e;
 
 typedef enum {

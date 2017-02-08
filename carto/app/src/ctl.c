@@ -88,6 +88,9 @@ static void WorkingStateSwitchMach()
 			workingStateSwitch = WORKING_STATE_SWITCH_N2P;
 		}
 		break;
+	case WORKING_STATE_CONFIG:
+		// Current working state is CONFIG.
+		break;
 	default:
 		break;
 	}

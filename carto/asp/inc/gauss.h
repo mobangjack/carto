@@ -51,9 +51,10 @@ typedef struct
 }Gauss_t;
 
 void GaussInit(Gauss_t* gauss, float* buf, uint32_t N);
-Gauss_t* GaussCreate(uint16_t N);
 void GaussReset(Gauss_t* gauss);
 void GaussProc(Gauss_t* gauss, float x);
+
+Gauss_t* GaussCreate(uint16_t N);
 void GaussDestroy(Gauss_t* gauss);
 
 #ifdef __cplusplus

@@ -18,8 +18,8 @@
 
 static FIFO_t rx_fifo;
 static FIFO_t tx_fifo;
-static u8 rx_buf[TTY_RX_FIFO_SIZE];
-static u8 tx_buf[TTY_RX_FIFO_SIZE];
+static uint8_t rx_buf[TTY_RX_FIFO_SIZE];
+static uint8_t tx_buf[TTY_RX_FIFO_SIZE];
 
 void Tty_Config(void)
 {
@@ -42,20 +42,25 @@ void Tty_Config(void)
     USART_Cmd(TTY_USART, ENABLE);
 }
 
-u8 Tty_ReadByte()
+uint32_t Tty_RxAvailable()
+{
+	return FIFO_GetUsed(&rx_fifo);
+}
+
+uint8_t Tty_ReadByte()
 {
 	while (FIFO_IsEmpty(&rx_fifo));
 	return FIFO_Pop(&rx_fifo);
 }
 
-void Tty_WriteByte(u8 byte)
+void Tty_WriteByte(uint8_t b)
 {
 	while (FIFO_IsFull(&tx_fifo));
-    FIFO_Push(&tx_fifo, byte);
+    FIFO_Push(&tx_fifo, b);
     USART_ITConfig(TTY_USART, USART_IT_TXE, ENABLE);
 }
 
-void Tty_ReadBlock(u8* pdata, u8 len)
+void Tty_ReadBlock(uint8_t* pdata, uint32_t len)
 {
 	uint8_t i = 0;
 	for (; i < len; i++) {
@@ -63,7 +68,7 @@ void Tty_ReadBlock(u8* pdata, u8 len)
 	}
 }
 
-void Tty_WriteBlock(const u8* pdata, u8 len)
+void Tty_WriteBlock(const uint8_t* pdata, uint32_t len)
 {
 	uint8_t i = 0;
 	for (; i < len; i++) {
@@ -73,7 +78,7 @@ void Tty_WriteBlock(const u8* pdata, u8 len)
 
 void Tty_PrintString(const char* str)
 {
-	Tty_WriteBlock((const u8*)str, strlen(str));
+	Tty_WriteBlock((const uint8_t*)str, strlen(str));
 }
 
 void TTY_IRQ_HANDLER()
